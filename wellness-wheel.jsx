@@ -39,32 +39,42 @@ import {
  * See wellness-wheel-handoff.docx for the full developer brief.
  * ------------------------------------------------------------------ */
 
-/* ----------------------------- Brand tokens ----------------------- */
+/* ----------------------------- Brand tokens ----------------------- *
+ * Kris Pierce Consulting — warm, restorative wellness identity.
+ * Light theme: sage green primary, clay accent, warm cream surfaces.
+ * (Deliberately distinct from the Rare Intelligence "Deep Signal"
+ *  cool-blue/navy brand — this is a separate product.)
+ * Keys are kept stable; values map to roles via the comments below.
+ * ------------------------------------------------------------------ */
 const C = {
-  teal: "#00C9B1",
-  aqua: "#3DD6C8",
-  seafoam: "#80EAD8",
-  mint: "#C2F5EE",
-  ghost: "#EEF8F7",
-  cobalt: "#1A4FBF",
-  ocean: "#0E7FA8",
-  indigo: "#2D3580",
-  navy: "#080F1E",
-  card: "#0E1C35",
-  lift: "#152844",
-  hairline: "#1D2F4D",
-  grey: "#8BA8A5",
+  teal: "#4F7C6B",   // PRIMARY accent — sage green (progress, earned, CTAs)
+  aqua: "#C99A3F",   // intellectual dimension — warm gold
+  seafoam: "#7E6191", // spiritual dimension — soft plum
+  mint: "#34604F",   // active-nav text on sage tint — deep sage
+  ghost: "#34302B",  // PRIMARY text — warm ink
+  cobalt: "#C97C5D", // gradient partner + occupational dim — clay
+  ocean: "#A9742F",  // financial dimension — bronze
+  indigo: "#6E5568", // depth accent — muted plum
+  navy: "#FBF6EF",   // page background AND text-on-accent — warm cream
+  card: "#FFFFFF",   // card surface
+  lift: "#F3EADF",   // inputs, track fills — warm sand
+  hairline: "#E6DACB", // borders, dividers
+  grey: "#8A7D6E",   // muted / secondary text — warm grey
 };
+
+/* Type: warm serif for headings, humanist sans for UI/body. */
+const SERIF = "'Fraunces', 'Iowan Old Style', Georgia, serif";
+const SANS = "'Inter', -apple-system, system-ui, sans-serif";
 
 /* ----------------------------- Dimensions ------------------------- */
 const DIMENSIONS = [
   { key: "physical", name: "Physical", Icon: Activity, color: C.teal },
-  { key: "emotional", name: "Emotional", Icon: Heart, color: "#FF8FA3" },
+  { key: "emotional", name: "Emotional", Icon: Heart, color: "#C76B7A" },
   { key: "intellectual", name: "Intellectual", Icon: BookOpen, color: C.aqua },
-  { key: "social", name: "Social", Icon: Users, color: "#FFC76B" },
+  { key: "social", name: "Social", Icon: Users, color: "#D98C5A" },
   { key: "spiritual", name: "Spiritual", Icon: Sparkles, color: C.seafoam },
   { key: "occupational", name: "Occupational", Icon: Briefcase, color: C.cobalt },
-  { key: "environmental", name: "Environmental", Icon: Home, color: "#7CD992" },
+  { key: "environmental", name: "Environmental", Icon: Home, color: "#6E8B4A" },
   { key: "financial", name: "Financial", Icon: Wallet, color: C.ocean },
 ];
 
@@ -400,24 +410,24 @@ export default function WellnessWheel() {
   ];
 
   return (
-    <div style={{ background: C.navy, color: C.ghost, minHeight: "100vh", fontFamily: "Inter, system-ui, sans-serif" }}>
+    <div style={{ background: C.navy, color: C.ghost, minHeight: "100vh", fontFamily: SANS }}>
       {/* Sticky header */}
       <header
         style={{
-          position: "sticky", top: 0, zIndex: 30, background: "rgba(8,15,30,0.92)",
+          position: "sticky", top: 0, zIndex: 30, background: "rgba(251,246,239,0.92)",
           backdropFilter: "blur(10px)", borderBottom: `1px solid ${C.hairline}`,
         }}
       >
         <div style={{ maxWidth: 1100, margin: "0 auto", padding: "14px 20px", display: "flex", alignItems: "center", gap: 16, flexWrap: "wrap" }}>
           <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
             <div style={{ width: 30, height: 30, borderRadius: 9, background: `linear-gradient(135deg, ${C.teal}, ${C.cobalt})` }} />
-            <strong style={{ letterSpacing: 0.3 }}>Wellness Wheel</strong>
+            <strong style={{ letterSpacing: 0.3, fontFamily: SERIF, fontWeight: 600, fontSize: 18 }}>Wellness Wheel</strong>
           </div>
           {baseline && (
             <div style={{ marginLeft: "auto", display: "flex", alignItems: "center", gap: 18, fontSize: 13 }}>
               <Stat label="Level" value={`${lvl.index} · ${lvl.name}`} />
               <Stat label="Points" value={points} icon={<Star size={14} color={C.teal} />} />
-              <Stat label="Streak" value={`${streak} wk`} icon={<Flame size={14} color="#FFC76B" />} />
+              <Stat label="Streak" value={`${streak} wk`} icon={<Flame size={14} color="#C97C5D" />} />
             </div>
           )}
         </div>
@@ -435,7 +445,7 @@ export default function WellnessWheel() {
                     display: "flex", alignItems: "center", gap: 6, whiteSpace: "nowrap",
                     padding: "8px 14px", borderRadius: 999, fontSize: 13, fontWeight: 600,
                     border: `1px solid ${active ? C.teal : C.hairline}`,
-                    background: active ? "rgba(0,201,177,0.14)" : "transparent",
+                    background: active ? "rgba(79,124,107,0.14)" : "transparent",
                     color: active ? C.mint : disabled ? C.grey : C.ghost,
                     opacity: disabled ? 0.4 : 1, cursor: disabled ? "not-allowed" : "pointer",
                   }}
@@ -493,7 +503,7 @@ export default function WellnessWheel() {
             position: "fixed", bottom: 24, left: "50%", transform: "translateX(-50%)",
             background: `linear-gradient(135deg, ${C.teal}, ${C.cobalt})`, color: C.navy,
             padding: "12px 22px", borderRadius: 999, fontWeight: 700, zIndex: 50,
-            boxShadow: "0 10px 30px rgba(0,201,177,0.35)", display: "flex", gap: 8, alignItems: "center",
+            boxShadow: "0 10px 30px rgba(79,124,107,0.35)", display: "flex", gap: 8, alignItems: "center",
           }}
         >
           <Trophy size={18} /> {toast}
@@ -514,11 +524,12 @@ function Stat({ label, value, icon }) {
 }
 const cardStyle = {
   background: C.card, border: `1px solid ${C.hairline}`, borderRadius: 16, padding: 20,
+  boxShadow: "0 6px 20px rgba(52,48,43,0.06)",
 };
 function SectionTitle({ children, sub }) {
   return (
     <div style={{ marginBottom: 18 }}>
-      <h2 style={{ margin: 0, fontSize: 24, fontWeight: 800 }}>{children}</h2>
+      <h2 style={{ margin: 0, fontSize: 26, fontWeight: 600, fontFamily: SERIF }}>{children}</h2>
       {sub && <p style={{ margin: "6px 0 0", color: C.grey, fontSize: 14 }}>{sub}</p>}
     </div>
   );
@@ -787,7 +798,7 @@ function CheckIn({ checkins, streak, onAdd }) {
       </SectionTitle>
       <div style={{ ...cardStyle, maxWidth: 560 }}>
         {already ? (
-          <p style={{ color: C.seafoam }}>You've checked in this week. See you next week 🌱</p>
+          <p style={{ color: C.teal }}>You've checked in this week. See you next week 🌱</p>
         ) : (
           <>
             <div style={{ marginBottom: 8, fontSize: 15 }}>How has this week felt?</div>
@@ -799,7 +810,7 @@ function CheckIn({ checkins, streak, onAdd }) {
                   style={{
                     flex: 1, fontSize: 26, padding: "10px 0", borderRadius: 12, cursor: "pointer",
                     border: `1px solid ${mood === i + 1 ? C.teal : C.hairline}`,
-                    background: mood === i + 1 ? "rgba(0,201,177,0.14)" : "transparent",
+                    background: mood === i + 1 ? "rgba(79,124,107,0.14)" : "transparent",
                   }}
                 >
                   {m}
@@ -855,7 +866,7 @@ function Partner({ email, onSave }) {
       </SectionTitle>
       <div style={{ ...cardStyle, maxWidth: 520 }}>
         {email ? (
-          <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 16, color: C.seafoam }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 16, color: C.teal }}>
             <UserPlus size={18} /> Partner set: <strong>{email}</strong>
           </div>
         ) : null}
@@ -911,7 +922,7 @@ function Compare({ baseline, current }) {
                   <d.Icon size={15} color={d.color} />
                   <span style={{ flex: 1, fontSize: 14 }}>{d.name}</span>
                   <span style={{ color: C.grey, fontSize: 13 }}>{baseline[d.key]} → {current[d.key]}</span>
-                  <span style={{ width: 46, textAlign: "right", fontWeight: 800, color: up ? C.teal : "#FF8FA3" }}>
+                  <span style={{ width: 46, textAlign: "right", fontWeight: 800, color: up ? C.teal : "#C76B7A" }}>
                     {up ? "+" : ""}{delta}
                   </span>
                 </div>

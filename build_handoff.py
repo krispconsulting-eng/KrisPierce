@@ -4,10 +4,10 @@ from docx import Document
 from docx.shared import Pt, RGBColor, Inches
 from docx.enum.text import WD_ALIGN_PARAGRAPH
 
-TEAL = RGBColor(0x00, 0xC9, 0xB1)
-NAVY = RGBColor(0x08, 0x0F, 0x1E)
-COBALT = RGBColor(0x1A, 0x4F, 0xBF)
-GREY = RGBColor(0x5A, 0x6A, 0x78)
+TEAL = RGBColor(0x4F, 0x7C, 0x6B)   # sage — primary brand accent
+NAVY = RGBColor(0x34, 0x30, 0x2B)   # warm ink — headings/body
+COBALT = RGBColor(0xC9, 0x7C, 0x5D) # clay — secondary accent
+GREY = RGBColor(0x8A, 0x7D, 0x6E)   # warm grey — muted
 
 doc = Document()
 
@@ -88,7 +88,7 @@ r.font.color.rgb = NAVY
 
 meta = doc.add_paragraph()
 meta.alignment = WD_ALIGN_PARAGRAPH.CENTER
-r = meta.add_run("Kris Pierce · Prototype to Production · Prepared for engineering")
+r = meta.add_run("Kris Pierce Consulting · Prototype to Production · Prepared for engineering")
 r.font.size = Pt(11)
 r.font.color.rgb = GREY
 
@@ -308,31 +308,40 @@ bullet("Streak uses ISO weeks; a user in a different timezone near a week bounda
 
 # ----------------------------- 9. Design specs -----------------------------
 h1("9. Design Tokens & Specs")
+para(
+    "Brand: Kris Pierce Consulting — a warm, restorative wellness identity. This is "
+    "deliberately separate from the Rare Intelligence “Deep Signal” brand "
+    "(cool clinical navy/teal). The Wellness Wheel uses a light theme: sage-green "
+    "primary, clay accent, and warm cream surfaces.",
+    bold=True,
+)
 h2("Brand colour palette")
 table(
     ["Token", "Hex", "Use"],
     [
-        ["Vivid teal", "#00C9B1", "Primary accent, progress, earned states"],
-        ["Aqua", "#3DD6C8", "Secondary accent"],
-        ["Seafoam", "#80EAD8", "Soft highlights, success text"],
-        ["Pale mint", "#C2F5EE", "Badge / toast text on dark"],
-        ["Ghost", "#EEF8F7", "Primary text on dark"],
-        ["Cobalt", "#1A4FBF", "Gradient partner to teal"],
-        ["Ocean", "#0E7FA8", "Tertiary accent"],
-        ["Deep indigo", "#2D3580", "Depth accent"],
-        ["Midnight navy", "#080F1E", "Page background"],
-        ["Navy card", "#0E1C35", "Card surface"],
-        ["Navy lift", "#152844", "Inputs, track backgrounds"],
-        ["Hairline", "#1D2F4D", "Borders, dividers"],
-        ["Warm grey", "#8BA8A5", "Muted / secondary text"],
+        ["Sage (primary)", "#4F7C6B", "Primary accent, progress, earned states, CTAs"],
+        ["Deep sage", "#34604F", "Active-nav text on sage tint"],
+        ["Clay", "#C97C5D", "Gradient partner + occupational dimension, streak"],
+        ["Warm gold", "#C99A3F", "Intellectual dimension"],
+        ["Bronze", "#A9742F", "Financial dimension"],
+        ["Soft plum", "#7E6191", "Spiritual dimension"],
+        ["Rose", "#C76B7A", "Emotional dimension, negative delta"],
+        ["Warm coral", "#D98C5A", "Social dimension"],
+        ["Olive", "#6E8B4A", "Environmental dimension"],
+        ["Warm cream", "#FBF6EF", "Page background AND text on accent fills"],
+        ["White", "#FFFFFF", "Card surface"],
+        ["Warm sand", "#F3EADF", "Inputs, track backgrounds"],
+        ["Hairline", "#E6DACB", "Borders, dividers"],
+        ["Warm ink", "#34302B", "Primary text"],
+        ["Warm grey", "#8A7D6E", "Muted / secondary text"],
     ],
 )
 h2("Layout & type")
-bullet("Max content width 1100px, centred.")
-bullet("Cards: 16px radius, 1px hairline border, 20px padding.")
-bullet("Pills/buttons: 999px radius. Primary = teal→cobalt gradient on navy text.")
-bullet("Font: Inter / system-ui. Headings 800 weight.")
-bullet("Each dimension has its own accent colour for quick visual scanning.")
+bullet("Max content width 1100px, centred. Light theme on warm cream (#FBF6EF).")
+bullet("Cards: white, 16px radius, 1px hairline border, 20px padding, soft shadow (0 6px 20px rgba(52,48,43,.06)).")
+bullet("Pills/buttons: 999px radius. Primary = sage→clay gradient with cream text.")
+bullet("Type: warm serif for headings (Fraunces, fallback Iowan Old Style / Georgia); humanist sans for UI/body (Inter / system). Load Fraunces + Inter via Google Fonts in production; the prototype falls back gracefully to system fonts.")
+bullet("Each of the 8 dimensions has its own warm, earthy accent colour for quick visual scanning.")
 h2("Accessibility notes")
 bullet("Ensure 1–5 rating buttons and mood emojis have aria-labels in production.")
 bullet("Verify contrast of grey (#8BA8A5) on navy for body text; bump to ghost where it carries meaning.")
