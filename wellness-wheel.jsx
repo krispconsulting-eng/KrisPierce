@@ -636,7 +636,7 @@ function Wheel({ scores: sc, points, lvl, earned }) {
               <PolarGrid stroke={C.hairline} />
               <PolarAngleAxis dataKey="dim" tick={{ fill: C.grey, fontSize: 12 }} />
               <PolarRadiusAxis domain={[0, 100]} tick={{ fill: C.grey, fontSize: 10 }} stroke={C.hairline} />
-              <Radar dataKey="score" stroke={C.teal} fill={C.teal} fillOpacity={0.4} />
+              <Radar dataKey="score" stroke={C.teal} strokeWidth={2.5} fill={C.teal} fillOpacity={0.55} dot={{ r: 3, fill: C.teal }} />
             </RadarChart>
           </ResponsiveContainer>
         </div>
@@ -905,8 +905,8 @@ function Compare({ baseline, current }) {
               <PolarGrid stroke={C.hairline} />
               <PolarAngleAxis dataKey="dim" tick={{ fill: C.grey, fontSize: 12 }} />
               <PolarRadiusAxis domain={[0, 100]} tick={{ fill: C.grey, fontSize: 10 }} stroke={C.hairline} />
-              <Radar name="Before" dataKey="Before" stroke={C.grey} fill={C.grey} fillOpacity={0.18} />
-              <Radar name="After" dataKey="After" stroke={C.teal} fill={C.teal} fillOpacity={0.4} />
+              <Radar name="Before" dataKey="Before" stroke={C.grey} strokeWidth={2} fill={C.grey} fillOpacity={0.18} />
+              <Radar name="After" dataKey="After" stroke={C.teal} strokeWidth={2.5} fill={C.teal} fillOpacity={0.5} dot={{ r: 3, fill: C.teal }} />
               <Legend wrapperStyle={{ fontSize: 13 }} />
             </RadarChart>
           </ResponsiveContainer>
