@@ -1,5 +1,5 @@
 # UNSW
 
-Supporting work at Rare New South Wales.
+Rare NSW advocacy and support initiatives.
 
-Source: [krispconsulting-eng/unsw](https://github.com/krispconsulting-eng/unsw)
+**Repository:** [krispconsulting-eng/unsw](https://github.com/krispconsulting-eng/unsw)
