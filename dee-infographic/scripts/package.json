@@ -1,0 +1,12 @@
+{
+  "name": "dee-infographic-generator",
+  "private": true,
+  "description": "Browser-free generator for the DEE disability-impact PNG/SVG assets.",
+  "scripts": {
+    "build": "node generate-assets.js ../assets/dee-impact.png"
+  },
+  "dependencies": {
+    "@resvg/resvg-js": "^2.6.2",
+    "opentype.js": "^1.3.4"
+  }
+}
