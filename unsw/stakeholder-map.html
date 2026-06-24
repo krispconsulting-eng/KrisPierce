@@ -1,0 +1,313 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rare disease research — stakeholder map</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700;800&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#EEF3F5; --surface:#fff; --ink:#0E3A46; --mute:#51707A; --hair:#DCE5EA;
+    --green:#059669; --green-tint:#E6F7F0; --green-ink:#047857;
+    --hub:#0C3F4C; --cyan:#0891B2;
+    --shadow:0 1px 2px rgba(14,58,70,.06),0 8px 24px rgba(14,58,70,.07);
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;}
+  body{
+    margin:0; background:linear-gradient(180deg,#F2F6F8 0%,#E7EFF2 100%);
+    font-family:"Source Sans 3",system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+    color:var(--ink); line-height:1.5; padding:40px 20px 64px;
+  }
+  .board{max-width:1200px;margin:0 auto;}
+  h1,h2,h3,h4{font-family:"Lexend",system-ui,sans-serif;margin:0;line-height:1.08;}
+  p{margin:0;}
+
+  /* Header */
+  .head h1{font-size:clamp(28px,4vw,46px);font-weight:700;letter-spacing:-.01em;}
+  .head .sub{margin-top:12px;font-size:clamp(15px,1.6vw,18px);color:var(--mute);max-width:62ch;line-height:1.45;}
+  .legend{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px;align-items:center;}
+  .pill{display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border-radius:999px;font-size:13.5px;font-weight:600;}
+  .pill.principle{background:var(--green-tint);color:var(--green-ink);border:1px solid #A7E8CE;}
+  .pill.chip{background:#fff;color:var(--ink);border:1px solid var(--hair);}
+  .dot{width:11px;height:11px;border-radius:50%;display:inline-block;}
+
+  /* Hub */
+  .hub{margin:30px auto 6px;max-width:840px;background:var(--hub);border:1.5px solid var(--cyan);
+       border-radius:18px;padding:22px 30px 24px;text-align:center;box-shadow:var(--shadow);}
+  .hub .eyebrow{font-size:12px;font-weight:700;letter-spacing:.14em;color:#7FD3E0;}
+  .hub h2{color:#fff;font-size:clamp(20px,2.4vw,28px);font-weight:600;margin-top:6px;}
+  .hub p{color:#C7DDE3;font-size:15px;margin-top:8px;max-width:60ch;margin-left:auto;margin-right:auto;}
+  .feeder{text-align:center;color:var(--mute);font-size:13px;font-weight:600;letter-spacing:.02em;margin:14px 0 22px;}
+
+  /* Tiers */
+  .tiers{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;align-items:start;}
+  .col{display:flex;flex-direction:column;gap:14px;}
+  .col-head{border-radius:14px;padding:16px 18px 18px;color:#fff;box-shadow:var(--shadow);}
+  .col-head .tag{font-size:12px;font-weight:700;letter-spacing:.07em;opacity:.85;}
+  .col-head h3{font-size:24px;font-weight:700;margin-top:5px;}
+  .col-head .desc{font-size:14px;margin-top:6px;opacity:.93;line-height:1.4;}
+  .lived  .col-head{background:#C5392F;}
+  .system .col-head{background:#0A6175;}
+  .sponsor .col-head{background:#8A5A12;}
+
+  .card{background:var(--surface);border:1px solid var(--hair);border-left:4px solid var(--acc);
+        border-radius:12px;padding:14px 16px;box-shadow:var(--shadow);}
+  .card h4{font-size:16px;font-weight:600;color:var(--ink);}
+  .card .items{font-size:13.5px;color:var(--mute);margin-top:8px;line-height:1.5;}
+  .card .touch{margin-top:10px;background:var(--tint);color:var(--ink2);font-size:12px;font-weight:600;
+               padding:7px 11px;border-radius:8px;line-height:1.35;}
+  .lived  {--acc:#E2574E;--tint:#FCEAE8;--ink2:#9C342C;}
+  .system {--acc:#0891B2;--tint:#E4F4F8;--ink2:#0A5061;}
+  .sponsor{--acc:#C98A2E;--tint:#FBF1DD;--ink2:#7A4F12;}
+  .card.rule{border-left-color:#C98A2E;background:#FBF1DD;}
+  .card.rule h4{color:#7A4F12;}
+  .card.rule .items{color:#7A4F12;}
+
+  /* Section shell */
+  .section{margin-top:36px;background:var(--surface);border:1px solid var(--hair);border-radius:18px;
+           padding:26px 28px;box-shadow:var(--shadow);}
+  .section > h2{font-size:clamp(20px,2.4vw,26px);font-weight:700;}
+  .section > .lead{color:var(--mute);font-size:15px;margin-top:8px;max-width:78ch;line-height:1.45;}
+
+  /* Power-Interest grid */
+  .pi{margin-top:22px;display:grid;grid-template-columns:30px 1fr;grid-template-rows:1fr 30px;gap:10px;}
+  .pi-y{grid-column:1;grid-row:1;writing-mode:vertical-rl;transform:rotate(180deg);
+        text-align:center;font-weight:700;font-size:12px;letter-spacing:.08em;color:var(--mute);text-transform:uppercase;}
+  .pi-grid{grid-column:2;grid-row:1;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:14px;}
+  .pi-x{grid-column:2;grid-row:2;text-align:center;font-weight:700;font-size:12px;letter-spacing:.08em;color:var(--mute);text-transform:uppercase;}
+  .q{border-radius:12px;padding:15px 16px;border:1px solid;}
+  .q .qe{font-size:11.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;opacity:.9;}
+  .q h4{font-size:17px;font-weight:600;margin-top:3px;}
+  .q .who{font-size:13px;margin-top:8px;line-height:1.45;}
+  .q .note{font-size:12px;margin-top:9px;font-style:italic;opacity:.95;}
+  .q.partner {background:#E9F6F0;border-color:#9FD9C2;color:#0B5C44;}
+  .q.satisfied{background:#FBF3E2;border-color:#E6CF9B;color:#7A4F12;}
+  .q.empower {background:#FCEAE8;border-color:#F0BFB9;color:#8E2E27;}
+  .q.monitor {background:#EEF2F4;border-color:#D3DEE3;color:#48606B;}
+
+  /* Recruitment matrix */
+  .chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px;}
+  .mchip{display:inline-flex;align-items:center;gap:8px;background:#F4F8FA;border:1px solid var(--hair);
+         border-radius:999px;padding:8px 14px;font-size:13.5px;font-weight:600;color:var(--ink);}
+  .mchip .dot{background:#0891B2;}
+  .guards-h{font-family:"Lexend";font-weight:600;font-size:17px;margin-top:26px;}
+  .guards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:14px;}
+  .guard{background:#F7FAFB;border:1px solid var(--hair);border-radius:12px;padding:15px 16px;}
+  .guard .num{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:8px;
+              background:var(--green);color:#fff;font-family:"Lexend";font-weight:700;font-size:14px;}
+  .guard h4{font-size:15px;font-weight:600;margin-top:10px;}
+  .guard p{font-size:13px;color:var(--mute);margin-top:6px;line-height:1.45;}
+
+  footer{max-width:1200px;margin:28px auto 0;color:#7A929B;font-size:12.5px;line-height:1.5;}
+  footer .caveat{margin-top:6px;}
+
+  @media (max-width:900px){
+    .tiers{grid-template-columns:1fr;}
+    .pi-grid{grid-template-columns:1fr;grid-template-rows:auto;}
+    .guards{grid-template-columns:1fr;}
+  }
+  @media print{
+    body{background:#fff;padding:0;}
+    .card,.q,.guard,.col-head,.hub,.section{box-shadow:none;break-inside:avoid;}
+    .tiers,.guards{break-inside:avoid;}
+  }
+</style>
+</head>
+<body>
+<main class="board">
+
+  <header class="head">
+    <h1>Rare disease research — stakeholder map</h1>
+    <p class="sub">Everyone who shapes what gets researched, how, with whom, and whether findings reach care — mapped across three groups for the deliberative forum.</p>
+    <div class="legend">
+      <span class="pill principle">≥ 40% lived-experience seats</span>
+      <span class="pill chip"><span class="dot" style="background:#E2574E"></span>Lived experience</span>
+      <span class="pill chip"><span class="dot" style="background:#0891B2"></span>System</span>
+      <span class="pill chip"><span class="dot" style="background:#C98A2E"></span>Sponsors (optional)</span>
+    </div>
+  </header>
+
+  <section class="hub">
+    <div class="eyebrow">THE TEAM AT THE CENTRE</div>
+    <h2>Rare Disease Research Team — RDNSW</h2>
+    <p>All three groups interact with the team — shaping its priorities, study design, recruitment, data, and whether findings translate into care.</p>
+  </section>
+  <div class="feeder">▲ &nbsp;all three groups feed into, and draw from, the research team&nbsp; ▲</div>
+
+  <section class="tiers">
+
+    <!-- LIVED EXPERIENCE -->
+    <div class="col lived">
+      <div class="col-head">
+        <div class="tag">GROUP 1 · ≥ 40% OF SEATS</div>
+        <h3>Lived experience</h3>
+        <div class="desc">The people the research exists to serve — and the deliberative majority in the room.</div>
+      </div>
+      <article class="card">
+        <h4>Consumers &amp; patients</h4>
+        <p class="items">Adults living with a rare disease · children &amp; young people (assent; youth advisory) · undiagnosed / SWAN · newly diagnosed · long-term, stable &amp; progressive</p>
+        <p class="touch">↳ Define research priorities and the outcomes that matter</p>
+      </article>
+      <article class="card">
+        <h4>Family &amp; carers</h4>
+        <p class="items">Parents · partners / spouses · sibling &amp; young carers · kinship carers · sole carers</p>
+        <p class="touch">↳ Proxy voice for paediatric, non-verbal &amp; intellectual-disability conditions</p>
+      </article>
+      <article class="card">
+        <h4>Bereaved families</h4>
+        <p class="items">Families who have lost a child or relative to a rare condition</p>
+        <p class="touch">↳ A critical — and routinely excluded — perspective</p>
+      </article>
+      <article class="card">
+        <h4>Equity-priority voices</h4>
+        <p class="items">Aboriginal &amp; Torres Strait Islander families · CALD communities · rural, regional &amp; remote · low-income / sole carers · communication &amp; cognitive access needs</p>
+        <p class="touch">↳ Recruit deliberately — see the diversity matrix below</p>
+      </article>
+      <article class="card">
+        <h4>Patient &amp; family-led groups</h4>
+        <p class="items">Disease-specific support groups (e.g. SCN2A Australia) · self-advocates · consumer reps already embedded in research (CCI / PPI)</p>
+        <p class="touch">↳ Lived-experience-led — watch for over-representation of the largest, best-resourced groups</p>
+      </article>
+    </div>
+
+    <!-- SYSTEM -->
+    <div class="col system">
+      <div class="col-head">
+        <div class="tag">GROUP 2</div>
+        <h3>System</h3>
+        <div class="desc">Those who design, fund, deliver, regulate and translate the research.</div>
+      </div>
+      <article class="card">
+        <h4>Research &amp; academia</h4>
+        <p class="items">Chief / principal investigators &amp; the research team · ECRs &amp; PhD students · clinician-researchers · bioinformaticians &amp; data scientists · biostatisticians, epidemiologists · health economists &amp; implementation scientists · bioethicists &amp; social scientists · CCI coordinators · HRECs &amp; research governance · networks: Australian Genomics, Luminesce Alliance, ZERO, Garvan, CMRI, MCRI</p>
+        <p class="touch">↳ The team and its closest collaborators</p>
+      </article>
+      <article class="card">
+        <h4>Clinical &amp; health services</h4>
+        <p class="items">Clinical geneticists &amp; genetic counsellors · metabolic, neuro, immunology &amp; other specialists · paediatric ↔ adult transition · GPs / primary care · allied health · specialist nurses &amp; care coordinators · palliative care · pharmacists · LHDs &amp; hospital networks (e.g. SCHN)</p>
+        <p class="touch">↳ Referral, phenotyping, recruitment, samples &amp; clinical translation</p>
+      </article>
+      <article class="card">
+        <h4>Genomics, diagnostics &amp; data</h4>
+        <p class="items">Diagnostic genomics labs · newborn screening · patient registries &amp; natural-history studies · biobanks · data-linkage units &amp; custodians · privacy officers</p>
+        <p class="touch">↳ Discovery capability and the evidence base</p>
+      </article>
+      <article class="card">
+        <h4>Funders &amp; research infrastructure</h4>
+        <p class="items">NHMRC · MRFF (Genomics Health Futures Mission) · NSW Office for Health &amp; Medical Research · institute philanthropy · disease-specific research foundations · charitable trusts</p>
+        <p class="touch">↳ Determine what is fundable</p>
+      </article>
+      <article class="card">
+        <h4>Policy &amp; government</h4>
+        <p class="items">NSW Health / Ministry of Health · Agency for Clinical Innovation · Cwlth Dept of Health &amp; Aged Care · National Strategic Action Plan for Rare Diseases · NDIS / NDIA · carer &amp; disability policy · education sector · MPs &amp; advisors</p>
+        <p class="touch">↳ Strategy, service models and scale</p>
+      </article>
+      <article class="card">
+        <h4>HTA, regulatory &amp; reimbursement</h4>
+        <p class="items">TGA (orphan-drug designation, special access) · PBAC &amp; the PBS · Life Saving Drugs Program · MSAC (genomic tests &amp; services) · HTA Review reforms · HTA consumer reference groups</p>
+        <p class="touch">↳ Set evidence standards, reimbursement &amp; real-world access</p>
+      </article>
+      <article class="card">
+        <h4>Peak bodies &amp; advocacy</h4>
+        <p class="items">Rare Voices Australia · Rare Disease NSW · Genetic Alliance Australia · SWAN Australia · Health Consumers NSW · Consumers Health Forum · Carers NSW · NACCHO / ACCHOs · multicultural-health peaks</p>
+        <p class="touch">↳ Reach, recruitment pipelines &amp; translation</p>
+      </article>
+    </div>
+
+    <!-- SPONSORS -->
+    <div class="col sponsor">
+      <div class="col-head">
+        <div class="tag">GROUP 3 · OPTIONAL</div>
+        <h3>Sponsors</h3>
+        <div class="desc">Commercial &amp; philanthropic backers — declared interests, observer status.</div>
+      </div>
+      <article class="card">
+        <h4>Industry</h4>
+        <p class="items">Orphan-drug &amp; biotech developers · gene &amp; cell therapy companies · diagnostics &amp; sequencing firms · med-tech &amp; devices · digital-health &amp; data companies</p>
+        <p class="touch">↳ Funding, therapeutics &amp; tools — manage conflicts of interest</p>
+      </article>
+      <article class="card">
+        <h4>Philanthropy &amp; in-kind</h4>
+        <p class="items">Corporate philanthropy / CSR · charitable foundations · in-kind support: venue, catering, facilitation</p>
+        <p class="touch">↳ Resources without buying influence</p>
+      </article>
+      <article class="card rule">
+        <h4>⚠ Engagement guardrails</h4>
+        <p class="items">Declared-interests register · observer / non-deliberating status · sponsorship never displaces a lived-experience seat · full transparency to all participants</p>
+      </article>
+    </div>
+
+  </section>
+
+  <!-- POWER / INTEREST GRID -->
+  <section class="section">
+    <h2>Power–interest grid</h2>
+    <p class="lead">The same stakeholders, prioritised for engagement. The deliberative design deliberately moves lived-experience voices <em>up</em> the power axis — from “keep informed” into shared decision-making.</p>
+    <div class="pi">
+      <div class="pi-y">Power / influence →</div>
+      <div class="pi-grid">
+        <div class="q satisfied">
+          <div class="qe">High power · Low interest</div>
+          <h4>Keep satisfied</h4>
+          <p class="who">Treasury &amp; central agencies · hospital &amp; LHD executives · regulators not yet engaged · senior officials</p>
+        </div>
+        <div class="q partner">
+          <div class="qe">High power · High interest</div>
+          <h4>Partner &amp; manage closely</h4>
+          <p class="who">NHMRC / MRFF · NSW Health &amp; OHMR · PBAC / MSAC / TGA · RDNSW leadership · Rare Voices Australia · major funders</p>
+        </div>
+        <div class="q monitor">
+          <div class="qe">Low power · Low interest</div>
+          <h4>Monitor</h4>
+          <p class="who">General public · peripheral suppliers · media (until engaged) · adjacent disease sectors</p>
+        </div>
+        <div class="q empower">
+          <div class="qe">Low power · High interest</div>
+          <h4>Empower &amp; elevate</h4>
+          <p class="who">Consumers &amp; carers · patient &amp; family-led groups · frontline clinicians · early-career researchers</p>
+          <p class="note">This is where lived experience usually sits — the forum exists to shift it into shared power.</p>
+        </div>
+      </div>
+      <div class="pi-x">Interest / stake in the research →</div>
+    </div>
+  </section>
+
+  <!-- RECRUITMENT & DIVERSITY MATRIX -->
+  <section class="section">
+    <h2>Recruitment &amp; diversity matrix</h2>
+    <p class="lead">Stratify the lived-experience seats deliberately — don’t take whoever volunteers, and don’t let the most articulate or most networked dominate. Sample across every axis:</p>
+    <div class="chips">
+      <span class="mchip"><span class="dot"></span>Disease type</span>
+      <span class="mchip"><span class="dot"></span>Role — patient · carer · sibling · bereaved</span>
+      <span class="mchip"><span class="dot"></span>Age — child · adult · older</span>
+      <span class="mchip"><span class="dot"></span>Geography — metro · regional · remote</span>
+      <span class="mchip"><span class="dot"></span>Cultural background</span>
+      <span class="mchip"><span class="dot"></span>First Nations</span>
+      <span class="mchip"><span class="dot"></span>Severity / trajectory</span>
+      <span class="mchip"><span class="dot"></span>Diagnosis status (incl. undiagnosed)</span>
+      <span class="mchip"><span class="dot"></span>Access &amp; communication needs</span>
+      <span class="mchip"><span class="dot"></span>Socioeconomic status</span>
+    </div>
+
+    <h3 class="guards-h">The anti-domination guardrails</h3>
+    <div class="guards">
+      <div class="guard"><span class="num">1</span><h4>Broad, non-advocate recruitment</h4><p>Reach through clinics, GPs, NDIS, community / CALD / ACCHO channels — then use stratified random selection to fill quotas, not first-come.</p></div>
+      <div class="guard"><span class="num">2</span><h4>Cap seats per organisation</h4><p>No single group or condition dominates the room or the agenda.</p></div>
+      <div class="guard"><span class="num">3</span><h4>Pay participants</h4><p>Honoraria plus travel, carer and respite costs — unpaid participation silently filters out the under-resourced.</p></div>
+      <div class="guard"><span class="num">4</span><h4>Equalising facilitation</h4><p>Small groups, structured turns, plain-language materials, Auslan / interpreters / captions, and a hybrid option for remote participants.</p></div>
+      <div class="guard"><span class="num">5</span><h4>First Nations on their own terms</h4><p>Pre-engagement yarning, community-controlled partners and cultural safety — not tokenistic single seats.</p></div>
+      <div class="guard"><span class="num">6</span><h4>System &amp; sponsors as witnesses</h4><p>Bring expert and sponsor voices in as informants, so the deliberating majority stays with lived experience.</p></div>
+    </div>
+  </section>
+
+  <footer>
+    Prepared for the rare disease research deliberative forum · Kris Pierce Consulting · 24 June 2026.
+    <div class="caveat">Note: “RDNSW” is shown as the host NSW rare disease research program/team — adjust the label if it refers to a specific entity. Named organisations are indicative of the Australian / NSW ecosystem, not an exhaustive list.</div>
+  </footer>
+
+</main>
+</body>
+</html>
