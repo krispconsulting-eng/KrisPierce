@@ -37,3 +37,11 @@ Stacks: `html-tailwind` (default), `react`, `nextjs`, `astro`, `vue`, `nuxtjs`,
 2. Query the relevant domains (`style`, `color`, `typography`, `landing`, `ux`).
 3. Apply the recommended styles, palettes, fonts, spacing, and best practices.
 4. Follow the accessibility and performance notes returned by the search.
+
+## Writing style
+
+- Never add opinions, claims, or colour I haven't explicitly stated.
+- Don't invent authority or experience I haven't told you I have.
+- If I'm sharing someone else's content, keep it to: here's the thing, it matters, go look.
+- No inspirational filler. No generic closing statements.
+- When in doubt, write less.
