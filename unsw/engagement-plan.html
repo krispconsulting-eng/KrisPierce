@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rare Diseases NSW — engagement plan (where we spend our time)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700;800&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#EEF3F5;--surface:#fff;--ink:#0E3A46;--mute:#51707A;--hair:#DCE5EA;
+    --rp:#E2574E;--rp-d:#C5392F;--rp-t:#FCEAE8;--rp-i:#9C342C;
+    --green:#059669;--green-t:#E6F7F0;--green-i:#047857;
+    --shadow:0 1px 2px rgba(14,58,70,.06),0 8px 24px rgba(14,58,70,.07);
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:linear-gradient(180deg,#F2F6F8,#E7EFF2);color:var(--ink);
+    font-family:"Source Sans 3",system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;line-height:1.5;padding:40px 20px 60px;}
+  .board{max-width:1240px;margin:0 auto;}
+  h1,h2,h3,h4{font-family:"Lexend",system-ui,sans-serif;margin:0;line-height:1.12;}
+  p{margin:0;}
+  .eyebrow{font-size:12px;font-weight:700;letter-spacing:.12em;color:var(--mute);text-transform:uppercase;}
+  .head h1{font-size:clamp(28px,4vw,44px);font-weight:700;letter-spacing:-.01em;margin-top:8px;}
+  .head .sub{margin-top:12px;font-size:clamp(15px,1.6vw,17px);color:var(--mute);max-width:90ch;line-height:1.5;}
+  .pill{display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border-radius:999px;font-size:13px;font-weight:600;margin-top:16px;background:var(--rp-t);color:var(--rp-i);border:1px solid #F0BFB9;}
+
+  .section{margin-top:32px;background:var(--surface);border:1px solid var(--hair);border-radius:18px;padding:24px 26px;box-shadow:var(--shadow);}
+  .section>h2{font-size:clamp(19px,2.2vw,24px);font-weight:700;}
+  .section>.lead{color:var(--mute);font-size:14.5px;margin-top:7px;max-width:92ch;line-height:1.5;}
+
+  /* effort budget bar */
+  .bar{display:flex;width:100%;height:46px;border-radius:10px;overflow:hidden;margin-top:18px;border:1px solid var(--hair);}
+  .seg{display:flex;align-items:center;justify-content:center;color:#fff;font-size:12px;font-weight:700;text-align:center;padding:0 6px;line-height:1.1;}
+  .barkey{display:flex;flex-wrap:wrap;gap:14px;margin-top:12px;font-size:12.5px;color:var(--mute);}
+  .barkey span{display:inline-flex;align-items:center;gap:6px;}
+  .sw{width:12px;height:12px;border-radius:3px;display:inline-block;}
+
+  table{width:100%;border-collapse:collapse;margin-top:16px;font-size:13.5px;}
+  caption{caption-side:top;text-align:left;font-family:"Lexend";font-weight:600;font-size:16px;color:var(--ink);padding:6px 0 4px;}
+  th,td{text-align:left;vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--hair);}
+  th{font-family:"Lexend";font-weight:600;font-size:12px;letter-spacing:.04em;text-transform:uppercase;color:var(--mute);background:#F7FAFB;}
+  td:first-child{font-weight:600;color:var(--ink);}
+  tr:last-child td{border-bottom:none;}
+  .eff{display:inline-block;font-size:11px;font-weight:700;padding:2px 8px;border-radius:999px;white-space:nowrap;}
+  .eff.top{background:var(--rp-t);color:var(--rp-i);}
+  .eff.high{background:#FDE9D6;color:#9A5512;}
+  .eff.med{background:#E4F4F8;color:#0A5061;}
+  .eff.low{background:#EEF1F4;color:#42505B;}
+  .lv{display:inline-block;font-size:10px;font-weight:700;padding:1px 6px;border-radius:5px;color:#fff;}
+  .lv.s{background:#0891B2;}.lv.n{background:#6D5BD0;}.lv.i{background:#64748B;}
+
+  .matrix th:first-child{width:150px;}
+  .matrix .s{background:#F2FAFC;}.matrix .n{background:#F6F4FE;}.matrix .ii{background:#F5F7F9;}
+
+  .pipe{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:16px;font-size:13.5px;}
+  .step{background:#F7FAFB;border:1px solid var(--hair);border-radius:10px;padding:9px 13px;font-weight:600;}
+  .step.rp{background:var(--rp-t);border-color:#F0BFB9;color:var(--rp-i);}
+  .arrow{color:var(--mute);font-weight:700;}
+
+  ol.moves{margin:16px 0 0;padding-left:0;counter-reset:m;list-style:none;display:grid;gap:10px;}
+  ol.moves li{position:relative;background:#F7FAFB;border:1px solid var(--hair);border-radius:12px;padding:13px 16px 13px 52px;font-size:14px;}
+  ol.moves li::before{counter-increment:m;content:counter(m);position:absolute;left:14px;top:12px;width:26px;height:26px;border-radius:8px;background:var(--green);color:#fff;font-family:"Lexend";font-weight:700;display:flex;align-items:center;justify-content:center;font-size:14px;}
+  ol.moves b{color:var(--ink);}
+
+  .nonneg{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px;}
+  .nn{background:var(--rp-t);color:var(--rp-i);border:1px solid #F0BFB9;border-radius:999px;padding:8px 14px;font-size:13px;font-weight:600;}
+
+  footer{max-width:1240px;margin:26px auto 0;color:#7A929B;font-size:12.5px;line-height:1.5;}
+  @media(max-width:980px){table,caption{font-size:12.5px;}.head .sub{font-size:15px;}}
+  @media print{body{background:#fff;padding:0;}.section{box-shadow:none;break-inside:avoid;}}
+</style>
+</head>
+<body>
+<main class="board">
+
+  <header class="head">
+    <div class="eyebrow">Rare Diseases NSW · Rare Connect · Engagement plan</div>
+    <h1>Engagement plan — where we spend our time</h1>
+    <p class="sub">A consumer-led engagement plan for Rare Diseases NSW. Classic stakeholder management says "spend most time on the powerful institutions." Rare Power flips that: <strong>invest deepest in building the community's own power, then deploy that mandate to move the few institutions that hold the levers</strong> — at state, national and international level.</p>
+    <span class="pill">Rare Power: patients are the architects — lived experience defines success</span>
+  </header>
+
+  <section class="section">
+    <h2>Where the time goes — the engagement budget</h2>
+    <div class="bar">
+      <div class="seg" style="width:42%;background:#C5392F;">Centre of gravity · 40–45%</div>
+      <div class="seg" style="width:25%;background:#0E7C93;">Levers · 25%</div>
+      <div class="seg" style="width:22%;background:#6D5BD0;">Four spokes · 20–25%</div>
+      <div class="seg" style="width:7%;background:#B5791F;">Gated</div>
+      <div class="seg" style="width:4%;background:#64748B;">Info</div>
+    </div>
+    <div class="barkey">
+      <span><span class="sw" style="background:#C5392F"></span>Rare Power, Consumer Lead, Power of Parents, Aboriginal Advisory Group, lived-experience Ambassadors</span>
+      <span><span class="sw" style="background:#0E7C93"></span>Steering Committee, SCHN/UNSW, NSW Health, Commonwealth, funders, HTA, Rare Voices/peaks</span>
+      <span><span class="sw" style="background:#6D5BD0"></span>Clinicians, researchers, educators, community/events, CoP, Working Groups</span>
+      <span><span class="sw" style="background:#B5791F"></span>Industry / sponsors (gated)</span>
+      <span><span class="sw" style="background:#64748B"></span>Public, media, international</span>
+    </div>
+  </section>
+
+  <section class="section">
+    <table>
+      <caption>1 · Centre of gravity — resource Rare Power as the genuine hub</caption>
+      <thead><tr><th>Body / group</th><th>Purpose</th><th>How we engage (Rare-Power-true)</th><th>Effort</th></tr></thead>
+      <tbody>
+        <tr><td>Rare Power Co-Design Group</td><td>Lead design &amp; delivery of all four spokes</td><td>Paid, supported, accessible co-design workshops; formal sign-off on every initiative; reports straight to the Steering Committee</td><td><span class="eff top">Highest</span></td></tr>
+        <tr><td>Consumer Lead (Ops/Planning/Evaluation)</td><td>Hold consumer authority inside operations</td><td>Resource &amp; empower the role; consumer-set agenda items in planning &amp; evaluation</td><td><span class="eff top">Highest</span></td></tr>
+        <tr><td>Power of Parents</td><td>Carer leadership, peer support, pipeline into Rare Power</td><td>Peer-led; recruit diverse carers; respite-supported participation</td><td><span class="eff high">High</span></td></tr>
+        <tr><td>Aboriginal Advisory Group</td><td>First Nations self-determination &amp; cultural safety across everything</td><td>Engage early, on their terms; community-controlled; cultural protocols; equal standing to Rare Power</td><td><span class="eff high">High</span></td></tr>
+        <tr><td>Lived-experience Ambassadors</td><td>Authentic storytelling → awareness &amp; policy</td><td>Support storytellers on their own terms — media, boardrooms, government</td><td><span class="eff med">Medium</span></td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="section">
+    <table>
+      <caption>2 · Decision &amp; funding levers — mobilise, with consumers leading the room</caption>
+      <thead><tr><th>Stakeholder</th><th>Purpose</th><th>How we engage</th><th>Effort</th></tr></thead>
+      <tbody>
+        <tr><td>Steering Committee <span class="lv s">S</span></td><td>Approves initiatives &amp; allocates resources</td><td>Guarantee resourced, briefed consumer advocates with real decision power; carry Co-Design priorities straight up</td><td><span class="eff high">High</span></td></tr>
+        <tr><td>SCHN &amp; UNSW <span class="lv s">S</span></td><td>Institutional ownership &amp; sustainability</td><td>Exec sponsors; align to SCHN Strategic Plan 2023-27 &amp; UNSW "Progress for All"</td><td><span class="eff high">Med-high</span></td></tr>
+        <tr><td>NSW Health / SESLHD <span class="lv s">S</span></td><td>System integration, service models, funding</td><td>Align to Future Health &amp; NSW R&amp;I Strategy 2025-30; embed rare disease in policy</td><td><span class="eff high">Med-high</span></td></tr>
+        <tr><td>Commonwealth Dept of Health, Disability &amp; Ageing <span class="lv n">N</span></td><td>National Action Plan; the national Centre for Precision Medicine &amp; Rare Diseases</td><td>Consumer-led delegations; submissions</td><td><span class="eff med">Medium</span></td></tr>
+        <tr><td>Funders &amp; philanthropy <span class="lv s">S</span> <span class="lv n">N</span></td><td>Sustainable funding for community-led work</td><td>Co-authored bids; consumers co-present; the 4:1 ROI case (SCH &amp; UNSW Foundations, MRFF/NHMRC)</td><td><span class="eff med">Medium</span></td></tr>
+        <tr><td>HTA &amp; regulatory — PBAC, MSAC, TGA <span class="lv n">N</span></td><td>Access to therapies &amp; diagnostics</td><td>Trained consumer advocates; lived-experience / PRO evidence</td><td><span class="eff med">Medium</span></td></tr>
+        <tr><td>Rare Voices Australia &amp; peaks <span class="lv n">N</span></td><td>Unified national policy; reach; shared infrastructure</td><td>Alliance &amp; joint positions; share ARDOCoP and the "Taking Action Together" toolkit</td><td><span class="eff med">Medium</span></td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="section">
+    <table>
+      <caption>3 · Embed Rare Power in the four spokes — operational</caption>
+      <thead><tr><th>Spoke / group</th><th>Purpose</th><th>How we engage</th><th>Effort</th></tr></thead>
+      <tbody>
+        <tr><td>Rare Pathways — clinicians, genetic services, GPs, navigators, kidsGPS/virtualKIDS</td><td>Co-design diagnostic &amp; care pathways</td><td>Working Groups with consumer reps; community sign-off</td><td><span class="eff med">Medium</span></td></tr>
+        <tr><td>Rare Innovation — Garvan, Scientia, n=1 Collaborative, IRDiRC, RD Registry</td><td>Consumers as co-investigators; community-governed data</td><td>Co-investigator roles; dynamic consent; registry co-governance; plain-language</td><td><span class="eff med">Medium</span></td></tr>
+        <tr><td>Rare Knowledge — RArEST, Rare Disease 101, RACGP &amp; colleges, Project ECHO</td><td>Lived experience in curricula &amp; training</td><td>Consumer educators; co-designed modules</td><td><span class="eff med">Medium</span></td></tr>
+        <tr><td>Rare Together — Rare Disease Day, forums, storytelling, partnerships</td><td>Amplify voices; community building; advocacy</td><td>Community-led events; storytelling on their terms</td><td><span class="eff high">Med-high</span></td></tr>
+        <tr><td>Community of Practice (80 → 400+)</td><td>Broad reach &amp; knowledge translation</td><td>Inclusive network; workshops/forums; recruitment pipeline</td><td><span class="eff low">Low-med</span></td></tr>
+        <tr><td>Working Groups (10 critical areas)</td><td>Deliver each workstream</td><td>Always seat consumer representatives</td><td><span class="eff med">Medium</span></td></tr>
+        <tr><td>International Advisory Group <span class="lv i">I</span></td><td>Global best practice</td><td>Periodic high-value input</td><td><span class="eff low">Low</span></td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="section">
+    <table>
+      <caption>4 · Transact carefully (gated) + inform / monitor</caption>
+      <thead><tr><th>Stakeholder</th><th>Purpose</th><th>How we engage</th><th>Effort</th></tr></thead>
+      <tbody>
+        <tr><td>Industry — pharma/biotech (trials, sponsored fellowships) <span class="lv n">N</span> <span class="lv i">I</span></td><td>Trial access, therapeutics, training resources</td><td>Declared interests; COI committee gatekeeps; observer / non-deliberating; consumers decide; never displaces a lived-experience seat</td><td><span class="eff low">Low, gated</span></td></tr>
+        <tr><td>Public &amp; media <span class="lv s">S</span> <span class="lv n">N</span></td><td>Awareness</td><td>Ambassadors + consumer storytellers</td><td><span class="eff low">Low</span></td></tr>
+        <tr><td>Other Centres / international <span class="lv i">I</span></td><td>Best-practice exchange</td><td>Via the International Advisory Group</td><td><span class="eff low">Low</span></td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="section">
+    <h2>State → National → International</h2>
+    <p class="lead">Rare Diseases NSW <em>is the report</em> — the discipline is <strong>build the proof at state level, sell the proof nationally, benchmark internationally</strong>. Consumers lead the room at every level.</p>
+    <table class="matrix">
+      <thead><tr><th>Function</th><th>State — NSW</th><th>National</th><th>International</th></tr></thead>
+      <tbody>
+        <tr><td>Lived experience / Rare Power</td><td class="s">Rare Power Co-Design Group, Power of Parents, NSW consumers, Aboriginal Advisory Group</td><td class="n">Consumer delegations to Canberra; national disease foundations</td><td class="ii">Patient voice in EURORDIS / NORD</td></tr>
+        <tr><td>Governance</td><td class="s">Steering Committee, Working Groups, Ops/Planning/Eval, CoP</td><td class="n">Model replicated by other states / Centres</td><td class="ii">International Advisory Group</td></tr>
+        <tr><td>Funding</td><td class="s">NSW Health, SCH &amp; UNSW Foundations, NSW Treasury</td><td class="n">MRFF, NHMRC, Commonwealth, corporate foundations</td><td class="ii">International research-consortia grants</td></tr>
+        <tr><td>Policy</td><td class="s">NSW Health, ACI, Future Health, NSW R&amp;I Strategy</td><td class="n">Dept of Health D&amp;A; National Strategic Action Plan</td><td class="ii">WHO / global rare-disease policy</td></tr>
+        <tr><td>HTA / access</td><td class="s">State services &amp; trial sites</td><td class="n">PBAC, MSAC, TGA, Life Saving Drugs Program</td><td class="ii">Reference pricing &amp; global evidence</td></tr>
+        <tr><td>Peak bodies</td><td class="s">Health Consumers NSW, NSW disease groups</td><td class="n">Rare Voices Australia, Genetic Alliance Australia, ARDOCoP, SWAN</td><td class="ii">EURORDIS, NORD, IRDiRC</td></tr>
+        <tr><td>Research</td><td class="s">UNSW, Garvan, Scientia, RD Registry</td><td class="n">Australian Undiagnosed Diseases Network, Australian Genomics</td><td class="ii">n=1 Collaborative, IRDiRC, UDN International</td></tr>
+      </tbody>
+    </table>
+    <div class="pipe">
+      <span class="step rp">Rare Power co-designs (NSW)</span><span class="arrow">→</span>
+      <span class="step">Deliver &amp; evidence statewide</span><span class="arrow">→</span>
+      <span class="step">Consumers carry the evidence to Canberra + RVA</span><span class="arrow">→</span>
+      <span class="step">Unified national policy &amp; funding</span><span class="arrow">→</span>
+      <span class="step">International benchmarking</span>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>The 5 biggest-impact moves</h2>
+    <ol class="moves">
+      <li><b>Resource Rare Power as a real hub, not an advisory garnish</b> — a paid, supported Co-Design Group + Consumer Lead with authority over all four spokes. Everything else depends on this.</li>
+      <li><b>Guarantee consumer power on the Steering Committee</b> — co-design is worthless if the decision body can override it. Resource and brief those consumer advocates.</li>
+      <li><b>Stand up the Aboriginal Advisory Group early and self-determined</b> — equity for First Nations, CALD and rural/remote is a named weakness; it can't be retrofitted.</li>
+      <li><b>Seat consumer reps in every Working Group and as co-investigators in Rare Innovation</b> — that's how the value survives contact with day-to-day delivery.</li>
+      <li><b>Point the funding/policy asks at the frameworks that unlock money</b> (National Action Plan, NSW Future Health, MRFF/NHMRC, SCH/UNSW Foundations) — via consumer-led delegations, with the 4:1 ROI case.</li>
+    </ol>
+  </section>
+
+  <section class="section">
+    <h2>Staying true to Rare Power — the test for every engagement</h2>
+    <div class="nonneg">
+      <span class="nn">Genuine partnership, not consultation</span>
+      <span class="nn">Patients are architects, not participants</span>
+      <span class="nn">Lived experience defines success</span>
+      <span class="nn">Culturally responsive &amp; strengths-based</span>
+      <span class="nn">Pay, support &amp; make it accessible</span>
+      <span class="nn">First Nations on their own terms</span>
+      <span class="nn">Close the loop back to community</span>
+      <span class="nn">Sponsors never buy influence</span>
+    </div>
+  </section>
+
+  <footer>
+    Prepared by Kris Pierce Consulting · 25 June 2026 · grounded in the RD NSW Business Plan (DRAFT v0.5, Jul 2025).
+    Companion document: <strong>stakeholder-map.html</strong>. Effort percentages are indicative guidance for allocating engagement time.
+  </footer>
+
+</main>
+</body>
+</html>
