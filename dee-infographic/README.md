@@ -28,6 +28,8 @@ The visual is organised around two explicit axes:
 | `index.html` | Interactive, self-contained web version (print / "Save as PDF" built in). |
 | `assets/dee-impact.png` | High-resolution raster (2480 px wide) — drop into slides, social, docs. |
 | `assets/dee-impact.svg` | Fully self-contained vector (text outlined to paths) — scales to any print size. |
+| `assets/dee-impact-grant.png` | **Grant-submission figure** — compact landscape ("envelope") layout, no branding: areas of impact → how they compound → across the life course. 3040 px wide. |
+| `assets/dee-impact-grant.svg` | Vector version of the grant figure (text outlined). |
 
 ## Design notes
 
@@ -48,9 +50,14 @@ npm install
 npm run build          # writes ../assets/dee-impact.png and ../assets/dee-impact.svg
 ```
 
+```bash
+npm run build:grant    # writes ../assets/dee-impact-grant.png and .svg
+```
+
 Requires Node 18+ and the DejaVu Sans fonts (standard on Debian/Ubuntu, at
 `/usr/share/fonts/truetype/dejavu/`). Edit the content arrays in
-`scripts/generate-assets.js` and re-run `npm run build` to refresh the assets.
+`scripts/generate-assets.js` (full poster) or `scripts/generate-grant.js` (grant figure)
+and re-run the matching build to refresh the assets.
 
 ---
 
