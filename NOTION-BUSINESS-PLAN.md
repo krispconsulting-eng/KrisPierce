@@ -129,13 +129,13 @@ Each phase has a **Done when** and a **Foolproof check.** We don't skip ahead.
 A simple second dashboard for personal life, same capture inbox, separate view so work doesn't flood it.
 - **Done when:** you can switch Work/Life without them bleeding together.
 
-### Phase 6 — Wire the automations with n8n (one at a time)
-Turn the dashboard's *described* automations into *real* ones, via n8n, tested individually:
-- Todoist voice ("NOTE:"/"IDEA:") → Notion inbox / All Tasks
-- Calendar event → All Meetings note, pre-linked to stream/project
-- Meeting action items → All Tasks
-- Invoice overdue → dashboard reminder
-- (Optional) the "Claude daily brief" as a real scheduled job
+### Phase 6 — Wire the automations with n8n (one at a time) 🔄 IN PROGRESS
+Turn the dashboard's *described* automations into *real* ones, via n8n, tested individually.
+- ✅ Confirmed n8n is connected and has all needed nodes (Notion, Todoist, Google Calendar, Schedule, If/Switch).
+- ⚠️ **Blocker:** n8n has **no credentials yet** — accounts must be connected first (your private tokens). See **`automation-setup.md`** for the exact checklist.
+- 🥇 **First automation chosen: Calendar → Meeting notes** (needs Notion + Google Calendar connected).
+- Build order after that: voice capture (Todoist→Notion), overdue-invoice flag, meeting action items→tasks, optional daily brief.
+- **Process per automation:** you connect the account(s) → I build → I test live → you see the result → we turn it on → next.
 - **Done when:** the copy-paste you do today is gone.
 - **Foolproof check:** a full day with no manual info-shuffling between apps.
 
