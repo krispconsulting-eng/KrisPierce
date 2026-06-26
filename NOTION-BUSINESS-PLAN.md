@@ -102,10 +102,13 @@ Each phase has a **Done when** and a **Foolproof check.** We don't skip ahead.
 - ⚠️ Stock **🏠 Home** template (My Tasks + Home views) is a Notion *system page* the API can't move/delete — **needs a 5-second manual delete by you** (open it → ••• → Delete). It's empty default junk.
 - **Foolproof check:** every real task/project still appears exactly once; nothing was destroyed (old data parked in Archive).
 
-### Phase 2 — Build the Capture inbox (the missing foundation)
-Create the real **💡 Ideas & Capture** database and put it front-and-center on the dashboard. This is what your whole system is missing.
-- **Done when:** you can dump a thought in one move and it lands in the inbox.
-- **Foolproof check:** 3 days, nothing you think of gets lost.
+### Phase 2 — Build the Capture inbox (the missing foundation) ✅ DONE 2026-06-26
+- ✅ Created **💡 Ideas & Capture** database, living on your **🏠 Daily Dashboard**.
+- ✅ Fields (ADHD-simple — only the dump text is required at capture time): **Capture** (the dump), **Status** (📥 Inbox / ✅ Sorted / 🗑️ Dropped), **Type** (Task / Idea / Note / Research / Content / Contact / Someday-Maybe), **Stream** (your 5 streams + Personal/Life), **Source** (Voice·Todoist / Manual / Email / Other), **Captured** (auto date), **Notes**.
+- ✅ Added a **📥 To Triage** view (shows only 📥 Inbox items, newest first) — this is your daily 2-minute triage screen.
+- ✅ Seeded 3 worked examples (delete once the flow is clear).
+- **How it works:** dump anything the moment it hits (one move) → it sits in 📥 Inbox → during daily triage you set Type + Stream → real tasks graduate to ✅ All Tasks, the rest get filed → mark Sorted. *(One-tap voice capture is wired in Phase 6 via n8n; until then you add items manually / via the Notion mobile app.)*
+- **Foolproof check (your turn):** for 3 days, every thought goes into the inbox and nothing gets lost.
 
 ### Phase 3 — Finish the master databases
 Build the listed-but-missing ones: **📅 All Meetings**, **👥 All Contacts**, **💰 Money/Invoices**, and turn the CRM headings into live databases. All tagged by Stream, linked to Projects.
