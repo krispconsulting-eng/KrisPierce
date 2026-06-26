@@ -81,9 +81,33 @@ Then I'll:
 
 ---
 
+## 🗺️ Your account map (for the full rollout)
+
+You run a fleet of calendars across providers. We connect them in waves —
+**Gmail first to prove the pattern**, then the Microsoft 365 ones.
+
+| Account | Stream | Provider | When |
+|---|---|---|---|
+| krispconsulting@gmail.com | (general / set per note) | 🟩 Google | **Now** — wave 1 |
+| info@ / kris@ **scn2aaustralia.org** | 🟢 SCN2A Australia | 🟦 Microsoft 365 | Wave 2 |
+| info@ / kris@ **krispierce.com.au** | 🔵 KrisPierce Consulting | 🟦 Microsoft 365 | Wave 2 |
+| kristine.pierce@unsw.edu.au | 🟣 UNSW | 🟦 Microsoft (university) | Wave 3 — try, fall back if blocked |
+| (one more, coming) | TBD | TBD | when ready |
+
+### Wave 2 — Microsoft 365 (scn2aaustralia.org, krispierce.com.au)
+When we get here, you'll connect each with the **Microsoft Outlook / Microsoft 365**
+credential in n8n (similar "Sign in with Microsoft" flow). Because these are *your*
+domains/tenants, OAuth should work fine. I'll give you the exact checklist then.
+The beauty: each calendar auto-tags its meeting notes to the right **Stream**.
+
+### Wave 3 — UNSW (kristine.pierce@unsw.edu.au)
+We'll *try* the Microsoft connection. Universities often block third-party OAuth.
+If it's blocked, the fallback is to auto-forward UNSW invites to a connectable
+inbox and create notes from those — no direct access to the university account.
+
 ## Accounts you'll add later (not needed yet)
 
 - **Todoist** — for the voice-capture automation (just an API token, very quick)
-- **Gmail** — if we automate client-email follow-ups
+- **Gmail (mail, not calendar)** — if we automate client-email follow-ups
 
 We'll do those when we get to those automations. One at a time.

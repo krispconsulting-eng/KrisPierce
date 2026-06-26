@@ -134,7 +134,8 @@ Turn the dashboard's *described* automations into *real* ones, via n8n, tested i
 - ✅ Confirmed n8n is connected and has all needed nodes (Notion, Todoist, Google Calendar, Schedule, If/Switch).
 - ⚠️ **Blocker:** n8n has **no credentials yet** — accounts must be connected first (your private tokens). See **`automation-setup.md`** for the exact checklist.
 - 🥇 **First automation chosen: Calendar → Meeting notes** (needs Notion + Google Calendar connected).
-- Build order after that: voice capture (Todoist→Notion), overdue-invoice flag, meeting action items→tasks, optional daily brief.
+- 🗺️ **Multi-calendar reality:** Kris runs a fleet of calendars — krispconsulting@gmail.com (Google), scn2aaustralia.org + krispierce.com.au (both **Microsoft 365**), kristine.pierce@unsw.edu.au (university Microsoft, may be blocked), + one more coming. Rollout in waves: **Gmail first to prove the pattern**, then clone to the M365 accounts via the Microsoft connector. Each calendar auto-tags its meeting notes to the right Stream. Details in `automation-setup.md`.
+- Build order after calendar: voice capture (Todoist→Notion), overdue-invoice flag, meeting action items→tasks, optional daily brief.
 - **Process per automation:** you connect the account(s) → I build → I test live → you see the result → we turn it on → next.
 - **Done when:** the copy-paste you do today is gone.
 - **Foolproof check:** a full day with no manual info-shuffling between apps.
