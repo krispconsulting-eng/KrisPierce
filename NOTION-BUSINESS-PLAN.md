@@ -62,11 +62,11 @@ This also corrects something: your work isn't "clinical trials" in the pharma se
 
 ## 3. Three conflicts between v1 and reality — need your call
 
-These are the decisions where what I assumed and what you've built disagree. (I ask them in chat too.)
+These were the decisions where what I assumed and what you've built disagreed. **✅ All now resolved:**
 
-1. **Where do tasks live?** v1 said "Todoist is the source of truth." But your built system uses **✅ All Tasks in Notion as the source of truth**, with **Todoist only as a voice-capture front door** that syncs in. That's actually the better design and it's already chosen. **Recommendation: keep Notion All Tasks as home, Todoist = voice capture only.**
-2. **Automation tool.** Your dashboard mentions **Zapier**; you told me **n8n**. **Recommendation: use n8n, retire the Zapier mention.**
-3. **One dashboard or two (Work + Life)?** You currently have one **work** dashboard. You asked for a **Work + Life** split. **Recommendation: add a lightweight Life view, leave the work system as-is.**
+1. **Tasks home → RESOLVED.** **✅ All Tasks in Notion is the source of truth**; **Todoist is voice-capture only** and syncs in. (Matches what's already built — no rebuild.)
+2. **Automation tool → RESOLVED.** **n8n.** We retire the leftover Zapier mention on the dashboard.
+3. **Work + Life → RESOLVED.** Keep the existing Work dashboard, **add a separate Life dashboard** (same capture inbox, separate view).
 
 ---
 
@@ -90,8 +90,8 @@ These are the decisions where what I assumed and what you've built disagree. (I 
 
 Each phase has a **Done when** and a **Foolproof check.** We don't skip ahead.
 
-### Phase 0 — Approve this v2 plan ← *you are here*
-- **Done when:** you've answered the 3 conflicts in §3.
+### Phase 0 — Approve this v2 plan ✅ *conflicts resolved — awaiting green light to start Phase 1*
+- **Done when:** you've answered the 3 conflicts in §3. *(Done: Notion task home + Todoist capture, n8n, add Life view.)*
 - **Check:** you agree this matches your real workspace.
 
 ### Phase 1 — Clean up duplicates (safe, reversible)
@@ -134,13 +134,15 @@ Trim unused views, tighten dashboards, write a one-page "how my system works."
 
 ---
 
-## 7. What I need from you to start (the 3 conflicts in §3)
+## 7. Decisions locked — ready for Phase 1
 
-1. **Tasks home:** keep **Notion All Tasks** as the source of truth + Todoist as voice capture (recommended), or switch fully to Todoist?
-2. **Automation:** confirm **n8n** (retire the Zapier mention)?
-3. **Life view:** add a separate **Life** dashboard, yes/no?
+- ✅ **Tasks:** Notion All Tasks = source of truth; Todoist = voice capture only.
+- ✅ **Automation:** n8n.
+- ✅ **Dashboards:** keep Work, add Life.
+- ✅ **Privacy:** names/addresses only, no HIPAA; solo for now.
+- ✅ **Structure:** organize by the 5 existing work streams.
 
-Answer those and I'll start with **Phase 1 (safe cleanup)** — and still **nothing is deleted; old data is archived, not destroyed, and you approve before anything goes live.**
+**Next on your GO: Phase 1 — safe cleanup.** I'll first *show you* exactly what's inside the duplicate databases ("Projects", "My Tasks", "Home views") so you can confirm they're really duplicates. Nothing is deleted — old data is **archived, not destroyed**, and you approve each step before it goes live.
 
 ---
 
