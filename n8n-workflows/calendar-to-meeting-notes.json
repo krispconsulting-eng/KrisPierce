@@ -1,0 +1,99 @@
+{
+  "name": "Calendar → Meeting Notes (gmail)",
+  "nodes": [
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyMinute"
+            }
+          ]
+        },
+        "triggerOn": "eventCreated",
+        "calendarId": {
+          "__rl": true,
+          "value": "krispconsulting@gmail.com",
+          "mode": "list",
+          "cachedResultName": "krispconsulting@gmail.com"
+        },
+        "options": {}
+      },
+      "id": "a1b2c3d4-0001-4000-8000-000000000001",
+      "name": "New Calendar Event",
+      "type": "n8n-nodes-base.googleCalendarTrigger",
+      "typeVersion": 1,
+      "position": [
+        420,
+        300
+      ],
+      "credentials": {
+        "googleCalendarOAuth2Api": {
+          "id": "REPLACE_WITH_YOUR_GOOGLE_CALENDAR_CREDENTIAL",
+          "name": "Google Calendar account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "databasePage",
+        "operation": "create",
+        "databaseId": {
+          "__rl": true,
+          "value": "e8f85d9a-2d20-4cf6-8c5f-785c84c9eb20",
+          "mode": "id",
+          "cachedResultName": "📅 All Meetings"
+        },
+        "title": "={{ $json.summary || 'Untitled meeting' }}",
+        "propertiesUi": {
+          "propertyValues": [
+            {
+              "key": "Date|date",
+              "date": "={{ $json.start.dateTime || $json.start.date }}"
+            },
+            {
+              "key": "Summary|rich_text",
+              "textContent": "=Auto-created from Google Calendar (krispconsulting@gmail.com). Location: {{ $json.location || 'n/a' }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "a1b2c3d4-0002-4000-8000-000000000002",
+      "name": "Create Meeting Note in Notion",
+      "type": "n8n-nodes-base.notion",
+      "typeVersion": 2.2,
+      "position": [
+        700,
+        300
+      ],
+      "credentials": {
+        "notionApi": {
+          "id": "REPLACE_WITH_YOUR_NOTION_CREDENTIAL",
+          "name": "Notion account"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "New Calendar Event": {
+      "main": [
+        [
+          {
+            "node": "Create Meeting Note in Notion",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "pinData": {},
+  "meta": {
+    "description": "When a new event is created on krispconsulting@gmail.com, create a matching note in the Notion 📅 All Meetings database with the title and date."
+  }
+}
