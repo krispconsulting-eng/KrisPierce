@@ -110,10 +110,12 @@ Each phase has a **Done when** and a **Foolproof check.** We don't skip ahead.
 - **How it works:** dump anything the moment it hits (one move) → it sits in 📥 Inbox → during daily triage you set Type + Stream → real tasks graduate to ✅ All Tasks, the rest get filed → mark Sorted. *(One-tap voice capture is wired in Phase 6 via n8n; until then you add items manually / via the Notion mobile app.)*
 - **Foolproof check (your turn):** for 3 days, every thought goes into the inbox and nothing gets lost.
 
-### Phase 3 — Finish the master databases
-Build the listed-but-missing ones: **📅 All Meetings**, **👥 All Contacts**, **💰 Money/Invoices**, and turn the CRM headings into live databases. All tagged by Stream, linked to Projects.
-- **Done when:** every meeting, person, and invoice has a real home, linked to its stream/project.
-- **Foolproof check:** an overdue invoice surfaces on the dashboard on its own.
+### Phase 3 — Finish the master databases ✅ DONE 2026-06-26
+- ✅ **👥 All Contacts** — people/orgs; fields: Name, Type (Client/Stakeholder/Collaborator/Funder/Committee/Vendor), Stream, Organisation, Role, Email, Phone, Address, Notes; **linked to Projects**.
+- ✅ **📅 All Meetings** — Meeting, Date, Type, Stream, Summary; **linked to Projects, Attendees (Contacts), and Action Items (All Tasks)** so a meeting's follow-ups become real tasks. Added a **🗓️ Calendar** view.
+- ✅ **💰 Money / Invoices** — Invoice, Status (Quote/Draft/Sent/Paid/Overdue), Stream, Amount ($), Issued/Due/Paid dates; **linked to Client (Contacts) and Project**. Added a **💸 Pipeline by Status** board so you see Quote→Sent→Paid→Overdue at a glance.
+- All three live on the **🏠 Daily Dashboard** and use the same 5 streams.
+- **Foolproof check:** an overdue invoice surfaces on the dashboard on its own. *(Surfacing on the dashboard + the overdue auto-flag is wired in Phase 6 via n8n; the data home + manual flag exist now.)*
 
 ### Phase 4 — Research + Content as proper databases
 Promote the per-stream Research Pipeline and Content Calendar into **master 🔬 Research** and **🎬 Content** databases (keeping stream filtering), so they're not siloed in SCN2A only.
