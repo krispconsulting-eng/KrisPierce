@@ -47,7 +47,7 @@ destination is genuinely **new or ambiguous**.
 | Notion — papers / sources | `🔬 Research Library` |
 | Notion — content | `🎬 Content Pipeline` |
 | Notion — old / superseded | `🗄️ Archive (old …)` page |
-| n8n — workflows | `Personal` project (for now) |
+| n8n — workflows | `Personal` project (for now). **Name:** `<Function> — <Account/Stream>` (e.g. `Calendar → Meeting Notes — Gmail`, `— SCN2A`, `— Consulting`, `— UNSW`). **Tag** same-family workflows so they group (e.g. `Calendar→Notes`). |
 | Stream tag (on most items) | SCN2A Australia · UNSW · KrisPierce Consulting · Committees · Rare Intelligence · Personal/Life |
 
 *(Add rows as new conventions are agreed. This map is the source of truth for "where things go.")*
