@@ -108,8 +108,8 @@ You said "recommend simplest." Here it is, lowest friction, no new app:
 
 You said "not sure" on sensitive data, so I designed the safe version. Read these — they matter.
 
-1. **🔴 Patient / health data (HIPAA).** Standard Notion is **NOT** HIPAA-compliant. It only is on an **Enterprise plan with a signed Business Associate Agreement (BAA).** **Rule for this system: no patient-level health information goes into Notion — ever.** Public data from ClinicalTrials.gov, PubMed, and Scholar is fine (it's published). If you ever handle actual patient data, that lives in a separate, compliant tool — we'll wall it off and link, never store.
-2. **🟠 Client confidentiality / NDAs.** We put confidential client work in a **restricted Notion teamspace** that only you (and named collaborators) can see. "Me + a few people" means we set permissions per space, not all-or-nothing.
+1. **🟢 Health data — RESOLVED.** You confirmed: **no patient-level health data** goes in the system, only **names and addresses** (contact info). That means **no HIPAA constraint** — good, it keeps things simple. We still treat names/addresses as private personal data: they live in restricted spaces, never in any public or shared-link page. The rule stays on the books as a guardrail: *if that ever changes and real patient data enters the picture, it does NOT go in Notion* (Notion isn't HIPAA-compliant without Enterprise + a signed BAA).
+2. **🟠 Client confidentiality.** No strict NDAs flagged, but client work still goes in a **restricted Notion teamspace** that only you (and named collaborators) can see. "Me + a few people" means we set permissions per space, not all-or-nothing.
 3. **🟠 The "few people" on your team.** Each person gets access only to what they need. We design this from day one so it doesn't become a cleanup job later.
 4. **🟡 Automation tokens.** The API connections use access keys. We store them safely (never in Notion, never in this repo) and connect one service at a time so a single bad key can't expose everything.
 5. **🟡 Don't boil the ocean.** Your honest "all of the above" answer is the biggest risk. If we build all 7 lists + all automations at once, you'll bounce off it. The phased plan below is deliberately slow on purpose.
@@ -129,9 +129,7 @@ You asked "what and how." The Notion **API** is just the wiring that lets your o
 - 💰 **Invoice marked unpaid for 30 days → a reminder** surfaces on your dashboard.
 - 🎬 **Content moves a stage → the next step appears** as a task.
 
-**How the wiring runs:** there are two options, and I recommend starting with the first.
-- **Option 1 — A no-code automation hub (Make.com or n8n).** Reliable, always-on, visual, easy to pause one piece if it misbehaves. Best for "set and forget." ✅ *Recommended.*
-- **Option 2 — Custom scripts run on a schedule.** More control, but it's more to maintain. We can use this for anything Option 1 can't do.
+**How the wiring runs:** ✅ **Decided — we use [n8n](https://n8n.io) as the automation hub.** It's visual, always-on, and you can pause any single piece if it misbehaves. It connects to Notion, Todoist, Calendar, Gmail, etc., and we add one workflow at a time. (n8n can be self-hosted for full data control, or run on n8n Cloud — we'll pick when we get to Phase 5.) For anything n8n can't do, we fall back to a small custom script.
 
 We'll only switch on automations in Phase 5, one at a time, each tested before the next.
 
@@ -179,13 +177,14 @@ Trim anything you don't use. Tighten the dashboards. Write a one-page "how my sy
 
 ## 8. What I need from you to start Phase 1
 
-Just confirm or correct these — short answers are fine:
+**✅ Answered:**
+- Privacy: no patient health data, only names & addresses → no HIPAA constraint. No strict NDAs.
+- Automation hub: **n8n**.
 
-1. **Privacy (must answer):** Do you ever put *patient-level* health data anywhere? (Yes/No) Any client work under strict NDA? (Yes/No)
-2. **The team:** Roughly how many people, and what should they NOT be able to see?
-3. **Automation hub:** OK to use **Make.com** (recommended) for the wiring, or do you want me to build custom scripts instead?
-4. **Anything in §2's list of 7 you DON'T want?** (Fewer is better if you're unsure.)
-5. **Voice trigger words:** happy with "NOTE:" / "IDEA:" or want different ones?
+**Still need from you (short answers fine):**
+1. **The team:** Roughly how many people, and what should they NOT be able to see?
+2. **Anything in §2's list of 7 you DON'T want?** (Fewer is better if you're unsure.)
+3. **Voice trigger words:** happy with "NOTE:" / "IDEA:" or want different ones?
 
 Answer those and I'll start Phase 1 — and still **nothing goes live in Notion until you've seen the skeleton and approved it.**
 
