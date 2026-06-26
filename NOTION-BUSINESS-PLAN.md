@@ -133,7 +133,7 @@ A simple second dashboard for personal life, same capture inbox, separate view s
 Turn the dashboard's *described* automations into *real* ones, via n8n, tested individually.
 - ✅ Confirmed n8n is connected and has all needed nodes (Notion, Todoist, Google Calendar, Schedule, If/Switch).
 - ⚠️ **Blocker:** n8n has **no credentials yet** — accounts must be connected first (your private tokens). See **`automation-setup.md`** for the exact checklist.
-- 🥇 **First automation chosen: Calendar → Meeting notes** (needs Notion + Google Calendar connected).
+- 🥇 **First automation: Calendar → Meeting notes** ✅ **BUILT & CONNECTED 2026-06-26** (Wave 1, gmail). Imported workflow, attached Notion + Google Calendar credentials, fixed Notion integration sharing; both nodes green. → Confirm a test event creates a note, then Publish/Activate. Then Wave 2 (M365 calendars).
 - 🗺️ **Multi-calendar reality:** Kris runs a fleet of calendars — krispconsulting@gmail.com (Google), scn2aaustralia.org + krispierce.com.au (both **Microsoft 365**), kristine.pierce@unsw.edu.au (university Microsoft, may be blocked), + one more coming. Rollout in waves: **Gmail first to prove the pattern**, then clone to the M365 accounts via the Microsoft connector. Each calendar auto-tags its meeting notes to the right Stream. Details in `automation-setup.md`.
 - Build order after calendar: voice capture (Todoist→Notion), overdue-invoice flag, meeting action items→tasks, optional daily brief.
 - **Process per automation:** you connect the account(s) → I build → I test live → you see the result → we turn it on → next.
