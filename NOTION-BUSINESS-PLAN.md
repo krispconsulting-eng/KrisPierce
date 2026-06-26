@@ -117,10 +117,13 @@ Each phase has a **Done when** and a **Foolproof check.** We don't skip ahead.
 - All three live on the **🏠 Daily Dashboard** and use the same 5 streams.
 - **Foolproof check:** an overdue invoice surfaces on the dashboard on its own. *(Surfacing on the dashboard + the overdue auto-flag is wired in Phase 6 via n8n; the data home + manual flag exist now.)*
 
-### Phase 4 — Research + Content as proper databases
-Promote the per-stream Research Pipeline and Content Calendar into **master 🔬 Research** and **🎬 Content** databases (keeping stream filtering), so they're not siloed in SCN2A only.
-- **Done when:** save a source or move a content idea from any stream in one step.
+### Phase 4 — Research + Content as proper databases ✅ DONE 2026-06-26
+- ✅ **🔬 Research Library** — Title, Type (Paper/Trial/Article/Report/Guideline/Dataset), Status (To Read/Reading/Read/Key Reference), Stream, Authors/Source, Year, Link/DOI, Key Takeaways; **linked to Projects**. Added a **📖 To Read** view.
+- ✅ **🎬 Content Pipeline** — Title, Stage (Idea→Scripting→Producing→Editing→Scheduled→Published), Channel (LinkedIn/Newsletter/Video/Blog/Slides/Social/Podcast), Stream, Publish Date, Link, Notes; **linked to Projects**. Added a **🎬 Pipeline by Stage** kanban board.
+- Both live on the **🏠 Daily Dashboard**, span all 5 streams (no longer SCN2A-only).
 - **Foolproof check:** one piece of content goes idea→scheduled inside the system.
+
+> _Note: your existing per-stream "Research Pipeline" pages and the "Move for SCN2A — Content Calendar" still exist. Nothing was deleted. In Phase 7 polish we can fold their entries into these master DBs if you want — or leave them as stream-specific working spaces._
 
 ### Phase 5 — Add the Life view
 A simple second dashboard for personal life, same capture inbox, separate view so work doesn't flood it.
