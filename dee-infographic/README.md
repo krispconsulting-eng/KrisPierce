@@ -30,6 +30,7 @@ The visual is organised around two explicit axes:
 | `assets/dee-impact.svg` | Fully self-contained vector (text outlined to paths) — scales to any print size. |
 | `assets/dee-impact-grant.png` | **Grant-submission figure** — compact landscape ("envelope") layout, no branding: areas of impact → how they compound → across the life course. 3040 px wide. |
 | `assets/dee-impact-grant.svg` | Vector version of the grant figure (text outlined). |
+| `assets/scn2a-impact.png` / `.svg` | **SCN2A version** of the full poster — reframed for **SCN2A-related disorders**: adds the gain-/loss-of-function **spectrum** and the genotype-guides-treatment story, with an indigo palette. Content verified against Wolff et al. *Brain* 2017 and Sanders et al. *Trends Neurosci* 2018. |
 
 ## Design notes
 

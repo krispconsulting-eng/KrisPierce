@@ -4,7 +4,8 @@
   "description": "Browser-free generator for the DEE disability-impact PNG/SVG assets.",
   "scripts": {
     "build": "node generate-assets.js ../assets/dee-impact.png",
-    "build:grant": "node generate-grant.js ../assets/dee-impact-grant.png"
+    "build:grant": "node generate-grant.js ../assets/dee-impact-grant.png",
+    "build:scn2a": "node generate-scn2a.js ../assets/scn2a-impact.png"
   },
   "dependencies": {
     "@resvg/resvg-js": "^2.6.2",
