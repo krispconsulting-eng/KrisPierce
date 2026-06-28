@@ -1,0 +1,19 @@
+@import "tailwindcss";
+
+@theme {
+  --font-heading: 'Archivo', sans-serif;
+  --font-body: 'Space Grotesk', sans-serif;
+
+  --color-brand-900: #09090B;
+  --color-brand-800: #18181B;
+  --color-brand-700: #27272A;
+  --color-brand-600: #3F3F46;
+  --color-brand-500: #52525B;
+  --color-brand-400: #71717A;
+  --color-brand-300: #A1A1AA;
+  --color-brand-200: #D4D4D8;
+  --color-brand-100: #E4E4E7;
+  --color-brand-50: #FAFAFA;
+  --color-accent: #2563EB;
+  --color-accent-light: #3B82F6;
+}

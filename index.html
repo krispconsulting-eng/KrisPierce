@@ -6,43 +6,14 @@
   <title>Kris Pierce — Strategic Advisor &amp; Rare Disease Advocate</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwindcss.config = {
-      theme: {
-        extend: {
-          fontFamily: {
-            heading: ['Archivo', 'sans-serif'],
-            body: ['Space Grotesk', 'sans-serif'],
-          },
-          colors: {
-            brand: {
-              900: '#09090B',
-              800: '#18181B',
-              700: '#27272A',
-              600: '#3F3F46',
-              500: '#52525B',
-              400: '#71717A',
-              300: '#A1A1AA',
-              200: '#D4D4D8',
-              100: '#E4E4E7',
-              50: '#FAFAFA',
-            },
-            accent: '#2563EB',
-            'accent-light': '#3B82F6',
-          },
-        },
-      },
-    }
-  </script>
+  <link href="dist/output.css" rel="stylesheet">
   <style>
     html { scroll-behavior: smooth; }
     body { font-family: 'Space Grotesk', sans-serif; color: #18181B; background: #FAFAFA; }
     h1, h2, h3, h4, h5 { font-family: 'Archivo', sans-serif; }
 
     .timeline-line { position: absolute; left: 7px; top: 0; bottom: 0; width: 2px; background: #D4D4D8; }
-    .timeline-dot { position: absolute; left: 0; top: 6px; width: 16px; height: 16px; border-radius: 50%; border: 3px solid #2563EB; background: #FAFAFA; z-index: 1; }
+    .timeline-dot { position: absolute; left: -3.25rem; top: 6px; width: 16px; height: 16px; border-radius: 50%; border: 3px solid #2563EB; background: #FAFAFA; z-index: 1; }
     .timeline-dot.active { background: #2563EB; }
 
     .pub-row:hover { background: #F4F4F5; }
@@ -61,7 +32,7 @@
   <!-- NAV -->
   <nav class="fixed top-4 left-4 right-4 z-50 bg-white/80 backdrop-blur-md border border-brand-200 rounded-2xl max-w-6xl mx-auto">
     <div class="flex items-center justify-between px-6 py-3">
-      <a href="#" class="font-heading font-700 text-lg text-brand-900 tracking-tight">Kris Pierce</a>
+      <a href="#" class="font-heading font-bold text-lg text-brand-900 tracking-tight">Kris Pierce</a>
       <div class="hidden md:flex items-center gap-6 text-sm font-medium text-brand-600">
         <a href="#experience" class="hover:text-brand-900 transition-colors cursor-pointer">Experience</a>
         <a href="#credentials" class="hover:text-brand-900 transition-colors cursor-pointer">Credentials</a>
@@ -95,17 +66,17 @@
     <!-- ============================================================ -->
     <section id="experience" class="pt-28 pb-20">
       <p class="text-sm font-medium text-accent tracking-widest uppercase mb-2">Career</p>
-      <h2 class="font-heading text-3xl md:text-4xl font-700 text-brand-900 mb-12">Experience</h2>
+      <h2 class="font-heading text-3xl md:text-4xl font-bold text-brand-900 mb-12">Experience</h2>
 
-      <div class="relative pl-10">
+      <div class="relative pl-14">
         <div class="timeline-line" aria-hidden="true"></div>
 
         <!-- 2024 – Present -->
         <div class="relative pb-10">
           <div class="timeline-dot active"></div>
           <div class="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-4 mb-1">
-            <span class="text-sm font-medium text-accent tabular-nums shrink-0">2024 – Present</span>
-            <h3 class="font-heading font-600 text-lg text-brand-900">Strategic Advisor, Consumer &amp; Community Engagement&nbsp;— Rare Diseases</h3>
+            <span class="text-sm font-medium text-accent tabular-nums shrink-0 min-w-32">2024 – Present</span>
+            <h3 class="font-heading font-semibold text-lg text-brand-900">Strategic Advisor, Consumer &amp; Community Engagement&nbsp;— Rare Diseases</h3>
           </div>
           <p class="text-brand-600 text-sm">UNSW Sydney</p>
           <p class="text-brand-500 text-sm mt-1">Advising on patient and community engagement strategy across rare disease research programs, including the MRFF-funded Diagnosis4All genomic equity initiative.</p>
@@ -115,8 +86,8 @@
         <div class="relative pb-10">
           <div class="timeline-dot active"></div>
           <div class="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-4 mb-1">
-            <span class="text-sm font-medium text-accent tabular-nums shrink-0">2022 – Present</span>
-            <h3 class="font-heading font-600 text-lg text-brand-900">Deputy Chair, HTA Consumer Consultative Committee</h3>
+            <span class="text-sm font-medium text-accent tabular-nums shrink-0 min-w-32">2022 – Present</span>
+            <h3 class="font-heading font-semibold text-lg text-brand-900">Deputy Chair, HTA Consumer Consultative Committee</h3>
           </div>
           <p class="text-brand-600 text-sm">Australian Government Department of Health &amp; Aged Care</p>
           <p class="text-brand-500 text-sm mt-1">Leading consumer engagement in health technology assessment policy, shaping how patient voices inform pharmaceutical and medical device funding decisions.</p>
@@ -126,8 +97,8 @@
         <div class="relative pb-10">
           <div class="timeline-dot active"></div>
           <div class="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-4 mb-1">
-            <span class="text-sm font-medium text-accent tabular-nums shrink-0">2021 – Present</span>
-            <h3 class="font-heading font-600 text-lg text-brand-900">Board Director</h3>
+            <span class="text-sm font-medium text-accent tabular-nums shrink-0 min-w-32">2021 – Present</span>
+            <h3 class="font-heading font-semibold text-lg text-brand-900">Board Director</h3>
           </div>
           <p class="text-brand-600 text-sm">Child Unlimited (UNSW)</p>
           <p class="text-brand-500 text-sm mt-1">Governance and strategic oversight for a centre dedicated to improving outcomes for children with chronic and complex health conditions.</p>
@@ -137,8 +108,8 @@
         <div class="relative pb-10">
           <div class="timeline-dot active"></div>
           <div class="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-4 mb-1">
-            <span class="text-sm font-medium text-accent tabular-nums shrink-0">2020 – Present</span>
-            <h3 class="font-heading font-600 text-lg text-brand-900">Member, Genomics Advisory Council</h3>
+            <span class="text-sm font-medium text-accent tabular-nums shrink-0 min-w-32">2020 – Present</span>
+            <h3 class="font-heading font-semibold text-lg text-brand-900">Member, Genomics Advisory Council</h3>
           </div>
           <p class="text-brand-600 text-sm">Genomics Australia</p>
           <p class="text-brand-500 text-sm mt-1">Contributing consumer and patient perspectives to national genomics strategy and policy.</p>
@@ -148,8 +119,8 @@
         <div class="relative pb-10">
           <div class="timeline-dot"></div>
           <div class="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-4 mb-1">
-            <span class="text-sm font-medium text-accent tabular-nums shrink-0">2019 – 2024</span>
-            <h3 class="font-heading font-600 text-lg text-brand-900">Rare Epilepsy Lead</h3>
+            <span class="text-sm font-medium text-accent tabular-nums shrink-0 min-w-32">2019 – 2024</span>
+            <h3 class="font-heading font-semibold text-lg text-brand-900">Rare Epilepsy Lead</h3>
           </div>
           <p class="text-brand-600 text-sm">Epilepsy Foundation of Australia</p>
           <p class="text-brand-500 text-sm mt-1">Led national strategy for rare and genetic epilepsy programs, building partnerships across research, clinical, and community sectors.</p>
@@ -159,8 +130,8 @@
         <div class="relative pb-10">
           <div class="timeline-dot active"></div>
           <div class="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-4 mb-1">
-            <span class="text-sm font-medium text-accent tabular-nums shrink-0">2018 – Present</span>
-            <h3 class="font-heading font-600 text-lg text-brand-900">Co-Founder</h3>
+            <span class="text-sm font-medium text-accent tabular-nums shrink-0 min-w-32">2018 – Present</span>
+            <h3 class="font-heading font-semibold text-lg text-brand-900">Co-Founder</h3>
           </div>
           <p class="text-brand-600 text-sm">Genetic Epilepsy Team Australia (GETA)</p>
           <p class="text-brand-500 text-sm mt-1">Co-founded a collaborative network uniting clinicians, researchers, and families to accelerate genetic epilepsy research and care in Australia.</p>
@@ -170,8 +141,8 @@
         <div class="relative pb-10">
           <div class="timeline-dot active"></div>
           <div class="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-4 mb-1">
-            <span class="text-sm font-medium text-accent tabular-nums shrink-0">2017 – Present</span>
-            <h3 class="font-heading font-600 text-lg text-brand-900">Founder &amp; Director</h3>
+            <span class="text-sm font-medium text-accent tabular-nums shrink-0 min-w-32">2017 – Present</span>
+            <h3 class="font-heading font-semibold text-lg text-brand-900">Founder &amp; Director</h3>
           </div>
           <p class="text-brand-600 text-sm">SCN2A Australia</p>
           <p class="text-brand-500 text-sm mt-1">Founded Australia's peak body for families affected by SCN2A-related disorders, building an international advocacy and research network.</p>
@@ -181,8 +152,8 @@
         <div class="relative pb-10">
           <div class="timeline-dot active"></div>
           <div class="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-4 mb-1">
-            <span class="text-sm font-medium text-accent tabular-nums shrink-0">2019 – Present</span>
-            <h3 class="font-heading font-600 text-lg text-brand-900">Leadership Council Member</h3>
+            <span class="text-sm font-medium text-accent tabular-nums shrink-0 min-w-32">2019 – Present</span>
+            <h3 class="font-heading font-semibold text-lg text-brand-900">Leadership Council Member</h3>
           </div>
           <p class="text-brand-600 text-sm">Global Genes</p>
           <p class="text-brand-500 text-sm mt-1">Shaping global rare disease advocacy strategy and community engagement programs.</p>
@@ -192,8 +163,8 @@
         <div class="relative pb-2">
           <div class="timeline-dot"></div>
           <div class="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-4 mb-1">
-            <span class="text-sm font-medium text-accent tabular-nums shrink-0">Ongoing</span>
-            <h3 class="font-heading font-600 text-lg text-brand-900">CHA Committee Member</h3>
+            <span class="text-sm font-medium text-accent tabular-nums shrink-0 min-w-32">Ongoing</span>
+            <h3 class="font-heading font-semibold text-lg text-brand-900">CHA Committee Member</h3>
           </div>
           <p class="text-brand-600 text-sm">Consumers Health Australia</p>
           <p class="text-brand-500 text-sm mt-1">Active contributor to national consumer health advocacy and policy development.</p>
@@ -206,7 +177,7 @@
     <!-- ============================================================ -->
     <section id="credentials" class="py-20 border-t border-brand-100">
       <p class="text-sm font-medium text-accent tracking-widest uppercase mb-2">Qualifications</p>
-      <h2 class="font-heading text-3xl md:text-4xl font-700 text-brand-900 mb-10">Credentials</h2>
+      <h2 class="font-heading text-3xl md:text-4xl font-bold text-brand-900 mb-10">Credentials</h2>
 
       <div class="grid sm:grid-cols-2 gap-5">
 
@@ -217,7 +188,7 @@
               <svg class="w-5 h-5 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.26 10.147a60.438 60.438 0 0 0-.491 6.347A48.62 48.62 0 0 1 12 20.904a48.62 48.62 0 0 1 8.232-4.41 60.46 60.46 0 0 0-.491-6.347m-15.482 0a50.636 50.636 0 0 0-2.658-.813A59.906 59.906 0 0 1 12 3.493a59.903 59.903 0 0 1 10.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.717 50.717 0 0 1 12 13.489a50.702 50.702 0 0 1 7.74-3.342M6.75 15a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm0 0v-3.675A55.378 55.378 0 0 1 12 8.443m-7.007 11.55A5.981 5.981 0 0 0 6.75 15.75v-1.5"/></svg>
             </div>
             <div>
-              <h3 class="font-heading font-600 text-brand-900">GAICD</h3>
+              <h3 class="font-heading font-semibold text-brand-900">GAICD</h3>
               <p class="text-sm text-brand-500">Australian Institute of Company Directors</p>
             </div>
           </div>
@@ -231,7 +202,7 @@
               <svg class="w-5 h-5 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25"/></svg>
             </div>
             <div>
-              <h3 class="font-heading font-600 text-brand-900">Master of Health Science</h3>
+              <h3 class="font-heading font-semibold text-brand-900">Master of Health Science</h3>
               <p class="text-sm text-brand-500">Postgraduate Qualification</p>
             </div>
           </div>
@@ -245,7 +216,7 @@
               <svg class="w-5 h-5 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z"/></svg>
             </div>
             <div>
-              <h3 class="font-heading font-600 text-brand-900">Master of Wellness</h3>
+              <h3 class="font-heading font-semibold text-brand-900">Master of Wellness</h3>
               <p class="text-sm text-brand-500">Postgraduate Qualification</p>
             </div>
           </div>
@@ -259,7 +230,7 @@
               <svg class="w-5 h-5 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M11.35 3.836c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 0 0 .75-.75 2.25 2.25 0 0 0-.1-.664m-5.8 0A2.251 2.251 0 0 1 13.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m8.9-4.414c.376.023.75.05 1.124.08 1.131.094 1.976 1.057 1.976 2.192V16.5A2.25 2.25 0 0 1 18 18.75h-2.25m-7.5-10.5H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V18.75m-7.5-10.5h6.375c.621 0 1.125.504 1.125 1.125v9.375m-8.25-3 1.5 1.5 3-3.75"/></svg>
             </div>
             <div>
-              <h3 class="font-heading font-600 text-brand-900">Registered Nurse</h3>
+              <h3 class="font-heading font-semibold text-brand-900">Registered Nurse</h3>
               <p class="text-sm text-brand-500">Clinical Foundation</p>
             </div>
           </div>
@@ -273,7 +244,7 @@
               <svg class="w-5 h-5 text-amber-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 18.75h-9m9 0a3 3 0 0 1 3 3h-15a3 3 0 0 1 3-3m9 0v-3.375c0-.621-.503-1.125-1.125-1.125h-.871M7.5 18.75v-3.375c0-.621.504-1.125 1.125-1.125h.872m5.007 0H9.497m5.007 0a7.454 7.454 0 0 1-.982-3.172M9.497 14.25a7.454 7.454 0 0 0 .981-3.172M5.25 4.236c-.996.44-1.773 1.405-2.024 2.592-.266 1.258.265 2.523 1.263 3.334.451.367.862.79 1.16 1.275l.112.198a7.418 7.418 0 0 0 1.487-1.06 7.502 7.502 0 0 0 4.752-5.338 7.504 7.504 0 0 0-4.752 5.338 7.418 7.418 0 0 1-1.487 1.06M18.75 4.236c.996.44 1.773 1.405 2.024 2.592.266 1.258-.265 2.523-1.263 3.334a4.068 4.068 0 0 0-1.16 1.275l-.112.198"/></svg>
             </div>
             <div>
-              <h3 class="font-heading font-600 text-brand-900">Victorian Honour Roll of Women</h3>
+              <h3 class="font-heading font-semibold text-brand-900">Victorian Honour Roll of Women</h3>
               <p class="text-sm text-brand-500">State of Victoria, Australia</p>
             </div>
           </div>
@@ -287,7 +258,7 @@
               <svg class="w-5 h-5 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 0 0 8.716-6.747M12 21a9.004 9.004 0 0 1-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 0 1 7.843 4.582M12 3a8.997 8.997 0 0 0-7.843 4.582m15.686 0A11.953 11.953 0 0 1 12 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0 1 21 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0 1 12 16.5a17.92 17.92 0 0 1-8.716-2.247m0 0A9.015 9.015 0 0 1 3 12c0-1.605.42-3.113 1.157-4.418"/></svg>
             </div>
             <div>
-              <h3 class="font-heading font-600 text-brand-900">Leadership Council</h3>
+              <h3 class="font-heading font-semibold text-brand-900">Leadership Council</h3>
               <p class="text-sm text-brand-500">Global Genes</p>
             </div>
           </div>
@@ -302,7 +273,7 @@
     <!-- ============================================================ -->
     <section id="projects" class="py-20 border-t border-brand-100">
       <p class="text-sm font-medium text-accent tracking-widest uppercase mb-2">Impact</p>
-      <h2 class="font-heading text-3xl md:text-4xl font-700 text-brand-900 mb-10">Key Projects</h2>
+      <h2 class="font-heading text-3xl md:text-4xl font-bold text-brand-900 mb-10">Key Projects</h2>
 
       <div class="grid sm:grid-cols-2 gap-5">
 
@@ -315,7 +286,7 @@
             </span>
             <span class="inline-flex text-xs font-medium bg-brand-100 text-brand-600 px-2.5 py-1 rounded-full">Genomic Equity</span>
           </div>
-          <h3 class="font-heading font-600 text-lg text-brand-900 mb-2">Diagnosis4All</h3>
+          <h3 class="font-heading font-semibold text-lg text-brand-900 mb-2">Diagnosis4All</h3>
           <p class="text-sm text-brand-600 mb-4">Chief Investigator on an MRFF-funded initiative tackling genomic equity for priority populations in NSW — First Nations communities, culturally diverse families, and regional/remote areas.</p>
           <div class="flex items-center gap-2">
             <span class="text-xs text-brand-400 bg-brand-50 border border-brand-100 px-2 py-0.5 rounded">UNSW</span>
@@ -332,7 +303,7 @@
             </span>
             <span class="inline-flex text-xs font-medium bg-brand-100 text-brand-600 px-2.5 py-1 rounded-full">Rare Disease</span>
           </div>
-          <h3 class="font-heading font-600 text-lg text-brand-900 mb-2">SCN2A Australia</h3>
+          <h3 class="font-heading font-semibold text-lg text-brand-900 mb-2">SCN2A Australia</h3>
           <p class="text-sm text-brand-600 mb-4">Founded Australia's peak body for families affected by SCN2A-related disorders. Built an international network connecting families, clinicians, and researchers to accelerate treatment pathways.</p>
           <div class="flex items-center gap-2">
             <span class="text-xs text-brand-400 bg-brand-50 border border-brand-100 px-2 py-0.5 rounded">SCN2A Australia</span>
@@ -349,7 +320,7 @@
             </span>
             <span class="inline-flex text-xs font-medium bg-brand-100 text-brand-600 px-2.5 py-1 rounded-full">Research Network</span>
           </div>
-          <h3 class="font-heading font-600 text-lg text-brand-900 mb-2">Genetic Epilepsy Team Australia</h3>
+          <h3 class="font-heading font-semibold text-lg text-brand-900 mb-2">Genetic Epilepsy Team Australia</h3>
           <p class="text-sm text-brand-600 mb-4">Co-founded a national collaborative uniting clinicians, researchers, and families to set research priorities and accelerate precision therapies for developmental and epileptic encephalopathies (DEEs).</p>
           <div class="flex items-center gap-2">
             <span class="text-xs text-brand-400 bg-brand-50 border border-brand-100 px-2 py-0.5 rounded">GETA</span>
@@ -366,7 +337,7 @@
             </span>
             <span class="inline-flex text-xs font-medium bg-brand-100 text-brand-600 px-2.5 py-1 rounded-full">Health Policy</span>
           </div>
-          <h3 class="font-heading font-600 text-lg text-brand-900 mb-2">HTA Consumer Engagement</h3>
+          <h3 class="font-heading font-semibold text-lg text-brand-900 mb-2">HTA Consumer Engagement</h3>
           <p class="text-sm text-brand-600 mb-4">Deputy Chair driving patient-centred reform in health technology assessment. Developed the shared-learning capacity model enabling consumer participation in pharmaceutical and medical device policy.</p>
           <div class="flex items-center gap-2">
             <span class="text-xs text-brand-400 bg-brand-50 border border-brand-100 px-2 py-0.5 rounded">Dept of Health</span>
@@ -382,7 +353,7 @@
     <!-- ============================================================ -->
     <section id="publications" class="py-20 border-t border-brand-100">
       <p class="text-sm font-medium text-accent tracking-widest uppercase mb-2">Research</p>
-      <h2 class="font-heading text-3xl md:text-4xl font-700 text-brand-900 mb-3">Publications</h2>
+      <h2 class="font-heading text-3xl md:text-4xl font-bold text-brand-900 mb-3">Publications</h2>
       <p class="text-brand-500 text-sm mb-10">Peer-reviewed journal articles, reports, and conference proceedings.</p>
 
       <div class="space-y-0 border border-brand-200 rounded-xl overflow-hidden bg-white">
@@ -582,7 +553,7 @@
     <!-- ============================================================ -->
     <section id="testimonials" class="py-20 border-t border-brand-100">
       <p class="text-sm font-medium text-accent tracking-widest uppercase mb-2">What Others Say</p>
-      <h2 class="font-heading text-3xl md:text-4xl font-700 text-brand-900 mb-10">Testimonials</h2>
+      <h2 class="font-heading text-3xl md:text-4xl font-bold text-brand-900 mb-10">Testimonials</h2>
 
       <div class="grid sm:grid-cols-2 gap-6">
 
@@ -595,10 +566,10 @@
           </blockquote>
           <div class="flex items-center gap-3 pt-4 border-t border-brand-100">
             <div class="w-10 h-10 rounded-full bg-brand-100 flex items-center justify-center">
-              <span class="text-sm font-600 text-brand-600">DW</span>
+              <span class="text-sm font-semibold text-brand-600">DW</span>
             </div>
             <div>
-              <p class="text-sm font-600 text-brand-900">Donna Walsh</p>
+              <p class="text-sm font-semibold text-brand-900">Donna Walsh</p>
               <p class="text-xs text-brand-500"><!-- Add role/org --></p>
             </div>
           </div>
@@ -613,10 +584,10 @@
           </blockquote>
           <div class="flex items-center gap-3 pt-4 border-t border-brand-100">
             <div class="w-10 h-10 rounded-full bg-brand-100 flex items-center justify-center">
-              <span class="text-sm font-600 text-brand-600">GS</span>
+              <span class="text-sm font-semibold text-brand-600">GS</span>
             </div>
             <div>
-              <p class="text-sm font-600 text-brand-900">Graeme Shears</p>
+              <p class="text-sm font-semibold text-brand-900">Graeme Shears</p>
               <p class="text-xs text-brand-500">CEO, Epilepsy Foundation of Australia</p>
             </div>
           </div>
