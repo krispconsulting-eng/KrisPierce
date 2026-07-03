@@ -1,0 +1,68 @@
+{
+  "name": "Apify Competitor Scan (weekly)",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": { "interval": [{ "field": "weeks", "weeksInterval": 1 }] }
+      },
+      "id": "schedule",
+      "name": "Weekly Schedule",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [240, 300]
+    },
+    {
+      "parameters": {
+        "url": "=https://api.apify.com/v2/acts/REPLACE_WITH_ACTOR_ID/run-sync-get-dataset-items",
+        "method": "POST",
+        "sendBody": true,
+        "jsonBody": "={\"competitorHandles\": [\"REPLACE_WITH_HANDLES\"]}",
+        "options": {}
+      },
+      "id": "run-apify",
+      "name": "Run Apify Actor",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [460, 300],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "REPLACE_WITH_APIFY_CREDENTIAL_ID",
+          "name": "Apify API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "databasePage",
+        "operation": "create",
+        "databaseId": "={{$env[\"NOTION_COMPETITOR_RESEARCH_DB_ID\"]}}",
+        "propertiesUi": {
+          "propertyValues": [
+            { "key": "Competitor|rich_text", "textValue": "={{$json[\"handle\"]}}" },
+            { "key": "Post URL|url", "urlValue": "={{$json[\"url\"]}}" },
+            { "key": "Metric Snapshot|rich_text", "textValue": "={{JSON.stringify($json)}}" },
+            { "key": "Pulled At|date", "date": "={{$now.toISO()}}" }
+          ]
+        }
+      },
+      "id": "write-notion",
+      "name": "Write to Notion Competitor Research",
+      "type": "n8n-nodes-base.notion",
+      "typeVersion": 2.2,
+      "position": [680, 300],
+      "credentials": {
+        "notionApi": {
+          "id": "REPLACE_WITH_NOTION_CREDENTIAL_ID",
+          "name": "Notion"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Weekly Schedule": { "main": [[{ "node": "Run Apify Actor", "type": "main", "index": 0 }]] },
+    "Run Apify Actor": { "main": [[{ "node": "Write to Notion Competitor Research", "type": "main", "index": 0 }]] }
+  },
+  "active": false,
+  "settings": {},
+  "pinData": {}
+}

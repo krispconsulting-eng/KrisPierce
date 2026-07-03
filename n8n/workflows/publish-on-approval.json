@@ -1,0 +1,88 @@
+{
+  "name": "Publish on Approval (Notion -> Blotato)",
+  "nodes": [
+    {
+      "parameters": {
+        "pollTimes": { "item": [{ "mode": "everyMinute" }] },
+        "resource": "databasePage",
+        "operation": "getAll",
+        "databaseId": "={{$env[\"NOTION_CONTENT_CALENDAR_DB_ID\"]}}",
+        "filterType": "manual",
+        "matchType": "allFilters",
+        "filters": {
+          "conditions": [
+            { "key": "Status|select", "condition": "equals", "selectValue": "Approved" }
+          ]
+        }
+      },
+      "id": "notion-trigger",
+      "name": "Approved Rows (poll)",
+      "type": "n8n-nodes-base.notionTrigger",
+      "typeVersion": 1,
+      "position": [240, 300],
+      "credentials": {
+        "notionApi": {
+          "id": "REPLACE_WITH_NOTION_CREDENTIAL_ID",
+          "name": "Notion"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "https://backend.blotato.com/v2/posts",
+        "method": "POST",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            { "name": "caption", "value": "={{$json[\"properties\"][\"Captions\"][\"rich_text\"][0][\"plain_text\"]}}" },
+            { "name": "mediaUrl", "value": "={{$json[\"properties\"][\"Source Recording\"][\"url\"]}}" },
+            { "name": "platforms", "value": "={{$json[\"properties\"][\"Platforms\"][\"multi_select\"]}}" }
+          ]
+        },
+        "options": {}
+      },
+      "id": "blotato-publish",
+      "name": "Publish via Blotato",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [460, 300],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "REPLACE_WITH_BLOTATO_CREDENTIAL_ID",
+          "name": "Blotato API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "databasePage",
+        "operation": "update",
+        "pageId": "={{$('Approved Rows (poll)').item.json[\"id\"]}}",
+        "propertiesUi": {
+          "propertyValues": [
+            { "key": "Status|select", "selectValue": "Published" },
+            { "key": "Blotato Post ID|rich_text", "textValue": "={{$json[\"id\"]}}" }
+          ]
+        }
+      },
+      "id": "mark-published",
+      "name": "Mark Published in Notion",
+      "type": "n8n-nodes-base.notion",
+      "typeVersion": 2.2,
+      "position": [680, 300],
+      "credentials": {
+        "notionApi": {
+          "id": "REPLACE_WITH_NOTION_CREDENTIAL_ID",
+          "name": "Notion"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Approved Rows (poll)": { "main": [[{ "node": "Publish via Blotato", "type": "main", "index": 0 }]] },
+    "Publish via Blotato": { "main": [[{ "node": "Mark Published in Notion", "type": "main", "index": 0 }]] }
+  },
+  "active": false,
+  "settings": {},
+  "pinData": {}
+}

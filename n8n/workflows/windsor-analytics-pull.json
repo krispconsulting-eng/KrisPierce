@@ -1,0 +1,71 @@
+{
+  "name": "Windsor AI Analytics Pull (daily)",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": { "interval": [{ "field": "days", "daysInterval": 1 }] }
+      },
+      "id": "schedule",
+      "name": "Daily Schedule",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [240, 300]
+    },
+    {
+      "parameters": {
+        "url": "https://connectors.windsor.ai/all",
+        "options": {
+          "queryParameters": {
+            "parameters": [
+              { "name": "date_preset", "value": "yesterday" },
+              { "name": "fields", "value": "source,campaign,clicks,impressions,spend,date" }
+            ]
+          }
+        }
+      },
+      "id": "fetch-windsor",
+      "name": "Fetch Windsor AI Data",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [460, 300],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "REPLACE_WITH_WINDSOR_CREDENTIAL_ID",
+          "name": "Windsor AI"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "databasePage",
+        "operation": "create",
+        "databaseId": "={{$env[\"NOTION_PERFORMANCE_DB_ID\"]}}",
+        "propertiesUi": {
+          "propertyValues": [
+            { "key": "Platform|rich_text", "textValue": "={{$json[\"source\"]}}" },
+            { "key": "Metric Snapshot|rich_text", "textValue": "={{JSON.stringify($json)}}" },
+            { "key": "Pulled At|date", "date": "={{$now.toISO()}}" }
+          ]
+        }
+      },
+      "id": "write-notion",
+      "name": "Write to Notion Performance",
+      "type": "n8n-nodes-base.notion",
+      "typeVersion": 2.2,
+      "position": [680, 300],
+      "credentials": {
+        "notionApi": {
+          "id": "REPLACE_WITH_NOTION_CREDENTIAL_ID",
+          "name": "Notion"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Daily Schedule": { "main": [[{ "node": "Fetch Windsor AI Data", "type": "main", "index": 0 }]] },
+    "Fetch Windsor AI Data": { "main": [[{ "node": "Write to Notion Performance", "type": "main", "index": 0 }]] }
+  },
+  "active": false,
+  "settings": {},
+  "pinData": {}
+}

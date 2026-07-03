@@ -1,0 +1,68 @@
+{
+  "name": "Tella -> Notion (new recording)",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "tella-recording-complete",
+        "options": {}
+      },
+      "id": "webhook-trigger",
+      "name": "Tella Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [240, 300]
+    },
+    {
+      "parameters": {
+        "url": "={{$json[\"transcript_url\"]}}",
+        "options": {}
+      },
+      "id": "fetch-transcript",
+      "name": "Fetch Transcript",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [460, 300],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "REPLACE_WITH_TELLA_CREDENTIAL_ID",
+          "name": "Tella API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "databasePage",
+        "operation": "create",
+        "databaseId": "={{$env[\"NOTION_CONTENT_CALENDAR_DB_ID\"]}}",
+        "title": "={{$('Tella Webhook').item.json[\"title\"]}}",
+        "propertiesUi": {
+          "propertyValues": [
+            { "key": "Status|select", "selectValue": "New" },
+            { "key": "Source|select", "selectValue": "Tella" },
+            { "key": "Source Recording|url", "urlValue": "={{$('Tella Webhook').item.json[\"recording_url\"]}}" },
+            { "key": "Transcript|rich_text", "textValue": "={{$json[\"transcript\"]}}" }
+          ]
+        }
+      },
+      "id": "create-notion-row",
+      "name": "Create Content Calendar Row",
+      "type": "n8n-nodes-base.notion",
+      "typeVersion": 2.2,
+      "position": [680, 300],
+      "credentials": {
+        "notionApi": {
+          "id": "REPLACE_WITH_NOTION_CREDENTIAL_ID",
+          "name": "Notion"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Tella Webhook": { "main": [[{ "node": "Fetch Transcript", "type": "main", "index": 0 }]] },
+    "Fetch Transcript": { "main": [[{ "node": "Create Content Calendar Row", "type": "main", "index": 0 }]] }
+  },
+  "active": false,
+  "settings": {},
+  "pinData": {}
+}
