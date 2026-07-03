@@ -234,32 +234,53 @@ SCN2A Australia's trajectory shows what preparing the right way looks like, and 
 
 ## 10. References
 
-*(Reference list carried forward from the prior draft and to be finalised; two items flagged for correction — see accompanying memo: (i) Scott & Wale 2017 appears with two different DOIs across documents; (ii) the PFMD Patient Engagement Quality Guidance should be cited consistently as Deane et al., BMJ Innovations 2019;5(1):43–55, doi:10.1136/bmjinnov-2018-000317 [verified], not as "Hoos, BMJ Open e028871".)*
+*APA 7th edition. All entries verified against PubMed/CrossRef or the authoritative publisher/agency source (July 2026). Note: the target journal (Research Involvement and Engagement) uses numbered Vancouver style at submission; convert if that remains the target.*
 
-1. Wale JL, Thomas S, Hamerlijnck D, Hollander R. Patients and public are important stakeholders in HTA but the level of involvement is low — a call to action. *Res Involv Engagem.* 2021;7:1. doi:10.1186/s40900-020-00248-9
-2. Scott AM, Wale JL. Patient advocate perspectives on involvement in HTA: an international snapshot. *Res Involv Engagem.* 2017;3:2. *[confirm DOI]*
-3. Whittal A, Meregaglia M, Nicod E. The use of patient-reported outcome measures in rare diseases and implications for health technology assessment. *Patient.* 2021;14(5):485–503. doi:10.1007/s40271-020-00493-w
-4. Nguyen CQ, Alba-Concepcion K, Palmer EE, Scully JL, Millis N, Farrar MA. The involvement of rare disease patient organisations in therapeutic innovation across rare paediatric neurological conditions: a narrative review. *Orphanet J Rare Dis.* 2022;17(1):167. doi:10.1186/s13023-022-02317-6
-5. Downs J, Ludwig NN, Wojnaroski M, et al. What does better look like in individuals with severe neurodevelopmental impairments? A qualitative descriptive study on SCN2A-related DEE. *Qual Life Res.* 2024;33(2):519–528. doi:10.1007/s11136-023-03543-6
-6. Sevinc G, Knox K, George M, et al. The feasibility of personalized endpoints in assessing treatment outcomes for rare diseases: a pilot study of goal attainment scaling in SCN2A-associated DEE. *Value Health.* 2025;28(3):441–448. doi:10.1016/j.jval.2024.12.004
-7. Kaat AJ, et al. Vineland-3 growth scale values: psychometric properties for clinical trial readiness in SCN2A. *J Child Adolesc Psychopharmacol.* 2025. doi:10.1089/cap.2024.0107
-8. Berg AT, et al. Assessing communication impairments in a rare neurodevelopmental disorder: the SCN2A Clinical Trials Readiness Study. *Neurol Clin Pract.* 2025;15(1):e200391. doi:10.1212/CPJ.0000000000200391
-9. Wagner M, et al. Antisense oligonucleotide treatment in a preterm infant with early-onset SCN2A developmental and epileptic encephalopathy. *Nat Med.* 2025. doi:10.1038/s41591-025-03656-0
-10. Staniszewska S, Brett J, Simera I, et al. GRIPP2 reporting checklists: tools to improve reporting of patient and public involvement in research. *BMJ.* 2017;358:j3453. doi:10.1136/bmj.j3453
-11. Deane K, Delbecque L, Gorbenko O, et al. Co-creation of patient engagement quality guidance for medicines development: an international multistakeholder initiative. *BMJ Innov.* 2019;5(1):43–55. doi:10.1136/bmjinnov-2018-000317
-12. Balfour J, Cowley LB, Windsor G, et al. The patient-driven Rare Disease Research Network: turning research on its head. *BMJ Open.* 2025;15(10):e105045. doi:10.1136/bmjopen-2025-105045
-13. Janssens A, Drachmann D, Barnes-Cullen K, et al. An auto-ethnographic study of co-produced health research in a patient organisation. *Res Involv Engagem.* 2024;10(1):78. doi:10.1186/s40900-024-00609-8
-14. Lopes E, Street J, Carter D, Merlin T. Involving patients in health technology funding decisions: stakeholder perspectives on processes used in Australia. *Health Expect.* 2016;19(2):331–344. doi:10.1111/hex.12356
-15. Tjeuw E, Wonder MJ. Analysis of consumer comments into PBAC decision-making (2014–9). *Int J Technol Assess Health Care.* 2022;38(1):e18. doi:10.1017/S0266462321001744
-16. Coombes MA, Morgan K, Diaz J, et al. Plain language summaries supporting patient involvement: lessons and guidance from the HTAi PCIG. *Int J Technol Assess Health Care.* 2025;41(1). doi:10.1017/S0266462325100408
-17. Australian Government Department of Health and Aged Care. *Enhance HTA: An Enhanced Consumer Engagement Process in Australian HTA.* Canberra: OHTA; 2024.
-18. Australian Government Department of Health and Aged Care. *Health Technology Assessment Policy and Methods Review — Final Report.* 2024.
-19. Praxis Precision Medicines. *SCN2A Clinical Trial Readiness and Patient/Consumer Engagement Study.* 2024.
-20. Pierce K, Single A, Funk M, Van Gorp K. Shared learning: an alternative model for patient capacity development to participate in HTA. *Int J Technol Assess Health Care.* 2025;41(S1):S4 (conference abstract). doi:10.1017/S0266462325100664
+Australian Government Department of Health and Aged Care. (2024a). *Enhance HTA: An enhanced consumer engagement process in Australian health technology assessment – A report of recommendations.* https://www.health.gov.au/resources/publications/enhance-hta-an-enhanced-consumer-engagement-process-in-australian-health-technology-assessment-a-report-of-recommendations
 
-*Additional SCN2A outcome-measurement and DEE references (Berg 2021; Cohen SR et al. Caregiver assessment of quality of life in genetic DEEs. Dev Med Child Neurol 2022;64(8):957–964; Robertson 2024; Scheffer 2023; Berecki 2025) available and to be integrated in D2 as needed.*
+Australian Government Department of Health and Aged Care. (2024b). *Health technology assessment policy and methods review: Final report.* https://www.health.gov.au/resources/publications/health-technology-assessment-policy-and-methods-review-final-report
 
-*[TO CONFIRM] Quality-of-life paper (lead author Lauren Kaleda) — full citation, journal, year and DOI needed. Not located on PubMed under this spelling; please supply the reference or a link and it will be inserted in D2/D3 and the reference list.*
+Balfour, J., Cowley, L. B., Windsor, G., Dalby, E., Sibley, M., Hunter, A., & Smith, R. M. (2025). The patient-driven Rare Disease Research Network: Turning research on its head. *BMJ Open, 15*(10), Article e105045. https://doi.org/10.1136/bmjopen-2025-105045
+
+Berg, A. T., Palac, H., Wilkening, G., Zelko, F., & Schust Meyer, L. (2021). SCN2A-developmental and epileptic encephalopathies: Challenges to trial-readiness for non-seizure outcomes. *Epilepsia, 62*(1), 258–268. https://doi.org/10.1111/epi.16750
+
+Berg, A. T., Nili, A. N., Evans, L., Paltell, K. C., Kaiser, A. J. E., Anderson, E. L., Egan, S. M., Kaat, A. J., Nesbitt, G., & Myers, L. S. (2025). Assessing communication impairments in a rare neurodevelopmental disorder: The SCN2A Clinical Trials Readiness Study. *Neurology: Clinical Practice, 15*(1), Article e200391. https://doi.org/10.1212/CPJ.0000000000200391
+
+Cohen, S. R., Helbig, I., Kaufman, M. C., Schust Myers, L., Conway, L., & Helbig, K. L. (2022). Caregiver assessment of quality of life in individuals with genetic developmental and epileptic encephalopathies. *Developmental Medicine & Child Neurology, 64*(8), 957–964. https://doi.org/10.1111/dmcn.15187
+
+Coombes, M. A., Morgan, K., Diaz, J., Oehrlein, E. M., Andersen, H., Gilardino, R., Helme, K., Pearce, F., & Cardone, A. (2025). Plain language summaries supporting patient involvement: Lessons and guidance from HTAi Patient and Citizen Involvement Interest Group (PCIG). *International Journal of Technology Assessment in Health Care, 41*(1), Article e59. https://doi.org/10.1017/S0266462325100408
+
+Deane, K., Delbecque, L., Gorbenko, O., Hamoir, A. M., Hoos, A., Nafria, B., Pakarinen, C., Sargeant, I., Richards, D. P., Skovlund, S. E., & Brooke, N. (2019). Co-creation of patient engagement quality guidance for medicines development: An international multistakeholder initiative. *BMJ Innovations, 5*(1), 43–55. https://doi.org/10.1136/bmjinnov-2018-000317
+
+Downs, J., Ludwig, N. N., Wojnaroski, M., Keeley, J., Schust Myers, L., Chapman, C. A. T., Hecker, J., Conecker, G., & Berg, A. T. (2024). What does better look like in individuals with severe neurodevelopmental impairments? A qualitative descriptive study on SCN2A-related developmental and epileptic encephalopathy. *Quality of Life Research, 33*(2), 519–528. https://doi.org/10.1007/s11136-023-03543-6
+
+Janssens, A., Drachmann, D., Barnes-Cullen, K., Carrigg, A., Christesen, H. T., Futers, B., Lavery, Y. O., Palms, T., Petersen, J. S., Shah, P., Thornton, P., & Wolfsdorf, J. (2024). An auto-ethnographic study of co-produced health research in a patient organisation: Unpacking the good, the bad, and the unspoken. *Research Involvement and Engagement, 10*(1), Article 76. https://doi.org/10.1186/s40900-024-00609-8
+
+Kaat, A. J., Evans, L., Nili, A. N., Paltell, K., Kaiser, A., Anderson, E., Myers, L. S., & Berg, A. T. (2025). Vineland-3 growth scale values: Psychometric properties for clinical trial readiness in SCN2A. *Journal of Child and Adolescent Psychopharmacology, 35*(7), 416–423. https://doi.org/10.1089/cap.2024.0107
+
+Lopes, E., Street, J., Carter, D., & Merlin, T. (2016). Involving patients in health technology funding decisions: Stakeholder perspectives on processes used in Australia. *Health Expectations, 19*(2), 331–344. https://doi.org/10.1111/hex.12356
+
+Nguyen, C. Q., Alba-Concepcion, K., Palmer, E. E., Scully, J. L., Millis, N., & Farrar, M. A. (2022). The involvement of rare disease patient organisations in therapeutic innovation across rare paediatric neurological conditions: A narrative review. *Orphanet Journal of Rare Diseases, 17*(1), Article 167. https://doi.org/10.1186/s13023-022-02317-6
+
+Pierce, K., Single, A., Funk, M., & Van Gorp, K. (2025). OP07 Shared learning: An alternative model for patient capacity development to participate in health technology assessment [Conference abstract]. *International Journal of Technology Assessment in Health Care, 41*(S1), S4. https://doi.org/10.1017/S0266462325100664
+
+Praxis Precision Medicines. (2024). *SCN2A clinical trial readiness and patient/consumer engagement study* [Unpublished internal report]. **[Provenance to confirm — see memo: not publicly retrievable; verify exact title, author organisation, and year, or reclassify as SCN2A Australia organisational record.]**
+
+Scott, A. M., & Wale, J. L. (2017). Patient advocate perspectives on involvement in HTA: An international snapshot. *Research Involvement and Engagement, 3*, Article 2. https://doi.org/10.1186/s40900-016-0052-9
+
+Sevinc, G., Knox, K., George, M., Evans, L., Kaiser, A., Paltell, K. C., Myers, L. S., Ludwig, N. N., Wojnaroski, M., Conecker, G., Hecker, J., Downs, J., Chapman, C. A. T., & Berg, A. T. (2025). The feasibility of personalized endpoints in assessing treatment outcomes for rare diseases: A pilot study of goal attainment scaling in SCN2A-associated developmental epileptic encephalopathy. *Value in Health, 28*(3), 441–448. https://doi.org/10.1016/j.jval.2024.12.004
+
+Staniszewska, S., Brett, J., Simera, I., Seers, K., Mockford, C., Goodlad, S., Altman, D. G., Moher, D., Barber, R., Denegri, S., Entwistle, A., Littlejohns, P., Morris, C., Suleman, R., Thomas, V., & Tysall, C. (2017). GRIPP2 reporting checklists: Tools to improve reporting of patient and public involvement in research. *BMJ, 358*, Article j3453. https://doi.org/10.1136/bmj.j3453
+
+Tjeuw, E., & Wonder, M. J. (2022). Analysis of consumer comments into PBAC decision-making (2014–9). *International Journal of Technology Assessment in Health Care, 38*(1), Article e18. https://doi.org/10.1017/S0266462321001744
+
+Wagner, M., Berecki, G., Fazeli, W., Nussbaum, C., Flemmer, A. W., Frizzo, S., Heer, F., Heinen, F., Horton, R., Jacotin, H., Motel, W., Spar, B., Klein, C., Siegel, C., Hübener, C., Stöcklein, S., Paolini, M., Staudt, M., Wolff, M., . . . Borggraefe, I. (2025). Antisense oligonucleotide treatment in a preterm infant with early-onset SCN2A developmental and epileptic encephalopathy. *Nature Medicine, 31*(7), 2174–2178. https://doi.org/10.1038/s41591-025-03656-0
+
+Wale, J. L., Thomas, S., Hamerlijnck, D., & Hollander, R. (2021). Patients and public are important stakeholders in health technology assessment but the level of involvement is low—A call to action. *Research Involvement and Engagement, 7*(1), Article 1. https://doi.org/10.1186/s40900-020-00248-9
+
+Whittal, A., Meregaglia, M., & Nicod, E. (2021). The use of patient-reported outcome measures in rare diseases and implications for health technology assessment. *The Patient, 14*(5), 485–503. https://doi.org/10.1007/s40271-020-00493-w
+
+*[TO CONFIRM] Quality-of-life paper (lead author Lauren Kaleda) — full citation, journal, year and DOI needed for D2/D3. Not located on PubMed under this spelling; please supply the reference or a link and it will be inserted.*
 
 ---
 
