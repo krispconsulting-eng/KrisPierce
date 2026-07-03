@@ -1,0 +1,121 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-07-03T00:00:00Z",
+  "title": "Design System: Caregiver Wellness Course",
+  "extensions": {
+    "colorMeta": {
+      "cedar-700": { "role": "primary", "displayName": "Cedar Green", "canonical": "#3C6B4A", "tonalRamp": ["#1B3122", "#2E5238", "#40724F", "#529366", "#6CAD7F", "#96C4A4", "#BEDAC6", "#E8F2EB"] },
+      "cedar-900": { "role": "primary-deep", "displayName": "Cedar Deep", "canonical": "#16281C", "tonalRamp": ["#0D1811", "#16281C", "#1F3A28", "#2E5238", "#40724F", "#6CAD7F", "#96C4A4", "#E8F2EB"] },
+      "cedar-500": { "role": "primary-light", "displayName": "Meadow", "canonical": "#6BAA75" },
+      "clay-700": { "role": "secondary-deep", "displayName": "Clay Ember", "canonical": "#A85D39", "tonalRamp": ["#392013", "#5F3520", "#854A2D", "#AB5F3A", "#C57854", "#D69F85", "#E5C3B3", "#F6EAE4"] },
+      "clay-500": { "role": "secondary", "displayName": "Warm Clay", "canonical": "#C17A5A" },
+      "brass-300": { "role": "tertiary", "displayName": "Antique Brass", "canonical": "#C9A15A", "tonalRamp": ["#3A2C13", "#60491F", "#86662C", "#AD8339", "#C69C52", "#D7B984", "#E6D3B2", "#F6F0E4"] },
+      "brass-600": { "role": "tertiary-text-safe", "displayName": "Deep Brass", "canonical": "#8F6F35" },
+      "linen": { "role": "neutral-bg", "displayName": "Linen", "canonical": "#FDFBF7" },
+      "linen-deep": { "role": "neutral-bg-alt", "displayName": "Linen Deep", "canonical": "#F5F1E8" },
+      "bark-ink": { "role": "neutral-text", "displayName": "Bark Ink", "canonical": "#2A2A28" },
+      "stone": { "role": "neutral-muted", "displayName": "Stone", "canonical": "#54534E" },
+      "hairline": { "role": "neutral-border", "displayName": "Hairline", "canonical": "#E5E0D5" }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "Hero headlines only, one per page." },
+      "headline": { "displayName": "Headline", "purpose": "Section-level headings." },
+      "title": { "displayName": "Title", "purpose": "Card and component headings." },
+      "body": { "displayName": "Body", "purpose": "Default copy, 65-75ch measure." },
+      "label": { "displayName": "Label", "purpose": "Nav, buttons, form labels. Not uppercase-tracked by default." }
+    },
+    "shadows": [
+      { "name": "resting", "value": "0 1px 3px rgba(22,40,28,0.06)", "purpose": "Bare-minimum lift for a card at rest, separation not announcement." },
+      { "name": "hover-bloom", "value": "0 12px 32px rgba(22,40,28,0.14)", "purpose": "Interactive hover/focus lift, paired with translateY(-3px)." },
+      { "name": "achievement-glow", "value": "0 0 0 1px rgba(201,161,90,0.35), 0 8px 28px rgba(201,161,90,0.28)", "purpose": "Reserved for Antique Brass achievement moments only." }
+    ],
+    "motion": [
+      { "name": "ease-out-quart", "value": "cubic-bezier(0.165, 0.84, 0.44, 1)", "purpose": "Default easing for all transitions and reveals, no bounce." },
+      { "name": "duration-fast", "value": "180ms", "purpose": "Hover/focus micro-interactions." },
+      { "name": "duration-standard", "value": "500ms", "purpose": "Scroll-reveal entrances." },
+      { "name": "duration-breathe", "value": "4200ms", "purpose": "The hero wheel's slow ambient breathing-scale loop." }
+    ],
+    "breakpoints": [
+      { "name": "sm", "value": "640px" },
+      { "name": "md", "value": "900px" },
+      { "name": "lg", "value": "1200px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Cedar-filled pill CTA, the single most important action in a section.",
+      "html": "<button class=\"ds-btn-primary\">Start your free assessment</button>",
+      "css": ".ds-btn-primary { background: #3C6B4A; color: #FDFBF7; padding: 15px 30px; border-radius: 999px; border: none; font-weight: 600; font-family: Raleway, sans-serif; cursor: pointer; transition: transform 180ms cubic-bezier(0.165,0.84,0.44,1), box-shadow 180ms cubic-bezier(0.165,0.84,0.44,1), background 180ms; } .ds-btn-primary:hover { background: #6BAA75; transform: translateY(-2px); box-shadow: 0 12px 32px rgba(22,40,28,0.14); } .ds-btn-primary:focus-visible { outline: 2px solid #16281C; outline-offset: 2px; }"
+    },
+    {
+      "name": "Secondary Button (Scholarship path)",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Clay Ember pill, reserved for the scholarship/apply thread so its warmth carries specific meaning.",
+      "html": "<button class=\"ds-btn-secondary\">Apply for a sponsored spot</button>",
+      "css": ".ds-btn-secondary { background: #A85D39; color: #FDFBF7; padding: 15px 30px; border-radius: 999px; border: none; font-weight: 600; font-family: Raleway, sans-serif; cursor: pointer; transition: transform 180ms cubic-bezier(0.165,0.84,0.44,1), box-shadow 180ms; } .ds-btn-secondary:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(168,93,57,0.22); } .ds-btn-secondary:focus-visible { outline: 2px solid #16281C; outline-offset: 2px; }"
+    },
+    {
+      "name": "Resting Card",
+      "kind": "card",
+      "refersTo": "card",
+      "description": "Flat-by-default card with a hairline border, no shadow at rest; hover bloom only when interactive.",
+      "html": "<div class=\"ds-card\"><h3>A real baseline</h3><p>64 questions across 8 dimensions of wellbeing.</p></div>",
+      "css": ".ds-card { background: #FFFFFF; border: 1px solid #E5E0D5; border-radius: 14px; padding: 28px; transition: transform 180ms cubic-bezier(0.165,0.84,0.44,1), box-shadow 180ms; } .ds-card.interactive:hover { transform: translateY(-3px); box-shadow: 0 12px 32px rgba(22,40,28,0.14); border-color: transparent; }"
+    },
+    {
+      "name": "Achievement Badge Medallion",
+      "kind": "custom",
+      "refersTo": "badge-medallion",
+      "description": "Custom-drawn circular seal for gamification badges, replacing emoji. Locked state in muted Bark Ink tones; unlocked state switches to Antique Brass plus the achievement glow.",
+      "html": "<div class=\"ds-badge ds-badge--unlocked\"><svg viewBox=\"0 0 48 48\" width=\"32\" height=\"32\" fill=\"none\"><path d=\"M24 6l4.5 9.2 10.1 1.5-7.3 7.1 1.7 10-9-4.7-9 4.7 1.7-10-7.3-7.1 10.1-1.5z\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linejoin=\"round\"/></svg></div>",
+      "css": ".ds-badge { width: 64px; height: 64px; border-radius: 999px; display: flex; align-items: center; justify-content: center; background: #F1EEE6; color: #8A8778; transition: all 320ms cubic-bezier(0.165,0.84,0.44,1); } .ds-badge--unlocked { background: #FBF3E1; color: #8F6F35; box-shadow: 0 0 0 1px rgba(201,161,90,0.35), 0 8px 28px rgba(201,161,90,0.28); }"
+    },
+    {
+      "name": "Sticky Navigation",
+      "kind": "nav",
+      "refersTo": "nav",
+      "description": "Translucent Linen bar with a functional blur (the system's one legitimate glassmorphism use) over scrolling content.",
+      "html": "<nav class=\"ds-nav\"><a class=\"ds-nav-link ds-nav-link--active\">For Caregivers</a><a class=\"ds-nav-link\">For Sponsors</a></nav>",
+      "css": ".ds-nav { display: flex; gap: 28px; padding: 14px 24px; background: rgba(253,251,247,0.92); backdrop-filter: blur(8px); border-bottom: 1px solid #E5E0D5; } .ds-nav-link { color: #454540; font-weight: 500; font-size: 0.95rem; text-decoration: none; } .ds-nav-link--active { color: #3C6B4A; font-weight: 700; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Steady Hand",
+    "overview": "This is what it feels like to be the reliable one, finally offered something reliable in return. The system rejects two default temptations at once: the clinical calm of a healthcare product and the loud, cheerful gamification of a consumer wellness app. Instead: a grounded, natural palette carried with restraint, a real hand-built icon and graphic system in place of emoji, and motion that feels considered rather than decorative. The site is not a plain marketing shell wrapped around a plainer tool; the embedded Wellness Wheel assessment inherits the same palette, type, iconography, and elevation language as the marketing pages.",
+    "keyCharacteristics": [
+      "A grounded natural palette (cedar green, warm clay) carried with restraint, not saturation.",
+      "A dedicated, sparingly-used achievement color (antique brass) that only appears at real milestone moments.",
+      "Hand-built line iconography and organic graphic motifs standing in for every emoji currently in the product.",
+      "Varied section rhythm: alternating layouts, not a repeating eyebrow-heading-card-grid template.",
+      "One deliberate deep-cedar drenched moment per major page for visual contrast and gravity."
+    ],
+    "rules": [
+      { "name": "The Earned Gold Rule", "body": "Brass never appears as decoration and never covers more than roughly 10% of any screen; if it shows up, the user just accomplished something real.", "section": "colors" },
+      { "name": "The One Accent Rule", "body": "Cedar carries the page. Clay appears second, for warmth and the sponsor/scholarship thread. Brass appears last and rarest.", "section": "colors" },
+      { "name": "The Drenched Beat Rule", "body": "Every page gets exactly one full-bleed Cedar Deep section, a structural downbeat, not a decoration repeated section after section.", "section": "colors" },
+      { "name": "The No-Eyebrow Rule", "body": "Small uppercase tracked kickers above every section heading are banned as a default rhythm device. At most one section per page may use one, and only when it does real labeling work.", "section": "typography" },
+      { "name": "The Earned Shadow Rule", "body": "No element gets both a visible border and a heavy resting shadow. Pick one.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do build every icon as a hand-drawn inline SVG in the system's line-icon language.",
+      "Do vary section rhythm across a page: alternate card grids with text+graphic rows, single diagrams, and asymmetric feature spotlights.",
+      "Do reserve Antique Brass strictly for earned achievement moments.",
+      "Do include one Cedar Deep drenched section per page.",
+      "Do use ease-out-quart/quint timing for all transitions, with a prefers-reduced-motion fallback on every animation."
+    ],
+    "donts": [
+      "Don't use emoji anywhere in the shipped product.",
+      "Don't open more than one section per page with a small uppercase tracked eyebrow.",
+      "Don't repeat the identical icon-in-a-rounded-box, three-up card grid as the default answer for every group of ideas.",
+      "Don't pair a visible 1px border with a shadow of 16px blur or more on the same element.",
+      "Don't use border-radius above 20px on any card, section, or input.",
+      "Don't use background-clip text gradient headings.",
+      "Don't reach for glassmorphism as decoration beyond the sticky nav's functional blur.",
+      "Don't design the Wellness Wheel tool as a plainer app-register experience; it carries the same premium visual language as the marketing pages."
+    ]
+  }
+}
