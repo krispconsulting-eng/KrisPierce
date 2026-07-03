@@ -261,7 +261,7 @@ Money (existing) gains entries per sponsor payment; Contacts (existing) gains sp
 | **1 — Write the real curriculum** | Turn the 6 weekly-theme scaffolds into actual scripts/modules in your voice (§1 voice rules) | You + this doc |
 | **2 — Notion skeleton** | 5 new databases (§7), linked into existing business system, one test cohort seeded | Phase 1 partial (structure only) |
 | **3 — Wellness Wheel backend** | Add auth + Supabase persistence + real accountability-partner email (§4.2 rebuild note) | — |
-| **4 — Website surfaces** | Sales page, sponsor pitch page, self-pay checkout, "apply for sponsorship" form, public Supporters page, embedded Wellness Wheel | Pricing sign-off (§3) |
+| **4 — Website surfaces** | ✅ Built — sales page, sponsor pitch page, "apply for sponsorship" form, public Supporters page, embedded Wellness Wheel (see `caregiver-wellness-course/website/`). Forms are front-end only; no real checkout yet since pricing isn't finalised. | Pricing sign-off (§3) for real checkout |
 | **5 — n8n automations** | Enrollment routing, drip release, reminders, wellness wheel sync, one working end-to-end test cohort | Phases 2–4 |
 | **6 — Pilot cohort** | Run one real cohort (even with a friendly sponsor or free seats) to prove the loop before selling hard | Phase 5 |
 | **7 — Impact reporting + iterate** | First sponsor report generated, feed learnings back into pricing/tiers | Phase 6 |
