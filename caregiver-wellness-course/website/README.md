@@ -14,9 +14,23 @@ A standalone, zero-build marketing site. Open `index.html` directly in a browser
 
 ## Design system
 
-Colors, type, and spacing are defined once in `assets/styles.css` as CSS custom properties, chosen via the repo's `ui-ux-pro-max` skill for a warm, wellbeing-oriented, non-clinical feel: sage green + terracotta on a cream background, Lora (headings) + Raleway (body). The palette deliberately matches `../wellness-wheel.jsx` so the marketing site and the in-course tool feel like one product. Includes a `prefers-color-scheme: dark` variant and meets WCAG AA contrast on all text/background pairs used.
+Full spec lives in `/DESIGN.md` and `/PRODUCT.md` at the repo root (written via the `impeccable` design skill). Short version: **"The Steady Hand"** — a grounded, quietly premium feel built from restraint and craft rather than loud color or decoration.
+
+- **Colors:** Cedar green (primary) + warm clay (secondary, the sponsor/scholarship thread) + a reserved Antique Brass accent that appears *only* at genuine achievement moments in the Wellness Wheel (see the Earned Gold Rule in `DESIGN.md`). Warm Linen neutral background, one deliberate full-bleed dark "drenched" section per page for visual rhythm.
+- **Type:** Literata (display, chosen over generic AI-default serifs like Lora/Fraunces/Playfair for its calmer, built-for-reading character) + Raleway (body).
+- **Icons:** A hand-built inline SVG sprite (`assets/icons.svg`, ~28 icons, consistent stroke/weight), not emoji and not a stock icon package. Injected into every page by `assets/inject-icons.py` (see below) so the site stays a zero-build static site.
+- **Motion:** Scroll-reveal via IntersectionObserver, with a safety-net timeout so content never gets stuck invisible for a full-page screenshot tool, print view, or a user who never scrolls (see `assets/site.js`).
+- **Section rhythm:** Deliberately varied (feature-rows, borderless icon columns, a timeline, a card grid only where options are genuinely parallel) rather than repeating the same icon-card-grid template on every section.
 
 No Tailwind CDN: hand-written CSS keeps the site fast and dependency-light, since a JIT-compiling CDN isn't meant for production.
+
+### Updating the icon set
+
+`assets/icons.svg` is the single source of truth. It's inlined into every HTML page (between `<!-- ICON_SPRITE:START -->` / `:END -->` markers) so pages work standalone over `file://` with no `fetch()` call. After editing `icons.svg`, re-run:
+
+```bash
+python3 assets/inject-icons.py
+```
 
 ## The assessment page
 
