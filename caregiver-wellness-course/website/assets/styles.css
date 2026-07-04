@@ -1,43 +1,51 @@
 /* ==========================================================================
    Caregiver Wellness Course — Design tokens & base styles
-   Design system: see /DESIGN.md ("The Steady Hand"). Cedar green + warm
-   clay, one reserved achievement accent (antique brass), Literata display
-   serif + Raleway body. Flat by default; shadows are a response to
-   interaction, not ambient decoration. Custom SVG iconography only, no
-   emoji, no icon fonts.
+   Design system: Sky & Tide (see caregiver-wellness-course/design/sky-and-tide/).
+   Light Sky blue + Tide teal co-leads over airy paper, one reserved
+   achievement accent (warm sand gold, the Earned Gold Rule carried over),
+   Newsreader display serif + Hanken Grotesk body. Soft ink-tinted shadows,
+   never pure black. Custom SVG iconography only, no emoji, no icon fonts.
+
+   NOTE: variable names below are legacy ("cedar"/"clay"/"brass") from the
+   previous Steady Hand system — every rule in this file and the HTML
+   references them, so only the VALUES were rebranded. Read them as:
+   cedar = deep/tide blues, clay = rose, brass = sand gold, linen = paper.
    ========================================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,400;7..72,500;7..72,600&family=Raleway:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,300;1,6..72,400&family=Hanken+Grotesk:wght@400;500;600&display=swap');
 
 :root {
-  /* Primary — Cedar Green */
-  --cedar-900: #16281C;
-  --cedar-700: #3C6B4A;
-  --cedar-500: #6BAA75;
-  --cedar-100: #E8F0EA;
+  /* Primary — Deep / Tide / Sky blues */
+  --cedar-900: #2C4652;  /* deep ink */
+  --cedar-700: #4A7690;  /* deep */
+  --cedar-500: #5FA0A0;  /* tide */
+  --cedar-100: #DCE8EF;  /* sky mist */
 
-  /* Secondary — Warm Clay */
-  --clay-700: #A85D39;
-  --clay-500: #C17A5A;
-  --clay-100: #F7EDE6;
+  /* Secondary — Rose (the sponsor/scholarship thread) */
+  --clay-700: #B3707A;
+  --clay-500: #C98F97;
+  --clay-100: #F0DEE0;
 
-  /* Tertiary — Antique Brass (achievement only, see Earned Gold Rule) */
-  --brass-600: #8F6F35;
-  --brass-300: #C9A15A;
-  --brass-100: #FBF3E1;
+  /* Tertiary — Warm sand gold (achievement only, see Earned Gold Rule) */
+  --brass-600: #A5813C;
+  --brass-300: #CDA66B;
+  --brass-100: #F0E6D2;
 
   /* Neutrals */
-  --linen: #FDFBF7;
-  --linen-deep: #F5F1E8;
-  --bark-ink: #2A2A28;
-  --bark-soft: #454540;
-  --stone: #54534E;
-  --hairline: #E5E0D5;
+  --linen: #F7F8F6;       /* paper */
+  --linen-deep: #EDEFEA;  /* page canvas */
+  --bark-ink: #20303A;    /* ink */
+  --bark-soft: #40525C;
+  --stone: #5c6b72;
+  --hairline: #DDE4E6;
   --paper: #FFFFFF;
 
+  /* Hero gradient (blue/teal duet; glass elements only ever sit over this) */
+  --hero-gradient: linear-gradient(150deg, #4A7690, #5FA0A0);
+
   /* Type */
-  --font-display: 'Literata', Georgia, serif;
-  --font-body: 'Raleway', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-display: 'Newsreader', Georgia, serif;
+  --font-body: 'Hanken Grotesk', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 
   /* Shape */
   --radius-sm: 8px;
@@ -45,11 +53,11 @@
   --radius-lg: 20px;
   --radius-pill: 999px;
 
-  /* Elevation — shadows are a response to interaction, not ambient decoration */
-  --shadow-resting: 0 1px 3px rgba(22, 40, 28, 0.06);
-  --shadow-hover: 0 12px 32px rgba(22, 40, 28, 0.14);
-  --shadow-hover-clay: 0 12px 32px rgba(168, 93, 57, 0.2);
-  --shadow-achievement: 0 0 0 1px rgba(201, 161, 90, 0.35), 0 8px 28px rgba(201, 161, 90, 0.28);
+  /* Elevation — soft, diffuse, ink-tinted, never pure black */
+  --shadow-resting: 0 1px 3px rgba(32, 48, 58, 0.06);
+  --shadow-hover: 0 12px 32px rgba(32, 48, 58, 0.14);
+  --shadow-hover-clay: 0 12px 32px rgba(179, 112, 122, 0.2);
+  --shadow-achievement: 0 0 0 1px rgba(205, 166, 107, 0.4), 0 8px 28px rgba(205, 166, 107, 0.3);
 
   /* Motion */
   --ease: cubic-bezier(0.165, 0.84, 0.44, 1);
@@ -67,14 +75,14 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --linen: #191C17;
-    --linen-deep: #14170F;
-    --bark-ink: #F3F1EA;
-    --bark-soft: #D8D6CC;
-    --stone: #A8A69B;
-    --hairline: #34372C;
-    --paper: #21241C;
-    --cedar-100: #223027;
+    --linen: #171D21;
+    --linen-deep: #12171B;
+    --bark-ink: #EFF3F5;
+    --bark-soft: #CBD5DA;
+    --stone: #9AA8B0;
+    --hairline: #2C3840;
+    --paper: #1D2429;
+    --cedar-100: #223440;
   }
 }
 
@@ -97,12 +105,13 @@ h1, h2, h3, h4 {
   color: var(--bark-ink);
   line-height: 1.22;
   margin: 0 0 .5em;
-  font-weight: 500;
+  font-weight: 400;
   text-wrap: balance;
 }
-h1 { font-size: clamp(2.25rem, 4.5vw, 3.4rem); line-height: 1.12; letter-spacing: -0.01em; }
-h2 { font-size: clamp(1.6rem, 3vw, 2.2rem); }
-h3 { font-size: 1.3rem; font-weight: 600; }
+h1 { font-size: clamp(2.25rem, 4.5vw, 3.4rem); line-height: 1.08; letter-spacing: -0.01em; font-weight: 300; }
+h2 { font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 300; }
+h3 { font-size: 1.3rem; font-weight: 400; }
+h1 em, h2 em { font-style: italic; font-weight: 400; color: var(--cedar-700); }
 p { margin: 0 0 1em; max-width: 68ch; text-wrap: pretty; }
 .container {
   max-width: var(--max-width);
@@ -207,7 +216,7 @@ section { padding: 96px 0; }
 .brand-mark .icon { width: 20px; height: 20px; }
 .nav-links { display: flex; align-items: center; gap: 28px; }
 .nav-links a { color: var(--bark-soft); font-weight: 500; font-size: .95rem; }
-.nav-links a.active { color: var(--cedar-700); font-weight: 700; }
+.nav-links a.active { color: var(--cedar-700); font-weight: 600; }
 .nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 6px; color: var(--bark-ink); }
 @media (max-width: 780px) {
   .nav-links {
@@ -244,24 +253,27 @@ section { padding: 96px 0; }
 .section-head.left { text-align: left; margin: 0 0 40px; }
 .kicker {
   display: inline-flex; align-items: center; gap: 8px;
-  font-size: .8rem; font-weight: 700; color: var(--cedar-700);
+  font-size: .8rem; font-weight: 600; color: var(--cedar-700);
   margin-bottom: 14px;
 }
 
-/* ---- Drenched section (one per page, the structural downbeat) ---- */
+/* ---- Drenched section (one per page, the structural downbeat) ----
+   Sky & Tide: the drenched beat is the blue/teal hero gradient rather
+   than a flat dark block. Glass elements may only sit over this. */
 .drenched {
-  background: var(--cedar-900);
-  color: var(--linen);
+  background: var(--hero-gradient);
+  color: #FFFFFF;
   position: relative;
   overflow: hidden;
 }
-.drenched h1, .drenched h2, .drenched h3 { color: var(--linen); }
-.drenched p { color: rgba(253, 251, 247, 0.78); }
+.drenched h1, .drenched h2, .drenched h3 { color: #FFFFFF; }
+.drenched h1 em, .drenched h2 em { color: #DCE8EF; }
+.drenched p { color: #EAF2F6; }
 .drenched .glow {
   position: absolute;
   border-radius: 50%;
   filter: blur(60px);
-  background: radial-gradient(circle, rgba(107, 170, 117, 0.35), transparent 70%);
+  background: radial-gradient(circle, rgba(220, 232, 239, 0.4), transparent 70%);
   pointer-events: none;
 }
 
@@ -417,7 +429,7 @@ textarea { resize: vertical; min-height: 110px; }
 /* ---- Footer ---- */
 .site-footer { border-top: 1px solid var(--hairline); padding: 56px 0 32px; background: var(--linen-deep); }
 .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 32px; }
-.footer-grid h4 { font-family: var(--font-body); font-size: .8rem; font-weight: 700; color: var(--stone); margin-bottom: 14px; }
+.footer-grid h4 { font-family: var(--font-body); font-size: .8rem; font-weight: 600; color: var(--stone); margin-bottom: 14px; }
 .footer-grid ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; }
 .footer-grid a { color: var(--bark-soft); font-size: .93rem; }
 .footer-bottom { margin-top: 40px; padding-top: 24px; border-top: 1px solid var(--hairline); font-size: .82rem; color: var(--stone); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; }

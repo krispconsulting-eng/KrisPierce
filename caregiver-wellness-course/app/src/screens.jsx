@@ -29,32 +29,32 @@ export function Assessment({ onComplete }) {
     <div style={{maxWidth:680,margin:"0 auto",padding:"24px 16px"}}>
       <div style={{marginBottom:20}}>
         <div style={{display:"flex",justifyContent:"space-between",marginBottom:6}}>
-          <span style={{fontSize:13,color:"#888",fontFamily:"Raleway,sans-serif"}}>{done} of {total}</span>
-          <span style={{fontSize:13,fontWeight:700,color:cfg.color,fontFamily:"Literata,Georgia,serif",display:"flex",alignItems:"center",gap:6}}><Icon name={cfg.icon} size={15} color={cfg.color}/> {wedge}</span>
+          <span style={{fontSize:13,color:"#8593a0",fontFamily:"Hanken Grotesk,sans-serif"}}>{done} of {total}</span>
+          <span style={{fontSize:13,fontWeight:600,color:cfg.color,fontFamily:"Newsreader,Georgia,serif",display:"flex",alignItems:"center",gap:6}}><Icon name={cfg.icon} size={15} color={cfg.color}/> {wedge}</span>
         </div>
-        <div style={{background:"#f0f0f0",borderRadius:99,height:6,overflow:"hidden"}}>
+        <div style={{background:"#eef1f2",borderRadius:99,height:6,overflow:"hidden"}}>
           <div style={{width:`${pct}%`,background:cfg.color,height:"100%",transition:"width 0.3s",borderRadius:99}}/>
         </div>
       </div>
       <div style={{display:"flex",gap:4,flexWrap:"wrap",marginBottom:24}}>
         {WEDGES.map((w,i)=>{
           const isDone=i<cW; const isActive=i===cW;
-          return <div key={w} style={{padding:"4px 10px",borderRadius:99,fontSize:11,background:isDone?WEDGE_CONFIG[w].color:isActive?WEDGE_CONFIG[w].light:"#f5f5f5",color:isDone?"white":isActive?WEDGE_CONFIG[w].color:"#bbb",fontWeight:isActive||isDone?700:400,border:`1.5px solid ${isActive||isDone?WEDGE_CONFIG[w].color:"#eee"}`,transition:"all 0.3s",fontFamily:"Raleway,sans-serif",display:"inline-flex",alignItems:"center",gap:4}}>{isDone?<Icon name="check" size={11}/>:<Icon name={WEDGE_CONFIG[w].icon} size={11}/>}{w}</div>;
+          return <div key={w} style={{padding:"4px 10px",borderRadius:99,fontSize:11,background:isDone?WEDGE_CONFIG[w].color:isActive?WEDGE_CONFIG[w].light:"#f2f4f5",color:isDone?"white":isActive?WEDGE_CONFIG[w].color:"#a6b1b8",fontWeight:isActive||isDone?600:400,border:`1.5px solid ${isActive||isDone?WEDGE_CONFIG[w].color:"#e9edef"}`,transition:"all 0.3s",fontFamily:"Hanken Grotesk,sans-serif",display:"inline-flex",alignItems:"center",gap:4}}>{isDone?<Icon name="check" size={11}/>:<Icon name={WEDGE_CONFIG[w].icon} size={11}/>}{w}</div>;
         })}
       </div>
       <div style={{background:"white",borderRadius:16,padding:"28px 24px",boxShadow:"0 4px 24px rgba(0,0,0,0.07)",borderTop:`4px solid ${cfg.color}`,marginBottom:20}}>
-        <div style={{fontSize:11,color:cfg.color,fontWeight:700,letterSpacing:1,textTransform:"uppercase",marginBottom:10,fontFamily:"Raleway,sans-serif"}}>{wedge} · Q{cQ+1} of 8</div>
-        <p style={{fontSize:17,fontWeight:600,color:"#2a2a2a",lineHeight:1.55,marginBottom:28,fontFamily:"Literata,Georgia,serif"}}>{qs[cQ]}</p>
+        <div style={{fontSize:11,color:cfg.color,fontWeight:600,letterSpacing:1,textTransform:"uppercase",marginBottom:10,fontFamily:"Hanken Grotesk,sans-serif"}}>{wedge} · Q{cQ+1} of 8</div>
+        <p style={{fontSize:17,fontWeight:600,color:"#20303A",lineHeight:1.55,marginBottom:28,fontFamily:"Newsreader,Georgia,serif"}}>{qs[cQ]}</p>
         <div style={{display:"flex",gap:8}}>
           {[1,2,3,4,5].map(v=>(
-            <button key={v} onClick={()=>setSel(v)} style={{flex:1,padding:"12px 4px",borderRadius:10,border:`2px solid ${sel===v?cfg.color:"#e8e8e8"}`,background:sel===v?cfg.color:"white",color:sel===v?"white":"#555",cursor:"pointer",transition:"all 0.2s",display:"flex",flexDirection:"column",alignItems:"center",gap:4}}>
-              <span style={{fontSize:18,fontWeight:700}}>{v}</span>
+            <button key={v} onClick={()=>setSel(v)} style={{flex:1,padding:"12px 4px",borderRadius:10,border:`2px solid ${sel===v?cfg.color:"#e5eaec"}`,background:sel===v?cfg.color:"white",color:sel===v?"white":"#4a5760",cursor:"pointer",transition:"all 0.2s",display:"flex",flexDirection:"column",alignItems:"center",gap:4}}>
+              <span style={{fontSize:18,fontWeight:600}}>{v}</span>
               <span style={{fontSize:10}}>{labels[v-1]}</span>
             </button>
           ))}
         </div>
       </div>
-      <button onClick={next} disabled={sel===null} style={{width:"100%",padding:"14px",background:sel!==null?cfg.color:"#ccc",color:"white",border:"none",borderRadius:999,fontSize:15,fontWeight:700,cursor:sel!==null?"pointer":"not-allowed",fontFamily:"Raleway,sans-serif",transition:"background 180ms"}}>
+      <button onClick={next} disabled={sel===null} style={{width:"100%",padding:"14px",background:sel!==null?cfg.color:"#c3ccd1",color:"white",border:"none",borderRadius:999,fontSize:15,fontWeight:600,cursor:sel!==null?"pointer":"not-allowed",fontFamily:"Hanken Grotesk,sans-serif",transition:"background 180ms"}}>
         {cW===7&&cQ===7?"See My Results →":"Next →"}
       </button>
     </div>
@@ -70,30 +70,30 @@ export function Report({ scores, onSignUp }) {
   return (
     <div style={{maxWidth:720,margin:"0 auto",padding:"24px 16px"}}>
       <div style={{textAlign:"center",marginBottom:28}}>
-        <h1 style={{fontFamily:"Literata,Georgia,serif",fontSize:27,color:"#2a2a2a",marginBottom:8}}>Your Wellness Report</h1>
-        <p style={{color:"#666",fontSize:15}}>Overall: <strong style={{color:lvl.color}}>{overall}% · {lvl.label}</strong></p>
+        <h1 style={{fontFamily:"Newsreader,Georgia,serif",fontSize:27,color:"#20303A",marginBottom:8}}>Your Wellness Report</h1>
+        <p style={{color:"#5c6b72",fontSize:15}}>Overall: <strong style={{color:lvl.color}}>{overall}% · {lvl.label}</strong></p>
       </div>
       <div style={{display:"flex",justifyContent:"center",marginBottom:32}}><div style={{width:280}}><WellnessWheelSVG scores={scores}/></div></div>
       <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:12,marginBottom:28}}>
         {WEDGES.map(w=>{
           const cfg=WEDGE_CONFIG[w], sc=scores[w], lv=getLevel(sc);
-          return <div key={w} style={{background:"white",borderRadius:12,padding:"14px 16px",border:"1px solid #eee",display:"flex",alignItems:"center",gap:12}}>
+          return <div key={w} style={{background:"white",borderRadius:12,padding:"14px 16px",border:"1px solid #e9edef",display:"flex",alignItems:"center",gap:12}}>
             <ProgressRing score={sc} color={cfg.color} size={52}/>
-            <div><div style={{fontWeight:700,fontSize:14,fontFamily:"Literata,Georgia,serif",color:"#2a2a2a",display:"flex",alignItems:"center",gap:6}}><Icon name={cfg.icon} size={14} color={cfg.color}/> {w}</div><div style={{fontSize:11,color:lv.color,fontWeight:600}}>{lv.label}</div></div>
+            <div><div style={{fontWeight:600,fontSize:14,fontFamily:"Newsreader,Georgia,serif",color:"#20303A",display:"flex",alignItems:"center",gap:6}}><Icon name={cfg.icon} size={14} color={cfg.color}/> {w}</div><div style={{fontSize:11,color:lv.color,fontWeight:600}}>{lv.label}</div></div>
           </div>;
         })}
       </div>
-      <div style={{background:"#F7EDE6",borderRadius:14,padding:"20px",marginBottom:16,border:"1px solid #EEDCCB"}}>
-        <h3 style={{fontFamily:"Literata,Georgia,serif",color:"#A85D39",marginBottom:12,fontSize:16,display:"flex",alignItems:"center",gap:8}}><Icon name="target" size={17} color="#A85D39"/> Your Focus Areas</h3>
-        <p style={{fontSize:13,color:"#777",marginBottom:12}}>Your lowest three scores. These are your biggest growth opportunity.</p>
-        {lowest.map(w=><div key={w} style={{display:"flex",alignItems:"center",gap:10,marginBottom:8}}><Icon name={WEDGE_CONFIG[w].icon} size={19} color={WEDGE_CONFIG[w].color}/><strong style={{fontFamily:"Literata,Georgia,serif",color:"#2a2a2a"}}>{w}</strong><span style={{color:"#aaa",fontSize:13}}>· {scores[w]}%</span></div>)}
+      <div style={{background:"#F0DEE0",borderRadius:14,padding:"20px",marginBottom:16,border:"1px solid #E3CCD0"}}>
+        <h3 style={{fontFamily:"Newsreader,Georgia,serif",color:"#B3707A",marginBottom:12,fontSize:16,display:"flex",alignItems:"center",gap:8}}><Icon name="target" size={17} color="#B3707A"/> Your Focus Areas</h3>
+        <p style={{fontSize:13,color:"#5c6b72",marginBottom:12}}>Your lowest three scores. These are your biggest growth opportunity.</p>
+        {lowest.map(w=><div key={w} style={{display:"flex",alignItems:"center",gap:10,marginBottom:8}}><Icon name={WEDGE_CONFIG[w].icon} size={19} color={WEDGE_CONFIG[w].color}/><strong style={{fontFamily:"Newsreader,Georgia,serif",color:"#20303A"}}>{w}</strong><span style={{color:"#93a0a6",fontSize:13}}>· {scores[w]}%</span></div>)}
       </div>
-      <div style={{background:"#E8F0EA",borderRadius:14,padding:"20px",marginBottom:28,border:"1px solid #D3E3D7"}}>
-        <h3 style={{fontFamily:"Literata,Georgia,serif",color:"#3C6B4A",marginBottom:12,fontSize:16,display:"flex",alignItems:"center",gap:8}}><Icon name="sparkle" size={17} color="#3C6B4A"/> Your Strengths</h3>
-        <p style={{fontSize:13,color:"#777",marginBottom:12}}>Your strongest foundations. Build from here.</p>
-        {highest.map(w=><div key={w} style={{display:"flex",alignItems:"center",gap:10,marginBottom:8}}><Icon name={WEDGE_CONFIG[w].icon} size={19} color={WEDGE_CONFIG[w].color}/><strong style={{fontFamily:"Literata,Georgia,serif",color:"#2a2a2a"}}>{w}</strong><span style={{color:"#aaa",fontSize:13}}>· {scores[w]}%</span></div>)}
+      <div style={{background:"#DCE8EF",borderRadius:14,padding:"20px",marginBottom:28,border:"1px solid #CBDDE9"}}>
+        <h3 style={{fontFamily:"Newsreader,Georgia,serif",color:"#4A7690",marginBottom:12,fontSize:16,display:"flex",alignItems:"center",gap:8}}><Icon name="sparkle" size={17} color="#4A7690"/> Your Strengths</h3>
+        <p style={{fontSize:13,color:"#5c6b72",marginBottom:12}}>Your strongest foundations. Build from here.</p>
+        {highest.map(w=><div key={w} style={{display:"flex",alignItems:"center",gap:10,marginBottom:8}}><Icon name={WEDGE_CONFIG[w].icon} size={19} color={WEDGE_CONFIG[w].color}/><strong style={{fontFamily:"Newsreader,Georgia,serif",color:"#20303A"}}>{w}</strong><span style={{color:"#93a0a6",fontSize:13}}>· {scores[w]}%</span></div>)}
       </div>
-      <button onClick={onSignUp} style={{width:"100%",padding:"16px",background:"#3C6B4A",color:"white",border:"none",borderRadius:999,fontSize:16,fontWeight:700,cursor:"pointer",fontFamily:"Raleway,sans-serif",transition:"background 180ms"}}>
+      <button onClick={onSignUp} style={{width:"100%",padding:"16px",background:"#4A7690",color:"white",border:"none",borderRadius:999,fontSize:16,fontWeight:600,cursor:"pointer",fontFamily:"Hanken Grotesk,sans-serif",transition:"background 180ms"}}>
         Start My 8-Week Wellness Plan →
       </button>
     </div>
@@ -109,28 +109,28 @@ export function SignUp({ scores, onStart }) {
   return (
     <div style={{maxWidth:560,margin:"0 auto",padding:"24px 16px"}}>
       <div style={{textAlign:"center",marginBottom:28}}>
-        <div style={{display:"flex",justifyContent:"center",marginBottom:12}}><Icon name="mark" size={40} color="#3C6B4A"/></div>
-        <h2 style={{fontFamily:"Literata,Georgia,serif",fontSize:25,color:"#2a2a2a",marginBottom:8}}>Build Your Plan</h2>
-        <p style={{color:"#777",fontSize:14,lineHeight:1.7,maxWidth:400,margin:"0 auto"}}>3 activities per week for 8 weeks. Earn points, build streaks, unlock badges as you go.</p>
+        <div style={{display:"flex",justifyContent:"center",marginBottom:12}}><Icon name="mark" size={40} color="#4A7690"/></div>
+        <h2 style={{fontFamily:"Newsreader,Georgia,serif",fontSize:25,color:"#20303A",marginBottom:8}}>Build Your Plan</h2>
+        <p style={{color:"#5c6b72",fontSize:14,lineHeight:1.7,maxWidth:400,margin:"0 auto"}}>3 activities per week for 8 weeks. Earn points, build streaks, unlock badges as you go.</p>
       </div>
-      <div style={{background:"white",borderRadius:14,padding:"24px",border:"1px solid #eee",marginBottom:20}}>
-        <label style={{display:"block",fontSize:13,fontWeight:700,color:"#555",marginBottom:6,fontFamily:"Literata,Georgia,serif"}}>Your first name</label>
-        <input value={name} onChange={e=>setName(e.target.value)} placeholder="First name" style={{width:"100%",padding:"10px 14px",borderRadius:8,border:"1.5px solid #e0e0e0",fontSize:15,fontFamily:"Raleway,sans-serif",boxSizing:"border-box"}}/>
+      <div style={{background:"white",borderRadius:14,padding:"24px",border:"1px solid #e9edef",marginBottom:20}}>
+        <label style={{display:"block",fontSize:13,fontWeight:600,color:"#4a5760",marginBottom:6,fontFamily:"Newsreader,Georgia,serif"}}>Your first name</label>
+        <input value={name} onChange={e=>setName(e.target.value)} placeholder="First name" style={{width:"100%",padding:"10px 14px",borderRadius:8,border:"1.5px solid #dde3e6",fontSize:15,fontFamily:"Hanken Grotesk,sans-serif",boxSizing:"border-box"}}/>
       </div>
-      <div style={{background:"white",borderRadius:14,padding:"24px",border:"1px solid #eee",marginBottom:28}}>
-        <div style={{fontSize:13,fontWeight:700,color:"#555",marginBottom:4,fontFamily:"Literata,Georgia,serif"}}>Choose 2–3 focus areas</div>
-        <div style={{fontSize:12,color:"#aaa",marginBottom:16,display:"flex",alignItems:"center",gap:6,flexWrap:"wrap"}}>Suggested: {suggested.map((w,i)=><span key={w} style={{display:"inline-flex",alignItems:"center",gap:4}}><Icon name={WEDGE_CONFIG[w].icon} size={13} color={WEDGE_CONFIG[w].color}/>{w}{i<suggested.length-1?",":""}</span>)}</div>
+      <div style={{background:"white",borderRadius:14,padding:"24px",border:"1px solid #e9edef",marginBottom:28}}>
+        <div style={{fontSize:13,fontWeight:600,color:"#4a5760",marginBottom:4,fontFamily:"Newsreader,Georgia,serif"}}>Choose 2–3 focus areas</div>
+        <div style={{fontSize:12,color:"#93a0a6",marginBottom:16,display:"flex",alignItems:"center",gap:6,flexWrap:"wrap"}}>Suggested: {suggested.map((w,i)=><span key={w} style={{display:"inline-flex",alignItems:"center",gap:4}}><Icon name={WEDGE_CONFIG[w].icon} size={13} color={WEDGE_CONFIG[w].color}/>{w}{i<suggested.length-1?",":""}</span>)}</div>
         <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:10}}>
           {WEDGES.map(w=>{const cfg=WEDGE_CONFIG[w],active=focus.includes(w);return(
-            <button key={w} onClick={()=>toggle(w)} style={{padding:"10px 12px",borderRadius:10,border:`2px solid ${active?cfg.color:"#e8e8e8"}`,background:active?cfg.light:"white",cursor:"pointer",display:"flex",alignItems:"center",gap:8,transition:"all 0.2s"}}>
+            <button key={w} onClick={()=>toggle(w)} style={{padding:"10px 12px",borderRadius:10,border:`2px solid ${active?cfg.color:"#e5eaec"}`,background:active?cfg.light:"white",cursor:"pointer",display:"flex",alignItems:"center",gap:8,transition:"all 0.2s"}}>
               <Icon name={cfg.icon} size={17} color={cfg.color}/>
-              <div style={{textAlign:"left"}}><div style={{fontSize:13,fontWeight:700,color:active?cfg.color:"#444",fontFamily:"Literata,Georgia,serif"}}>{w}</div><div style={{fontSize:11,color:"#aaa"}}>{scores[w]}%</div></div>
-              {active&&<span style={{marginLeft:"auto",color:cfg.color,fontWeight:700}}><Icon name="check" size={14} color={cfg.color}/></span>}
+              <div style={{textAlign:"left"}}><div style={{fontSize:13,fontWeight:600,color:active?cfg.color:"#4a5760",fontFamily:"Newsreader,Georgia,serif"}}>{w}</div><div style={{fontSize:11,color:"#93a0a6"}}>{scores[w]}%</div></div>
+              {active&&<span style={{marginLeft:"auto",color:cfg.color,fontWeight:600}}><Icon name="check" size={14} color={cfg.color}/></span>}
             </button>
           );})}
         </div>
       </div>
-      <button onClick={()=>ok&&onStart(name,focus)} style={{width:"100%",padding:"16px",background:ok?"#3C6B4A":"#ddd",color:ok?"white":"#aaa",border:"none",borderRadius:999,fontSize:16,fontWeight:700,cursor:ok?"pointer":"not-allowed",fontFamily:"Raleway,sans-serif"}}>
+      <button onClick={()=>ok&&onStart(name,focus)} style={{width:"100%",padding:"16px",background:ok?"#4A7690":"#d5dce0",color:ok?"white":"#93a0a6",border:"none",borderRadius:999,fontSize:16,fontWeight:600,cursor:ok?"pointer":"not-allowed",fontFamily:"Hanken Grotesk,sans-serif"}}>
         Begin My Journey →
       </button>
     </div>
@@ -252,8 +252,8 @@ export function GamifiedPlan({ scores: initialScores, userName, focusAreas, init
 
   if(reassessMode) return (
     <div style={{maxWidth:680,margin:"0 auto",padding:"16px"}}>
-      <div style={{textAlign:"center",padding:"20px",background:"#3C6B4A",borderRadius:16,color:"white",marginBottom:20}}>
-        <h2 style={{fontFamily:"Literata,Georgia,serif",margin:0,fontSize:20}}>8-Week Reassessment</h2>
+      <div style={{textAlign:"center",padding:"20px",background:"#4A7690",borderRadius:16,color:"white",marginBottom:20}}>
+        <h2 style={{fontFamily:"Newsreader,Georgia,serif",margin:0,fontSize:20}}>8-Week Reassessment</h2>
         <p style={{margin:"8px 0 0",fontSize:13,opacity:0.9}}>Same 64 questions. See how far you've come.</p>
       </div>
       <Assessment onComplete={handleReassessComplete}/>
@@ -266,12 +266,12 @@ export function GamifiedPlan({ scores: initialScores, userName, focusAreas, init
       {showCheckIn && <WeeklyCheckIn week={checkInWeek} existing={checkIns[checkInWeek]} onSubmit={submitCheckIn} onClose={()=>setShowCheckIn(false)}/>}
 
       {/* Header */}
-      <div style={{background:"#16281C",borderRadius:20,padding:"22px 18px",color:"white",marginBottom:20,position:"relative",overflow:"hidden"}}>
-        <div style={{position:"absolute",width:220,height:220,borderRadius:"50%",top:-90,right:-70,background:"radial-gradient(circle,rgba(107,170,117,0.35),transparent 70%)",pointerEvents:"none"}}/>
+      <div style={{background:"#2C4652",borderRadius:20,padding:"22px 18px",color:"white",marginBottom:20,position:"relative",overflow:"hidden"}}>
+        <div style={{position:"absolute",width:220,height:220,borderRadius:"50%",top:-90,right:-70,background:"radial-gradient(circle,rgba(124,167,196,0.4),transparent 70%)",pointerEvents:"none"}}/>
         <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start",marginBottom:14,position:"relative"}}>
           <div>
             <div style={{fontSize:12,opacity:0.8,marginBottom:3}}>Welcome back,</div>
-            <h2 style={{fontFamily:"Literata,Georgia,serif",fontSize:21,margin:0,display:"flex",alignItems:"center",gap:8}}>{userName} <Icon name={userLevel.icon} size={19}/></h2>
+            <h2 style={{fontFamily:"Newsreader,Georgia,serif",fontSize:21,margin:0,display:"flex",alignItems:"center",gap:8}}>{userName} <Icon name={userLevel.icon} size={19}/></h2>
             <div style={{fontSize:13,opacity:0.9,marginTop:3}}>{userLevel.label} · <strong>{points}</strong> pts</div>
           </div>
           <div style={{textAlign:"right",fontSize:13,opacity:0.9,display:"flex",flexDirection:"column",gap:4,alignItems:"flex-end"}}>
@@ -304,7 +304,7 @@ export function GamifiedPlan({ scores: initialScores, userName, focusAreas, init
       {/* Tabs */}
       <div style={{display:"flex",gap:6,marginBottom:20,overflowX:"auto",paddingBottom:4}}>
         {[["plan","document","Plan"],["bonus","sparkle","Bonus"],["checkin","document","Check-in"],["buddy","partnership","Buddy"],["badges","medal","Badges"],["wheel","target","Wheel"],[reassessScores?"compare":"reassess","chart",reassessScores?"Compare":"Week 8"]].map(([t,icon,label])=>(
-          <button key={t} onClick={()=>t==="reassess"?setReassessMode(true):setTab(t)} style={{flexShrink:0,padding:"8px 14px",borderRadius:999,border:"1.5px solid",borderColor:tab===t?"#3C6B4A":"#e8e8e8",background:tab===t?"#E8F0EA":"white",color:tab===t?"#3C6B4A":"#888",fontWeight:700,cursor:"pointer",fontFamily:"Raleway,sans-serif",fontSize:12,transition:"all 180ms",display:"inline-flex",alignItems:"center",gap:6}}>
+          <button key={t} onClick={()=>t==="reassess"?setReassessMode(true):setTab(t)} style={{flexShrink:0,padding:"8px 14px",borderRadius:999,border:"1.5px solid",borderColor:tab===t?"#4A7690":"#e5eaec",background:tab===t?"#DCE8EF":"white",color:tab===t?"#4A7690":"#8593a0",fontWeight:600,cursor:"pointer",fontFamily:"Hanken Grotesk,sans-serif",fontSize:12,transition:"all 180ms",display:"inline-flex",alignItems:"center",gap:6}}>
             <Icon name={icon} size={14}/>{label}
           </button>
         ))}
@@ -320,38 +320,38 @@ export function GamifiedPlan({ scores: initialScores, userName, focusAreas, init
               const wTotal=wp?.activities.length??0;
               const full=wDone===wTotal;
               const ci=checkIns[w];
-              return <button key={w} onClick={()=>setCurrentWeek(w)} style={{minWidth:72,padding:"8px 6px",borderRadius:12,border:"1.5px solid",borderColor:currentWeek===w?"#3C6B4A":full?"#6BAA75":"#e8e8e8",background:currentWeek===w?"#E8F0EA":full?"#EBF4EC":"white",cursor:"pointer",textAlign:"center",flexShrink:0}}>
-                <div style={{fontSize:11,fontWeight:700,color:currentWeek===w?"#3C6B4A":full?"#6BAA75":"#888",fontFamily:"Literata,Georgia,serif"}}>Week {w}</div>
-                <div style={{fontSize:10,color:"#aaa"}}>{wDone}/{wTotal}</div>
-                <div style={{display:"flex",justifyContent:"center",marginTop:2,height:14}}>{full?<Icon name="check" size={13} color="#6BAA75"/>:ci?<Icon name="document" size={13} color="#bbb"/>:null}</div>
+              return <button key={w} onClick={()=>setCurrentWeek(w)} style={{minWidth:72,padding:"8px 6px",borderRadius:12,border:"1.5px solid",borderColor:currentWeek===w?"#4A7690":full?"#5FA0A0":"#e5eaec",background:currentWeek===w?"#DCE8EF":full?"#D9E8E5":"white",cursor:"pointer",textAlign:"center",flexShrink:0}}>
+                <div style={{fontSize:11,fontWeight:600,color:currentWeek===w?"#4A7690":full?"#5FA0A0":"#8593a0",fontFamily:"Newsreader,Georgia,serif"}}>Week {w}</div>
+                <div style={{fontSize:10,color:"#93a0a6"}}>{wDone}/{wTotal}</div>
+                <div style={{display:"flex",justifyContent:"center",marginTop:2,height:14}}>{full?<Icon name="check" size={13} color="#5FA0A0"/>:ci?<Icon name="document" size={13} color="#a6b1b8"/>:null}</div>
               </button>;
             })}
           </div>
 
           {plan.find(p=>p.week===currentWeek)?.activities.map(act=>{
             const cfg=WEDGE_CONFIG[act.wedge], done=completed[act.id];
-            return <div key={act.id} style={{background:done?cfg.light:"white",borderRadius:14,padding:"16px 18px",marginBottom:12,border:`1px solid ${done?"transparent":"#eee"}`,boxShadow:done?"none":"0 1px 3px rgba(22,40,28,0.05)",display:"flex",alignItems:"flex-start",gap:14,transition:"all 220ms",opacity:done?0.82:1}}>
-              <button onClick={()=>toggleActivity(act.id,act.wedge,act.points)} style={{width:28,height:28,borderRadius:8,border:`2px solid ${done?cfg.color:"#ddd"}`,background:done?cfg.color:"white",cursor:"pointer",flexShrink:0,marginTop:2,display:"flex",alignItems:"center",justifyContent:"center",transition:"all 0.2s"}}>
+            return <div key={act.id} style={{background:done?cfg.light:"white",borderRadius:14,padding:"16px 18px",marginBottom:12,border:`1px solid ${done?"transparent":"#e9edef"}`,boxShadow:done?"none":"0 1px 3px rgba(32,48,58,0.05)",display:"flex",alignItems:"flex-start",gap:14,transition:"all 220ms",opacity:done?0.82:1}}>
+              <button onClick={()=>toggleActivity(act.id,act.wedge,act.points)} style={{width:28,height:28,borderRadius:8,border:`2px solid ${done?cfg.color:"#d5dce0"}`,background:done?cfg.color:"white",cursor:"pointer",flexShrink:0,marginTop:2,display:"flex",alignItems:"center",justifyContent:"center",transition:"all 0.2s"}}>
                 {done&&<Icon name="check" size={14} color="white"/>}
               </button>
               <div style={{flex:1}}>
                 <div style={{display:"flex",alignItems:"center",gap:6,marginBottom:4}}>
                   <Icon name={cfg.icon} size={14} color={cfg.color}/>
-                  <span style={{fontSize:11,fontWeight:700,color:cfg.color,fontFamily:"Literata,Georgia,serif"}}>{act.wedge}</span>
-                  <span style={{marginLeft:"auto",fontSize:11,color:done?cfg.color:"#bbb",fontWeight:600}}>+{act.points} pts</span>
+                  <span style={{fontSize:11,fontWeight:600,color:cfg.color,fontFamily:"Newsreader,Georgia,serif"}}>{act.wedge}</span>
+                  <span style={{marginLeft:"auto",fontSize:11,color:done?cfg.color:"#a6b1b8",fontWeight:600}}>+{act.points} pts</span>
                 </div>
-                <p style={{fontSize:14,color:done?"#888":"#2a2a2a",lineHeight:1.5,margin:0,textDecoration:done?"line-through":"none"}}>{act.text}</p>
+                <p style={{fontSize:14,color:done?"#8593a0":"#20303A",lineHeight:1.5,margin:0,textDecoration:done?"line-through":"none"}}>{act.text}</p>
               </div>
             </div>;
           })}
 
           <div style={{marginTop:16}}>
-            {!checkIns[currentWeek]&&<button onClick={()=>{setCheckInWeek(currentWeek);setShowCheckIn(true);}} style={{width:"100%",padding:"12px",background:"white",color:"#7B9E87",border:"1.5px solid #7B9E87",borderRadius:999,fontWeight:700,cursor:"pointer",fontFamily:"Raleway,sans-serif",fontSize:14,display:"flex",alignItems:"center",justifyContent:"center",gap:8}}>
+            {!checkIns[currentWeek]&&<button onClick={()=>{setCheckInWeek(currentWeek);setShowCheckIn(true);}} style={{width:"100%",padding:"12px",background:"white",color:"#5FA0A0",border:"1.5px solid #5FA0A0",borderRadius:999,fontWeight:600,cursor:"pointer",fontFamily:"Hanken Grotesk,sans-serif",fontSize:14,display:"flex",alignItems:"center",justifyContent:"center",gap:8}}>
               <Icon name="document" size={15}/> Log Week {currentWeek} Check-in
             </button>}
-            {checkIns[currentWeek]&&<div style={{background:"#EDF3EF",borderRadius:12,padding:"12px 16px",border:"1px solid #C8D8CC"}}>
-              <div style={{fontSize:13,fontWeight:700,color:"#7B9E87",marginBottom:4,fontFamily:"Literata,Georgia,serif"}}>Week {currentWeek} check-in logged · {MOOD_LABELS[checkIns[currentWeek].mood-1]}</div>
-              {checkIns[currentWeek].note&&<p style={{fontSize:13,color:"#666",margin:0}}>{checkIns[currentWeek].note}</p>}
+            {checkIns[currentWeek]&&<div style={{background:"#D9E8E5",borderRadius:12,padding:"12px 16px",border:"1px solid #C6DBD7"}}>
+              <div style={{fontSize:13,fontWeight:600,color:"#5FA0A0",marginBottom:4,fontFamily:"Newsreader,Georgia,serif"}}>Week {currentWeek} check-in logged · {MOOD_LABELS[checkIns[currentWeek].mood-1]}</div>
+              {checkIns[currentWeek].note&&<p style={{fontSize:13,color:"#5c6b72",margin:0}}>{checkIns[currentWeek].note}</p>}
             </div>}
           </div>
         </div>
@@ -360,23 +360,23 @@ export function GamifiedPlan({ scores: initialScores, userName, focusAreas, init
       {/* ── BONUS TAB ── */}
       {tab==="bonus" && (
         <div>
-          <div style={{background:"#F7EDE6",borderRadius:12,padding:"14px 16px",marginBottom:20,border:"1px solid #EEDCCB"}}>
-            <div style={{fontSize:13,fontWeight:700,color:"#A85D39",marginBottom:4,fontFamily:"Literata,Georgia,serif",display:"flex",alignItems:"center",gap:6}}><Icon name="sparkle" size={15} color="#A85D39"/> Bonus Challenges</div>
-            <p style={{fontSize:13,color:"#888",margin:0,lineHeight:1.6}}>Optional harder activities worth 40–50 pts each. Complete them any time during your 8 weeks.</p>
+          <div style={{background:"#F0DEE0",borderRadius:12,padding:"14px 16px",marginBottom:20,border:"1px solid #E3CCD0"}}>
+            <div style={{fontSize:13,fontWeight:600,color:"#B3707A",marginBottom:4,fontFamily:"Newsreader,Georgia,serif",display:"flex",alignItems:"center",gap:6}}><Icon name="sparkle" size={15} color="#B3707A"/> Bonus Challenges</div>
+            <p style={{fontSize:13,color:"#8593a0",margin:0,lineHeight:1.6}}>Optional harder activities worth 40–50 pts each. Complete them any time during your 8 weeks.</p>
           </div>
           {BONUS_CHALLENGES.map(bc=>{
             const cfg=WEDGE_CONFIG[bc.wedge], done=bonusDone[bc.id];
-            return <div key={bc.id} style={{background:done?cfg.light:"white",borderRadius:14,padding:"16px 18px",marginBottom:12,border:`1px solid ${done?"transparent":"#eee"}`,boxShadow:done?"none":"0 1px 3px rgba(22,40,28,0.05)",display:"flex",alignItems:"flex-start",gap:14,transition:"all 220ms",opacity:done?0.82:1}}>
-              <button onClick={()=>toggleBonus(bc.id,bc.points)} style={{width:28,height:28,borderRadius:8,border:`2px solid ${done?cfg.color:"#ddd"}`,background:done?cfg.color:"white",cursor:"pointer",flexShrink:0,marginTop:2,display:"flex",alignItems:"center",justifyContent:"center"}}>
+            return <div key={bc.id} style={{background:done?cfg.light:"white",borderRadius:14,padding:"16px 18px",marginBottom:12,border:`1px solid ${done?"transparent":"#e9edef"}`,boxShadow:done?"none":"0 1px 3px rgba(32,48,58,0.05)",display:"flex",alignItems:"flex-start",gap:14,transition:"all 220ms",opacity:done?0.82:1}}>
+              <button onClick={()=>toggleBonus(bc.id,bc.points)} style={{width:28,height:28,borderRadius:8,border:`2px solid ${done?cfg.color:"#d5dce0"}`,background:done?cfg.color:"white",cursor:"pointer",flexShrink:0,marginTop:2,display:"flex",alignItems:"center",justifyContent:"center"}}>
                 {done&&<Icon name="check" size={14} color="white"/>}
               </button>
               <div style={{flex:1}}>
                 <div style={{display:"flex",alignItems:"center",gap:6,marginBottom:4}}>
                   <Icon name={cfg.icon} size={16} color={cfg.color}/>
-                  <span style={{fontSize:11,fontWeight:700,color:cfg.color,fontFamily:"Literata,Georgia,serif"}}>{bc.wedge}</span>
-                  <span style={{marginLeft:"auto",fontSize:12,fontWeight:700,color:done?cfg.color:"#A85D39"}}>+{bc.points} pts</span>
+                  <span style={{fontSize:11,fontWeight:600,color:cfg.color,fontFamily:"Newsreader,Georgia,serif"}}>{bc.wedge}</span>
+                  <span style={{marginLeft:"auto",fontSize:12,fontWeight:600,color:done?cfg.color:"#B3707A"}}>+{bc.points} pts</span>
                 </div>
-                <p style={{fontSize:14,color:done?"#888":"#2a2a2a",lineHeight:1.5,margin:0,textDecoration:done?"line-through":"none"}}>{bc.text}</p>
+                <p style={{fontSize:14,color:done?"#8593a0":"#20303A",lineHeight:1.5,margin:0,textDecoration:done?"line-through":"none"}}>{bc.text}</p>
               </div>
             </div>;
           })}
@@ -386,18 +386,18 @@ export function GamifiedPlan({ scores: initialScores, userName, focusAreas, init
       {/* ── CHECK-IN TAB ── */}
       {tab==="checkin" && (
         <div>
-          <div style={{background:"#EDF3EF",borderRadius:12,padding:"14px 16px",marginBottom:20,border:"1px solid #C8D8CC"}}>
-            <div style={{fontSize:13,fontWeight:700,color:"#7B9E87",marginBottom:4,fontFamily:"Literata,Georgia,serif",display:"flex",alignItems:"center",gap:6}}><Icon name="document" size={15} color="#7B9E87"/> Weekly Check-ins</div>
-            <p style={{fontSize:13,color:"#777",margin:0,lineHeight:1.6}}>One quick check-in per week. Mood + an optional note. Complete 6 to earn the Honest Reflection badge.</p>
+          <div style={{background:"#D9E8E5",borderRadius:12,padding:"14px 16px",marginBottom:20,border:"1px solid #C6DBD7"}}>
+            <div style={{fontSize:13,fontWeight:600,color:"#5FA0A0",marginBottom:4,fontFamily:"Newsreader,Georgia,serif",display:"flex",alignItems:"center",gap:6}}><Icon name="document" size={15} color="#5FA0A0"/> Weekly Check-ins</div>
+            <p style={{fontSize:13,color:"#5c6b72",margin:0,lineHeight:1.6}}>One quick check-in per week. Mood + an optional note. Complete 6 to earn the Honest Reflection badge.</p>
           </div>
           {[1,2,3,4,5,6,7,8].map(w=>{
             const ci=checkIns[w];
-            return <div key={w} style={{background:"white",borderRadius:12,padding:"16px",marginBottom:10,border:`1.5px solid ${ci?"#7B9E87":"#e8e8e8"}`}}>
+            return <div key={w} style={{background:"white",borderRadius:12,padding:"16px",marginBottom:10,border:`1.5px solid ${ci?"#5FA0A0":"#e5eaec"}`}}>
               <div style={{display:"flex",justifyContent:"space-between",alignItems:"center"}}>
-                <div style={{fontWeight:700,fontSize:14,fontFamily:"Literata,Georgia,serif",color:ci?"#7B9E87":"#aaa"}}>Week {w} {ci?`· ${MOOD_LABELS[ci.mood-1]}`:""}</div>
-                {ci?<span style={{fontSize:11,color:"#aaa"}}>{ci.date}</span>:<button onClick={()=>{setCheckInWeek(w);setShowCheckIn(true);}} style={{padding:"6px 14px",background:"#EDF3EF",color:"#7B9E87",border:"1.5px solid #7B9E87",borderRadius:999,fontWeight:700,cursor:"pointer",fontSize:12,fontFamily:"Raleway,sans-serif"}}>Log</button>}
+                <div style={{fontWeight:600,fontSize:14,fontFamily:"Newsreader,Georgia,serif",color:ci?"#5FA0A0":"#93a0a6"}}>Week {w} {ci?`· ${MOOD_LABELS[ci.mood-1]}`:""}</div>
+                {ci?<span style={{fontSize:11,color:"#93a0a6"}}>{ci.date}</span>:<button onClick={()=>{setCheckInWeek(w);setShowCheckIn(true);}} style={{padding:"6px 14px",background:"#D9E8E5",color:"#5FA0A0",border:"1.5px solid #5FA0A0",borderRadius:999,fontWeight:600,cursor:"pointer",fontSize:12,fontFamily:"Hanken Grotesk,sans-serif"}}>Log</button>}
               </div>
-              {ci?.note&&<p style={{fontSize:13,color:"#666",margin:"8px 0 0",lineHeight:1.5}}>{ci.note}</p>}
+              {ci?.note&&<p style={{fontSize:13,color:"#5c6b72",margin:"8px 0 0",lineHeight:1.5}}>{ci.note}</p>}
             </div>;
           })}
         </div>
@@ -406,27 +406,27 @@ export function GamifiedPlan({ scores: initialScores, userName, focusAreas, init
       {/* ── BUDDY TAB ── */}
       {tab==="buddy" && (
         <div>
-          <div style={{background:"white",borderRadius:14,padding:"24px",border:"1px solid #eee",marginBottom:20}}>
+          <div style={{background:"white",borderRadius:14,padding:"24px",border:"1px solid #e9edef",marginBottom:20}}>
             <div style={{textAlign:"center",marginBottom:20}}>
-              <div style={{display:"flex",justifyContent:"center",marginBottom:12}}><Icon name="partnership" size={40} color="#3C6B4A"/></div>
-              <h3 style={{fontFamily:"Literata,Georgia,serif",fontSize:18,color:"#2a2a2a",marginBottom:8}}>Accountability Partner</h3>
-              <p style={{fontSize:14,color:"#777",lineHeight:1.6}}>Research is clear: people who have an accountability partner are significantly more likely to follow through. Invite someone to do this alongside you: a partner, a friend, another caregiver in your cohort.</p>
+              <div style={{display:"flex",justifyContent:"center",marginBottom:12}}><Icon name="partnership" size={40} color="#4A7690"/></div>
+              <h3 style={{fontFamily:"Newsreader,Georgia,serif",fontSize:18,color:"#20303A",marginBottom:8}}>Accountability Partner</h3>
+              <p style={{fontSize:14,color:"#5c6b72",lineHeight:1.6}}>Research is clear: people who have an accountability partner are significantly more likely to follow through. Invite someone to do this alongside you: a partner, a friend, another caregiver in your cohort.</p>
             </div>
             {!buddyShared?<>
-              <label style={{display:"block",fontSize:13,fontWeight:700,color:"#555",marginBottom:6,fontFamily:"Literata,Georgia,serif"}}>Partner's email</label>
-              <input value={buddyEmail} onChange={e=>setBuddyEmail(e.target.value)} placeholder="partner@example.com" style={{width:"100%",padding:"10px 14px",borderRadius:8,border:"1.5px solid #e0e0e0",fontSize:15,fontFamily:"Raleway,sans-serif",boxSizing:"border-box",marginBottom:16}}/>
-              <button onClick={shareWithBuddy} style={{width:"100%",padding:"12px",background:buddyEmail.trim()?"#3C6B4A":"#ddd",color:buddyEmail.trim()?"white":"#aaa",border:"none",borderRadius:999,fontWeight:700,cursor:buddyEmail.trim()?"pointer":"not-allowed",fontFamily:"Raleway,sans-serif",fontSize:14,display:"flex",alignItems:"center",justifyContent:"center",gap:8}}>
-                Send Invitation &amp; Earn Badge <Icon name="arrowRight" size={15} color={buddyEmail.trim()?"white":"#aaa"}/>
+              <label style={{display:"block",fontSize:13,fontWeight:600,color:"#4a5760",marginBottom:6,fontFamily:"Newsreader,Georgia,serif"}}>Partner's email</label>
+              <input value={buddyEmail} onChange={e=>setBuddyEmail(e.target.value)} placeholder="partner@example.com" style={{width:"100%",padding:"10px 14px",borderRadius:8,border:"1.5px solid #dde3e6",fontSize:15,fontFamily:"Hanken Grotesk,sans-serif",boxSizing:"border-box",marginBottom:16}}/>
+              <button onClick={shareWithBuddy} style={{width:"100%",padding:"12px",background:buddyEmail.trim()?"#4A7690":"#d5dce0",color:buddyEmail.trim()?"white":"#93a0a6",border:"none",borderRadius:999,fontWeight:600,cursor:buddyEmail.trim()?"pointer":"not-allowed",fontFamily:"Hanken Grotesk,sans-serif",fontSize:14,display:"flex",alignItems:"center",justifyContent:"center",gap:8}}>
+                Send Invitation &amp; Earn Badge <Icon name="arrowRight" size={15} color={buddyEmail.trim()?"white":"#93a0a6"}/>
               </button>
-            </>:<div style={{textAlign:"center",padding:"20px",background:"#E8F0EA",borderRadius:12}}>
-              <div style={{display:"flex",justifyContent:"center",marginBottom:10}}><Icon name="partnership" size={32} color="#3C6B4A"/></div>
-              <div style={{fontWeight:700,fontFamily:"Literata,Georgia,serif",color:"#3C6B4A",marginBottom:4}}>Invitation sent to {buddyEmail}</div>
-              <div style={{fontSize:13,color:"#888"}}>You earned the Better Together badge.</div>
+            </>:<div style={{textAlign:"center",padding:"20px",background:"#DCE8EF",borderRadius:12}}>
+              <div style={{display:"flex",justifyContent:"center",marginBottom:10}}><Icon name="partnership" size={32} color="#4A7690"/></div>
+              <div style={{fontWeight:600,fontFamily:"Newsreader,Georgia,serif",color:"#4A7690",marginBottom:4}}>Invitation sent to {buddyEmail}</div>
+              <div style={{fontSize:13,color:"#8593a0"}}>You earned the Better Together badge.</div>
             </div>}
           </div>
-          <div style={{background:"#F7EDE6",borderRadius:12,padding:"16px",border:"1px solid #EEDCCB"}}>
-            <div style={{fontSize:13,fontWeight:700,color:"#A85D39",marginBottom:8,fontFamily:"Literata,Georgia,serif",display:"flex",alignItems:"center",gap:6}}><Icon name="sparkle" size={15} color="#A85D39"/> What good accountability looks like</div>
-            <div style={{fontSize:13,color:"#777",lineHeight:1.7}}>
+          <div style={{background:"#F0DEE0",borderRadius:12,padding:"16px",border:"1px solid #E3CCD0"}}>
+            <div style={{fontSize:13,fontWeight:600,color:"#B3707A",marginBottom:8,fontFamily:"Newsreader,Georgia,serif",display:"flex",alignItems:"center",gap:6}}><Icon name="sparkle" size={15} color="#B3707A"/> What good accountability looks like</div>
+            <div style={{fontSize:13,color:"#5c6b72",lineHeight:1.7}}>
               A brief check-in once a week. "Did you do your three activities?" "How was your mood?" That's it. You don't need to share your scores, talk through your feelings, or do it together. You just need someone who will ask.
             </div>
           </div>
@@ -436,22 +436,22 @@ export function GamifiedPlan({ scores: initialScores, userName, focusAreas, init
       {/* ── BADGES TAB ── */}
       {tab==="badges" && (
         <div>
-          <p style={{fontSize:14,color:"#888",marginBottom:20}}>{badges.length} of {BADGES.length} earned.</p>
+          <p style={{fontSize:14,color:"#8593a0",marginBottom:20}}>{badges.length} of {BADGES.length} earned.</p>
           <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:12,marginBottom:24}}>
             {BADGES.map(b=>{const earned=badges.includes(b.id);return(
-              <div key={b.id} style={{background:earned?"white":"#FAFAF7",borderRadius:14,padding:"18px 14px",textAlign:"center",border:`1px solid ${earned?"transparent":"#eee"}`,boxShadow:earned?"0 1px 3px rgba(22,40,28,0.06)":"none",transition:"all 320ms cubic-bezier(0.165,0.84,0.44,1)"}}>
+              <div key={b.id} style={{background:earned?"white":"#F7F9FA",borderRadius:14,padding:"18px 14px",textAlign:"center",border:`1px solid ${earned?"transparent":"#e9edef"}`,boxShadow:earned?"0 1px 3px rgba(32,48,58,0.06)":"none",transition:"all 320ms cubic-bezier(0.165,0.84,0.44,1)"}}>
                 <div style={{display:"flex",justifyContent:"center",marginBottom:10}}><BadgeMedallion iconName={b.icon} unlocked={earned}/></div>
-                <div style={{fontSize:13,fontWeight:700,fontFamily:"Literata,Georgia,serif",color:earned?"#2a2a2a":"#bbb",marginBottom:4}}>{b.name}</div>
-                <div style={{fontSize:11,color:"#aaa",lineHeight:1.4}}>{b.desc}</div>
-                {earned&&<div style={{marginTop:8,fontSize:11,color:"#8F6F35",fontWeight:700,display:"flex",alignItems:"center",justifyContent:"center",gap:4}}><Icon name="check" size={12} color="#8F6F35"/> Earned</div>}
+                <div style={{fontSize:13,fontWeight:600,fontFamily:"Newsreader,Georgia,serif",color:earned?"#20303A":"#a6b1b8",marginBottom:4}}>{b.name}</div>
+                <div style={{fontSize:11,color:"#93a0a6",lineHeight:1.4}}>{b.desc}</div>
+                {earned&&<div style={{marginTop:8,fontSize:11,color:"#A5813C",fontWeight:600,display:"flex",alignItems:"center",justifyContent:"center",gap:4}}><Icon name="check" size={12} color="#A5813C"/> Earned</div>}
               </div>
             );})}
           </div>
-          <div style={{background:"white",borderRadius:14,padding:"20px",border:"1px solid #eee"}}>
-            <h3 style={{fontFamily:"Literata,Georgia,serif",fontSize:15,color:"#2a2a2a",marginBottom:12,display:"flex",alignItems:"center",gap:8}}><Icon name="target" size={17} color="#3C6B4A"/> Point guide</h3>
+          <div style={{background:"white",borderRadius:14,padding:"20px",border:"1px solid #e9edef"}}>
+            <h3 style={{fontFamily:"Newsreader,Georgia,serif",fontSize:15,color:"#20303A",marginBottom:12,display:"flex",alignItems:"center",gap:8}}><Icon name="target" size={17} color="#4A7690"/> Point guide</h3>
             {[["Complete an activity","10–26 pts"],["Full week complete","+25 bonus pts"],["Bonus challenge","40–50 pts"],["3-day streak","Streak badge"],["7-day streak","Unstoppable badge"],["Invite an accountability partner","Better Together badge"],["Complete 8 check-ins","Honest Reflection badge"],["Complete 8-week reassessment","Growth Visible badge"]].map(([a,r])=>(
-              <div key={a} style={{display:"flex",justifyContent:"space-between",paddingBottom:8,marginBottom:8,borderBottom:"1px solid #f0f0f0",fontSize:13}}>
-                <span style={{color:"#444"}}>{a}</span><span style={{fontWeight:700,color:"#4A7C59"}}>{r}</span>
+              <div key={a} style={{display:"flex",justifyContent:"space-between",paddingBottom:8,marginBottom:8,borderBottom:"1px solid #eef1f2",fontSize:13}}>
+                <span style={{color:"#4a5760"}}>{a}</span><span style={{fontWeight:600,color:"#4A7690"}}>{r}</span>
               </div>
             ))}
           </div>
@@ -461,22 +461,22 @@ export function GamifiedPlan({ scores: initialScores, userName, focusAreas, init
       {/* ── WHEEL TAB ── */}
       {tab==="wheel" && (
         <div>
-          <p style={{fontSize:14,color:"#888",marginBottom:16,lineHeight:1.6}}>Your baseline assessment. Come back after 8 weeks to compare.</p>
+          <p style={{fontSize:14,color:"#8593a0",marginBottom:16,lineHeight:1.6}}>Your baseline assessment. Come back after 8 weeks to compare.</p>
           <div style={{display:"flex",justifyContent:"center",marginBottom:24}}><div style={{width:300}}><WellnessWheelSVG scores={scores}/></div></div>
           <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:10}}>
             {WEDGES.map(w=>{const cfg=WEDGE_CONFIG[w],sc=scores[w],lv=getLevel(sc),active=focusAreas.includes(w);return(
-              <div key={w} style={{background:active?cfg.light:"#f9f9f9",borderRadius:10,padding:"12px",border:`1.5px solid ${active?cfg.color:"#e8e8e8"}`}}>
+              <div key={w} style={{background:active?cfg.light:"#f7f9fa",borderRadius:10,padding:"12px",border:`1.5px solid ${active?cfg.color:"#e5eaec"}`}}>
                 <div style={{display:"flex",alignItems:"center",gap:6,marginBottom:6}}>
-                  <Icon name={cfg.icon} size={15} color={active?cfg.color:"#999"}/>
-                  <span style={{fontWeight:700,fontSize:13,fontFamily:"Literata,Georgia,serif",color:active?cfg.color:"#666"}}>{w}</span>
-                  {active&&<span style={{marginLeft:"auto",fontSize:10,color:cfg.color,fontWeight:700}}>FOCUS</span>}
+                  <Icon name={cfg.icon} size={15} color={active?cfg.color:"#93a0a6"}/>
+                  <span style={{fontWeight:600,fontSize:13,fontFamily:"Newsreader,Georgia,serif",color:active?cfg.color:"#5c6b72"}}>{w}</span>
+                  {active&&<span style={{marginLeft:"auto",fontSize:10,color:cfg.color,fontWeight:600}}>FOCUS</span>}
                 </div>
-                <div style={{background:"#e8e8e8",borderRadius:99,height:5}}><div style={{width:`${sc}%`,background:cfg.color,height:"100%",borderRadius:99}}/></div>
+                <div style={{background:"#e5eaec",borderRadius:99,height:5}}><div style={{width:`${sc}%`,background:cfg.color,height:"100%",borderRadius:99}}/></div>
                 <div style={{fontSize:11,color:lv.color,marginTop:4,fontWeight:600}}>{sc}% · {lv.label}</div>
               </div>
             );})}
           </div>
-          {!reassessScores&&<button onClick={()=>setReassessMode(true)} style={{width:"100%",marginTop:24,padding:"14px",background:"#3C6B4A",color:"white",border:"none",borderRadius:999,fontSize:14,fontWeight:700,cursor:"pointer",fontFamily:"Raleway,sans-serif",display:"flex",alignItems:"center",justifyContent:"center",gap:8}}>
+          {!reassessScores&&<button onClick={()=>setReassessMode(true)} style={{width:"100%",marginTop:24,padding:"14px",background:"#4A7690",color:"white",border:"none",borderRadius:999,fontSize:14,fontWeight:600,cursor:"pointer",fontFamily:"Hanken Grotesk,sans-serif",display:"flex",alignItems:"center",justifyContent:"center",gap:8}}>
             <Icon name="chart" size={16}/> Take the 8-Week Reassessment
           </button>}
         </div>
@@ -486,26 +486,26 @@ export function GamifiedPlan({ scores: initialScores, userName, focusAreas, init
       {tab==="compare" && reassessScores && (
         <div>
           <div style={{textAlign:"center",marginBottom:24}}>
-            <h2 style={{fontFamily:"Literata,Georgia,serif",fontSize:22,color:"#2a2a2a",marginBottom:8,display:"flex",alignItems:"center",justifyContent:"center",gap:8}}><Icon name="chart" size={22} color="#3C6B4A"/> Before &amp; After</h2>
-            <p style={{fontSize:14,color:"#777"}}>Eight weeks of real effort, made visible.</p>
+            <h2 style={{fontFamily:"Newsreader,Georgia,serif",fontSize:22,color:"#20303A",marginBottom:8,display:"flex",alignItems:"center",justifyContent:"center",gap:8}}><Icon name="chart" size={22} color="#4A7690"/> Before &amp; After</h2>
+            <p style={{fontSize:14,color:"#5c6b72"}}>Eight weeks of real effort, made visible.</p>
           </div>
           <div style={{display:"flex",gap:16,justifyContent:"center",marginBottom:28,flexWrap:"wrap"}}>
-            <div style={{textAlign:"center"}}><div style={{fontSize:13,color:"#aaa",marginBottom:8,fontFamily:"Raleway,sans-serif"}}>Week 1 Baseline</div><WellnessWheelSVG scores={scores} size={240}/></div>
-            <div style={{textAlign:"center"}}><div style={{fontSize:13,color:"#3C6B4A",marginBottom:8,fontFamily:"Raleway,sans-serif",fontWeight:700}}>Week 8 Reassessment</div><WellnessWheelSVG scores={reassessScores} size={240}/></div>
+            <div style={{textAlign:"center"}}><div style={{fontSize:13,color:"#93a0a6",marginBottom:8,fontFamily:"Hanken Grotesk,sans-serif"}}>Week 1 Baseline</div><WellnessWheelSVG scores={scores} size={240}/></div>
+            <div style={{textAlign:"center"}}><div style={{fontSize:13,color:"#4A7690",marginBottom:8,fontFamily:"Hanken Grotesk,sans-serif",fontWeight:600}}>Week 8 Reassessment</div><WellnessWheelSVG scores={reassessScores} size={240}/></div>
           </div>
           <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:10}}>
             {WEDGES.map(w=>{
               const cfg=WEDGE_CONFIG[w], before=scores[w], after=reassessScores[w], diff=after-before;
-              return <div key={w} style={{background:"white",borderRadius:12,padding:"14px",border:"1px solid #eee"}}>
+              return <div key={w} style={{background:"white",borderRadius:12,padding:"14px",border:"1px solid #e9edef"}}>
                 <div style={{display:"flex",alignItems:"center",gap:6,marginBottom:8}}>
                   <Icon name={cfg.icon} size={15} color={cfg.color}/>
-                  <span style={{fontWeight:700,fontSize:13,fontFamily:"Literata,Georgia,serif",color:"#2a2a2a"}}>{w}</span>
+                  <span style={{fontWeight:600,fontSize:13,fontFamily:"Newsreader,Georgia,serif",color:"#20303A"}}>{w}</span>
                 </div>
                 <div style={{display:"flex",alignItems:"center",gap:8}}>
-                  <span style={{fontSize:13,color:"#aaa"}}>{before}%</span>
-                  <span style={{fontSize:12,color:"#ccc"}}>→</span>
-                  <span style={{fontSize:15,fontWeight:700,color:cfg.color}}>{after}%</span>
-                  <span style={{marginLeft:"auto",fontSize:13,fontWeight:700,color:diff>0?"#4A7C59":diff<0?"#C17A5A":"#aaa"}}>
+                  <span style={{fontSize:13,color:"#93a0a6"}}>{before}%</span>
+                  <span style={{fontSize:12,color:"#c3ccd1"}}>→</span>
+                  <span style={{fontSize:15,fontWeight:600,color:cfg.color}}>{after}%</span>
+                  <span style={{marginLeft:"auto",fontSize:13,fontWeight:600,color:diff>0?"#4A7690":diff<0?"#C98F97":"#93a0a6"}}>
                     {diff>0?"+":""}{diff}%
                   </span>
                 </div>
@@ -522,26 +522,26 @@ export function WeeklyCheckIn({ week, existing, onSubmit, onClose }) {
   const [mood,setMood]=useState(existing?.mood??3);
   const [note,setNote]=useState(existing?.note??"");
   // A colour ramp instead of face emoji: clay (struggling) through to cedar (great).
-  const moodColors=["#A85D39","#C17A5A","#C9A15A","#6BAA75","#3C6B4A"];
+  const moodColors=["#B3707A","#C98F97","#CDA66B","#5FA0A0","#4A7690"];
   const moodLabels=["Struggling","Flat","Okay","Good","Great"];
 
   return (
-    <div onClick={onClose} style={{position:"fixed",inset:0,background:"rgba(22,40,28,0.55)",display:"flex",alignItems:"center",justifyContent:"center",zIndex:9998,padding:16}}>
+    <div onClick={onClose} style={{position:"fixed",inset:0,background:"rgba(32,48,58,0.55)",display:"flex",alignItems:"center",justifyContent:"center",zIndex:9998,padding:16}}>
       <div onClick={e=>e.stopPropagation()} style={{background:"white",borderRadius:20,padding:"32px 24px",maxWidth:380,width:"100%"}}>
-        <h3 style={{fontFamily:"Literata,Georgia,serif",fontSize:20,color:"#2a2a2a",marginBottom:6}}>Week {week} Check-in</h3>
-        <p style={{fontSize:14,color:"#888",marginBottom:20,lineHeight:1.5}}>How are you feeling this week, overall?</p>
+        <h3 style={{fontFamily:"Newsreader,Georgia,serif",fontSize:20,color:"#20303A",marginBottom:6}}>Week {week} Check-in</h3>
+        <p style={{fontSize:14,color:"#8593a0",marginBottom:20,lineHeight:1.5}}>How are you feeling this week, overall?</p>
         <div style={{display:"flex",gap:8,marginBottom:20}}>
           {[1,2,3,4,5].map(v=>(
-            <button key={v} onClick={()=>setMood(v)} style={{flex:1,padding:"12px 4px",borderRadius:12,border:`1.5px solid ${mood===v?moodColors[v-1]:"#e8e8e8"}`,background:mood===v?"#FAFAF7":"white",cursor:"pointer",display:"flex",flexDirection:"column",alignItems:"center",gap:6,transition:"all 180ms"}}>
+            <button key={v} onClick={()=>setMood(v)} style={{flex:1,padding:"12px 4px",borderRadius:12,border:`1.5px solid ${mood===v?moodColors[v-1]:"#e5eaec"}`,background:mood===v?"#F7F9FA":"white",cursor:"pointer",display:"flex",flexDirection:"column",alignItems:"center",gap:6,transition:"all 180ms"}}>
               <span style={{width:16,height:16,borderRadius:"50%",background:moodColors[v-1],opacity:mood===v?1:0.35,transition:"opacity 180ms"}}/>
-              <span style={{fontSize:10,color:mood===v?moodColors[v-1]:"#aaa",fontWeight:600}}>{moodLabels[v-1]}</span>
+              <span style={{fontSize:10,color:mood===v?moodColors[v-1]:"#93a0a6",fontWeight:600}}>{moodLabels[v-1]}</span>
             </button>
           ))}
         </div>
-        <textarea value={note} onChange={e=>setNote(e.target.value)} placeholder="Anything to note this week? (optional)" rows={3} style={{width:"100%",padding:"10px 14px",borderRadius:8,border:"1.5px solid #e0e0e0",fontSize:14,fontFamily:"Raleway,sans-serif",resize:"vertical",boxSizing:"border-box",marginBottom:16}}/>
+        <textarea value={note} onChange={e=>setNote(e.target.value)} placeholder="Anything to note this week? (optional)" rows={3} style={{width:"100%",padding:"10px 14px",borderRadius:8,border:"1.5px solid #dde3e6",fontSize:14,fontFamily:"Hanken Grotesk,sans-serif",resize:"vertical",boxSizing:"border-box",marginBottom:16}}/>
         <div style={{display:"flex",gap:10}}>
-          <button onClick={onClose} style={{flex:1,padding:"12px",background:"#f5f5f5",color:"#888",border:"none",borderRadius:999,fontWeight:700,cursor:"pointer",fontFamily:"Raleway,sans-serif"}}>Cancel</button>
-          <button onClick={()=>onSubmit(week,mood,note)} style={{flex:2,padding:"12px",background:"#3C6B4A",color:"white",border:"none",borderRadius:999,fontWeight:700,cursor:"pointer",fontFamily:"Raleway,sans-serif",display:"flex",alignItems:"center",justifyContent:"center",gap:8}}>Save Check-in <Icon name="check" size={15} color="white"/></button>
+          <button onClick={onClose} style={{flex:1,padding:"12px",background:"#f2f4f5",color:"#8593a0",border:"none",borderRadius:999,fontWeight:600,cursor:"pointer",fontFamily:"Hanken Grotesk,sans-serif"}}>Cancel</button>
+          <button onClick={()=>onSubmit(week,mood,note)} style={{flex:2,padding:"12px",background:"#4A7690",color:"white",border:"none",borderRadius:999,fontWeight:600,cursor:"pointer",fontFamily:"Hanken Grotesk,sans-serif",display:"flex",alignItems:"center",justifyContent:"center",gap:8}}>Save Check-in <Icon name="check" size={15} color="white"/></button>
         </div>
       </div>
     </div>
@@ -552,22 +552,22 @@ export function Landing({ onStart }) {
   return (
     <div style={{maxWidth:560,margin:"0 auto",padding:"32px 16px",textAlign:"center"}}>
       <div style={{display:"flex",justifyContent:"center",marginBottom:20}}><WellnessWheelSVG/></div>
-      <h1 style={{fontFamily:"Literata,Georgia,serif",fontSize:28,color:"#2a2a2a",marginBottom:10,lineHeight:1.3}}>Your Caregiver Wellness Wheel</h1>
-      <p style={{color:"#666",fontSize:15,lineHeight:1.7,marginBottom:28,maxWidth:420,margin:"0 auto 28px"}}>Built for family caregivers of someone with a rare disease. Eight dimensions of wellbeing. A 64-question assessment, a personalised report, and a gamified 8-week plan built around your actual life, not someone else's.</p>
+      <h1 style={{fontFamily:"Newsreader,Georgia,serif",fontSize:28,color:"#20303A",marginBottom:10,lineHeight:1.3}}>Your Caregiver Wellness Wheel</h1>
+      <p style={{color:"#5c6b72",fontSize:15,lineHeight:1.7,marginBottom:28,maxWidth:420,margin:"0 auto 28px"}}>Built for family caregivers of someone with a rare disease. Eight dimensions of wellbeing. A 64-question assessment, a personalised report, and a gamified 8-week plan built around your actual life, not someone else's.</p>
       <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:12,marginBottom:28,textAlign:"left"}}>
         {[["document","64-question assessment","8 questions across all 8 dimensions"],["chart","Personalised report","Scores, strengths, and focus areas"],["target","8-week plan","3 activities per week, your focus areas"],["medal","Points, badges & levels","Gamified progress that keeps you going"],["partnership","Accountability partner","Invite someone to keep you on track"],["moon","Weekly check-ins","Track your mood alongside your actions"],["sparkle","Bonus challenges","Optional harder activities, more points"],["chart","Before & after comparison","Reassess at week 8 to see your growth"]].map(([icon,title,desc],i)=>(
-          <div key={i} style={{background:"white",borderRadius:12,padding:"14px",border:"1px solid #eee"}}>
-            <div style={{marginBottom:8,color:"#3C6B4A"}}><Icon name={icon} size={22}/></div>
-            <div style={{fontWeight:700,fontSize:13,fontFamily:"Literata,Georgia,serif",color:"#2a2a2a",marginBottom:3}}>{title}</div>
-            <div style={{fontSize:11,color:"#888",lineHeight:1.4}}>{desc}</div>
+          <div key={i} style={{background:"white",borderRadius:12,padding:"14px",border:"1px solid #e9edef"}}>
+            <div style={{marginBottom:8,color:"#4A7690"}}><Icon name={icon} size={22}/></div>
+            <div style={{fontWeight:600,fontSize:13,fontFamily:"Newsreader,Georgia,serif",color:"#20303A",marginBottom:3}}>{title}</div>
+            <div style={{fontSize:11,color:"#8593a0",lineHeight:1.4}}>{desc}</div>
           </div>
         ))}
       </div>
-      <button onClick={onStart} style={{width:"100%",padding:"16px",background:"#3C6B4A",color:"white",border:"none",borderRadius:999,fontSize:16,fontWeight:700,cursor:"pointer",fontFamily:"Raleway,sans-serif",display:"flex",alignItems:"center",justifyContent:"center",gap:8}}>
+      <button onClick={onStart} style={{width:"100%",padding:"16px",background:"#4A7690",color:"white",border:"none",borderRadius:999,fontSize:16,fontWeight:600,cursor:"pointer",fontFamily:"Hanken Grotesk,sans-serif",display:"flex",alignItems:"center",justifyContent:"center",gap:8}}>
         Begin My Assessment <Icon name="arrowRight" size={17} color="white"/>
       </button>
-      <p style={{fontSize:12,color:"#aaa",marginTop:12}}>Takes about 10 minutes. No account needed to start.</p>
-      <p style={{fontSize:11,color:"#bbb",marginTop:20,lineHeight:1.6,maxWidth:420,marginLeft:"auto",marginRight:"auto"}}>This is a wellbeing programme, not a substitute for medical or mental health care. If you're in crisis, please contact a crisis line or your GP.</p>
+      <p style={{fontSize:12,color:"#93a0a6",marginTop:12}}>Takes about 10 minutes. No account needed to start.</p>
+      <p style={{fontSize:11,color:"#a6b1b8",marginTop:20,lineHeight:1.6,maxWidth:420,marginLeft:"auto",marginRight:"auto"}}>This is a wellbeing programme, not a substitute for medical or mental health care. If you're in crisis, please contact a crisis line or your GP.</p>
     </div>
   );
 }

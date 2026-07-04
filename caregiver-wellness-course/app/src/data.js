@@ -5,15 +5,18 @@
 // caregiver research (isolation, chronic/anticipatory grief, income and
 // career disruption, becoming disease-literate, home-as-care-environment,
 // real financial strain).
+// Sky & Tide palette: each dimension gets a muted colour + tint at similar
+// lightness so the wheel reads as one harmonious family (per the Sky & Tide
+// design handoff; dimension names stay the course's own eight).
 export const WEDGE_CONFIG = {
-  Social:        { color: "#3C6B4A", light: "#E8F0EA", icon: "social" },
-  Occupational:  { color: "#6BAA75", light: "#EBF4EC", icon: "occupational" },
-  Environmental: { color: "#8CAE93", light: "#F0F6EF", icon: "environmental" },
-  Intellectual:  { color: "#5B8DB8", light: "#E8F1F8", icon: "intellectual" },
-  Spiritual:     { color: "#7B9E87", light: "#EDF3EF", icon: "spiritual" },
-  Emotional:     { color: "#C17A5A", light: "#F7EDE6", icon: "emotional" },
-  Physical:      { color: "#A85D39", light: "#F9EEE5", icon: "physical" },
-  Financial:     { color: "#8F6F35", light: "#F0EBE3", icon: "financial" },
+  Social:        { color: "#8E9AC8", light: "#E4E4EF", icon: "social" },
+  Occupational:  { color: "#4A7690", light: "#D6E2EA", icon: "occupational" },
+  Environmental: { color: "#6E8570", light: "#DFE7DC", icon: "environmental" },
+  Intellectual:  { color: "#7CA7C4", light: "#DCE8EF", icon: "intellectual" },
+  Spiritual:     { color: "#8093A6", light: "#E1E5EC", icon: "spiritual" },
+  Emotional:     { color: "#C98F97", light: "#F0DEE0", icon: "emotional" },
+  Physical:      { color: "#5FA0A0", light: "#D9E8E5", icon: "physical" },
+  Financial:     { color: "#CDA66B", light: "#F0E6D2", icon: "financial" },
 };
 export const WEDGES = Object.keys(WEDGE_CONFIG);
 
@@ -77,17 +80,17 @@ export function scoreWedge(answers) {
   return Math.round((answers.reduce((a,b)=>a+b,0) / (answers.length * 5)) * 100);
 }
 export function getLevel(score) {
-  if (score >= 80) return { label: "Thriving",         color: "#3C6B4A" };
-  if (score >= 60) return { label: "Growing",          color: "#6BAA75" };
-  if (score >= 40) return { label: "Developing",       color: "#C17A5A" };
-  return            { label: "Needs Attention",  color: "#A85D39" };
+  if (score >= 80) return { label: "Nourished",        color: "#4A7690" };
+  if (score >= 60) return { label: "Cared For",        color: "#5FA0A0" };
+  if (score >= 40) return { label: "Steady",           color: "#CDA66B" };
+  return            { label: "Stretched Thin",  color: "#C98F97" };
 }
 export const LEVEL_THRESHOLDS = [
-  { min: 0,   label: "Seed",     icon: "leaf",    color: "#8CAE93" },
-  { min: 100, label: "Sprout",   icon: "plant",   color: "#6BAA75" },
-  { min: 250, label: "Bloom",    icon: "spiritual", color: "#3C6B4A" },
-  { min: 500, label: "Flourish", icon: "sparkle", color: "#C9A15A" },
-  { min: 800, label: "Radiant",  icon: "medal",   color: "#8F6F35" },
+  { min: 0,   label: "Seed",     icon: "leaf",    color: "#8093A6" },
+  { min: 100, label: "Sprout",   icon: "plant",   color: "#5FA0A0" },
+  { min: 250, label: "Bloom",    icon: "spiritual", color: "#4A7690" },
+  { min: 500, label: "Flourish", icon: "sparkle", color: "#CDA66B" },
+  { min: 800, label: "Radiant",  icon: "medal",   color: "#A5813C" },
 ];
 export function getUserLevel(pts) {
   return LEVEL_THRESHOLDS.reduce((l,t) => pts >= t.min ? t : l, LEVEL_THRESHOLDS[0]);

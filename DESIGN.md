@@ -86,6 +86,14 @@ components:
     rounded: "{rounded.pill}"
 ---
 
+> **SUPERSEDED (2026-07-04):** the brand direction has moved to **Sky & Tide**
+> (light Sky blue + Tide teal, Newsreader + Hanken Grotesk), per the client's
+> uploaded design handoff. The canonical spec now lives at
+> `caregiver-wellness-course/design/sky-and-tide/`. The named rules below
+> (Earned Gold Rule, One Accent Rule, Drenched Beat Rule, No-Eyebrow Rule)
+> carry over into Sky & Tide; the palette and typefaces in this file do not.
+
+
 # Design System: Caregiver Wellness Course
 
 ## 1. Overview
