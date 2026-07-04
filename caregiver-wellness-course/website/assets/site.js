@@ -1,11 +1,14 @@
-// Shared site behaviour: mobile nav toggle, scroll-reveal, and placeholder
-// form handling. Forms are front-end only until the n8n/Notion backend
-// described in CAREGIVER-WELLNESS-COURSE-ARCHITECTURE.md is wired up.
+// Shared site behaviour: mobile nav toggle, scroll-reveal, and form intake.
+// Forms POST to the n8n webhook described in
+// CAREGIVER-WELLNESS-COURSE-ARCHITECTURE.md §8, which creates the matching
+// Participant/Sponsor record in Notion.
 //
 // Scroll-reveal follows the "enhance an already-visible default" rule:
 // every .reveal element is visible by default in the CSS. This script only
 // adds the temporary hidden state, so content never disappears if JS fails
 // to run (headless renderers, slow connections, disabled JS).
+
+const INTAKE_WEBHOOK_URL = 'https://scn2a-krispierce.app.n8n.cloud/webhook/caregiver-course-intake';
 
 document.addEventListener('DOMContentLoaded', () => {
   const toggle = document.querySelector('.nav-toggle');
@@ -17,16 +20,37 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  document.querySelectorAll('form[data-placeholder-form]').forEach((form) => {
+  document.querySelectorAll('form[data-intake-form]').forEach((form) => {
     form.addEventListener('submit', (e) => {
       e.preventDefault();
-      // TODO: replace with a real POST to the n8n webhook that creates the
-      // Participant/Sponsor record in Notion (see architecture doc §8).
-      form.style.display = 'none';
-      const successId = form.getAttribute('data-success-target');
-      const success = successId ? document.getElementById(successId) : form.nextElementSibling;
-      if (success) success.classList.add('visible');
-      success && success.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      const submitBtn = form.querySelector('button[type="submit"]');
+      const errorEl = form.querySelector('.form-error');
+      if (errorEl) errorEl.remove();
+      if (submitBtn) submitBtn.disabled = true;
+
+      const payload = { formType: form.getAttribute('data-form-type') };
+      new FormData(form).forEach((value, key) => { payload[key] = value; });
+
+      fetch(INTAKE_WEBHOOK_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      })
+        .then((res) => { if (!res.ok) throw new Error('Request failed'); })
+        .then(() => {
+          form.style.display = 'none';
+          const successId = form.getAttribute('data-success-target');
+          const success = successId ? document.getElementById(successId) : form.nextElementSibling;
+          if (success) success.classList.add('visible');
+          success && success.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        })
+        .catch(() => {
+          if (submitBtn) submitBtn.disabled = false;
+          const p = document.createElement('p');
+          p.className = 'form-error';
+          p.textContent = "Something went wrong sending that. Please try again, or email us directly.";
+          form.appendChild(p);
+        });
     });
   });
 

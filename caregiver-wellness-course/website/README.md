@@ -48,9 +48,9 @@ npm run build
 
 **Persistence:** progress (assessment scores, points, badges, streaks, check-ins) is saved to the browser's local storage automatically, so a caregiver's plan survives a reload with no account needed. If a real Supabase project is connected (`../app/.env.example` documents `VITE_SUPABASE_URL` / `VITE_SUPABASE_ANON_KEY`, and `../app/supabase/schema.sql` has the table + RLS policy), the same data also syncs to their account. Local storage is always the fallback, so the app is fully functional with zero backend configured.
 
-## Forms are front-end only
+## Forms submit to Notion via n8n
 
-The waitlist, sponsor enquiry, and application forms all show a real success state on submit but don't send anywhere yet (see `assets/site.js`, marked with `TODO`). Wire them to the n8n webhooks described in `../../CAREGIVER-WELLNESS-COURSE-ARCHITECTURE.md` §8 before launch.
+The waitlist, sponsor enquiry, and application forms POST to a live n8n webhook (`assets/site.js`, `INTAKE_WEBHOOK_URL`), which creates the matching Participant or Sponsor record in Notion. See `../../CAREGIVER-WELLNESS-COURSE-ARCHITECTURE.md` §8 for the workflow and the one manual Notion-sharing step still needed before writes succeed.
 
 ## Verified
 

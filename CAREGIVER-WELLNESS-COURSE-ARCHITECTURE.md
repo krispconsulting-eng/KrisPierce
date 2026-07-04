@@ -234,15 +234,20 @@ This sits alongside, not inside, your existing Projects/Contacts/Money master da
 
 ## 8. Workflow automation map (n8n)
 
+✅ **Row 1 built:** website form submissions now create real Notion records. The **[Caregiver Course - Website Form Intake](https://scn2a-krispierce.app.n8n.cloud/workflow/NNwZQpTpj12niO9m)** n8n workflow is live: a webhook (`https://scn2a-krispierce.app.n8n.cloud/webhook/caregiver-course-intake`) receives all three website forms (waitlist, sponsor enquiry, scholarship application), routes by form type, and creates the matching Participant or Sponsor record in Notion. `website/assets/site.js` now POSTs real form data to it instead of showing a fake success state.
+
+**⚠️ One manual step still needed:** the workflow's Notion writes currently 404 with *"Make sure the relevant pages and databases are shared with your integration 'n8n'"*. Notion integrations only see pages explicitly shared with them — open the [🌿 Caregiver Wellness Course](https://app.notion.com/p/393a5163e45d81fe823ac06a628016bd) page in Notion, click **"•••" → "Connections"**, and add the **n8n** integration. Once that's done, the workflow works with no further changes.
+
 | Trigger | Action |
 |---|---|
+| ✅ Website form submitted (waitlist / sponsor enquiry / scholarship application) | Create Participant or Sponsor record in Notion — **built**, pending the Notion sharing step above |
 | Stripe checkout completes (self-pay) | Create Participant + Enrollment → send welcome email → provision Wellness Wheel account |
 | Sponsor redemption link used | Same as above, tagged to that sponsor |
-| Scholarship application submitted | Notify you for review → on approval, same as above |
+| Scholarship application submitted | Notify you for review → on approval, create Enrollment (currently just creates the Participant record; approval routing not yet built) |
 | Cohort start date reached | Release week 1 curriculum content (unlock Notion page/view) + send community invite + prompt baseline assessment |
-| Each subsequent week (5 more times) | Release that week's curriculum content + reminder + live session calendar detail |
-| Wellness Wheel: activity/badge/week completed (Supabase webhook) | Sync progress into the Enrollment record; trigger badge-earned email on milestones |
-| Wellness Wheel: baseline or reassessment submitted | Write scores to Wellness Wheel Submissions → (at week 6) compute delta |
+| Each subsequent week (7 more times) | Release that week's curriculum content + reminder + live session calendar detail |
+| Wellness Wheel: activity/badge/week completed | Sync progress into the Enrollment record; trigger badge-earned email on milestones. Not yet built — the app doesn't emit any event today (local storage / Supabase only). |
+| Wellness Wheel: baseline or reassessment submitted | Write scores to Wellness Wheel Submissions → (at week 8) compute delta. Not yet built, same reason. |
 | Cohort end date reached | Assemble sponsor impact report (aggregate + anonymised) → deliver to sponsor → update public Supporters page data → issue completion certificates |
 
 ---
@@ -266,8 +271,8 @@ This sits alongside, not inside, your existing Projects/Contacts/Money master da
 | **1 — Write the real curriculum** | Turn the 8 weekly-theme scaffolds into actual scripts/modules in your voice (§1 voice rules) | You + this doc |
 | **2 — Notion skeleton** | ✅ Built — 5 databases (§7) live under the 🌿 Caregiver Wellness Course hub, with a placeholder pilot cohort seeded. Still empty: no real sponsors/participants yet, and nothing populates it automatically (that's Phase 5). | — |
 | **3 — Wellness Wheel backend** | 🔶 Partially done — local-storage persistence is live (survives a reload, no account needed) and the Supabase adapter (magic-link auth + Postgres, RLS'd) is built and ready; still needed: connect a real Supabase project, and wire the accountability-partner invite to a real email send (§4.2) | — |
-| **4 — Website surfaces** | ✅ Built — sales page, sponsor pitch page, "apply for sponsorship" form, public Supporters page, and the Wellness Wheel as a real Vite app the site links to (see `caregiver-wellness-course/website/` and `caregiver-wellness-course/app/`). Forms are front-end only; no real checkout yet since pricing isn't finalised. | Pricing sign-off (§3) for real checkout |
-| **5 — n8n automations** | Enrollment routing, drip release, reminders, wellness wheel sync, one working end-to-end test cohort | Phases 2–4 |
+| **4 — Website surfaces** | ✅ Built — sales page, sponsor pitch page, "apply for sponsorship" form, public Supporters page, and the Wellness Wheel as a real Vite app the site links to (see `caregiver-wellness-course/website/` and `caregiver-wellness-course/app/`). Forms now submit to Notion (see §8); no real checkout yet since pricing isn't finalised. | Pricing sign-off (§3) for real checkout |
+| **5 — n8n automations** | 🔶 Started — website form intake is built and live (§8). Still needed: enrollment routing past intake, drip release, reminders, wellness wheel sync (needs the app to emit events — see §4.2), one working end-to-end test cohort | Phases 2–4 |
 | **6 — Pilot cohort** | Run one real cohort (even with a friendly sponsor or free seats) to prove the loop before selling hard | Phase 5 |
 | **7 — Impact reporting + iterate** | First sponsor report generated, feed learnings back into pricing/tiers | Phase 6 |
 

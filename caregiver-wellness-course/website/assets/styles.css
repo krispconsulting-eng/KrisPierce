@@ -380,6 +380,7 @@ section { padding: 96px 0; }
 .field { margin-bottom: 20px; }
 .field label { display: block; font-weight: 600; font-size: .9rem; color: var(--bark-ink); margin-bottom: 6px; }
 .field .hint { font-size: .8rem; color: var(--stone); margin-top: 4px; }
+.form-error { font-size: .85rem; color: var(--clay-700); margin-top: 12px; }
 input, select, textarea {
   width: 100%;
   font-family: var(--font-body);
