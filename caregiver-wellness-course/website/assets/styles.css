@@ -308,7 +308,7 @@ section { padding: 96px 0; }
 .pill-warm { background: var(--clay-100); color: var(--clay-700); }
 .pill-brass { background: var(--brass-100); color: var(--brass-600); }
 
-/* ---- Timeline (6 weeks) ---- */
+/* ---- Timeline (8 weeks) ---- */
 .week-list { display: flex; flex-direction: column; }
 .week-row {
   display: grid;

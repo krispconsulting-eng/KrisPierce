@@ -6,11 +6,11 @@ A standalone, zero-build marketing site. Open `index.html` directly in a browser
 
 | File | Purpose |
 |---|---|
-| `index.html` | Main landing page for caregivers: hero, problem/reframe, 6-week overview, three ways to join, waitlist, FAQ |
+| `index.html` | Main landing page for caregivers: hero, problem/reframe, 8-week overview, three ways to join, waitlist, FAQ |
 | `sponsors.html` | Industry/partner pitch page: how sponsorship works, tiers, impact reporting, enquiry form |
 | `apply.html` | Application for a no-cost sponsored/scholarship spot |
 | `supporters.html` | Public acknowledgment page (honestly empty pre-launch, ready to populate after the first cohort) |
-| `app/` | The built Wellness Wheel app (assessment → report → 6-week gamified plan) — see below |
+| `app/` | The built Wellness Wheel app (assessment → report → 8-week gamified plan) — see below |
 
 ## Design system
 
@@ -54,4 +54,4 @@ The waitlist, sponsor enquiry, and application forms all show a real success sta
 
 ## Verified
 
-All 5 marketing pages, plus the built app at `app/`, were checked in a real browser (Playwright + Chromium): page load, console errors, mobile responsiveness (390px viewport, nav toggle), and the app's full click-through (landing → 64-question assessment → report → sign-up → gamified 6-week plan → badge unlock), including a page-reload test confirming progress survives via the local-storage fallback. Google Fonts requires normal internet access; it's expected to fail in network-restricted environments but degrades gracefully (system font fallback) rather than breaking the page.
+All 5 marketing pages, plus the built app at `app/`, were checked in a real browser (Playwright + Chromium): page load, console errors, mobile responsiveness (390px viewport, nav toggle), and the app's full click-through (landing → 64-question assessment → report → sign-up → gamified 8-week plan → badge unlock), including a page-reload test confirming progress survives via the local-storage fallback. Google Fonts requires normal internet access; it's expected to fail in network-restricted environments but degrades gracefully (system font fallback) rather than breaking the page.

@@ -1,6 +1,6 @@
 # Wellness Wheel App
 
-A Vite + React 19 build of the Wellness Wheel: a 64-question assessment across 8 wellbeing dimensions, a personalised report, and a gamified 6-week plan (points, streaks, 12 badges, weekly check-ins, an accountability-partner invite, and a before/after reassessment), built for family caregivers of someone with a rare disease.
+A Vite + React 19 build of the Wellness Wheel: a 64-question assessment across 8 wellbeing dimensions, a personalised report, and a gamified 8-week plan (points, streaks, 12 badges, weekly check-ins, an accountability-partner invite, and a before/after reassessment), built for family caregivers of someone with a rare disease.
 
 ## Develop
 
@@ -19,7 +19,7 @@ npm run build
 
 ## Source layout
 
-- `src/data.js` — the 8 dimensions, 64 assessment questions, 6-week activity plan, bonus challenges, badges, and level thresholds
+- `src/data.js` — the 8 dimensions, 64 assessment questions, 8-week activity plan, bonus challenges, badges, and level thresholds
 - `src/icons.jsx` — the hand-drawn line-icon set (shared visually with the marketing site's icon sprite)
 - `src/components.jsx` — `WellnessWheelSVG`, `ProgressRing`, `BadgeMedallion`, `BadgeModal`
 - `src/screens.jsx` — `Landing`, `Assessment`, `Report`, `SignUp`, `GamifiedPlan`, `WeeklyCheckIn`

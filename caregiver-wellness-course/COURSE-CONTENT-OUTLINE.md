@@ -1,4 +1,4 @@
-# Caregiver Wellness Course — 6-Week Content Outline
+# Caregiver Wellness Course — 8-Week Content Outline
 
 **Status:** 📋 First-draft scaffold, not final scripts. This maps each week to a curriculum theme, the Wellness Wheel dimensions it supports, and the research it's grounded in. **You still need to write the actual teaching content** (video/audio scripts, reflection prompts) in your own words and voice — see the IP note below.
 
@@ -73,8 +73,6 @@ The research grounding below draws on the **NAC/Global Genes Circle of Care Guid
 - Spirituality (broadly defined, not tied to any one faith) is reported as protective: research cited in the Guidebook found the large majority of parents caring for children with progressive conditions report a high degree of spirituality, and it's associated with better emotional outcomes.
 - Practical entry points: a gratitude practice, a few minutes of daily quiet, assigning meaning to hardship rather than only enduring it.
 
-**Milestone:** "Halfway There" badge fires automatically at full completion of this week.
-
 **Participant actions this week:**
 - Weekly activities from Emotional/Spiritual focus (if selected).
 - Weekly mood check-in.
@@ -93,6 +91,8 @@ The research grounding below draws on the **NAC/Global Genes Circle of Care Guid
 - Caregiving for a child with a serious illness commonly brings direct out-of-pocket costs that add up quickly; caregivers report benefit from simply getting a clearer financial picture, even without solving everything.
 - Career plans are frequently and significantly disrupted by caregiving responsibilities; this is a normal, common experience worth naming rather than treating as an individual failure.
 - There's a wide landscape of assistance programs (insurance premium/co-pay support, government programs, medication assistance, travel/lodging support) that many caregivers aren't aware exists; the point this week isn't to itemise every one but to normalise seeking this kind of support.
+
+**Milestone:** "Halfway There" badge fires automatically at full completion of this week (week 4 of 8).
 
 **Participant actions this week:**
 - Weekly activities from Financial/Occupational focus (if selected).
@@ -119,9 +119,46 @@ The research grounding below draws on the **NAC/Global Genes Circle of Care Guid
 
 ---
 
-## Week 6 — Looking Ahead
+## Week 6 — Steadying the System
 
-**Theme:** Reassessment, before/after review, what comes next, an optional path into advocacy.
+**Theme:** Consolidating what's actually worked so far; catching the mid-programme plateau or backslide before it takes hold; protecting the boundaries and spaces you've built.
+
+**Wheel dimensions in focus:** Occupational, Environmental.
+
+**Live session:** Honest check-in on what's actually stuck from weeks 1–5 versus what quietly slipped. Normalise the mid-programme dip: motivation naturally softens around this point, and that's not a sign of failure. Revisit one boundary or space each participant set earlier and troubleshoot what's making it hard to hold.
+
+**Key points to draw on:**
+- Sustaining a new self-care practice is harder than starting one; a brief, honest mid-point review (what's working, what's slipped) measurably improves follow-through versus pushing straight ahead.
+- Respite and protected personal space are easy to let erode once the initial structure of a programme feels familiar; this week is a deliberate check that they're still in place.
+
+**Participant actions this week:**
+- Weekly activities from Occupational/Environmental focus (if selected).
+- Weekly mood check-in.
+
+---
+
+## Week 7 — Voice & Advocacy
+
+**Theme:** Turning caregiving experience into agency, not just endurance; getting accurate information; becoming your family's informed advocate without it consuming you.
+
+**Wheel dimensions in focus:** Intellectual, Social.
+
+**Live session:** How to be an effective advocate (with a care team, a school, an insurer) without it becoming a second full-time job. Discuss where to find reliable information versus where caregivers commonly get overwhelmed or misled.
+
+**Key points to draw on:**
+- Becoming disease-literate is often necessary, but caregivers report it's sustainable only when paired with knowing where to stop researching and who to trust for updates, rather than trying to track everything themselves.
+- Caregivers who find or build a peer network report better access to practical, lived-experience information than through formal channels alone.
+- Advocacy (with a school, employer, or care team) is a skill that can be learned in small, contained asks, not an all-or-nothing identity.
+
+**Participant actions this week:**
+- Weekly activities from Intellectual/Social focus (if selected).
+- Weekly mood check-in.
+
+---
+
+## Week 8 — Looking Ahead
+
+**Theme:** Reassessment, before/after review, what comes next, an optional path into peer support or advocacy.
 
 **Wheel dimensions in focus:** All 8, plus reassessment.
 
@@ -131,10 +168,10 @@ The research grounding below draws on the **NAC/Global Genes Circle of Care Guid
 - Life transitions (housing, guardianship, financial/estate planning, and for some families, bereavement) are a distinct, ongoing part of the caregiving journey worth naming even if not resolving in one week.
 - Some caregivers find meaning in turning their experience into advocacy once they have more capacity; this should be offered as one option among several, not implied as the "right" next step.
 
-**Milestone:** "She Finished" badge and reassessment-based "Growth Visible" badge both fire this week.
+**Milestone:** "Journey Complete" badge and reassessment-based "Growth Visible" badge both fire this week.
 
 **Participant actions this week:**
 - Retake the 64-question assessment.
 - Review their before/after wheel comparison.
-- Complete their 6th weekly check-in (unlocks the "Honest With Herself" badge if all 6 are done).
+- Complete their 8th weekly check-in (unlocks the "Honest Reflection" badge if all 8 are done).
 - Opt in/out of providing a testimonial and having their (anonymised) wheel data included in the sponsor impact report.

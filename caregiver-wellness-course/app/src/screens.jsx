@@ -94,7 +94,7 @@ export function Report({ scores, onSignUp }) {
         {highest.map(w=><div key={w} style={{display:"flex",alignItems:"center",gap:10,marginBottom:8}}><Icon name={WEDGE_CONFIG[w].icon} size={19} color={WEDGE_CONFIG[w].color}/><strong style={{fontFamily:"Literata,Georgia,serif",color:"#2a2a2a"}}>{w}</strong><span style={{color:"#aaa",fontSize:13}}>· {scores[w]}%</span></div>)}
       </div>
       <button onClick={onSignUp} style={{width:"100%",padding:"16px",background:"#3C6B4A",color:"white",border:"none",borderRadius:999,fontSize:16,fontWeight:700,cursor:"pointer",fontFamily:"Raleway,sans-serif",transition:"background 180ms"}}>
-        Start My 6-Week Wellness Plan →
+        Start My 8-Week Wellness Plan →
       </button>
     </div>
   );
@@ -111,7 +111,7 @@ export function SignUp({ scores, onStart }) {
       <div style={{textAlign:"center",marginBottom:28}}>
         <div style={{display:"flex",justifyContent:"center",marginBottom:12}}><Icon name="mark" size={40} color="#3C6B4A"/></div>
         <h2 style={{fontFamily:"Literata,Georgia,serif",fontSize:25,color:"#2a2a2a",marginBottom:8}}>Build Your Plan</h2>
-        <p style={{color:"#777",fontSize:14,lineHeight:1.7,maxWidth:400,margin:"0 auto"}}>3 activities per week for 6 weeks. Earn points, build streaks, unlock badges as you go.</p>
+        <p style={{color:"#777",fontSize:14,lineHeight:1.7,maxWidth:400,margin:"0 auto"}}>3 activities per week for 8 weeks. Earn points, build streaks, unlock badges as you go.</p>
       </div>
       <div style={{background:"white",borderRadius:14,padding:"24px",border:"1px solid #eee",marginBottom:20}}>
         <label style={{display:"block",fontSize:13,fontWeight:700,color:"#555",marginBottom:6,fontFamily:"Literata,Georgia,serif"}}>Your first name</label>
@@ -158,7 +158,7 @@ export function GamifiedPlan({ scores: initialScores, userName, focusAreas, init
   const [scores,setScores]=useState(init.scores ?? initialScores);
 
   // Build plan: 3 activities per week per focus area (trimmed to exactly 3/week total across focus areas)
-  const plan = Array.from({length:6},(_,wi)=>{
+  const plan = Array.from({length:8},(_,wi)=>{
     const week=wi+1;
     const acts=[];
     focusAreas.forEach((wedge,fi)=>{
@@ -206,8 +206,8 @@ export function GamifiedPlan({ scores: initialScores, userName, focusAreas, init
       if(wplan?.activities.every(a=>nc[a.id])){
         np+=25;
         if(currentWeek===1) awardBadge("week1");
-        if(currentWeek===3) awardBadge("halfway");
-        if(currentWeek===6) awardBadge("finisher");
+        if(currentWeek===4) awardBadge("halfway");
+        if(currentWeek===8) awardBadge("finisher");
       }
 
       // all wedges
@@ -237,7 +237,7 @@ export function GamifiedPlan({ scores: initialScores, userName, focusAreas, init
   function submitCheckIn(week, mood, note) {
     const nci={...checkIns,[week]:{mood,note,date:new Date().toLocaleDateString()}};
     setCheckIns(nci);
-    if(Object.keys(nci).length>=6) awardBadge("check_in6");
+    if(Object.keys(nci).length>=8) awardBadge("check_in8");
     setShowCheckIn(false);
   }
 
@@ -253,7 +253,7 @@ export function GamifiedPlan({ scores: initialScores, userName, focusAreas, init
   if(reassessMode) return (
     <div style={{maxWidth:680,margin:"0 auto",padding:"16px"}}>
       <div style={{textAlign:"center",padding:"20px",background:"#3C6B4A",borderRadius:16,color:"white",marginBottom:20}}>
-        <h2 style={{fontFamily:"Literata,Georgia,serif",margin:0,fontSize:20}}>6-Week Reassessment</h2>
+        <h2 style={{fontFamily:"Literata,Georgia,serif",margin:0,fontSize:20}}>8-Week Reassessment</h2>
         <p style={{margin:"8px 0 0",fontSize:13,opacity:0.9}}>Same 64 questions. See how far you've come.</p>
       </div>
       <Assessment onComplete={handleReassessComplete}/>
@@ -293,7 +293,7 @@ export function GamifiedPlan({ scores: initialScores, userName, focusAreas, init
         {/* Progress bar */}
         <div>
           <div style={{display:"flex",justifyContent:"space-between",fontSize:11,opacity:0.85,marginBottom:3}}>
-            <span>6-Week Journey</span><span>{progressPct}% complete</span>
+            <span>8-Week Journey</span><span>{progressPct}% complete</span>
           </div>
           <div style={{background:"rgba(255,255,255,0.3)",borderRadius:99,height:6}}>
             <div style={{width:`${progressPct}%`,background:"rgba(255,255,255,0.9)",height:"100%",borderRadius:99,transition:"width 0.5s"}}/>
@@ -303,7 +303,7 @@ export function GamifiedPlan({ scores: initialScores, userName, focusAreas, init
 
       {/* Tabs */}
       <div style={{display:"flex",gap:6,marginBottom:20,overflowX:"auto",paddingBottom:4}}>
-        {[["plan","document","Plan"],["bonus","sparkle","Bonus"],["checkin","document","Check-in"],["buddy","partnership","Buddy"],["badges","medal","Badges"],["wheel","target","Wheel"],[reassessScores?"compare":"reassess","chart",reassessScores?"Compare":"Week 6"]].map(([t,icon,label])=>(
+        {[["plan","document","Plan"],["bonus","sparkle","Bonus"],["checkin","document","Check-in"],["buddy","partnership","Buddy"],["badges","medal","Badges"],["wheel","target","Wheel"],[reassessScores?"compare":"reassess","chart",reassessScores?"Compare":"Week 8"]].map(([t,icon,label])=>(
           <button key={t} onClick={()=>t==="reassess"?setReassessMode(true):setTab(t)} style={{flexShrink:0,padding:"8px 14px",borderRadius:999,border:"1.5px solid",borderColor:tab===t?"#3C6B4A":"#e8e8e8",background:tab===t?"#E8F0EA":"white",color:tab===t?"#3C6B4A":"#888",fontWeight:700,cursor:"pointer",fontFamily:"Raleway,sans-serif",fontSize:12,transition:"all 180ms",display:"inline-flex",alignItems:"center",gap:6}}>
             <Icon name={icon} size={14}/>{label}
           </button>
@@ -314,7 +314,7 @@ export function GamifiedPlan({ scores: initialScores, userName, focusAreas, init
       {tab==="plan" && (
         <div>
           <div style={{display:"flex",gap:8,marginBottom:20,overflowX:"auto",paddingBottom:4}}>
-            {[1,2,3,4,5,6].map(w=>{
+            {[1,2,3,4,5,6,7,8].map(w=>{
               const wp=plan.find(p=>p.week===w);
               const wDone=wp?.activities.filter(a=>completed[a.id]).length??0;
               const wTotal=wp?.activities.length??0;
@@ -362,7 +362,7 @@ export function GamifiedPlan({ scores: initialScores, userName, focusAreas, init
         <div>
           <div style={{background:"#F7EDE6",borderRadius:12,padding:"14px 16px",marginBottom:20,border:"1px solid #EEDCCB"}}>
             <div style={{fontSize:13,fontWeight:700,color:"#A85D39",marginBottom:4,fontFamily:"Literata,Georgia,serif",display:"flex",alignItems:"center",gap:6}}><Icon name="sparkle" size={15} color="#A85D39"/> Bonus Challenges</div>
-            <p style={{fontSize:13,color:"#888",margin:0,lineHeight:1.6}}>Optional harder activities worth 40–50 pts each. Complete them any time during your 6 weeks.</p>
+            <p style={{fontSize:13,color:"#888",margin:0,lineHeight:1.6}}>Optional harder activities worth 40–50 pts each. Complete them any time during your 8 weeks.</p>
           </div>
           {BONUS_CHALLENGES.map(bc=>{
             const cfg=WEDGE_CONFIG[bc.wedge], done=bonusDone[bc.id];
@@ -390,7 +390,7 @@ export function GamifiedPlan({ scores: initialScores, userName, focusAreas, init
             <div style={{fontSize:13,fontWeight:700,color:"#7B9E87",marginBottom:4,fontFamily:"Literata,Georgia,serif",display:"flex",alignItems:"center",gap:6}}><Icon name="document" size={15} color="#7B9E87"/> Weekly Check-ins</div>
             <p style={{fontSize:13,color:"#777",margin:0,lineHeight:1.6}}>One quick check-in per week. Mood + an optional note. Complete 6 to earn the Honest Reflection badge.</p>
           </div>
-          {[1,2,3,4,5,6].map(w=>{
+          {[1,2,3,4,5,6,7,8].map(w=>{
             const ci=checkIns[w];
             return <div key={w} style={{background:"white",borderRadius:12,padding:"16px",marginBottom:10,border:`1.5px solid ${ci?"#7B9E87":"#e8e8e8"}`}}>
               <div style={{display:"flex",justifyContent:"space-between",alignItems:"center"}}>
@@ -449,7 +449,7 @@ export function GamifiedPlan({ scores: initialScores, userName, focusAreas, init
           </div>
           <div style={{background:"white",borderRadius:14,padding:"20px",border:"1px solid #eee"}}>
             <h3 style={{fontFamily:"Literata,Georgia,serif",fontSize:15,color:"#2a2a2a",marginBottom:12,display:"flex",alignItems:"center",gap:8}}><Icon name="target" size={17} color="#3C6B4A"/> Point guide</h3>
-            {[["Complete an activity","10–22 pts"],["Full week complete","+25 bonus pts"],["Bonus challenge","40–50 pts"],["3-day streak","Streak badge"],["7-day streak","Unstoppable badge"],["Invite an accountability partner","Better Together badge"],["Complete 6 check-ins","Honest Reflection badge"],["Complete 6-week reassessment","Growth Visible badge"]].map(([a,r])=>(
+            {[["Complete an activity","10–26 pts"],["Full week complete","+25 bonus pts"],["Bonus challenge","40–50 pts"],["3-day streak","Streak badge"],["7-day streak","Unstoppable badge"],["Invite an accountability partner","Better Together badge"],["Complete 8 check-ins","Honest Reflection badge"],["Complete 8-week reassessment","Growth Visible badge"]].map(([a,r])=>(
               <div key={a} style={{display:"flex",justifyContent:"space-between",paddingBottom:8,marginBottom:8,borderBottom:"1px solid #f0f0f0",fontSize:13}}>
                 <span style={{color:"#444"}}>{a}</span><span style={{fontWeight:700,color:"#4A7C59"}}>{r}</span>
               </div>
@@ -461,7 +461,7 @@ export function GamifiedPlan({ scores: initialScores, userName, focusAreas, init
       {/* ── WHEEL TAB ── */}
       {tab==="wheel" && (
         <div>
-          <p style={{fontSize:14,color:"#888",marginBottom:16,lineHeight:1.6}}>Your baseline assessment. Come back after 6 weeks to compare.</p>
+          <p style={{fontSize:14,color:"#888",marginBottom:16,lineHeight:1.6}}>Your baseline assessment. Come back after 8 weeks to compare.</p>
           <div style={{display:"flex",justifyContent:"center",marginBottom:24}}><div style={{width:300}}><WellnessWheelSVG scores={scores}/></div></div>
           <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:10}}>
             {WEDGES.map(w=>{const cfg=WEDGE_CONFIG[w],sc=scores[w],lv=getLevel(sc),active=focusAreas.includes(w);return(
@@ -477,7 +477,7 @@ export function GamifiedPlan({ scores: initialScores, userName, focusAreas, init
             );})}
           </div>
           {!reassessScores&&<button onClick={()=>setReassessMode(true)} style={{width:"100%",marginTop:24,padding:"14px",background:"#3C6B4A",color:"white",border:"none",borderRadius:999,fontSize:14,fontWeight:700,cursor:"pointer",fontFamily:"Raleway,sans-serif",display:"flex",alignItems:"center",justifyContent:"center",gap:8}}>
-            <Icon name="chart" size={16}/> Take the 6-Week Reassessment
+            <Icon name="chart" size={16}/> Take the 8-Week Reassessment
           </button>}
         </div>
       )}
@@ -487,11 +487,11 @@ export function GamifiedPlan({ scores: initialScores, userName, focusAreas, init
         <div>
           <div style={{textAlign:"center",marginBottom:24}}>
             <h2 style={{fontFamily:"Literata,Georgia,serif",fontSize:22,color:"#2a2a2a",marginBottom:8,display:"flex",alignItems:"center",justifyContent:"center",gap:8}}><Icon name="chart" size={22} color="#3C6B4A"/> Before &amp; After</h2>
-            <p style={{fontSize:14,color:"#777"}}>Six weeks of real effort, made visible.</p>
+            <p style={{fontSize:14,color:"#777"}}>Eight weeks of real effort, made visible.</p>
           </div>
           <div style={{display:"flex",gap:16,justifyContent:"center",marginBottom:28,flexWrap:"wrap"}}>
             <div style={{textAlign:"center"}}><div style={{fontSize:13,color:"#aaa",marginBottom:8,fontFamily:"Raleway,sans-serif"}}>Week 1 Baseline</div><WellnessWheelSVG scores={scores} size={240}/></div>
-            <div style={{textAlign:"center"}}><div style={{fontSize:13,color:"#3C6B4A",marginBottom:8,fontFamily:"Raleway,sans-serif",fontWeight:700}}>Week 6 Reassessment</div><WellnessWheelSVG scores={reassessScores} size={240}/></div>
+            <div style={{textAlign:"center"}}><div style={{fontSize:13,color:"#3C6B4A",marginBottom:8,fontFamily:"Raleway,sans-serif",fontWeight:700}}>Week 8 Reassessment</div><WellnessWheelSVG scores={reassessScores} size={240}/></div>
           </div>
           <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:10}}>
             {WEDGES.map(w=>{
@@ -553,9 +553,9 @@ export function Landing({ onStart }) {
     <div style={{maxWidth:560,margin:"0 auto",padding:"32px 16px",textAlign:"center"}}>
       <div style={{display:"flex",justifyContent:"center",marginBottom:20}}><WellnessWheelSVG/></div>
       <h1 style={{fontFamily:"Literata,Georgia,serif",fontSize:28,color:"#2a2a2a",marginBottom:10,lineHeight:1.3}}>Your Caregiver Wellness Wheel</h1>
-      <p style={{color:"#666",fontSize:15,lineHeight:1.7,marginBottom:28,maxWidth:420,margin:"0 auto 28px"}}>Built for family caregivers of someone with a rare disease. Eight dimensions of wellbeing. A 64-question assessment, a personalised report, and a gamified 6-week plan built around your actual life, not someone else's.</p>
+      <p style={{color:"#666",fontSize:15,lineHeight:1.7,marginBottom:28,maxWidth:420,margin:"0 auto 28px"}}>Built for family caregivers of someone with a rare disease. Eight dimensions of wellbeing. A 64-question assessment, a personalised report, and a gamified 8-week plan built around your actual life, not someone else's.</p>
       <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:12,marginBottom:28,textAlign:"left"}}>
-        {[["document","64-question assessment","8 questions across all 8 dimensions"],["chart","Personalised report","Scores, strengths, and focus areas"],["target","6-week plan","3 activities per week, your focus areas"],["medal","Points, badges & levels","Gamified progress that keeps you going"],["partnership","Accountability partner","Invite someone to keep you on track"],["moon","Weekly check-ins","Track your mood alongside your actions"],["sparkle","Bonus challenges","Optional harder activities, more points"],["chart","Before & after comparison","Reassess at week 6 to see your growth"]].map(([icon,title,desc],i)=>(
+        {[["document","64-question assessment","8 questions across all 8 dimensions"],["chart","Personalised report","Scores, strengths, and focus areas"],["target","8-week plan","3 activities per week, your focus areas"],["medal","Points, badges & levels","Gamified progress that keeps you going"],["partnership","Accountability partner","Invite someone to keep you on track"],["moon","Weekly check-ins","Track your mood alongside your actions"],["sparkle","Bonus challenges","Optional harder activities, more points"],["chart","Before & after comparison","Reassess at week 8 to see your growth"]].map(([icon,title,desc],i)=>(
           <div key={i} style={{background:"white",borderRadius:12,padding:"14px",border:"1px solid #eee"}}>
             <div style={{marginBottom:8,color:"#3C6B4A"}}><Icon name={icon} size={22}/></div>
             <div style={{fontWeight:700,fontSize:13,fontFamily:"Literata,Georgia,serif",color:"#2a2a2a",marginBottom:3}}>{title}</div>
