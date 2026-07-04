@@ -10,7 +10,7 @@ A standalone, zero-build marketing site. Open `index.html` directly in a browser
 | `sponsors.html` | Industry/partner pitch page: how sponsorship works, tiers, impact reporting, enquiry form |
 | `apply.html` | Application for a no-cost sponsored/scholarship spot |
 | `supporters.html` | Public acknowledgment page (honestly empty pre-launch, ready to populate after the first cohort) |
-| `assessment.html` | The live Wellness Wheel app (assessment → report → 6-week gamified plan) |
+| `app/` | The built Wellness Wheel app (assessment → report → 6-week gamified plan) — see below |
 
 ## Design system
 
@@ -32,30 +32,21 @@ No Tailwind CDN: hand-written CSS keeps the site fast and dependency-light, sinc
 python3 assets/inject-icons.py
 ```
 
-## The assessment page
+## The Wellness Wheel app
 
-`assessment.html` runs the Wellness Wheel as a classic, zero-build React setup: React 18 UMD + Babel standalone from a CDN, transforming `assets/wellness-wheel.browser.jsx` in the browser at load time.
+The Wellness Wheel is a real Vite + React 19 app, developed at `../app/` (its own `package.json`, source in `../app/src/`) and built into `app/` in this folder so the marketing site can link straight to it with no separate deploy target.
 
-`assets/wellness-wheel.browser.jsx` is a **generated adaptation** of `../wellness-wheel.jsx` (the canonical source), not a fork to edit separately. The only two changes:
-- `import { useState, useEffect, useRef } from "react";` → `const { useState, useEffect, useRef } = React;`
-- `export default function App()` → `function App()`
-
-This is needed because classic `<script type="text/babel">` tags share one global scope and don't support ES module `import`/`export`; that's what lets the page run with no build step at all.
-
-**If you edit `../wellness-wheel.jsx`, regenerate this file** with the same two substitutions:
+`../app/vite.config.js` sets `outDir: '../website/app'`, so:
 
 ```bash
-python3 -c "
-src = open('../wellness-wheel.jsx').read()
-out = src.replace(
-    'import { useState, useEffect, useRef } from \"react\";',
-    'const { useState, useEffect, useRef } = React;'
-).replace('export default function App()', 'function App()')
-open('assets/wellness-wheel.browser.jsx', 'w').write(out)
-"
+cd ../app
+npm install    # first time only
+npm run build
 ```
 
-**Before a real cohort launches:** replace the CDN/Babel-standalone setup with a proper Vite or CRA build (better load performance, and the auth/persistence work described in the architecture doc's §4.2 rebuild note needs a real bundler anyway).
+...regenerates everything under `website/app/` from source. Don't hand-edit files inside `website/app/` — they're build output and will be overwritten.
+
+**Persistence:** progress (assessment scores, points, badges, streaks, check-ins) is saved to the browser's local storage automatically, so a caregiver's plan survives a reload with no account needed. If a real Supabase project is connected (`../app/.env.example` documents `VITE_SUPABASE_URL` / `VITE_SUPABASE_ANON_KEY`, and `../app/supabase/schema.sql` has the table + RLS policy), the same data also syncs to their account. Local storage is always the fallback, so the app is fully functional with zero backend configured.
 
 ## Forms are front-end only
 
@@ -63,4 +54,4 @@ The waitlist, sponsor enquiry, and application forms all show a real success sta
 
 ## Verified
 
-All 5 pages were checked in a real browser (Playwright + Chromium) for: page load, console errors, mobile responsiveness (390px viewport, nav toggle), and the assessment app's full click-through (landing → assessment question). Google Fonts and the CDN React/Babel scripts require normal internet access; they're expected to fail in network-restricted environments but degrade gracefully (system font fallback) rather than breaking the page.
+All 5 marketing pages, plus the built app at `app/`, were checked in a real browser (Playwright + Chromium): page load, console errors, mobile responsiveness (390px viewport, nav toggle), and the app's full click-through (landing → 64-question assessment → report → sign-up → gamified 6-week plan → badge unlock), including a page-reload test confirming progress survives via the local-storage fallback. Google Fonts requires normal internet access; it's expected to fail in network-restricted environments but degrades gracefully (system font fallback) rather than breaking the page.
