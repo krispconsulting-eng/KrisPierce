@@ -9,7 +9,7 @@ A standalone, zero-build marketing site. Open `index.html` directly in a browser
 | `index.html` | Main landing page for caregivers: hero, problem/reframe, 8-week overview, three ways to join, waitlist, FAQ |
 | `sponsors.html` | Industry/partner pitch page: how sponsorship works, tiers, impact reporting, enquiry form |
 | `apply.html` | Application for a no-cost sponsored/scholarship spot |
-| `supporters.html` | Public acknowledgment page (honestly empty pre-launch, ready to populate after the first cohort) |
+| `supporters.html` | Public acknowledgment page (honestly empty pre-launch, ready to populate as the first sponsored participants complete) |
 | `app/` | The built Wellness Wheel app (assessment → report → 8-week gamified plan) — see below |
 
 ## Design system

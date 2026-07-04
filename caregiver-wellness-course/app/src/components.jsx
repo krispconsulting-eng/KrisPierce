@@ -1,3 +1,4 @@
+import { useState, useEffect, useRef } from "react";
 import { Icon } from "./icons";
 import { WEDGES, WEDGE_CONFIG, BADGES } from "./data";
 
@@ -18,10 +19,40 @@ function sector(cx, cy, r0, r1, a0, a1) {
   return `M${x0} ${y0} A${r1} ${r1} 0 ${laf} 1 ${x1} ${y1} L${x2} ${y2} A${r0} ${r0} 0 ${laf} 0 ${x3} ${y3} Z`;
 }
 
+// Wedges grow outward from the hub to their score depth when the wheel
+// appears, one after another around the circle. Purely presentational, not
+// interactive; collapses to a static render under prefers-reduced-motion.
+const WEDGE_STAGGER = 90;   // ms between each wedge starting
+const WEDGE_GROW = 700;     // ms each wedge takes to reach its depth
+function easeOutCubic(t) { return 1 - Math.pow(1 - t, 3); }
+
+function useWheelAnimation(active) {
+  const [elapsed, setElapsed] = useState(0);
+  const raf = useRef(null);
+  useEffect(() => {
+    if (!active) return;
+    const reduced = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
+    const total = WEDGE_STAGGER * 7 + WEDGE_GROW;
+    if (reduced) { setElapsed(total); return; }
+    const start = performance.now();
+    const tick = (now) => {
+      const t = now - start;
+      setElapsed(t);
+      if (t < total) raf.current = requestAnimationFrame(tick);
+    };
+    raf.current = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf.current);
+  }, [active]);
+  // per-wedge progress 0..1, staggered around the circle
+  return (i) => easeOutCubic(Math.min(1, Math.max(0, (elapsed - i * WEDGE_STAGGER) / WEDGE_GROW)));
+}
+
 export function WellnessWheelSVG({ scores = {}, size = 300, showRings = true, showLabels = true }) {
   const cx = 220, cy = 220, r0 = 60, R = 172, pad = 1.6, seg = 45;
   const hasScores = WEDGES.some(w => (scores[w] ?? 0) > 0);
   const avg = Math.round(WEDGES.reduce((s, w) => s + (scores[w] ?? 0), 0) / 8);
+  const progress = useWheelAnimation(hasScores);
+  const overallProgress = progress(3.5); // hub counts up on the mid-sweep timing
 
   return (
     <svg viewBox="-40 0 520 440" width="100%" style={{ maxWidth: size, display: "block" }}>
@@ -31,7 +62,7 @@ export function WellnessWheelSVG({ scores = {}, size = 300, showRings = true, sh
       {WEDGES.map((wedge, i) => {
         const a0 = i * seg + pad, a1 = (i + 1) * seg - pad;
         const cfg = WEDGE_CONFIG[wedge];
-        const score = scores[wedge] ?? 0;
+        const score = (scores[wedge] ?? 0) * progress(i);
         const rr = r0 + (R - r0) * score / 100;
         const [lx, ly] = polar(cx, cy, R + 24, i * seg + seg / 2);
         return (
@@ -47,7 +78,7 @@ export function WellnessWheelSVG({ scores = {}, size = 300, showRings = true, sh
       <circle cx={cx} cy={cy} r={r0 - 6} fill="#fff" stroke="rgba(32,48,58,.1)" />
       {hasScores ? (
         <>
-          <text x={cx} y={cy - 2} textAnchor="middle" style={{ font: "300 32px Newsreader,serif", fill: "#20303A" }}>{avg}%</text>
+          <text x={cx} y={cy - 2} textAnchor="middle" style={{ font: "300 32px Newsreader,serif", fill: "#20303A" }}>{Math.round(avg * overallProgress)}%</text>
           <text x={cx} y={cy + 18} textAnchor="middle" style={{ font: "600 8.5px Hanken Grotesk,sans-serif", letterSpacing: ".16em", fill: "#8593a0" }}>BALANCE</text>
         </>
       ) : (

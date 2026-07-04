@@ -14,7 +14,7 @@ The 8-week digital wellbeing course for family caregivers of people with rare di
 - The Wellness Wheel app, now a real Vite + React 19 build (`app/`) — 64-question assessment across 8 dimensions, personalised report, 8-week gamified plan (points, streaks, 12 badges), weekly check-ins, accountability partner invite, and a before/after reassessment comparison. Progress persists automatically to local storage (survives a reload, no account needed), with an optional Supabase adapter for real accounts + cross-device sync once a project is connected (see `app/.env.example` and `app/supabase/schema.sql`).
 - A standalone, zero-build marketing website (`website/`): landing page, sponsor pitch page, scholarship application, public supporters page, all linking to the built Wellness Wheel app. Verified end-to-end in-browser (desktop + mobile, full assessment → report → sign-up → gamified plan → badge unlock click-through, plus a reload-persistence check), no console errors. See `website/README.md` for details.
 
-**Still needed before a real cohort can run:**
+**Still needed before real participants can run:**
 1. Connect a real Supabase project (env vars + running the `app/supabase/schema.sql` migration) so accounts and persistence work across devices — the code path exists and degrades gracefully to local storage until then.
 2. Real email sending for the accountability-partner invite (currently UI-only).
 3. The 8 weekly curriculum modules written in full (scripts/video/audio) against the scaffold in `COURSE-CONTENT-OUTLINE.md`.

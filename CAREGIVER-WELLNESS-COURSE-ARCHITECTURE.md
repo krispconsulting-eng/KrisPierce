@@ -6,9 +6,11 @@
 
 ## 0. What changed this round
 
+- **The cohort model is removed (2026-07-04).** The course is now fully self-directed and start-anytime: each caregiver's 8 weeks begin the day they enroll, done on their phone or computer (phone preferred). No fixed rounds, no weekly live group session. The aim is unchanged and sharper: improve caregiver wellbeing by giving caregivers genuinely low-lift time for themselves.
+
 - The **Wellness Wheel is a real, working asset**, not a placeholder — now a proper Vite + React app (assessment → report → gamified plan → reassessment) with 8 dimensions, 64 questions, 192 weekly activities, a full points/badges/levels system, and a before/after comparison view. It's built for a genuine **8-week** plan: the earlier 6-week cut was a temporary match to what existed at the time, not a permanent scope decision, and weeks 7–8 now have real, caregiver-specific content rather than being force-fit.
 - The tool also gained real persistence: progress (scores, points, badges, streaks, check-ins) now survives a reload via local storage, with an optional Supabase adapter (magic-link auth + Postgres) ready to activate once a real project is connected.
-- The Wellness Wheel is **personalised per participant** (each person picks their own 2–3 lowest-scoring focus areas after the baseline assessment, and their weekly activities are generated from that). The course's **shared curriculum** (one theme per week, the live session, community discussion) is a separate layer that sits alongside it — see §4.2 for how the two connect.
+- The Wellness Wheel is **personalised per participant** (each person picks their own 2–3 lowest-scoring focus areas after the baseline assessment, and their weekly activities are generated from that). The course's **weekly curriculum** (one self-guided theme per week) is a separate layer that sits alongside it — see §4.2 for how the two connect.
 - Content sourcing: the **NAC/Global Genes Circle of Care Guidebook** (89-page reference on caregiving for children with rare/serious illness) is now the primary research base for weekly teaching content — see §4.4 and the **IP note** below.
 - Voice/tone rules (below) are adopted from separate brand-voice work you'd done, because they're genuinely good caregiver-audience writing rules independent of which venture they were drafted for.
 
@@ -58,7 +60,7 @@ $200/seat is right for a sponsor but too high for an individual paying themselve
 
 ### 3.2 Why $200 sponsor / $97 self-pay works as fundraising
 
-Content is built once and reused every cohort, so marginal delivery cost per seat is low (hosting, admin, a slice of facilitator time). The **spread between the $200 sponsor price and actual delivery cost** is what funds:
+Content is built once and reused by every participant, so marginal delivery cost per seat is very low (hosting and admin; no per-round facilitator time in the self-directed model). The **spread between the $200 sponsor price and actual delivery cost** is what funds:
 - Scholarship-pool seats for caregivers who can't pay $97 either,
 - Course upkeep/iteration,
 - Your margin.
@@ -70,18 +72,18 @@ Self-pay at $97 isn't meant to be the main revenue engine — it's the low-frict
 | Tier | Commitment | What sponsor gets |
 |---|---|---|
 | **Supporter** | 1–9 seats, one-off | Named on the public Supporters page (opt-in), a seat-completion confirmation. |
-| **Champion** | 10+ seats, one-off or annual (e.g. "10 spots a year") | Above + an **impact report** per cohort they fund (see 3.4), logo on the Supporters page. |
-| **Founding Partner** | 25+ seats/year, ongoing | Above + first right to co-brand a cohort round, priority reporting cadence. |
+| **Champion** | 10+ seats, one-off or annual (e.g. "10 spots a year") | Above + an **impact report** on the seats they fund (see 3.4), logo on the Supporters page. |
+| **Founding Partner** | 25+ seats/year, ongoing | Above + first right to co-brand an enrollment round, priority reporting cadence. |
 
-Volume discounting is a later lever, not a launch requirement — keep $200/seat flat at first so the pitch stays a one-line quote ("$200 sponsors one caregiver through the full 8 weeks"). Revisit tiers once you have a few cohorts of data.
+Volume discounting is a later lever, not a launch requirement — keep $200/seat flat at first so the pitch stays a one-line quote ("$200 sponsors one caregiver through the full 8 weeks"). Revisit tiers once you have real completion data.
 
 ### 3.4 Impact reporting (the sponsor deliverable)
 
-For every sponsor, after their cohort(s) complete, auto-assemble a report containing:
+For every sponsor, as the participants they fund complete their 8 weeks, auto-assemble a report containing:
 - **Wellness wheel delta** — aggregate, anonymised before/after scores across the 8 dimensions (this is a native feature of the built tool — see §4.2).
 - **Completion & engagement rate** for the seats they funded.
 - **Opt-in testimonials/quotes** from caregivers (collected via a short end-of-course prompt).
-- **Public acknowledgment** — sponsor logo + seat count on a "Our Supporters" page on your website, refreshed per cohort.
+- **Public acknowledgment** — sponsor logo + seat count on a "Our Supporters" page on your website, refreshed as results accumulate.
 
 This report is a natural n8n job (pull Notion data → assemble via a doc/deck tool → deliver) — see §8.
 
@@ -91,16 +93,16 @@ This report is a natural n8n job (pull Notion data → assemble via a doc/deck t
 
 ### 4.1 Structure
 
-- **8 fixed-cohort weeks.** Everyone sponsored/enrolled into a given round starts and moves together — enables a shared community and a clean "Q3 cohort" unit to sell.
-- **One live group session per week**, alongside async content. Host TBD (you, or a trained facilitator later) — architecture treats "Session Host" as a swappable role, not hardcoded to you, so this doesn't block launch.
-- Each week has a **shared curriculum theme** (video/audio + reflection prompt, same for the whole cohort, discussed in that week's live session) — see §4.4 for the theme mapping.
+- **8 self-paced weeks, start any day.** Each participant's week 1 begins the day they enroll; their weekly rhythm is theirs alone. No fixed rounds and no live group sessions — the course must be doable at 11pm on a hospital chair, on a phone.
+- **Fully self-directed delivery.** Weekly themes ship as short recorded pieces (audio/video + a reflection prompt) the participant opens whenever it suits them. No facilitator is required to run a week, which is also what makes the unit economics work.
+- Each week has a **curriculum theme** (see §4.4 for the theme mapping) alongside the personalised activity plan from the Wellness Wheel.
 
 ### 4.2 The Wellness Wheel: how it plugs into the 8-week structure
 
 The Wellness Wheel is a self-contained Vite + React app covering the full arc: assessment → personalised report → sign-up → 8-week gamified plan → reassessment → before/after comparison. It runs two layers at once:
 
-1. **Shared layer (the course):** everyone in a cohort gets the same weekly theme, same live session, same community conversation — see §4.4.
-2. **Personalised layer (the tool):** at intake, each participant takes the 64-question assessment (8 questions × 8 dimensions: Social, Occupational, Environmental, Intellectual, Spiritual, Emotional, Physical, Financial), gets a scored wheel + report, then picks their own 2–3 lowest-scoring focus areas. Their week-by-week activity plan (3 activities/week, drawn from `ACTIVITIES[dimension][week]`) is generated from those focus areas — so two people in the same cohort, same week, may be working on different dimensions day to day, even while the shared curriculum theme is the same for everyone.
+1. **Curriculum layer (the course):** every participant gets the same weekly theme content, worked through in their own time — see §4.4.
+2. **Personalised layer (the tool):** at intake, each participant takes the 64-question assessment (8 questions × 8 dimensions: Social, Occupational, Environmental, Intellectual, Spiritual, Emotional, Physical, Financial), gets a scored wheel + report, then picks their own 2–3 lowest-scoring focus areas. Their week-by-week activity plan (3 activities/week, drawn from `ACTIVITIES[dimension][week]`) is generated from those focus areas — so two people in the same week number may be working on different dimensions day to day, even while the curriculum theme for that week is the same.
 
 Timing:
 - **Week 1:** baseline assessment (also the sponsor impact-report starting data point).
@@ -128,7 +130,7 @@ A first-draft structure, sourced from the NAC/Global Genes Guidebook's *Self-Car
 
 | Week | Theme | Wheel dimensions | Guidebook grounding |
 |---|---|---|---|
-| **1 — Orientation** | Welcome, the reality of an invisible workload, baseline assessment, meet your cohort | Sets up all 8 | *Self-Care for the Caregiver* intro; the "worse health than 2015" AARP/NAC stat |
+| **1 — Orientation** | Welcome, the reality of an invisible workload, baseline assessment | Sets up all 8 | *Self-Care for the Caregiver* intro; the "worse health than 2015" AARP/NAC stat |
 | **2 — Body & Space** | Physical health on no time; your home as a restorative (not just functional) base; respite basics | Physical, Environmental | *Physical Health* tips; *Respite* section |
 | **3 — Feeling It** | Naming grief, anticipatory grief, guilt, and isolation; anchoring spiritual practices | Emotional, Spiritual | *Emotional Health*; *Spiritual Health* (incl. the 94.7% spirituality-among-caregivers stat); *Bereavement and Grief Support* |
 | **4 — Money & Work** *(halfway)* | The real economic impact of caregiving; navigating assistance programs; work/career identity shifts | Financial, Occupational | *Economic Impact of Caregiving*; career-adaptation notes in *Self-Care* intro |
@@ -168,10 +170,10 @@ This is a scaffold for you to write the real scripts/modules against, not the mo
                         ▼                 ▼
           ┌───────────────────┐   ┌──────────────────────┐
           │  NOTION (CRM +     │   │  COMMUNITY SPACE       │
-          │  course content)   │   │  (per-cohort channel/   │
+          │  course content)   │   │  (optional community       │
           │  - Sponsors DB     │   │   group, weekly live    │
           │  - Participants DB │   │   session)              │
-          │  - Cohorts DB      │   └──────────────────────┘
+          │  - Cohorts DB (deprecated)      │   └──────────────────────┘
           │  - Enrollments DB  │
           │  - Wellness Wheel  │
           │    submissions     │
@@ -201,7 +203,7 @@ This is a scaffold for you to write the real scripts/modules against, not the mo
 4. Payment recorded → **Sponsors DB** entry created, **Money** entry logged (existing Notion system) →
 5. Seats allocated: either sponsor supplies names, or seats go to the **scholarship pool** →
 6. Sponsor added to public Supporters page (if opted in) →
-7. Impact report scheduled for post-cohort delivery.
+7. Impact reporting begins as their sponsored participants complete (see §8.1).
 
 ### 6.2 Caregiver onboarding — three entry paths converge to one flow
 1. **Self-pay:** checkout on website → payment confirmed.
@@ -209,10 +211,10 @@ This is a scaffold for you to write the real scripts/modules against, not the mo
 3. **Applied for scholarship:** submits application → reviewed → approved → allocated a pool seat.
 
 All three then:
-4. **Participants DB** entry created, linked to their **Enrollment** (which cohort, which path, which sponsor if any) →
+4. **Participants DB** entry created, linked to their **Enrollment** (entry path, sponsor if any, enrolled date — the date that anchors their 8 weeks) →
 5. Welcome sequence (email) →
 6. Account created in the Wellness Wheel app (Supabase) + **Week-1 baseline assessment** →
-7. Cohort start info + community invite sent ahead of Day 1.
+7. They start immediately: week 1 begins the day they enroll.
 
 ---
 
@@ -223,12 +225,12 @@ All three then:
 | Database | Key fields | Relations |
 |---|---|---|
 | **[Sponsors](https://app.notion.com/p/b4f23c8ce0c045c186e51c3f284cac68)** | Org name, contact, tier, total seats purchased, annual commitment (checkbox), public opt-in | ↔ Enrollments |
-| **[Cohorts](https://app.notion.com/p/9200d2124e67426f843482a61359bd30)** | Start date, end date, status, facilitator/host, seats total, seats filled | ↔ Enrollments. Seeded with a placeholder "Cohort 1 (Pilot)" row. |
+| **[Cohorts](https://app.notion.com/p/9200d2124e67426f843482a61359bd30)** | ⚠️ Deprecated with the move to self-directed delivery — kept only as an optional grouping label for enrollment rounds; nothing operational reads it any more. `Enrolled Date` on Enrollments is now the anchor for all timing. |
 | **[Participants](https://app.notion.com/p/48c6cd4d8ded4b4eb495d110909b2f41)** | Name, email, entry path (self-pay/sponsored-named/scholarship), testimonial + data-sharing consent flags | ↔ Enrollments, ↔ Wellness Wheel Submissions |
-| **[Enrollments](https://app.notion.com/p/437394770dc44d33970e349433d75384)** | Participant ↔ Cohort ↔ Sponsor (if any), payment status, completion status, badges earned, enrolled date, plus 5 convenience fields added for the automations in §8: `Participant Name`/`Participant Email`/`Cohort Start Date` (rollups, so n8n doesn't need extra lookups per row), `Sponsor Contact Email` (rollup), `Reassessment Invite Sent` (checkbox, prevents duplicate sends) | hub record — links everything |
+| **[Enrollments](https://app.notion.com/p/437394770dc44d33970e349433d75384)** | Participant ↔ Sponsor (if any), payment status, completion status, badges earned, **Enrolled Date (the anchor for each participant's own 8-week clock)**, plus convenience fields for the automations in §8: `Participant Name`/`Participant Email`/`Sponsor Contact Email` (rollups, so n8n doesn't need extra lookups per row), `Reassessment Invite Sent` (checkbox, prevents duplicate sends). The old Cohort relation and `Cohort Start Date` rollup remain but are no longer read. | hub record — links everything |
 | **[Wellness Wheel Submissions](https://app.notion.com/p/81d5e53cdf7d4707af1da562a3ee2b71)** | Participant, timepoint (week 1 baseline / week 8 reassessment), per-dimension scores (to be synced from the app via n8n — not yet built, see §8) | → Participants |
 
-Cohorts also gained `Report Sent` (checkbox) and `Impact Report Summary` (rich text) for the sponsor-report automation in §8.1.
+(Cohorts previously carried `Report Sent` / `Impact Report Summary` for the cohort-end report; superseded by the per-sponsor periodic report in §8.1.)
 
 This sits alongside, not inside, your existing Projects/Contacts/Money master databases — a deliberate call given this is Kris's own IP business rather than a consulting client, so it gets its own hub rather than living inside `🧩 Client Framework & CRM`. **Website form submissions now populate this** (§8); the Wellness Wheel app still doesn't sync its own submissions here (needs the app to emit events, not yet built).
 
@@ -246,37 +248,37 @@ This sits alongside, not inside, your existing Projects/Contacts/Money master da
 | Stripe checkout completes (self-pay) | Create Participant + Enrollment → send welcome email → provision Wellness Wheel account |
 | Sponsor redemption link used | Same as above, tagged to that sponsor |
 | Scholarship application submitted | Notify you for review → on approval, create Enrollment (currently just creates the Participant record; approval routing not yet built) |
-| Cohort start date reached | Release week 1 curriculum content (unlock Notion page/view) + send community invite + prompt baseline assessment |
-| Each subsequent week (7 more times) | Release that week's curriculum content + reminder + live session calendar detail |
+| Enrollment created | Prompt baseline assessment + welcome email; week 1 starts immediately |
+| Each week of a participant's own 8 weeks | Their weekly theme + reminder, timed off their Enrolled Date (see §8.1) |
 | Wellness Wheel: activity/badge/week completed | Sync progress into the Enrollment record; trigger badge-earned email on milestones. Not yet built — the app doesn't emit any event today (local storage / Supabase only). |
 | Wellness Wheel: baseline or reassessment submitted | Write scores to Wellness Wheel Submissions → (at week 8) compute delta. Not yet built, same reason. |
-| ✅ Weekly (every Monday) | Send every actively-enrolled caregiver a check-in email referencing their actual current week's curriculum theme — **built**, see below |
-| ✅ Weekly (every Monday) | Invite anyone who's reached week 8 to retake the Wellness Wheel, once, then mark it sent — **built**, see below |
-| ✅ Cohort end date reached | Assemble sponsor impact report (aggregate + anonymised wellness-wheel delta, completion rate) → email to that cohort's sponsors → mark cohort Completed — **built**, see below. Public Supporters page update and completion certificates are not yet part of this. |
+| ✅ Weekly (every Monday) | Send every actively-enrolled caregiver a check-in email referencing their actual current week's curriculum theme, computed from their own Enrolled Date — **built**, see below |
+| ✅ Weekly (every Monday) | Invite anyone who's reached week 8 (from their Enrolled Date) to retake the Wellness Wheel, once, then mark it sent — **built**, see below |
+| ✅ Monthly | Assemble each sponsor's impact report (aggregate + anonymised wellness-wheel delta, completion rate across all their funded participants to date) → email to the sponsor — **built**, see below. Public Supporters page update and completion certificates are not yet part of this. |
 
 ### 8.1 Weekly automations (built)
 
 Two more n8n workflows, both on the **same weekly Monday 9am schedule** (deliberately weekly, not daily, so each participant gets exactly one email per week without needing a "was this sent" flag for the check-in one):
 
-- **[Caregiver Course - Weekly Check-in Email](https://scn2a-krispierce.app.n8n.cloud/workflow/EAJiUxr7PmcQmSAD)** — for every Enrollment with Completion Status "In Progress", computes their current week from `Cohort Start Date` (a rollup added to Enrollments) and sends a short, warm email referencing that week's actual curriculum theme (§4.4), not a generic blast.
+- **[Caregiver Course - Weekly Check-in Email](https://scn2a-krispierce.app.n8n.cloud/workflow/EAJiUxr7PmcQmSAD)** — for every Enrollment with Completion Status "In Progress", computes their current week from their own `Enrolled Date` (self-directed: everyone is on their own clock) and sends a short, warm email referencing that week's actual curriculum theme (§4.4), not a generic blast.
 - **[Caregiver Course - Week 8 Reassessment Invite](https://scn2a-krispierce.app.n8n.cloud/workflow/TjjnyLql1ujJ1f53)** — for every Enrollment that's reached week 8 and hasn't been invited yet (`Reassessment Invite Sent` checkbox, new on Enrollments), sends the retake-the-wheel invite and marks it sent so it never repeats.
-- **[Caregiver Course - Sponsor Impact Report](https://scn2a-krispierce.app.n8n.cloud/workflow/hzyoWVhFrH1Jjp8I)** — daily, checks for Active cohorts whose End Date has passed, pulls every enrolled participant's baseline and reassessment Wellness Wheel Submissions, computes an anonymised aggregate delta per dimension plus a completion rate, emails it to the cohort's sponsor contact(s) (`Sponsor Contact Email`, a rollup added to Enrollments), and marks the Cohort Completed + Report Sent with the summary saved on the Cohort record.
+- **[Caregiver Course - Sponsor Impact Report](https://scn2a-krispierce.app.n8n.cloud/workflow/hzyoWVhFrH1Jjp8I)** — monthly, for each sponsor with completed funded participants: pulls those participants' baseline and reassessment Wellness Wheel Submissions, computes an anonymised aggregate delta per dimension plus a completion rate across everything they've funded to date, and emails it to the sponsor contact.
 
 **Two things need to happen before these can actually send anything:**
 1. The same Notion-sharing step from above (all three read/write the CRM databases).
 2. **Connect a Gmail account to n8n.** None of the three has a real Gmail credential yet — in the n8n editor, open any of the three workflows, click the Gmail node, and sign in. All three share the same credential once connected.
 
-These three are **not yet activated** (left as drafts) on purpose: with zero real participants enrolled today, an active weekly/daily schedule would just fail silently every run. Publish them once there's an actual cohort running and Gmail is connected — ping me and I'll do it, or use the n8n editor's Activate toggle yourself.
+These three are **not yet activated** (left as drafts) on purpose: with zero real participants enrolled today, an active weekly/daily schedule would just fail silently every run. Publish them once real participants are enrolling and Gmail is connected — ping me and I'll do it, or use the n8n editor's Activate toggle yourself.
 
 ---
 
 ## 9. Open decisions & risks to close out before launch
 
-1. **Live session host** — you vs. trained facilitator vs. TBD-per-cohort. Doesn't block architecture (built as a swappable role) but blocks scaling past what your own calendar allows.
+1. ~~Live session host~~ — resolved by the move to fully self-directed delivery: there are no live sessions to host. If optional community calls are ever added back, they're an add-on, not a dependency.
 2. **Not therapy — say so explicitly.** This is a wellbeing/peer-support course, not clinical mental health treatment. Put a plain disclaimer on the sales page and in onboarding, and have a simple "if you're in crisis" signpost (e.g. local crisis line) in the welcome material — standard duty-of-care practice for this kind of content.
 3. **Wellness wheel data is sensitive, even though it's not clinical patient data.** It's self-reported personal wellbeing data. Same posture as the privacy guardrails already set in `NOTION-BUSINESS-PLAN.md` (restricted spaces, never public) — aggregate and anonymise anything that leaves your Notion for a sponsor report.
 4. **Exact self-pay price ($97 proposed)** — sanity-check against what a caregiver in this community would actually pay; open to a pay-what-you-can band instead of a fixed number if that fits your brand better.
-5. **Facilitator/session cost** isn't yet netted against the $200 margin — worth a rough cost-per-cohort model once you know who's hosting.
+5. ~~Facilitator/session cost~~ — moot in the self-directed model; delivery cost is hosting + admin only.
 6. **Guidebook attribution** — decide how you want to credit the NAC/Global Genes Guidebook as a research source (a line in course materials, a resources page) if you draw statistics or structure from it, per the IP note in §0.
 
 ---
@@ -287,11 +289,11 @@ These three are **not yet activated** (left as drafts) on purpose: with zero rea
 |---|---|---|
 | **0 — Content intake** | ✅ Done — Wellness Wheel tool received and integrated, Guidebook received as research source, weekly theme scaffold drafted (§4.4) | — |
 | **1 — Write the real curriculum** | Turn the 8 weekly-theme scaffolds into actual scripts/modules in your voice (§1 voice rules) | You + this doc |
-| **2 — Notion skeleton** | ✅ Built — 5 databases (§7) live under the 🌿 Caregiver Wellness Course hub, with a placeholder pilot cohort seeded. Populated only by form intake so far; nothing else writes real participants/sponsors yet. | — |
+| **2 — Notion skeleton** | ✅ Built — 5 databases (§7) live under the 🌿 Caregiver Wellness Course hub (Cohorts now deprecated). Populated only by form intake so far; nothing else writes real participants/sponsors yet. | — |
 | **3 — Wellness Wheel backend** | 🔶 Partially done — local-storage persistence is live (survives a reload, no account needed) and the Supabase adapter (magic-link auth + Postgres, RLS'd) is built and ready; still needed: connect a real Supabase project, and wire the accountability-partner invite to a real email send (§4.2) | — |
 | **4 — Website surfaces** | ✅ Built — sales page, sponsor pitch page, "apply for sponsorship" form, public Supporters page, and the Wellness Wheel as a real Vite app the site links to (see `caregiver-wellness-course/website/` and `caregiver-wellness-course/app/`). Forms now submit to Notion (see §8); no real checkout yet since pricing isn't finalised. | Pricing sign-off (§3) for real checkout |
 | **5 — n8n automations** | 🔶 Started — website form intake, weekly check-in email, week-8 reassessment invite, and sponsor impact report are all built (§8). The last three are left unpublished (draft) since there's no real participant yet to run against, and no Gmail credential connected. Still needed: enrollment routing past intake (Stripe/redemption-link flows), drip curriculum release, wellness wheel sync (needs the app to emit events — see §4.2). | Phases 2–4 |
-| **6 — Pilot cohort** | Run one real cohort (even with a friendly sponsor or free seats) to prove the loop before selling hard. This is also when the 3 draft automations get connected (Gmail) and activated for the first time. | Phase 5 |
+| **6 — Pilot participants** | Run a handful of real self-directed participants (even with a friendly sponsor or free seats) to prove the loop before selling hard. This is also when the 3 draft automations get connected (Gmail) and activated for the first time. | Phase 5 |
 | **7 — Impact reporting + iterate** | First sponsor report generated, feed learnings back into pricing/tiers | Phase 6 |
 
 ---

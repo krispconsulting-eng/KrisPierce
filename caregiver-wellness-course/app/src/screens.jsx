@@ -74,7 +74,7 @@ export function Report({ scores, onSignUp }) {
         <p style={{color:"#5c6b72",fontSize:15}}>Overall: <strong style={{color:lvl.color}}>{overall}% · {lvl.label}</strong></p>
       </div>
       <div style={{display:"flex",justifyContent:"center",marginBottom:32}}><div style={{width:280}}><WellnessWheelSVG scores={scores}/></div></div>
-      <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:12,marginBottom:28}}>
+      <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit, minmax(170px, 1fr))",gap:12,marginBottom:28}}>
         {WEDGES.map(w=>{
           const cfg=WEDGE_CONFIG[w], sc=scores[w], lv=getLevel(sc);
           return <div key={w} style={{background:"white",borderRadius:12,padding:"14px 16px",border:"1px solid #e9edef",display:"flex",alignItems:"center",gap:12}}>
@@ -120,7 +120,7 @@ export function SignUp({ scores, onStart }) {
       <div style={{background:"white",borderRadius:14,padding:"24px",border:"1px solid #e9edef",marginBottom:28}}>
         <div style={{fontSize:13,fontWeight:600,color:"#4a5760",marginBottom:4,fontFamily:"Newsreader,Georgia,serif"}}>Choose 2–3 focus areas</div>
         <div style={{fontSize:12,color:"#93a0a6",marginBottom:16,display:"flex",alignItems:"center",gap:6,flexWrap:"wrap"}}>Suggested: {suggested.map((w,i)=><span key={w} style={{display:"inline-flex",alignItems:"center",gap:4}}><Icon name={WEDGE_CONFIG[w].icon} size={13} color={WEDGE_CONFIG[w].color}/>{w}{i<suggested.length-1?",":""}</span>)}</div>
-        <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:10}}>
+        <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit, minmax(170px, 1fr))",gap:10}}>
           {WEDGES.map(w=>{const cfg=WEDGE_CONFIG[w],active=focus.includes(w);return(
             <button key={w} onClick={()=>toggle(w)} style={{padding:"10px 12px",borderRadius:10,border:`2px solid ${active?cfg.color:"#e5eaec"}`,background:active?cfg.light:"white",cursor:"pointer",display:"flex",alignItems:"center",gap:8,transition:"all 0.2s"}}>
               <Icon name={cfg.icon} size={17} color={cfg.color}/>
@@ -410,7 +410,7 @@ export function GamifiedPlan({ scores: initialScores, userName, focusAreas, init
             <div style={{textAlign:"center",marginBottom:20}}>
               <div style={{display:"flex",justifyContent:"center",marginBottom:12}}><Icon name="partnership" size={40} color="#4A7690"/></div>
               <h3 style={{fontFamily:"Newsreader,Georgia,serif",fontSize:18,color:"#20303A",marginBottom:8}}>Accountability Partner</h3>
-              <p style={{fontSize:14,color:"#5c6b72",lineHeight:1.6}}>Research is clear: people who have an accountability partner are significantly more likely to follow through. Invite someone to do this alongside you: a partner, a friend, another caregiver in your cohort.</p>
+              <p style={{fontSize:14,color:"#5c6b72",lineHeight:1.6}}>Research is clear: people who have an accountability partner are significantly more likely to follow through. Invite someone to do this alongside you: a partner, a friend, another caregiver who gets it.</p>
             </div>
             {!buddyShared?<>
               <label style={{display:"block",fontSize:13,fontWeight:600,color:"#4a5760",marginBottom:6,fontFamily:"Newsreader,Georgia,serif"}}>Partner's email</label>
@@ -437,7 +437,7 @@ export function GamifiedPlan({ scores: initialScores, userName, focusAreas, init
       {tab==="badges" && (
         <div>
           <p style={{fontSize:14,color:"#8593a0",marginBottom:20}}>{badges.length} of {BADGES.length} earned.</p>
-          <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:12,marginBottom:24}}>
+          <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit, minmax(170px, 1fr))",gap:12,marginBottom:24}}>
             {BADGES.map(b=>{const earned=badges.includes(b.id);return(
               <div key={b.id} style={{background:earned?"white":"#F7F9FA",borderRadius:14,padding:"18px 14px",textAlign:"center",border:`1px solid ${earned?"transparent":"#e9edef"}`,boxShadow:earned?"0 1px 3px rgba(32,48,58,0.06)":"none",transition:"all 320ms cubic-bezier(0.165,0.84,0.44,1)"}}>
                 <div style={{display:"flex",justifyContent:"center",marginBottom:10}}><BadgeMedallion iconName={b.icon} unlocked={earned}/></div>
@@ -463,7 +463,7 @@ export function GamifiedPlan({ scores: initialScores, userName, focusAreas, init
         <div>
           <p style={{fontSize:14,color:"#8593a0",marginBottom:16,lineHeight:1.6}}>Your baseline assessment. Come back after 8 weeks to compare.</p>
           <div style={{display:"flex",justifyContent:"center",marginBottom:24}}><div style={{width:300}}><WellnessWheelSVG scores={scores}/></div></div>
-          <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:10}}>
+          <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit, minmax(170px, 1fr))",gap:10}}>
             {WEDGES.map(w=>{const cfg=WEDGE_CONFIG[w],sc=scores[w],lv=getLevel(sc),active=focusAreas.includes(w);return(
               <div key={w} style={{background:active?cfg.light:"#f7f9fa",borderRadius:10,padding:"12px",border:`1.5px solid ${active?cfg.color:"#e5eaec"}`}}>
                 <div style={{display:"flex",alignItems:"center",gap:6,marginBottom:6}}>
@@ -493,7 +493,7 @@ export function GamifiedPlan({ scores: initialScores, userName, focusAreas, init
             <div style={{textAlign:"center"}}><div style={{fontSize:13,color:"#93a0a6",marginBottom:8,fontFamily:"Hanken Grotesk,sans-serif"}}>Week 1 Baseline</div><WellnessWheelSVG scores={scores} size={240}/></div>
             <div style={{textAlign:"center"}}><div style={{fontSize:13,color:"#4A7690",marginBottom:8,fontFamily:"Hanken Grotesk,sans-serif",fontWeight:600}}>Week 8 Reassessment</div><WellnessWheelSVG scores={reassessScores} size={240}/></div>
           </div>
-          <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:10}}>
+          <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit, minmax(170px, 1fr))",gap:10}}>
             {WEDGES.map(w=>{
               const cfg=WEDGE_CONFIG[w], before=scores[w], after=reassessScores[w], diff=after-before;
               return <div key={w} style={{background:"white",borderRadius:12,padding:"14px",border:"1px solid #e9edef"}}>
@@ -554,7 +554,7 @@ export function Landing({ onStart }) {
       <div style={{display:"flex",justifyContent:"center",marginBottom:20}}><WellnessWheelSVG/></div>
       <h1 style={{fontFamily:"Newsreader,Georgia,serif",fontSize:28,color:"#20303A",marginBottom:10,lineHeight:1.3}}>Your Caregiver Wellness Wheel</h1>
       <p style={{color:"#5c6b72",fontSize:15,lineHeight:1.7,marginBottom:28,maxWidth:420,margin:"0 auto 28px"}}>Built for family caregivers of someone with a rare disease. Eight dimensions of wellbeing. A 64-question assessment, a personalised report, and a gamified 8-week plan built around your actual life, not someone else's.</p>
-      <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:12,marginBottom:28,textAlign:"left"}}>
+      <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit, minmax(170px, 1fr))",gap:12,marginBottom:28,textAlign:"left"}}>
         {[["document","64-question assessment","8 questions across all 8 dimensions"],["chart","Personalised report","Scores, strengths, and focus areas"],["target","8-week plan","3 activities per week, your focus areas"],["medal","Points, badges & levels","Gamified progress that keeps you going"],["partnership","Accountability partner","Invite someone to keep you on track"],["moon","Weekly check-ins","Track your mood alongside your actions"],["sparkle","Bonus challenges","Optional harder activities, more points"],["chart","Before & after comparison","Reassess at week 8 to see your growth"]].map(([icon,title,desc],i)=>(
           <div key={i} style={{background:"white",borderRadius:12,padding:"14px",border:"1px solid #e9edef"}}>
             <div style={{marginBottom:8,color:"#4A7690"}}><Icon name={icon} size={22}/></div>
