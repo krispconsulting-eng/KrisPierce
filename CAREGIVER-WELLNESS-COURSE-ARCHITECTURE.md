@@ -225,10 +225,12 @@ All three then:
 | **[Sponsors](https://app.notion.com/p/b4f23c8ce0c045c186e51c3f284cac68)** | Org name, contact, tier, total seats purchased, annual commitment (checkbox), public opt-in | ↔ Enrollments |
 | **[Cohorts](https://app.notion.com/p/9200d2124e67426f843482a61359bd30)** | Start date, end date, status, facilitator/host, seats total, seats filled | ↔ Enrollments. Seeded with a placeholder "Cohort 1 (Pilot)" row. |
 | **[Participants](https://app.notion.com/p/48c6cd4d8ded4b4eb495d110909b2f41)** | Name, email, entry path (self-pay/sponsored-named/scholarship), testimonial + data-sharing consent flags | ↔ Enrollments, ↔ Wellness Wheel Submissions |
-| **[Enrollments](https://app.notion.com/p/437394770dc44d33970e349433d75384)** | Participant ↔ Cohort ↔ Sponsor (if any), payment status, completion status, badges earned, enrolled date | hub record — links everything |
-| **[Wellness Wheel Submissions](https://app.notion.com/p/81d5e53cdf7d4707af1da562a3ee2b71)** | Participant, timepoint (week 1 baseline / week 8 reassessment), per-dimension scores (to be synced from the app via n8n — see §8) | → Participants |
+| **[Enrollments](https://app.notion.com/p/437394770dc44d33970e349433d75384)** | Participant ↔ Cohort ↔ Sponsor (if any), payment status, completion status, badges earned, enrolled date, plus 5 convenience fields added for the automations in §8: `Participant Name`/`Participant Email`/`Cohort Start Date` (rollups, so n8n doesn't need extra lookups per row), `Sponsor Contact Email` (rollup), `Reassessment Invite Sent` (checkbox, prevents duplicate sends) | hub record — links everything |
+| **[Wellness Wheel Submissions](https://app.notion.com/p/81d5e53cdf7d4707af1da562a3ee2b71)** | Participant, timepoint (week 1 baseline / week 8 reassessment), per-dimension scores (to be synced from the app via n8n — not yet built, see §8) | → Participants |
 
-This sits alongside, not inside, your existing Projects/Contacts/Money master databases — a deliberate call given this is Kris's own IP business rather than a consulting client, so it gets its own hub rather than living inside `🧩 Client Framework & CRM`. **Not yet wired:** nothing populates these automatically yet — no website form submits into them, and the Wellness Wheel app doesn't sync submissions here. That's §8's job, still to be built.
+Cohorts also gained `Report Sent` (checkbox) and `Impact Report Summary` (rich text) for the sponsor-report automation in §8.1.
+
+This sits alongside, not inside, your existing Projects/Contacts/Money master databases — a deliberate call given this is Kris's own IP business rather than a consulting client, so it gets its own hub rather than living inside `🧩 Client Framework & CRM`. **Website form submissions now populate this** (§8); the Wellness Wheel app still doesn't sync its own submissions here (needs the app to emit events, not yet built).
 
 ---
 
@@ -248,7 +250,23 @@ This sits alongside, not inside, your existing Projects/Contacts/Money master da
 | Each subsequent week (7 more times) | Release that week's curriculum content + reminder + live session calendar detail |
 | Wellness Wheel: activity/badge/week completed | Sync progress into the Enrollment record; trigger badge-earned email on milestones. Not yet built — the app doesn't emit any event today (local storage / Supabase only). |
 | Wellness Wheel: baseline or reassessment submitted | Write scores to Wellness Wheel Submissions → (at week 8) compute delta. Not yet built, same reason. |
-| Cohort end date reached | Assemble sponsor impact report (aggregate + anonymised) → deliver to sponsor → update public Supporters page data → issue completion certificates |
+| ✅ Weekly (every Monday) | Send every actively-enrolled caregiver a check-in email referencing their actual current week's curriculum theme — **built**, see below |
+| ✅ Weekly (every Monday) | Invite anyone who's reached week 8 to retake the Wellness Wheel, once, then mark it sent — **built**, see below |
+| ✅ Cohort end date reached | Assemble sponsor impact report (aggregate + anonymised wellness-wheel delta, completion rate) → email to that cohort's sponsors → mark cohort Completed — **built**, see below. Public Supporters page update and completion certificates are not yet part of this. |
+
+### 8.1 Weekly automations (built)
+
+Two more n8n workflows, both on the **same weekly Monday 9am schedule** (deliberately weekly, not daily, so each participant gets exactly one email per week without needing a "was this sent" flag for the check-in one):
+
+- **[Caregiver Course - Weekly Check-in Email](https://scn2a-krispierce.app.n8n.cloud/workflow/EAJiUxr7PmcQmSAD)** — for every Enrollment with Completion Status "In Progress", computes their current week from `Cohort Start Date` (a rollup added to Enrollments) and sends a short, warm email referencing that week's actual curriculum theme (§4.4), not a generic blast.
+- **[Caregiver Course - Week 8 Reassessment Invite](https://scn2a-krispierce.app.n8n.cloud/workflow/TjjnyLql1ujJ1f53)** — for every Enrollment that's reached week 8 and hasn't been invited yet (`Reassessment Invite Sent` checkbox, new on Enrollments), sends the retake-the-wheel invite and marks it sent so it never repeats.
+- **[Caregiver Course - Sponsor Impact Report](https://scn2a-krispierce.app.n8n.cloud/workflow/hzyoWVhFrH1Jjp8I)** — daily, checks for Active cohorts whose End Date has passed, pulls every enrolled participant's baseline and reassessment Wellness Wheel Submissions, computes an anonymised aggregate delta per dimension plus a completion rate, emails it to the cohort's sponsor contact(s) (`Sponsor Contact Email`, a rollup added to Enrollments), and marks the Cohort Completed + Report Sent with the summary saved on the Cohort record.
+
+**Two things need to happen before these can actually send anything:**
+1. The same Notion-sharing step from above (all three read/write the CRM databases).
+2. **Connect a Gmail account to n8n.** None of the three has a real Gmail credential yet — in the n8n editor, open any of the three workflows, click the Gmail node, and sign in. All three share the same credential once connected.
+
+These three are **not yet activated** (left as drafts) on purpose: with zero real participants enrolled today, an active weekly/daily schedule would just fail silently every run. Publish them once there's an actual cohort running and Gmail is connected — ping me and I'll do it, or use the n8n editor's Activate toggle yourself.
 
 ---
 
@@ -269,11 +287,11 @@ This sits alongside, not inside, your existing Projects/Contacts/Money master da
 |---|---|---|
 | **0 — Content intake** | ✅ Done — Wellness Wheel tool received and integrated, Guidebook received as research source, weekly theme scaffold drafted (§4.4) | — |
 | **1 — Write the real curriculum** | Turn the 8 weekly-theme scaffolds into actual scripts/modules in your voice (§1 voice rules) | You + this doc |
-| **2 — Notion skeleton** | ✅ Built — 5 databases (§7) live under the 🌿 Caregiver Wellness Course hub, with a placeholder pilot cohort seeded. Still empty: no real sponsors/participants yet, and nothing populates it automatically (that's Phase 5). | — |
+| **2 — Notion skeleton** | ✅ Built — 5 databases (§7) live under the 🌿 Caregiver Wellness Course hub, with a placeholder pilot cohort seeded. Populated only by form intake so far; nothing else writes real participants/sponsors yet. | — |
 | **3 — Wellness Wheel backend** | 🔶 Partially done — local-storage persistence is live (survives a reload, no account needed) and the Supabase adapter (magic-link auth + Postgres, RLS'd) is built and ready; still needed: connect a real Supabase project, and wire the accountability-partner invite to a real email send (§4.2) | — |
 | **4 — Website surfaces** | ✅ Built — sales page, sponsor pitch page, "apply for sponsorship" form, public Supporters page, and the Wellness Wheel as a real Vite app the site links to (see `caregiver-wellness-course/website/` and `caregiver-wellness-course/app/`). Forms now submit to Notion (see §8); no real checkout yet since pricing isn't finalised. | Pricing sign-off (§3) for real checkout |
-| **5 — n8n automations** | 🔶 Started — website form intake is built and live (§8). Still needed: enrollment routing past intake, drip release, reminders, wellness wheel sync (needs the app to emit events — see §4.2), one working end-to-end test cohort | Phases 2–4 |
-| **6 — Pilot cohort** | Run one real cohort (even with a friendly sponsor or free seats) to prove the loop before selling hard | Phase 5 |
+| **5 — n8n automations** | 🔶 Started — website form intake, weekly check-in email, week-8 reassessment invite, and sponsor impact report are all built (§8). The last three are left unpublished (draft) since there's no real participant yet to run against, and no Gmail credential connected. Still needed: enrollment routing past intake (Stripe/redemption-link flows), drip curriculum release, wellness wheel sync (needs the app to emit events — see §4.2). | Phases 2–4 |
+| **6 — Pilot cohort** | Run one real cohort (even with a friendly sponsor or free seats) to prove the loop before selling hard. This is also when the 3 draft automations get connected (Gmail) and activated for the first time. | Phase 5 |
 | **7 — Impact reporting + iterate** | First sponsor report generated, feed learnings back into pricing/tiers | Phase 6 |
 
 ---
