@@ -218,17 +218,17 @@ All three then:
 
 ## 7. Customer management — Notion data model (extends your existing business system)
 
-New databases, sitting alongside your existing Projects/Contacts/Money:
+✅ **Built.** Live under the [🌿 Caregiver Wellness Course](https://app.notion.com/p/393a5163e45d81fe823ac06a628016bd) hub page in your workspace, as its own hub (parallel to 🟢 SCN2A Australia, 🟣 UNSW, 🔵 KrisPierce Consulting, 🟠 Committees) since this is a distinct IP product line, not client-services work:
 
 | Database | Key fields | Relations |
 |---|---|---|
-| **Sponsors** | Org name, contact, tier, total seats purchased, annual commitment (y/n), logo/opt-in status | → Money, → Enrollments |
-| **Cohorts** | Start date, end date, status, facilitator/host, seats total, seats filled | → Enrollments |
-| **Participants** | Name, contact, entry path (self-pay/sponsored-named/scholarship), consent flags | → Enrollments, → Wellness Wheel |
-| **Enrollments** | Participant ↔ Cohort ↔ Sponsor (if any) ↔ payment status ↔ completion status ↔ badges earned | hub record — links everything |
-| **Wellness Wheel Submissions** | Participant, timepoint (week 1 baseline / week 6 reassessment), per-dimension scores (synced from Supabase via n8n) | → Participants |
+| **[Sponsors](https://app.notion.com/p/b4f23c8ce0c045c186e51c3f284cac68)** | Org name, contact, tier, total seats purchased, annual commitment (checkbox), public opt-in | ↔ Enrollments |
+| **[Cohorts](https://app.notion.com/p/9200d2124e67426f843482a61359bd30)** | Start date, end date, status, facilitator/host, seats total, seats filled | ↔ Enrollments. Seeded with a placeholder "Cohort 1 (Pilot)" row. |
+| **[Participants](https://app.notion.com/p/48c6cd4d8ded4b4eb495d110909b2f41)** | Name, email, entry path (self-pay/sponsored-named/scholarship), testimonial + data-sharing consent flags | ↔ Enrollments, ↔ Wellness Wheel Submissions |
+| **[Enrollments](https://app.notion.com/p/437394770dc44d33970e349433d75384)** | Participant ↔ Cohort ↔ Sponsor (if any), payment status, completion status, badges earned, enrolled date | hub record — links everything |
+| **[Wellness Wheel Submissions](https://app.notion.com/p/81d5e53cdf7d4707af1da562a3ee2b71)** | Participant, timepoint (week 1 baseline / week 8 reassessment), per-dimension scores (to be synced from the app via n8n — see §8) | → Participants |
 
-Money (existing) gains entries per sponsor payment; Contacts (existing) gains sponsor org records — this is deliberately additive to what's in `NOTION-BUSINESS-PLAN.md`, not a parallel system.
+This sits alongside, not inside, your existing Projects/Contacts/Money master databases — a deliberate call given this is Kris's own IP business rather than a consulting client, so it gets its own hub rather than living inside `🧩 Client Framework & CRM`. **Not yet wired:** nothing populates these automatically yet — no website form submits into them, and the Wellness Wheel app doesn't sync submissions here. That's §8's job, still to be built.
 
 ---
 
@@ -264,7 +264,7 @@ Money (existing) gains entries per sponsor payment; Contacts (existing) gains sp
 |---|---|---|
 | **0 — Content intake** | ✅ Done — Wellness Wheel tool received and integrated, Guidebook received as research source, weekly theme scaffold drafted (§4.4) | — |
 | **1 — Write the real curriculum** | Turn the 8 weekly-theme scaffolds into actual scripts/modules in your voice (§1 voice rules) | You + this doc |
-| **2 — Notion skeleton** | 5 new databases (§7), linked into existing business system, one test cohort seeded | Phase 1 partial (structure only) |
+| **2 — Notion skeleton** | ✅ Built — 5 databases (§7) live under the 🌿 Caregiver Wellness Course hub, with a placeholder pilot cohort seeded. Still empty: no real sponsors/participants yet, and nothing populates it automatically (that's Phase 5). | — |
 | **3 — Wellness Wheel backend** | 🔶 Partially done — local-storage persistence is live (survives a reload, no account needed) and the Supabase adapter (magic-link auth + Postgres, RLS'd) is built and ready; still needed: connect a real Supabase project, and wire the accountability-partner invite to a real email send (§4.2) | — |
 | **4 — Website surfaces** | ✅ Built — sales page, sponsor pitch page, "apply for sponsorship" form, public Supporters page, and the Wellness Wheel as a real Vite app the site links to (see `caregiver-wellness-course/website/` and `caregiver-wellness-course/app/`). Forms are front-end only; no real checkout yet since pricing isn't finalised. | Pricing sign-off (§3) for real checkout |
 | **5 — n8n automations** | Enrollment routing, drip release, reminders, wellness wheel sync, one working end-to-end test cohort | Phases 2–4 |
