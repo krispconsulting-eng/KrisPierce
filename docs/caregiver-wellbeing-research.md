@@ -46,6 +46,46 @@ and lets each spoke map to a self-assessment prompt plus targeted resources.
 
 These are the "why now" numbers for a landing/intro screen.
 
+## Australian statistics (primary — this family is in AU)
+
+The US figures above establish the *patterns*; these AU figures are the ones to
+put in front of an Australian user.
+
+**Scale**
+- **3.0 million** carers — **11.9%** of Australians in households, up from 10.8%
+  in 2018 ([ABS, *Survey of Disability, Ageing and Carers 2022*](https://www.abs.gov.au/statistics/health/disability/disability-ageing-and-carers-australia-summary-findings/latest-release)).
+- **1.2 million primary carers** — and **43.8% of them have a disability
+  themselves** (ABS SDAC 2022). The carer is often also a patient.
+- **391,300 young carers** under 25, up sharply from 235,300 in 2018 (ABS SDAC
+  2022) — relevant if siblings help care for an SCN2A child.
+
+**Wellbeing & mental health**
+- Carers have **more than twice** the rate of low wellbeing of the average
+  Australian adult; low-wellbeing carers rose from **52.6% (2022) to 58.3%
+  (2023)** and stayed high in 2024
+  ([Carers Australia / Uni of Canberra, *Carer Wellbeing Survey*](https://www.carersaustralia.com.au/carer-wellbeing-survey/);
+  [DSS, *Carer Wellbeing Survey 2024*](https://www.dss.gov.au/news/caring-others-and-yourself-carer-wellbeing-survey-2024)).
+- **28.2%** of carers reported **high psychological distress** in 2024 (26.1% in
+  2023) — roughly 2–3× the general-population rate (CWS 2024).
+
+**Social**
+- **40%** of carers report high loneliness vs **14%** of other Australian adults
+  ([AIHW, *Informal carers*](https://www.aihw.gov.au/reports/australias-welfare/informal-carers)) —
+  loneliness is nearly 3× as common and is the most modifiable spoke.
+
+**Financial & occupational**
+- Carers are **~1.4× more likely** to experience financial stress; a large share
+  of high-intensity carers report significant financial-stress events (AIHW;
+  CWS). 
+- **~70%** of carers are employed vs **~80%** of non-carers; carers doing **40+
+  hours/week** of care are the least able to work as much as they'd like (ABS
+  SDAC 2022; AIHW).
+- **National value of unpaid care: $77.9 billion/year** (~$1.5b/week) by
+  replacement cost, plus **$15.2b** in carers' lost earnings
+  ([Deloitte Access Economics, *The value of informal care in 2020*](https://www.carersaustralia.com.au/replacement-value-of-unpaid-care-in-australia-rises-to-77-9-billion-per-year/)).
+  This is the macro "your unpaid work has real value" framing for the Financial/
+  Occupational spokes.
+
 ## Per-dimension evidence and resource hooks
 
 ### 1. Emotional / Mental
@@ -156,13 +196,17 @@ These are the "why now" numbers for a landing/intro screen.
 | Respite & local services (US) | [ACL / Eldercare Locator](https://acl.gov/programs/support-caregivers/national-family-caregiver-support-program) |
 | Special-needs parent burnout | [Child Mind Institute — Caregiver Burnout](https://childmind.org/article/fighting-caregiver-burnout-special-needs-kids/) |
 | Mental-health crisis (US) | 988 Suicide & Crisis Lifeline |
-| **AU equivalents to add** | Carer Gateway (1800 422 737), Lifeline (13 11 14), Beyond Blue, condition-specific SCN2A foundation/community |
+| Carer support & respite (AU) | [Carer Gateway](https://www.carergateway.gov.au/) — 1800 422 737 (govt-funded counselling, respite, peer support) |
+| Carer data & wellbeing (AU) | [Carers Australia — Carer Wellbeing Survey](https://www.carersaustralia.com.au/carer-wellbeing-survey/); [AIHW — Informal carers](https://www.aihw.gov.au/reports/australias-welfare/informal-carers) |
+| Mental-health support (AU) | Lifeline 13 11 14; Beyond Blue 1300 22 4636 |
+| Condition community | SCN2A foundation / family community (link the project's own network) |
 
-> **Localisation note:** most hard statistics above are US (AARP/NAC, CDC). The
-> *patterns* — depression ~1.3× population rate, high financial and work strain,
-> social support as the key modifiable buffer — generalise well and are enough
-> to design against. For any Australian rollout, swap in AIHW/Carers Australia
-> figures and the AU helplines before publishing user-facing numbers.
+> **Localisation note:** the dedicated *Australian statistics* section above is
+> the source of truth for user-facing numbers (ABS SDAC 2022, Carer Wellbeing
+> Survey, AIHW, Deloitte). The US figures (AARP/NAC, CDC) are retained because
+> they cover dimensions AU surveys report less directly (out-of-pocket $, per-
+> condition depression rates) and the patterns match. Prefer AU numbers and AU
+> helplines in anything shipped to this family.
 
 ## Recommended next step for the wheel
 
@@ -173,6 +217,14 @@ isn't just informational but plugs into tools the family already uses.
 
 ## Sources
 
+**Australian**
+- ABS, *Survey of Disability, Ageing and Carers, Australia 2022* — https://www.abs.gov.au/statistics/health/disability/disability-ageing-and-carers-australia-summary-findings/latest-release
+- Carers Australia & University of Canberra, *Carer Wellbeing Survey* (2023, 2024) — https://www.carersaustralia.com.au/carer-wellbeing-survey/ ; DSS summary — https://www.dss.gov.au/news/caring-others-and-yourself-carer-wellbeing-survey-2024
+- AIHW, *Informal carers* (Australia's Welfare) — https://www.aihw.gov.au/reports/australias-welfare/informal-carers
+- Deloitte Access Economics, *The value of informal care in 2020* — https://www.carersaustralia.com.au/replacement-value-of-unpaid-care-in-australia-rises-to-77-9-billion-per-year/
+- Carer Gateway — https://www.carergateway.gov.au/
+
+**International**
 - AARP & National Alliance for Caregiving, *Caregiving in the U.S. 2020* — https://www.caregiving.org/wp-content/uploads/2021/01/full-report-caregiving-in-the-united-states-01-21.pdf
 - AARP, *2021 Family Caregivers Cost (Out-of-Pocket) Study* — https://www.aarp.org/pri/topics/ltss/family-caregiving/family-caregivers-cost-survey/ and https://www.aarp.org/caregiving/financial-legal/high-out-of-pocket-costs/
 - CDC BRFSS 2021 caregiver depression data, via Forbes/Otsuka (2025) — https://www.forbes.com/sites/otsuka/2025/10/02/caregivings-mental-health-crisis/
