@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { Icon } from "./icons";
-import { WEDGES, WEDGE_CONFIG, BADGES } from "./data";
+import { WEDGES, WEDGE_CONFIG, BADGES, getLevel } from "./data";
 
 // Annular-sector geometry per the Sky & Tide handoff: each wedge is a ring
 // segment from r0 to a fill radius proportional to its score, drawn over a
@@ -77,10 +77,21 @@ export function WellnessWheelSVG({ scores = {}, size = 300, showRings = true, sh
       })}
       <circle cx={cx} cy={cy} r={r0 - 6} fill="#fff" stroke="rgba(32,48,58,.1)" />
       {hasScores ? (
-        <>
-          <text x={cx} y={cy - 2} textAnchor="middle" style={{ font: "300 32px Newsreader,serif", fill: "#20303A" }}>{Math.round(avg * overallProgress)}%</text>
-          <text x={cx} y={cy + 18} textAnchor="middle" style={{ font: "600 8.5px Hanken Grotesk,sans-serif", letterSpacing: ".16em", fill: "#8593a0" }}>BALANCE</text>
-        </>
+        (() => {
+          const words = getLevel(avg).label.split(" ");
+          return (
+            <g opacity={overallProgress}>
+              {words.length === 1 ? (
+                <text x={cx} y={cy + 6} textAnchor="middle" style={{ font: "400 20px Newsreader,serif", fill: "#20303A" }}>{words[0]}</text>
+              ) : (
+                <>
+                  <text x={cx} y={cy - 4} textAnchor="middle" style={{ font: "400 17px Newsreader,serif", fill: "#20303A" }}>{words[0]}</text>
+                  <text x={cx} y={cy + 17} textAnchor="middle" style={{ font: "400 17px Newsreader,serif", fill: "#20303A" }}>{words.slice(1).join(" ")}</text>
+                </>
+              )}
+            </g>
+          );
+        })()
       ) : (
         <>
           <text x={cx} y={cy - 2} textAnchor="middle" style={{ font: "400 15px Newsreader,serif", fill: "#20303A" }}>Wellness</text>
@@ -99,7 +110,6 @@ export function ProgressRing({ score, color, size=60 }) {
       <circle cx={size/2} cy={size/2} r={r} fill="none" stroke={color} strokeWidth="5"
         strokeDasharray={`${dash} ${circ-dash}`} strokeDashoffset={circ*0.25} strokeLinecap="round"
         style={{transition:"stroke-dasharray 0.8s ease"}}/>
-      <text x={size/2} y={size/2+4} textAnchor="middle" fontSize="11" fontWeight="500" fill={color} fontFamily="Hanken Grotesk,sans-serif">{score}%</text>
     </svg>
   );
 }

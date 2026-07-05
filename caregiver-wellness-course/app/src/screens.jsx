@@ -70,8 +70,8 @@ export function Report({ scores, onSignUp }) {
   return (
     <div style={{maxWidth:720,margin:"0 auto",padding:"24px 16px"}}>
       <div style={{textAlign:"center",marginBottom:28}}>
-        <h1 style={{fontFamily:"Newsreader,Georgia,serif",fontSize:27,color:"#20303A",marginBottom:8}}>Your Wellness Report</h1>
-        <p style={{color:"#5c6b72",fontSize:15}}>Overall: <strong style={{color:lvl.color}}>{overall}% · {lvl.label}</strong></p>
+        <h1 style={{fontFamily:"Newsreader,Georgia,serif",fontSize:27,color:"#20303A",marginBottom:8}}>Where you are today</h1>
+        <p style={{color:"#5c6b72",fontSize:15,lineHeight:1.6,maxWidth:460,margin:"0 auto"}}>A snapshot of how the different parts of your life are feeling right now, not a score to pass. Right now, things look <strong style={{color:lvl.color}}>{lvl.label.toLowerCase()}</strong> overall.</p>
       </div>
       <div style={{display:"flex",justifyContent:"center",marginBottom:32}}><div style={{width:280}}><WellnessWheelSVG scores={scores}/></div></div>
       <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit, minmax(170px, 1fr))",gap:12,marginBottom:28}}>
@@ -84,14 +84,14 @@ export function Report({ scores, onSignUp }) {
         })}
       </div>
       <div style={{background:"#F0DEE0",borderRadius:14,padding:"20px",marginBottom:16,border:"1px solid #E3CCD0"}}>
-        <h3 style={{fontFamily:"Newsreader,Georgia,serif",color:"#B3707A",marginBottom:12,fontSize:16,display:"flex",alignItems:"center",gap:8}}><Icon name="target" size={17} color="#B3707A"/> Your Focus Areas</h3>
-        <p style={{fontSize:13,color:"#5c6b72",marginBottom:12}}>Your lowest three scores. These are your biggest growth opportunity.</p>
-        {lowest.map(w=><div key={w} style={{display:"flex",alignItems:"center",gap:10,marginBottom:8}}><Icon name={WEDGE_CONFIG[w].icon} size={19} color={WEDGE_CONFIG[w].color}/><strong style={{fontFamily:"Newsreader,Georgia,serif",color:"#20303A"}}>{w}</strong><span style={{color:"#93a0a6",fontSize:13}}>· {scores[w]}%</span></div>)}
+        <h3 style={{fontFamily:"Newsreader,Georgia,serif",color:"#B3707A",marginBottom:12,fontSize:16,display:"flex",alignItems:"center",gap:8}}><Icon name="target" size={17} color="#B3707A"/> Where you might start</h3>
+        <p style={{fontSize:13,color:"#5c6b72",marginBottom:12,lineHeight:1.6}}>These parts of life seem to be asking for a little attention right now. There's no right answer here, and nothing you've done wrong. They're just a gentle place to begin.</p>
+        {lowest.map(w=><div key={w} style={{display:"flex",alignItems:"center",gap:10,marginBottom:8}}><Icon name={WEDGE_CONFIG[w].icon} size={19} color={WEDGE_CONFIG[w].color}/><strong style={{fontFamily:"Newsreader,Georgia,serif",color:"#20303A"}}>{w}</strong><span style={{color:"#93a0a6",fontSize:13}}>· {getLevel(scores[w]).label}</span></div>)}
       </div>
       <div style={{background:"#DCE8EF",borderRadius:14,padding:"20px",marginBottom:28,border:"1px solid #CBDDE9"}}>
-        <h3 style={{fontFamily:"Newsreader,Georgia,serif",color:"#4A7690",marginBottom:12,fontSize:16,display:"flex",alignItems:"center",gap:8}}><Icon name="sparkle" size={17} color="#4A7690"/> Your Strengths</h3>
-        <p style={{fontSize:13,color:"#5c6b72",marginBottom:12}}>Your strongest foundations. Build from here.</p>
-        {highest.map(w=><div key={w} style={{display:"flex",alignItems:"center",gap:10,marginBottom:8}}><Icon name={WEDGE_CONFIG[w].icon} size={19} color={WEDGE_CONFIG[w].color}/><strong style={{fontFamily:"Newsreader,Georgia,serif",color:"#20303A"}}>{w}</strong><span style={{color:"#93a0a6",fontSize:13}}>· {scores[w]}%</span></div>)}
+        <h3 style={{fontFamily:"Newsreader,Georgia,serif",color:"#4A7690",marginBottom:12,fontSize:16,display:"flex",alignItems:"center",gap:8}}><Icon name="sparkle" size={17} color="#4A7690"/> What's holding you steady</h3>
+        <p style={{fontSize:13,color:"#5c6b72",marginBottom:12,lineHeight:1.6}}>The parts you've managed to hold onto, even now. Worth noticing, and worth leaning on.</p>
+        {highest.map(w=><div key={w} style={{display:"flex",alignItems:"center",gap:10,marginBottom:8}}><Icon name={WEDGE_CONFIG[w].icon} size={19} color={WEDGE_CONFIG[w].color}/><strong style={{fontFamily:"Newsreader,Georgia,serif",color:"#20303A"}}>{w}</strong><span style={{color:"#93a0a6",fontSize:13}}>· {getLevel(scores[w]).label}</span></div>)}
       </div>
       <button onClick={onSignUp} style={{width:"100%",padding:"16px",background:"#4A7690",color:"white",border:"none",borderRadius:999,fontSize:16,fontWeight:600,cursor:"pointer",fontFamily:"Hanken Grotesk,sans-serif",transition:"background 180ms"}}>
         Start My 8-Week Wellness Plan →
@@ -124,7 +124,7 @@ export function SignUp({ scores, onStart }) {
           {WEDGES.map(w=>{const cfg=WEDGE_CONFIG[w],active=focus.includes(w);return(
             <button key={w} onClick={()=>toggle(w)} style={{padding:"10px 12px",borderRadius:10,border:`2px solid ${active?cfg.color:"#e5eaec"}`,background:active?cfg.light:"white",cursor:"pointer",display:"flex",alignItems:"center",gap:8,transition:"all 0.2s"}}>
               <Icon name={cfg.icon} size={17} color={cfg.color}/>
-              <div style={{textAlign:"left"}}><div style={{fontSize:13,fontWeight:600,color:active?cfg.color:"#4a5760",fontFamily:"Newsreader,Georgia,serif"}}>{w}</div><div style={{fontSize:11,color:"#93a0a6"}}>{scores[w]}%</div></div>
+              <div style={{textAlign:"left"}}><div style={{fontSize:13,fontWeight:600,color:active?cfg.color:"#4a5760",fontFamily:"Newsreader,Georgia,serif"}}>{w}</div><div style={{fontSize:11,color:"#93a0a6"}}>{getLevel(scores[w]).label}</div></div>
               {active&&<span style={{marginLeft:"auto",color:cfg.color,fontWeight:600}}><Icon name="check" size={14} color={cfg.color}/></span>}
             </button>
           );})}
@@ -472,7 +472,7 @@ export function GamifiedPlan({ scores: initialScores, userName, focusAreas, init
                   {active&&<span style={{marginLeft:"auto",fontSize:10,color:cfg.color,fontWeight:600}}>FOCUS</span>}
                 </div>
                 <div style={{background:"#e5eaec",borderRadius:99,height:5}}><div style={{width:`${sc}%`,background:cfg.color,height:"100%",borderRadius:99}}/></div>
-                <div style={{fontSize:11,color:lv.color,marginTop:4,fontWeight:600}}>{sc}% · {lv.label}</div>
+                <div style={{fontSize:11,color:lv.color,marginTop:4,fontWeight:600}}>{lv.label}</div>
               </div>
             );})}
           </div>
@@ -496,18 +496,17 @@ export function GamifiedPlan({ scores: initialScores, userName, focusAreas, init
           <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit, minmax(170px, 1fr))",gap:10}}>
             {WEDGES.map(w=>{
               const cfg=WEDGE_CONFIG[w], before=scores[w], after=reassessScores[w], diff=after-before;
+              const move = diff>=3 ? {t:"a little more room here", c:"#4A7690"} : diff<=-3 ? {t:"asking for some care", c:"#C98F97"} : {t:"holding steady", c:"#93a0a6"};
               return <div key={w} style={{background:"white",borderRadius:12,padding:"14px",border:"1px solid #e9edef"}}>
                 <div style={{display:"flex",alignItems:"center",gap:6,marginBottom:8}}>
                   <Icon name={cfg.icon} size={15} color={cfg.color}/>
                   <span style={{fontWeight:600,fontSize:13,fontFamily:"Newsreader,Georgia,serif",color:"#20303A"}}>{w}</span>
                 </div>
-                <div style={{display:"flex",alignItems:"center",gap:8}}>
-                  <span style={{fontSize:13,color:"#93a0a6"}}>{before}%</span>
+                <div style={{display:"flex",alignItems:"center",gap:8,flexWrap:"wrap"}}>
+                  <span style={{fontSize:13,color:"#93a0a6"}}>{getLevel(before).label}</span>
                   <span style={{fontSize:12,color:"#c3ccd1"}}>→</span>
-                  <span style={{fontSize:15,fontWeight:600,color:cfg.color}}>{after}%</span>
-                  <span style={{marginLeft:"auto",fontSize:13,fontWeight:600,color:diff>0?"#4A7690":diff<0?"#C98F97":"#93a0a6"}}>
-                    {diff>0?"+":""}{diff}%
-                  </span>
+                  <span style={{fontSize:14,fontWeight:600,color:cfg.color}}>{getLevel(after).label}</span>
+                  <span style={{marginLeft:"auto",fontSize:12,fontWeight:600,color:move.c}}>{move.t}</span>
                 </div>
               </div>;
             })}
