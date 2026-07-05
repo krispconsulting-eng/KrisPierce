@@ -36,6 +36,125 @@ and lets each spoke map to a self-assessment prompt plus targeted resources.
 > actionable step, (4) 1–2 vetted resources. Keep actions *tiny* — the core
 > constraint for this audience is time, not motivation.
 
+## The assessment
+
+Each dimension has eight statements. Respondents rate how true each one feels
+for them, thinking about the **past four weeks**. There are no right or wrong
+answers — it's a snapshot, not a test.
+
+*Design intent: warm, non-clinical, non-judgmental — "how are you travelling?"
+before "let's take the next few weeks together, one step at a time."*
+
+### Before you begin
+
+Welcome.
+
+Before we begin, remember there are no right or wrong answers.
+
+This isn't a test, and it's not about being a "good" caregiver.
+
+It's simply a snapshot of where you are today.
+
+Some questions may not perfectly reflect your circumstances. Just answer as
+honestly as you can.
+
+Over the coming weeks, we'll use your answers to help you focus on the areas
+that matter most to you. You don't need to change everything at once. Small,
+gentle steps can make a meaningful difference over time.
+
+As you answer each question, think about your experiences over the past four
+weeks.
+
+Take your time, and be kind to yourself as you work through the questions.
+
+### Social
+
+1. I have at least one person in my life who understands what caregiving for my situation actually involves.
+2. I make time for relationships that have nothing to do with caregiving, even briefly.
+3. I feel part of a community, whether that's other caregivers, family, or friends who show up.
+4. I'm able to protect my own time and energy when I need to.
+5. When I'm struggling, I reach out rather than handling it alone.
+6. Important relationships in my life get attention beyond caregiving and daily logistics.
+7. I've stayed in touch with at least one friendship this month that isn't about caregiving.
+8. Being around people leaves me with more energy than it costs me, more often than not.
+
+### Occupational
+
+1. I recognise caregiving itself as real work, not just "what needs to be done."
+2. I've found ways to maintain meaningful roles or activities alongside caregiving, where that's possible.
+3. I feel more in control of my daily workload, paid work, caregiving, or both, than at the mercy of it.
+4. I've told someone, an employer, a colleague or a family member, what I actually need to make things more manageable.
+5. I give myself credit for what I do, even if others don't always recognise it.
+6. I recognise the skills and strengths I've developed through caregiving.
+7. My sense of who I am hasn't been entirely replaced by "caregiver."
+8. I end most days feeling like I did something that mattered, not just something that had to be done.
+
+### Environmental
+
+1. My home functions well for the caregiving it needs to hold, without being only about that.
+2. I have a space, even a small one, that belongs to me and not to the caregiving routine.
+3. I find moments to step away from caregiving, even if it's only for a short while.
+4. I feel safe and settled in my physical surroundings.
+5. I notice when my environment is adding to my stress, and I make changes where I can.
+6. My home includes small things that bring me comfort or enjoyment, not just function.
+7. I have opportunities for a change of scenery, even briefly.
+8. My surroundings support my wellbeing as well as my caregiving responsibilities.
+
+### Intellectual
+
+1. I have at least one interest or pursuit that has nothing to do with managing anyone's health.
+2. I make time to learn or engage with something new, even briefly, most weeks.
+3. I make time for things that remind me I'm more than a caregiver.
+4. My mind gets to be curious sometimes, not just vigilant.
+5. I have conversations that stretch my thinking, not just logistics and updates.
+6. I enjoy books, podcasts, shows or ideas that have nothing to do with caregiving.
+7. When I solve problems, it's more often with curiosity than with anxiety.
+8. My intellectual life still feels like my own, not just a reaction to whatever comes up.
+
+### Spiritual
+
+1. I have a clear sense of what matters most to me right now.
+2. I make time to slow down and reflect, even if it's only for a few minutes.
+3. When life feels uncertain, I have something that helps me keep going, whether that's faith, personal values or a simple daily practice.
+4. I can sit with uncertainty about the future without it undoing me.
+5. I feel some sense of purpose in this season of my life, even when it's difficult.
+6. I give myself space to grieve what's been lost or changed, rather than always pushing through.
+7. I notice moments of meaning or gratitude, even during difficult weeks.
+8. I make time to care for my inner wellbeing, not just everyone else's.
+
+### Emotional
+
+1. I can name what I'm actually feeling, even when it's complicated.
+2. I have somewhere to put difficult feelings, rather than carrying them alone.
+3. I give myself permission to grieve what's changed, even without a single clear loss to point to.
+4. I'm learning that it's okay to rest and accept support when I need it.
+5. I talk to myself kindly, especially on the days I feel like I'm failing at this.
+6. I let myself feel joy or lightness without it feeling like a betrayal of how hard things are.
+7. I ask for support before I'm completely depleted, not just afterwards.
+8. I feel steadier emotionally than I did a month ago, even if only a little.
+
+### Physical
+
+1. I move my body in ways that feel good for me, even if it's only for a short time.
+2. I get enough sleep most nights, or find ways to recover when I don't.
+3. I eat in ways that give me energy most of the time.
+4. I attend to my own health as consistently as I manage it for the person I care for.
+5. I notice my body's signals, such as pain, fatigue or hunger, instead of pushing past them.
+6. I'm managing my own health conditions or symptoms, not just everyone else's.
+7. I notice the habits I rely on to get through difficult days and whether they're helping me.
+8. My energy feels enough for the life I'm living, most days.
+
+### Financial
+
+1. I have a realistic picture of what caregiving costs our family.
+2. I know what financial assistance or support may be available to us.
+3. Financial stress doesn't dominate my thinking most days, even if it's still present.
+4. I feel some sense of control over financial decisions, rather than simply reacting to them.
+5. I feel able to have honest conversations about money when I need to.
+6. I'm not carrying financial decisions or financial knowledge alone, where I have someone to share them with.
+7. I can talk about money without shame, even when things are tight.
+8. I feel like I still have some financial choices, even if they're small ones.
+
 ## Headline statistics (the case for the Framework)
 
 - **Scale.** ~53 million US adults (>1 in 5) are unpaid family caregivers — up
