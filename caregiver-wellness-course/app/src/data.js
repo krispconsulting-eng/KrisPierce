@@ -62,18 +62,18 @@ export const BONUS_CHALLENGES = [
 // treatment only once unlocked — the achievement color is reserved for this
 // moment.
 export const BADGES = [
-  { id: "first_step",  name: "First Step",      icon: "leaf", desc: "Completed the assessment" },
-  { id: "week1",       name: "One Week Strong",  icon: "target", desc: "Completed all Week 1 activities" },
-  { id: "streak3",     name: "On a Roll",        icon: "flame", desc: "3-day activity streak" },
-  { id: "halfway",     name: "Halfway There",    icon: "moon", desc: "Completed Week 4" },
-  { id: "all_wedges",  name: "Full Circle",      icon: "mark", desc: "Completed an activity in every wedge" },
-  { id: "finisher",    name: "Journey Complete", icon: "medal", desc: "Completed all 8 weeks" },
-  { id: "streak7",     name: "Unstoppable",      icon: "sparkle", desc: "7-day activity streak" },
-  { id: "inner3",      name: "Inner Work",       icon: "spiritual", desc: "Completed 3 Spiritual or Emotional activities" },
-  { id: "bonus1",      name: "Over-Achiever",    icon: "sparkle", desc: "Completed a bonus challenge" },
-  { id: "buddy",       name: "Better Together",  icon: "partnership", desc: "Shared your wheel with an accountability partner" },
-  { id: "check_in8",   name: "Honest Reflection", icon: "document", desc: "Completed 8 weekly check-ins" },
-  { id: "reassessed",  name: "Growth Visible",   icon: "chart", desc: "Completed the 8-week reassessment" },
+  { id: "first_step",  name: "First Step",      icon: "leaf", desc: "Finished your first reflection" },
+  { id: "week1",       name: "One Week In",      icon: "target", desc: "Completed all of week one" },
+  { id: "streak3",     name: "On a Roll",        icon: "flame", desc: "Three days in a row" },
+  { id: "halfway",     name: "Halfway There",    icon: "moon", desc: "Reached the end of week four" },
+  { id: "all_wedges",  name: "Full Circle",      icon: "mark", desc: "A small step in every part of life" },
+  { id: "finisher",    name: "All Eight Weeks",  icon: "medal", desc: "Reached the end of week eight" },
+  { id: "streak7",     name: "Steady Going",     icon: "sparkle", desc: "Seven days in a row" },
+  { id: "inner3",      name: "Inner Work",       icon: "spiritual", desc: "Three Spiritual or Emotional steps" },
+  { id: "bonus1",      name: "A Little Extra",   icon: "sparkle", desc: "Picked up an optional extra" },
+  { id: "buddy",       name: "Better Together",  icon: "partnership", desc: "Invited someone to walk alongside you" },
+  { id: "check_in8",   name: "Honest Reflection", icon: "document", desc: "Eight weekly check-ins" },
+  { id: "reassessed",  name: "Growth Visible",   icon: "chart", desc: "Looked back at week eight" },
 ];
 
 export function scoreWedge(answers) {

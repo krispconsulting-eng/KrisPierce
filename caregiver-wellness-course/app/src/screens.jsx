@@ -110,8 +110,8 @@ export function SignUp({ scores, onStart }) {
     <div style={{maxWidth:560,margin:"0 auto",padding:"24px 16px"}}>
       <div style={{textAlign:"center",marginBottom:28}}>
         <div style={{display:"flex",justifyContent:"center",marginBottom:12}}><Icon name="mark" size={40} color="#4A7690"/></div>
-        <h2 style={{fontFamily:"Newsreader,Georgia,serif",fontSize:25,color:"#20303A",marginBottom:8}}>Build Your Plan</h2>
-        <p style={{color:"#5c6b72",fontSize:14,lineHeight:1.7,maxWidth:400,margin:"0 auto"}}>3 activities per week for 8 weeks. Earn points, build streaks, unlock badges as you go.</p>
+        <h2 style={{fontFamily:"Newsreader,Georgia,serif",fontSize:25,color:"#20303A",marginBottom:8}}>Set up your plan</h2>
+        <p style={{color:"#5c6b72",fontSize:14,lineHeight:1.7,maxWidth:400,margin:"0 auto"}}>Three small steps a week, for eight weeks. Little wins to notice as you go, at a pace that fits a caregiving life.</p>
       </div>
       <div style={{background:"white",borderRadius:14,padding:"24px",border:"1px solid #e9edef",marginBottom:20}}>
         <label style={{display:"block",fontSize:13,fontWeight:600,color:"#4a5760",marginBottom:6,fontFamily:"Newsreader,Georgia,serif"}}>Your first name</label>
@@ -131,7 +131,7 @@ export function SignUp({ scores, onStart }) {
         </div>
       </div>
       <button onClick={()=>ok&&onStart(name,focus)} style={{width:"100%",padding:"16px",background:ok?"#4A7690":"#d5dce0",color:ok?"white":"#93a0a6",border:"none",borderRadius:999,fontSize:16,fontWeight:600,cursor:ok?"pointer":"not-allowed",fontFamily:"Hanken Grotesk,sans-serif"}}>
-        Begin My Journey →
+        Begin when you're ready →
       </button>
     </div>
   );
@@ -253,8 +253,8 @@ export function GamifiedPlan({ scores: initialScores, userName, focusAreas, init
   if(reassessMode) return (
     <div style={{maxWidth:680,margin:"0 auto",padding:"16px"}}>
       <div style={{textAlign:"center",padding:"20px",background:"#4A7690",borderRadius:16,color:"white",marginBottom:20}}>
-        <h2 style={{fontFamily:"Newsreader,Georgia,serif",margin:0,fontSize:20}}>8-Week Reassessment</h2>
-        <p style={{margin:"8px 0 0",fontSize:13,opacity:0.9}}>Same 64 questions. See how far you've come.</p>
+        <h2 style={{fontFamily:"Newsreader,Georgia,serif",margin:0,fontSize:20}}>A look back at week eight</h2>
+        <p style={{margin:"8px 0 0",fontSize:13,opacity:0.9}}>The same reflection you started with. A gentle way to notice what has shifted.</p>
       </div>
       <Assessment onComplete={handleReassessComplete}/>
     </div>
@@ -293,7 +293,7 @@ export function GamifiedPlan({ scores: initialScores, userName, focusAreas, init
         {/* Progress bar */}
         <div>
           <div style={{display:"flex",justifyContent:"space-between",fontSize:11,opacity:0.85,marginBottom:3}}>
-            <span>8-Week Journey</span><span>{progressPct}% complete</span>
+            <span>Your eight weeks</span><span>{progressPct}% done</span>
           </div>
           <div style={{background:"rgba(255,255,255,0.3)",borderRadius:99,height:6}}>
             <div style={{width:`${progressPct}%`,background:"rgba(255,255,255,0.9)",height:"100%",borderRadius:99,transition:"width 0.5s"}}/>
@@ -361,8 +361,8 @@ export function GamifiedPlan({ scores: initialScores, userName, focusAreas, init
       {tab==="bonus" && (
         <div>
           <div style={{background:"#F0DEE0",borderRadius:12,padding:"14px 16px",marginBottom:20,border:"1px solid #E3CCD0"}}>
-            <div style={{fontSize:13,fontWeight:600,color:"#B3707A",marginBottom:4,fontFamily:"Newsreader,Georgia,serif",display:"flex",alignItems:"center",gap:6}}><Icon name="sparkle" size={15} color="#B3707A"/> Bonus Challenges</div>
-            <p style={{fontSize:13,color:"#8593a0",margin:0,lineHeight:1.6}}>Optional harder activities worth 40–50 pts each. Complete them any time during your 8 weeks.</p>
+            <div style={{fontSize:13,fontWeight:600,color:"#B3707A",marginBottom:4,fontFamily:"Newsreader,Georgia,serif",display:"flex",alignItems:"center",gap:6}}><Icon name="sparkle" size={15} color="#B3707A"/> Optional extras</div>
+            <p style={{fontSize:13,color:"#8593a0",margin:0,lineHeight:1.6}}>A few extra steps, here for the weeks that feel lighter. There's no pressure to do any of them; pick one up whenever it suits, or leave them be.</p>
           </div>
           {BONUS_CHALLENGES.map(bc=>{
             const cfg=WEDGE_CONFIG[bc.wedge], done=bonusDone[bc.id];
@@ -387,8 +387,8 @@ export function GamifiedPlan({ scores: initialScores, userName, focusAreas, init
       {tab==="checkin" && (
         <div>
           <div style={{background:"#D9E8E5",borderRadius:12,padding:"14px 16px",marginBottom:20,border:"1px solid #C6DBD7"}}>
-            <div style={{fontSize:13,fontWeight:600,color:"#5FA0A0",marginBottom:4,fontFamily:"Newsreader,Georgia,serif",display:"flex",alignItems:"center",gap:6}}><Icon name="document" size={15} color="#5FA0A0"/> Weekly Check-ins</div>
-            <p style={{fontSize:13,color:"#5c6b72",margin:0,lineHeight:1.6}}>One quick check-in per week. Mood + an optional note. Complete 6 to earn the Honest Reflection badge.</p>
+            <div style={{fontSize:13,fontWeight:600,color:"#5FA0A0",marginBottom:4,fontFamily:"Newsreader,Georgia,serif",display:"flex",alignItems:"center",gap:6}}><Icon name="document" size={15} color="#5FA0A0"/> Weekly check-ins</div>
+            <p style={{fontSize:13,color:"#5c6b72",margin:0,lineHeight:1.6}}>A quick moment each week to notice how you're travelling, with a note if you feel like it. There are no wrong answers here.</p>
           </div>
           {[1,2,3,4,5,6,7,8].map(w=>{
             const ci=checkIns[w];
@@ -409,14 +409,14 @@ export function GamifiedPlan({ scores: initialScores, userName, focusAreas, init
           <div style={{background:"white",borderRadius:14,padding:"24px",border:"1px solid #e9edef",marginBottom:20}}>
             <div style={{textAlign:"center",marginBottom:20}}>
               <div style={{display:"flex",justifyContent:"center",marginBottom:12}}><Icon name="partnership" size={40} color="#4A7690"/></div>
-              <h3 style={{fontFamily:"Newsreader,Georgia,serif",fontSize:18,color:"#20303A",marginBottom:8}}>Accountability Partner</h3>
-              <p style={{fontSize:14,color:"#5c6b72",lineHeight:1.6}}>Research is clear: people who have an accountability partner are significantly more likely to follow through. Invite someone to do this alongside you: a partner, a friend, another caregiver who gets it.</p>
+              <h3 style={{fontFamily:"Newsreader,Georgia,serif",fontSize:18,color:"#20303A",marginBottom:8}}>Someone alongside you</h3>
+              <p style={{fontSize:14,color:"#5c6b72",lineHeight:1.6}}>Doing this alongside someone can make it easier to keep going, and you don't have to carry it on your own. If you'd like, invite a person who understands: a partner, a friend, or another carer who gets it.</p>
             </div>
             {!buddyShared?<>
               <label style={{display:"block",fontSize:13,fontWeight:600,color:"#4a5760",marginBottom:6,fontFamily:"Newsreader,Georgia,serif"}}>Partner's email</label>
               <input value={buddyEmail} onChange={e=>setBuddyEmail(e.target.value)} placeholder="partner@example.com" style={{width:"100%",padding:"10px 14px",borderRadius:8,border:"1.5px solid #dde3e6",fontSize:15,fontFamily:"Hanken Grotesk,sans-serif",boxSizing:"border-box",marginBottom:16}}/>
               <button onClick={shareWithBuddy} style={{width:"100%",padding:"12px",background:buddyEmail.trim()?"#4A7690":"#d5dce0",color:buddyEmail.trim()?"white":"#93a0a6",border:"none",borderRadius:999,fontWeight:600,cursor:buddyEmail.trim()?"pointer":"not-allowed",fontFamily:"Hanken Grotesk,sans-serif",fontSize:14,display:"flex",alignItems:"center",justifyContent:"center",gap:8}}>
-                Send Invitation &amp; Earn Badge <Icon name="arrowRight" size={15} color={buddyEmail.trim()?"white":"#93a0a6"}/>
+                Send the invitation <Icon name="arrowRight" size={15} color={buddyEmail.trim()?"white":"#93a0a6"}/>
               </button>
             </>:<div style={{textAlign:"center",padding:"20px",background:"#DCE8EF",borderRadius:12}}>
               <div style={{display:"flex",justifyContent:"center",marginBottom:10}}><Icon name="partnership" size={32} color="#4A7690"/></div>
@@ -425,9 +425,9 @@ export function GamifiedPlan({ scores: initialScores, userName, focusAreas, init
             </div>}
           </div>
           <div style={{background:"#F0DEE0",borderRadius:12,padding:"16px",border:"1px solid #E3CCD0"}}>
-            <div style={{fontSize:13,fontWeight:600,color:"#B3707A",marginBottom:8,fontFamily:"Newsreader,Georgia,serif",display:"flex",alignItems:"center",gap:6}}><Icon name="sparkle" size={15} color="#B3707A"/> What good accountability looks like</div>
+            <div style={{fontSize:13,fontWeight:600,color:"#B3707A",marginBottom:8,fontFamily:"Newsreader,Georgia,serif",display:"flex",alignItems:"center",gap:6}}><Icon name="sparkle" size={15} color="#B3707A"/> What this can look like</div>
             <div style={{fontSize:13,color:"#5c6b72",lineHeight:1.7}}>
-              A brief check-in once a week. "Did you do your three activities?" "How was your mood?" That's it. You don't need to share your scores, talk through your feelings, or do it together. You just need someone who will ask.
+              A quick check-in once a week is plenty. "Did you get to your three small steps?" "How are you travelling?" That's all. You don't need to share anything you'd rather keep private, or do it together. You just need someone who will ask.
             </div>
           </div>
         </div>
@@ -449,7 +449,7 @@ export function GamifiedPlan({ scores: initialScores, userName, focusAreas, init
           </div>
           <div style={{background:"white",borderRadius:14,padding:"20px",border:"1px solid #e9edef"}}>
             <h3 style={{fontFamily:"Newsreader,Georgia,serif",fontSize:15,color:"#20303A",marginBottom:12,display:"flex",alignItems:"center",gap:8}}><Icon name="target" size={17} color="#4A7690"/> Point guide</h3>
-            {[["Complete an activity","10–26 pts"],["Full week complete","+25 bonus pts"],["Bonus challenge","40–50 pts"],["3-day streak","Streak badge"],["7-day streak","Unstoppable badge"],["Invite an accountability partner","Better Together badge"],["Complete 8 check-ins","Honest Reflection badge"],["Complete 8-week reassessment","Growth Visible badge"]].map(([a,r])=>(
+            {[["Do a small step","10 to 26 pts"],["Finish a full week","+25 bonus pts"],["Optional extra","40 to 50 pts"],["Three days in a row","Streak badge"],["Seven days in a row","Unstoppable badge"],["Invite someone alongside you","Better Together badge"],["Eight weekly check-ins","Honest Reflection badge"],["Look back at week eight","Growth Visible badge"]].map(([a,r])=>(
               <div key={a} style={{display:"flex",justifyContent:"space-between",paddingBottom:8,marginBottom:8,borderBottom:"1px solid #eef1f2",fontSize:13}}>
                 <span style={{color:"#4a5760"}}>{a}</span><span style={{fontWeight:600,color:"#4A7690"}}>{r}</span>
               </div>
@@ -487,7 +487,7 @@ export function GamifiedPlan({ scores: initialScores, userName, focusAreas, init
         <div>
           <div style={{textAlign:"center",marginBottom:24}}>
             <h2 style={{fontFamily:"Newsreader,Georgia,serif",fontSize:22,color:"#20303A",marginBottom:8,display:"flex",alignItems:"center",justifyContent:"center",gap:8}}><Icon name="chart" size={22} color="#4A7690"/> Before &amp; After</h2>
-            <p style={{fontSize:14,color:"#5c6b72"}}>Eight weeks of real effort, made visible.</p>
+            <p style={{fontSize:14,color:"#5c6b72"}}>Eight weeks, side by side. Notice what has shifted, however gently.</p>
           </div>
           <div style={{display:"flex",gap:16,justifyContent:"center",marginBottom:28,flexWrap:"wrap"}}>
             <div style={{textAlign:"center"}}><div style={{fontSize:13,color:"#93a0a6",marginBottom:8,fontFamily:"Hanken Grotesk,sans-serif"}}>Week 1 Baseline</div><WellnessWheelSVG scores={scores} size={240}/></div>
@@ -527,8 +527,8 @@ export function WeeklyCheckIn({ week, existing, onSubmit, onClose }) {
   return (
     <div onClick={onClose} style={{position:"fixed",inset:0,background:"rgba(32,48,58,0.55)",display:"flex",alignItems:"center",justifyContent:"center",zIndex:9998,padding:16}}>
       <div onClick={e=>e.stopPropagation()} style={{background:"white",borderRadius:20,padding:"32px 24px",maxWidth:380,width:"100%"}}>
-        <h3 style={{fontFamily:"Newsreader,Georgia,serif",fontSize:20,color:"#20303A",marginBottom:6}}>Week {week} Check-in</h3>
-        <p style={{fontSize:14,color:"#8593a0",marginBottom:20,lineHeight:1.5}}>How are you feeling this week, overall?</p>
+        <h3 style={{fontFamily:"Newsreader,Georgia,serif",fontSize:20,color:"#20303A",marginBottom:6}}>Week {week} check-in</h3>
+        <p style={{fontSize:14,color:"#8593a0",marginBottom:20,lineHeight:1.5}}>How are you travelling this week?</p>
         <div style={{display:"flex",gap:8,marginBottom:20}}>
           {[1,2,3,4,5].map(v=>(
             <button key={v} onClick={()=>setMood(v)} style={{flex:1,padding:"12px 4px",borderRadius:12,border:`1.5px solid ${mood===v?moodColors[v-1]:"#e5eaec"}`,background:mood===v?"#F7F9FA":"white",cursor:"pointer",display:"flex",flexDirection:"column",alignItems:"center",gap:6,transition:"all 180ms"}}>
@@ -552,9 +552,9 @@ export function Landing({ onStart }) {
     <div style={{maxWidth:560,margin:"0 auto",padding:"32px 16px",textAlign:"center"}}>
       <div style={{display:"flex",justifyContent:"center",marginBottom:20}}><WellnessWheelSVG/></div>
       <h1 style={{fontFamily:"Newsreader,Georgia,serif",fontSize:28,color:"#20303A",marginBottom:10,lineHeight:1.3}}>Your Caregiver Wellness Wheel</h1>
-      <p style={{color:"#5c6b72",fontSize:15,lineHeight:1.7,marginBottom:28,maxWidth:420,margin:"0 auto 28px"}}>Built for family caregivers of someone with a rare disease. Eight dimensions of wellbeing. A 64-question assessment, a personalised report, and a gamified 8-week plan built around your actual life, not someone else's.</p>
+      <p style={{color:"#5c6b72",fontSize:15,lineHeight:1.7,marginBottom:28,maxWidth:420,margin:"0 auto 28px"}}>Made for parents and family carers of a child with disability, complex medical needs or a rare condition. Eight parts of life that add up to your wellbeing, a short reflection to see where things sit, and eight weeks of small, doable steps that fit around real caregiving.</p>
       <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit, minmax(170px, 1fr))",gap:12,marginBottom:28,textAlign:"left"}}>
-        {[["document","64-question assessment","8 questions across all 8 dimensions"],["chart","Personalised report","Scores, strengths, and focus areas"],["target","8-week plan","3 activities per week, your focus areas"],["medal","Points, badges & levels","Gamified progress that keeps you going"],["partnership","Accountability partner","Invite someone to keep you on track"],["moon","Weekly check-ins","Track your mood alongside your actions"],["sparkle","Bonus challenges","Optional harder activities, more points"],["chart","Before & after comparison","Reassess at week 8 to see your growth"]].map(([icon,title,desc],i)=>(
+        {[["document","A short reflection","Eight gentle questions for each part of life"],["chart","Your wellbeing picture","Where you're steady, and where you might start"],["target","Eight weeks of tiny steps","A few small actions a week, around what matters to you"],["medal","Small wins to notice","Gentle encouragement as you go, at your own pace"],["partnership","Someone alongside you","Invite a person who gets it, if you'd like"],["moon","Weekly check-ins","A moment to notice how you're travelling"],["sparkle","Optional extras","A little more, for the weeks that feel lighter"],["chart","Before and after","Look back at week eight and notice what has shifted"]].map(([icon,title,desc],i)=>(
           <div key={i} style={{background:"white",borderRadius:12,padding:"14px",border:"1px solid #e9edef"}}>
             <div style={{marginBottom:8,color:"#4A7690"}}><Icon name={icon} size={22}/></div>
             <div style={{fontWeight:600,fontSize:13,fontFamily:"Newsreader,Georgia,serif",color:"#20303A",marginBottom:3}}>{title}</div>
@@ -563,10 +563,10 @@ export function Landing({ onStart }) {
         ))}
       </div>
       <button onClick={onStart} style={{width:"100%",padding:"16px",background:"#4A7690",color:"white",border:"none",borderRadius:999,fontSize:16,fontWeight:600,cursor:"pointer",fontFamily:"Hanken Grotesk,sans-serif",display:"flex",alignItems:"center",justifyContent:"center",gap:8}}>
-        Begin My Assessment <Icon name="arrowRight" size={17} color="white"/>
+        Start when you're ready <Icon name="arrowRight" size={17} color="white"/>
       </button>
-      <p style={{fontSize:12,color:"#93a0a6",marginTop:12}}>Takes about 10 minutes. No account needed to start.</p>
-      <p style={{fontSize:11,color:"#a6b1b8",marginTop:20,lineHeight:1.6,maxWidth:420,marginLeft:"auto",marginRight:"auto"}}>This is a wellbeing programme, not a substitute for medical or mental health care. If you're in crisis, please contact a crisis line or your GP.</p>
+      <p style={{fontSize:12,color:"#93a0a6",marginTop:12}}>About 10 minutes, and you can stop and come back any time. No account needed.</p>
+      <p style={{fontSize:11,color:"#a6b1b8",marginTop:20,lineHeight:1.6,maxWidth:420,marginLeft:"auto",marginRight:"auto"}}>This is a wellbeing programme, not a substitute for medical or mental health care. If you're struggling or in crisis, please reach out to Lifeline on 13 11 14, or talk to your GP.</p>
     </div>
   );
 }
