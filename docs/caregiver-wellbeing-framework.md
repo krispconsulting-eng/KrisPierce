@@ -1,7 +1,9 @@
-# Caregiver Wellbeing — Literature Review & Resource Brief
+# The Caregiver Wellbeing Framework
 
-Status: living document. Compiled to inform a **caregiver Wellness Wheel**
-feature. This is a plain-language synthesis of published statistics and public
+*Literature review & resource brief.*
+
+Status: living document. Compiled to define **The Caregiver Wellbeing
+Framework**. This is a plain-language synthesis of published statistics and public
 resources, not clinical advice. Figures are US-centric unless noted; treat them
 as directional for an Australian family (the SCN2A/disability-caregiver context
 of this project) rather than exact local rates.
@@ -18,7 +20,7 @@ greatest burden, loneliness and isolation of any caregiver group
 A wellbeing tool for this audience should assume high baseline strain, chronic
 (not episodic) demand, and very little discretionary time.
 
-## The framework: an 8-dimension Wellness Wheel
+## The model: 8 dimensions of wellness
 
 The most widely-used, public-domain model is **SAMHSA's Eight Dimensions of
 Wellness** — Emotional, Physical, Social, Intellectual, Spiritual,
@@ -26,15 +28,15 @@ Environmental, Financial, and Occupational. All eight are interconnected;
 progress in one lifts the others, and neglect in one drags the others down
 ([SAMHSA poster, SMA16-4953](https://library.samhsa.gov/sites/default/files/sma16-4953.pdf);
 [SAMHSA, *Creating a Healthier Life*](https://library.samhsa.gov/product/creating-healthier-life-step-step-guide-wellness/sma16-4958)).
-Using this model keeps the wheel evidence-based, avoids reinventing categories,
+Using this model keeps the Framework evidence-based, avoids reinventing categories,
 and lets each spoke map to a self-assessment prompt plus targeted resources.
 
-> **Design implication.** Build the wheel as 8 spokes. Each spoke = (1) a
+> **Design implication.** Build the Framework as 8 spokes. Each spoke = (1) a
 > short self-rating, (2) a one-line "why this matters" stat, (3) one small
 > actionable step, (4) 1–2 vetted resources. Keep actions *tiny* — the core
 > constraint for this audience is time, not motivation.
 
-## Headline statistics (the case for the wheel)
+## Headline statistics (the case for the Framework)
 
 - **Scale.** ~53 million US adults (>1 in 5) are unpaid family caregivers — up
   9.5 million in five years
@@ -116,7 +118,7 @@ put in front of an Australian user.
 - Objective marker: caregiver burden in parents of children with special
   healthcare needs is associated with elevated **inflammation**
   ([*Discover Psychology* 2023](https://link.springer.com/article/10.1007/s44202-023-00089-z)).
-- **Wheel action idea:** protect one sleep block / arrange overnight respite;
+- **Framework action idea:** protect one sleep block / arrange overnight respite;
   attach preventive-health check reminders (the caregiver's *own* GP visits).
 
 ### 3. Social
@@ -138,7 +140,7 @@ put in front of an Australian user.
   setback (AARP 2021).
 - Strain falls hardest on younger, lower-income, and Hispanic/Latino and
   Black caregivers (AARP 2021).
-- **This is the wheel's natural tie-in to the rest of the app** — the existing
+- **This is the Framework's natural tie-in to the rest of the app** — the existing
   Fee Finder / Subscriptions / Debt Payoff tooling *is* a financial-wellbeing
   intervention. Link the Financial spoke straight into those views.
 
@@ -147,7 +149,7 @@ put in front of an Australian user.
   **18%** cut hours, and **9%** stop working entirely — an average
   **$10,525/yr** in work-related costs
   ([AARP Out-of-Pocket Costs Study](https://www.aarp.org/pri/topics/ltss/family-caregiving/family-caregivers-cost-survey/)).
-- **Wheel action idea:** surface employer carer-leave entitlements and flexible-
+- **Framework action idea:** surface employer carer-leave entitlements and flexible-
   work rights; for AU, note Carer Leave provisions and the role a diagnosis
   letter plays in workplace adjustments.
 
@@ -155,7 +157,7 @@ put in front of an Australian user.
 - 26% of caregivers struggle to *coordinate* care (AARP/NAC 2020) — the load is
   cognitive as well as emotional. Learning the condition, navigating systems,
   and organising appointments are real work.
-- **Wheel action idea:** a "learn one thing" prompt + curated explainers;
+- **Framework action idea:** a "learn one thing" prompt + curated explainers;
   care-coordination checklists; a single place for the child's medical summary.
 
 ### 7. Environmental
@@ -163,7 +165,7 @@ put in front of an Australian user.
   reducing overnight-monitoring burden) directly affect both the caregiver's
   sleep and stress load — this dimension is practical, not abstract, for
   high-needs pediatric care.
-- **Wheel action idea:** home-setup / equipment checklist; respite-space and
+- **Framework action idea:** home-setup / equipment checklist; respite-space and
   local-services locator.
 
 ### 8. Spiritual (meaning & purpose)
@@ -171,10 +173,10 @@ put in front of an Australian user.
   ([SAMHSA](https://library.samhsa.gov/sites/default/files/sma16-4953.pdf)).
   For rare-disease parents, connection to advocacy/community and meaning-making
   are documented protective, burnout-buffering resources (PMC11592539).
-- **Wheel action idea:** reflection prompts; connection to the SCN2A charity's
+- **Framework action idea:** reflection prompts; connection to the SCN2A charity's
   own mission as a source of meaning.
 
-## Evidence-based interventions to point the wheel at
+## Evidence-based interventions to point the Framework at
 
 - **Respite care** — short-term relief; the single most-requested support. US
   programs delivered ~6M hours to 604k+ caregivers; find local via the
@@ -208,12 +210,12 @@ put in front of an Australian user.
 > condition depression rates) and the patterns match. Prefer AU numbers and AU
 > helplines in anything shipped to this family.
 
-## Recommended next step for the wheel
+## Recommended next step for the Framework
 
-Ship the 8-spoke SAMHSA wheel with a short self-rating per spoke, one stat, one
-tiny action, and the vetted links above — and wire the **Financial** spoke into
-the app's existing Fee Finder / Subscriptions / Debt Payoff views so the wheel
-isn't just informational but plugs into tools the family already uses.
+Ship the 8-spoke SAMHSA-based Framework with a short self-rating per spoke, one
+stat, one tiny action, and the vetted links above — and wire the **Financial**
+spoke into the app's existing Fee Finder / Subscriptions / Debt Payoff views so
+the Framework isn't just informational but plugs into tools the family already uses.
 
 ## Sources
 
