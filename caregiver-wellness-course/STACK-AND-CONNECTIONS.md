@@ -22,7 +22,17 @@ workflow, and schema fetches of the live Notion databases.
         │                       React + Vite, static files under website/app/
         │                       Saves progress in the browser (local storage).
         │                       Optional Supabase sync (not configured yet).
-        │                       Does NOT talk to n8n or Notion at all.
+        │                          │
+        │                          │ ONLY if the caregiver opts in to email
+        │                          │ check-ins on sign-up (off by default)
+        │                          ▼
+        │              n8n WEBHOOK "App Events"  ● built + published
+        │              /webhook/caregiver-course-app-events
+        │                 enrolled      → Participant + Enrollment (Enrolled
+        │                                 Date = today) + Week 1 Baseline
+        │                                 wheel submission in Notion
+        │                 reassessment  → Week 8 submission + Enrollment
+        │                                 marked Completed
         │
         └─ fills a form ───────►  WEBSITE FORMS  (waitlist / sponsor / apply)
                                      │  POST JSON
@@ -59,9 +69,16 @@ Legend: ● live and running · ○ built but switched off (see §6 for why).
   (`app/src/supabaseClient.js`, `app/.env.example`, `app/supabase/schema.sql`).
   It is dormant until you set `VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY`
   and run the schema. Until then the app is fully functional on local storage.
-- **Important:** the app is self-contained. It does **not** post anything to
-  n8n or Notion. Completing the reflection in the app does not, by itself,
-  create any record in the CRM. See the gap in §7.
+- **Consent-first CRM bridge:** by default the app is self-contained and posts
+  nothing anywhere. On the sign-up screen there is an optional email field;
+  leaving it blank keeps everything on the device. If the caregiver adds an
+  email, the app calls the **App Events** webhook
+  (`/webhook/caregiver-course-app-events`, workflow `onnVc7WnOSEokgmP`), which
+  creates their Participant, an Enrollment with today as the Enrolled Date
+  (feeding the weekly emails), and their Week 1 Baseline wheel submission. At
+  the week-8 look-back it records the Week 8 submission (feeding the sponsor
+  impact report) and marks the Enrollment completed. All calls are
+  fire-and-forget: offline or failed requests never affect the app.
 
 ---
 
@@ -111,9 +128,10 @@ reads Notion, works out timing from each participant's own **Enrolled Date**
 
 | Database | id | Written by | Read by |
 |---|---|---|---|
-| Participants | `48c6cd4d8ded4b4eb495d110909b2f41` | Intake (waitlist + scholarship) | you, manually; Enrollments link |
+| Participants | `48c6cd4d8ded4b4eb495d110909b2f41` | Intake (waitlist + scholarship); App Events (opt-in enrolment) | you, manually; Enrollments link |
 | Sponsors | `b4f23c8ce0c045c186e51c3f284cac68` | Intake (sponsor enquiries) | Sponsor Impact Report |
-| Enrollments | `437394770dc44d33970e349433d75384` | (currently manual, see §7) | all three email workflows |
+| Enrollments | `437394770dc44d33970e349433d75384` | App Events (opt-in enrolment), or you manually | all three email workflows |
+| Wheel Submissions | `81d5e53cdf7d4707af1da562a3ee2b71` | App Events (baseline + week-8, opt-in only) | Sponsor Impact Report |
 
 The Enrollments records carry the `Enrolled Date` that every email timer is
 based on, plus rollups for participant name, email and completion status.
@@ -160,26 +178,25 @@ would simply fail on its first run.
 These are genuine gaps in the wiring, not bugs. Flagging them so they are a
 choice, not a surprise.
 
-1. **App completion does not create an Enrollment.** A caregiver can finish the
-   reflection and plan in the app, but nothing writes them into the Notion
-   Enrollments DB that the weekly emails read. Right now enrolment is a manual
-   step (you create the Enrollment with an Enrolled Date). Options: keep it
-   manual for the pilot; or add a small "start my plan" call from the app to a
-   new n8n webhook that creates the Enrollment. Deciding this depends on whether
-   you want accounts (Supabase) or want to stay account-free.
-2. **Nothing writes to the Wellness Wheel Submissions database.** The sponsor
-   impact report reads baseline/week-8 wheel results from a Submissions DB
-   (`81d5e53cdf7d4707af1da562a3ee2b71`), but the app never sends results
-   anywhere, so the report would always show "n/a" changes. This resolves
-   together with gap 1 (the same app→n8n webhook can record wheel results,
-   anonymised, at baseline and week 8).
-3. **The website is not publicly hosted yet.** The site is a folder in the repo
-   (plus claude.ai mock-up artifacts). Until it is deployed somewhere public
-   (any static host works: GitHub Pages, Netlify, Cloudflare Pages, all free),
-   no real visitor can reach the forms at all.
-4. **Supabase is not connected.** Until it is, progress is per-browser only (no
-   cross-device, no real accounts). Fine for a pilot; needed before you want
-   people picking the course back up on another device.
+1. ~~App completion does not create an Enrollment~~ **Resolved (pending the
+   Notion share):** the consent-first App Events webhook now creates the
+   Participant + Enrollment when a caregiver opts in with an email on sign-up.
+   Caregivers who leave email blank stay fully private and off the CRM, which
+   is by design.
+2. ~~Nothing writes to the Wellness Wheel Submissions database~~ **Resolved
+   (pending the Notion share):** the same webhook records the Week 1 Baseline
+   and Week 8 Reassessment submissions for opted-in caregivers, which is what
+   the sponsor impact report aggregates.
+3. **The website is not publicly hosted yet, but the deploy is ready.** A
+   GitHub Pages workflow now lives at `.github/workflows/deploy-pages.yml`; it
+   deploys `caregiver-wellness-course/website/` on every push to the default
+   branch once you flip Settings → Pages → Source to "GitHub Actions". Note:
+   on a free plan GitHub Pages needs the repo public; if it must stay private,
+   point Cloudflare Pages or Netlify (free) at the same folder.
+4. **Supabase is not connected, and the recommendation is to skip it for the
+   pilot.** Local storage plus the optional enrolment webhook covers the pilot
+   without account complexity; revisit only when cross-device sync genuinely
+   matters.
 5. **Marketing-site statistics are US-sourced.** A couple of figures on the home
    page cite 2015/2020 US caregiver data. The new framework wants Australian
    evidence first (ABS, AIHW, Carer Wellbeing Survey). Re-sourcing these should
@@ -206,10 +223,13 @@ When you come back, this is the whole list to make forms and emails live:
    workflow) and check a record appears in Participants; run the weekly email
    workflow once against a test Enrollment with an Enrolled Date in week 1 and
    check the email lands.
-5. Toggle each workflow **Active**.
-6. Deploy the website to a public host (see §7.3) so real visitors can reach it.
-7. Decide on the §7.1 question: manual enrolment for the pilot, or wire the app
-   to create Enrollments automatically.
+5. Toggle each workflow **Active**. (The App Events workflow
+   `onnVc7WnOSEokgmP` is already published; it starts working the moment the
+   Notion share is done.)
+6. Enable GitHub Pages (Settings → Pages → Source: "GitHub Actions") so the
+   deploy workflow in `.github/workflows/deploy-pages.yml` can publish the
+   site, or point Cloudflare Pages/Netlify at
+   `caregiver-wellness-course/website/` if the repo stays private.
 
 Everything upstream of this (forms, routing, Notion writes, the week-timing
 logic, the email content) is already built and waiting on these steps.

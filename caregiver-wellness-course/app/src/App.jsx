@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { Icon } from "./icons";
 import { Landing, Assessment, Report, SignUp, GamifiedPlan } from "./screens";
 import { loadState, saveState } from "./persistence";
+import { sendEnrolled, sendReassessment } from "./events";
 
 export default function App() {
   const [hydrated, setHydrated] = useState(false);
@@ -10,6 +11,10 @@ export default function App() {
   const [userName, setUserName] = useState("");
   const [focusAreas, setFocusAreas] = useState([]);
   const [planState, setPlanState] = useState(null);
+  // Set only when the caregiver opted in to email check-ins on sign-up:
+  // { participantId, enrollmentId } from the course CRM, so the week-8
+  // reassessment can be recorded against the same enrolment.
+  const [remote, setRemote] = useState(null);
   const skipNextSave = useRef(true);
 
   useEffect(() => {
@@ -22,6 +27,7 @@ export default function App() {
         setUserName(saved.userName ?? "");
         setFocusAreas(saved.focusAreas ?? []);
         setPlanState(saved.planState ?? null);
+        setRemote(saved.remote ?? null);
       }
       setHydrated(true);
     });
@@ -31,8 +37,21 @@ export default function App() {
   useEffect(() => {
     if (!hydrated) return;
     if (skipNextSave.current) { skipNextSave.current = false; return; }
-    saveState({ stage, scores, userName, focusAreas, planState });
-  }, [hydrated, stage, scores, userName, focusAreas, planState]);
+    saveState({ stage, scores, userName, focusAreas, planState, remote });
+  }, [hydrated, stage, scores, userName, focusAreas, planState, remote]);
+
+  function handleStart(name, focus, email) {
+    setUserName(name);
+    setFocusAreas(focus);
+    setStage("plan");
+    if (email) {
+      sendEnrolled({ name, email, scores }).then((ids) => { if (ids) setRemote(ids); });
+    }
+  }
+
+  function handleReassessed(newScores) {
+    if (remote) sendReassessment({ name: userName, ...remote, scores: newScores });
+  }
 
   if (!hydrated) {
     return (
@@ -57,8 +76,8 @@ export default function App() {
         {stage==="landing"&&<Landing onStart={()=>setStage("assessment")}/>}
         {stage==="assessment"&&<Assessment onComplete={s=>{setScores(s);setPlanState(null);setStage("report");}}/>}
         {stage==="report"&&<Report scores={scores} onSignUp={()=>setStage("signup")}/>}
-        {stage==="signup"&&<SignUp scores={scores} onStart={(name,focus)=>{setUserName(name);setFocusAreas(focus);setStage("plan");}}/>}
-        {stage==="plan"&&<GamifiedPlan scores={scores} userName={userName} focusAreas={focusAreas} initialState={planState} onStateChange={setPlanState}/>}
+        {stage==="signup"&&<SignUp scores={scores} onStart={handleStart}/>}
+        {stage==="plan"&&<GamifiedPlan scores={scores} userName={userName} focusAreas={focusAreas} initialState={planState} onStateChange={setPlanState} onReassessed={handleReassessed}/>}
       </div>
     </div>
   );

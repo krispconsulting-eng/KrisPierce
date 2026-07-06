@@ -101,7 +101,7 @@ export function Report({ scores, onSignUp }) {
 }
 
 export function SignUp({ scores, onStart }) {
-  const [name,setName]=useState(""), [focus,setFocus]=useState([]);
+  const [name,setName]=useState(""), [focus,setFocus]=useState([]), [email,setEmail]=useState("");
   const suggested=[...WEDGES].sort((a,b)=>scores[a]-scores[b]).slice(0,3);
   const toggle=w=>focus.includes(w)?setFocus(focus.filter(x=>x!==w)):focus.length<3?setFocus([...focus,w]):null;
   const ok=name.trim()&&focus.length>=2;
@@ -116,6 +116,9 @@ export function SignUp({ scores, onStart }) {
       <div style={{background:"white",borderRadius:14,padding:"24px",border:"1px solid #e9edef",marginBottom:20}}>
         <label style={{display:"block",fontSize:13,fontWeight:600,color:"#4a5760",marginBottom:6,fontFamily:"Newsreader,Georgia,serif"}}>Your first name</label>
         <input value={name} onChange={e=>setName(e.target.value)} placeholder="First name" style={{width:"100%",padding:"10px 14px",borderRadius:8,border:"1.5px solid #dde3e6",fontSize:15,fontFamily:"Hanken Grotesk,sans-serif",boxSizing:"border-box"}}/>
+        <label style={{display:"block",fontSize:13,fontWeight:600,color:"#4a5760",margin:"18px 0 6px",fontFamily:"Newsreader,Georgia,serif"}}>A weekly check-in by email? (optional)</label>
+        <input type="email" value={email} onChange={e=>setEmail(e.target.value)} placeholder="you@example.com" style={{width:"100%",padding:"10px 14px",borderRadius:8,border:"1.5px solid #dde3e6",fontSize:15,fontFamily:"Hanken Grotesk,sans-serif",boxSizing:"border-box"}}/>
+        <p style={{fontSize:12,color:"#93a0a6",lineHeight:1.6,margin:"8px 0 0"}}>Leave this blank and everything stays on your device. Add your email and we'll send one gentle check-in a week during your eight weeks, nothing else, and you can stop any time.</p>
       </div>
       <div style={{background:"white",borderRadius:14,padding:"24px",border:"1px solid #e9edef",marginBottom:28}}>
         <div style={{fontSize:13,fontWeight:600,color:"#4a5760",marginBottom:4,fontFamily:"Newsreader,Georgia,serif"}}>Choose 2–3 focus areas</div>
@@ -130,14 +133,14 @@ export function SignUp({ scores, onStart }) {
           );})}
         </div>
       </div>
-      <button onClick={()=>ok&&onStart(name,focus)} style={{width:"100%",padding:"16px",background:ok?"#4A7690":"#d5dce0",color:ok?"white":"#93a0a6",border:"none",borderRadius:999,fontSize:16,fontWeight:600,cursor:ok?"pointer":"not-allowed",fontFamily:"Hanken Grotesk,sans-serif"}}>
+      <button onClick={()=>ok&&onStart(name,focus,email.trim())} style={{width:"100%",padding:"16px",background:ok?"#4A7690":"#d5dce0",color:ok?"white":"#93a0a6",border:"none",borderRadius:999,fontSize:16,fontWeight:600,cursor:ok?"pointer":"not-allowed",fontFamily:"Hanken Grotesk,sans-serif"}}>
         Begin when you're ready →
       </button>
     </div>
   );
 }
 
-export function GamifiedPlan({ scores: initialScores, userName, focusAreas, initialState, onStateChange }) {
+export function GamifiedPlan({ scores: initialScores, userName, focusAreas, initialState, onStateChange, onReassessed }) {
   const init = initialState || {};
   const [completed,setCompleted]=useState(init.completed ?? {});
   const [bonusDone,setBonusDone]=useState(init.bonusDone ?? {});
@@ -238,6 +241,7 @@ export function GamifiedPlan({ scores: initialScores, userName, focusAreas, init
     setReassessMode(false);
     awardBadge("reassessed");
     setTab("compare");
+    onReassessed?.(newScores);
   }
 
   const MOOD_LABELS=["Struggling","Flat","Okay","Good","Great"];
@@ -516,7 +520,7 @@ export function Landing({ onStart }) {
       <h1 style={{fontFamily:"Newsreader,Georgia,serif",fontSize:28,color:"#20303A",marginBottom:10,lineHeight:1.3}}>Your Caregiver Wellness Wheel</h1>
       <p style={{color:"#5c6b72",fontSize:15,lineHeight:1.7,marginBottom:28,maxWidth:420,margin:"0 auto 28px"}}>Made for parents and family carers of a child with disability, complex medical needs or a rare condition. Eight parts of life that add up to your wellbeing, a short reflection to see where things sit, and eight weeks of small, doable steps that fit around real caregiving.</p>
       <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit, minmax(170px, 1fr))",gap:12,marginBottom:28,textAlign:"left"}}>
-        {[["document","A short reflection","Eight gentle questions for each part of life"],["chart","Your wellbeing picture","Where you're steady, and where you might start"],["target","Eight weeks of tiny steps","A few small actions a week, around what matters to you"],["medal","Small wins to notice","Gentle encouragement as you go, at your own pace"],["mark","Private by default","Your answers stay on your device, for you alone"],["moon","Weekly check-ins","A moment to notice how you're travelling"],["sparkle","Optional extras","A little more, for the weeks that feel lighter"],["chart","Before and after","Look back at week eight and notice what has shifted"]].map(([icon,title,desc],i)=>(
+        {[["document","A short reflection","Eight gentle questions for each part of life"],["chart","Your wellbeing picture","Where you're steady, and where you might start"],["target","Eight weeks of tiny steps","A few small actions a week, around what matters to you"],["medal","Small wins to notice","Gentle encouragement as you go, at your own pace"],["mark","Private by default","Everything stays on your device, unless you ask for email check-ins"],["moon","Weekly check-ins","A moment to notice how you're travelling"],["sparkle","Optional extras","A little more, for the weeks that feel lighter"],["chart","Before and after","Look back at week eight and notice what has shifted"]].map(([icon,title,desc],i)=>(
           <div key={i} style={{background:"white",borderRadius:12,padding:"14px",border:"1px solid #e9edef"}}>
             <div style={{marginBottom:8,color:"#4A7690"}}><Icon name={icon} size={22}/></div>
             <div style={{fontWeight:600,fontSize:13,fontFamily:"Newsreader,Georgia,serif",color:"#20303A",marginBottom:3}}>{title}</div>
