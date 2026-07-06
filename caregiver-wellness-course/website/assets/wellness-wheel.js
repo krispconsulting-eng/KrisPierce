@@ -85,11 +85,11 @@
 
   function drawWheel() {
     DIMS.forEach(function (dim, i) {
-      var group = el('g', { class: 'ww-wedge-group' });
+      var group = el('g', { class: 'ww-wedge' });
       var start = i * 45 + PAD;
       var end = (i + 1) * 45 - PAD;
       var path = el('path', {
-        class: 'ww-wedge',
+        class: 'ww-wedge-fill',
         d: sector(CX, CY, INNER, OUTER, start, end),
         fill: dim.color,
         opacity: '0.92'
@@ -155,7 +155,10 @@
     wedges.forEach(function (group) {
       group.classList.remove('is-lifted', 'is-soft');
       group.style.transform = 'translate(0, 0) scale(1)';
-      group.style.opacity = '1';
+      // Opacity is CSS-driven (.is-soft / .is-lifted); an inline opacity
+      // here would outrank those class rules and the soften effect would
+      // never show.
+      group.style.removeProperty('opacity');
     });
     if (mark) mark.classList.remove('is-awake');
   }
@@ -186,23 +189,6 @@
       }
     });
     if (mark) mark.classList.add('is-awake');
-  }
-
-  function blossom() {
-    wedges.forEach(function (group, i) {
-      group.style.opacity = '0';
-      group.style.transform = 'scale(.82) rotate(' + ((i - 3.5) * 2.2) + 'deg)';
-    });
-    later(function () {
-      wedges.forEach(function (group, i) {
-        group.style.transition = 'transform 1500ms cubic-bezier(.16,1,.3,1) ' + (i * 55) + 'ms, opacity 1200ms ease ' + (i * 55) + 'ms';
-        group.style.opacity = '1';
-        group.style.transform = 'scale(1) rotate(0deg)';
-      });
-    }, 80);
-    later(function () {
-      wedges.forEach(function (group) { group.removeAttribute('style'); });
-    }, 2100);
   }
 
   function run(step) {
@@ -246,9 +232,7 @@
   }
 
   drawWheel();
-  wheel.style.transform = 'rotate(112.5deg)';
-  blossom();
-  later(function () { run(0); }, 2500);
+  later(function () { run(0); }, 600);
 
   document.addEventListener('visibilitychange', function () {
     if (document.hidden) {
