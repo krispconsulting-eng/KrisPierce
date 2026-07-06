@@ -4,7 +4,6 @@ The 8-week digital wellbeing course for family caregivers of people with rare di
 
 - **Architecture (business model, CRM, onboarding, n8n automation):** [`../CAREGIVER-WELLNESS-COURSE-ARCHITECTURE.md`](../CAREGIVER-WELLNESS-COURSE-ARCHITECTURE.md)
 - **Content outline (weekly themes, research grounding):** [`COURSE-CONTENT-OUTLINE.md`](COURSE-CONTENT-OUTLINE.md)
-- **Legacy single-file prototype (outdated, kept for history only):** [`wellness-wheel.jsx`](wellness-wheel.jsx) — the real source of truth is `app/src/`
 - **Wellness Wheel app, real Vite build:** [`app/`](app/) — `npm install && npm run build`, see `app/README.md`
 - **Standalone marketing website:** [`website/`](website/) — open `website/index.html` in a browser, no build step; links to the built app at `website/app/`
 
