@@ -148,8 +148,6 @@ export function GamifiedPlan({ scores: initialScores, userName, focusAreas, init
   const [lastActiveDate,setLastActiveDate]=useState(init.lastActiveDate ?? null);
   const [currentWeek,setCurrentWeek]=useState(init.currentWeek ?? 1);
   const [tab,setTab]=useState(init.tab ?? "plan");
-  const [buddyEmail,setBuddyEmail]=useState(init.buddyEmail ?? "");
-  const [buddyShared,setBuddyShared]=useState(init.buddyShared ?? false);
   const [checkIns,setCheckIns]=useState(init.checkIns ?? {});
   const [showCheckIn,setShowCheckIn]=useState(false);
   const [checkInWeek,setCheckInWeek]=useState(null);
@@ -176,9 +174,9 @@ export function GamifiedPlan({ scores: initialScores, userName, focusAreas, init
   const levelPct=nextLevel?Math.round((points-userLevel.min)/(nextLevel.min-userLevel.min)*100):100;
 
   useEffect(() => {
-    onStateChange?.({ completed, bonusDone, points, badges, streak, lastActiveDate, currentWeek, tab, buddyEmail, buddyShared, checkIns, reassessScores, scores });
+    onStateChange?.({ completed, bonusDone, points, badges, streak, lastActiveDate, currentWeek, tab, checkIns, reassessScores, scores });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [completed, bonusDone, points, badges, streak, lastActiveDate, currentWeek, tab, buddyEmail, buddyShared, checkIns, reassessScores, scores]);
+  }, [completed, bonusDone, points, badges, streak, lastActiveDate, currentWeek, tab, checkIns, reassessScores, scores]);
 
   function awardBadge(id) {
     if(!badges.includes(id)){setBadges(b=>[...b,id]);setBadgeModal(id);}
@@ -226,12 +224,6 @@ export function GamifiedPlan({ scores: initialScores, userName, focusAreas, init
     setBonusDone({...bonusDone,[id]:!was});
     setPoints(p=>p+(was?-pts:pts));
     if(!was) awardBadge("bonus1");
-  }
-
-  function shareWithBuddy() {
-    if(!buddyEmail.trim()) return;
-    setBuddyShared(true);
-    awardBadge("buddy");
   }
 
   function submitCheckIn(week, mood, note) {
@@ -303,7 +295,7 @@ export function GamifiedPlan({ scores: initialScores, userName, focusAreas, init
 
       {/* Tabs */}
       <div style={{display:"flex",gap:6,marginBottom:20,overflowX:"auto",paddingBottom:4}}>
-        {[["plan","document","Plan"],["bonus","sparkle","Bonus"],["checkin","document","Check-in"],["buddy","partnership","Buddy"],["badges","medal","Badges"],["wheel","target","Wheel"],[reassessScores?"compare":"reassess","chart",reassessScores?"Compare":"Week 8"]].map(([t,icon,label])=>(
+        {[["plan","document","Plan"],["bonus","sparkle","Bonus"],["checkin","document","Check-in"],["badges","medal","Badges"],["wheel","target","Wheel"],[reassessScores?"compare":"reassess","chart",reassessScores?"Compare":"Week 8"]].map(([t,icon,label])=>(
           <button key={t} onClick={()=>t==="reassess"?setReassessMode(true):setTab(t)} style={{flexShrink:0,padding:"8px 14px",borderRadius:999,border:"1.5px solid",borderColor:tab===t?"#4A7690":"#e5eaec",background:tab===t?"#DCE8EF":"white",color:tab===t?"#4A7690":"#8593a0",fontWeight:600,cursor:"pointer",fontFamily:"Hanken Grotesk,sans-serif",fontSize:12,transition:"all 180ms",display:"inline-flex",alignItems:"center",gap:6}}>
             <Icon name={icon} size={14}/>{label}
           </button>
@@ -403,36 +395,6 @@ export function GamifiedPlan({ scores: initialScores, userName, focusAreas, init
         </div>
       )}
 
-      {/* ── BUDDY TAB ── */}
-      {tab==="buddy" && (
-        <div>
-          <div style={{background:"white",borderRadius:14,padding:"24px",border:"1px solid #e9edef",marginBottom:20}}>
-            <div style={{textAlign:"center",marginBottom:20}}>
-              <div style={{display:"flex",justifyContent:"center",marginBottom:12}}><Icon name="partnership" size={40} color="#4A7690"/></div>
-              <h3 style={{fontFamily:"Newsreader,Georgia,serif",fontSize:18,color:"#20303A",marginBottom:8}}>Someone alongside you</h3>
-              <p style={{fontSize:14,color:"#5c6b72",lineHeight:1.6}}>Doing this alongside someone can make it easier to keep going, and you don't have to carry it on your own. If you'd like, invite a person who understands: a partner, a friend, or another carer who gets it.</p>
-            </div>
-            {!buddyShared?<>
-              <label style={{display:"block",fontSize:13,fontWeight:600,color:"#4a5760",marginBottom:6,fontFamily:"Newsreader,Georgia,serif"}}>Partner's email</label>
-              <input value={buddyEmail} onChange={e=>setBuddyEmail(e.target.value)} placeholder="partner@example.com" style={{width:"100%",padding:"10px 14px",borderRadius:8,border:"1.5px solid #dde3e6",fontSize:15,fontFamily:"Hanken Grotesk,sans-serif",boxSizing:"border-box",marginBottom:16}}/>
-              <button onClick={shareWithBuddy} style={{width:"100%",padding:"12px",background:buddyEmail.trim()?"#4A7690":"#d5dce0",color:buddyEmail.trim()?"white":"#93a0a6",border:"none",borderRadius:999,fontWeight:600,cursor:buddyEmail.trim()?"pointer":"not-allowed",fontFamily:"Hanken Grotesk,sans-serif",fontSize:14,display:"flex",alignItems:"center",justifyContent:"center",gap:8}}>
-                Send the invitation <Icon name="arrowRight" size={15} color={buddyEmail.trim()?"white":"#93a0a6"}/>
-              </button>
-            </>:<div style={{textAlign:"center",padding:"20px",background:"#DCE8EF",borderRadius:12}}>
-              <div style={{display:"flex",justifyContent:"center",marginBottom:10}}><Icon name="partnership" size={32} color="#4A7690"/></div>
-              <div style={{fontWeight:600,fontFamily:"Newsreader,Georgia,serif",color:"#4A7690",marginBottom:4}}>Invitation sent to {buddyEmail}</div>
-              <div style={{fontSize:13,color:"#8593a0"}}>You earned the Better Together badge.</div>
-            </div>}
-          </div>
-          <div style={{background:"#F0DEE0",borderRadius:12,padding:"16px",border:"1px solid #E3CCD0"}}>
-            <div style={{fontSize:13,fontWeight:600,color:"#B3707A",marginBottom:8,fontFamily:"Newsreader,Georgia,serif",display:"flex",alignItems:"center",gap:6}}><Icon name="sparkle" size={15} color="#B3707A"/> What this can look like</div>
-            <div style={{fontSize:13,color:"#5c6b72",lineHeight:1.7}}>
-              A quick check-in once a week is plenty. "Did you get to your three small steps?" "How are you travelling?" That's all. You don't need to share anything you'd rather keep private, or do it together. You just need someone who will ask.
-            </div>
-          </div>
-        </div>
-      )}
-
       {/* ── BADGES TAB ── */}
       {tab==="badges" && (
         <div>
@@ -449,7 +411,7 @@ export function GamifiedPlan({ scores: initialScores, userName, focusAreas, init
           </div>
           <div style={{background:"white",borderRadius:14,padding:"20px",border:"1px solid #e9edef"}}>
             <h3 style={{fontFamily:"Newsreader,Georgia,serif",fontSize:15,color:"#20303A",marginBottom:12,display:"flex",alignItems:"center",gap:8}}><Icon name="target" size={17} color="#4A7690"/> Point guide</h3>
-            {[["Do a small step","10 to 26 pts"],["Finish a full week","+25 bonus pts"],["Optional extra","40 to 50 pts"],["Three days in a row","Streak badge"],["Seven days in a row","Unstoppable badge"],["Invite someone alongside you","Better Together badge"],["Eight weekly check-ins","Honest Reflection badge"],["Look back at week eight","Growth Visible badge"]].map(([a,r])=>(
+            {[["Do a small step","10 to 26 pts"],["Finish a full week","+25 bonus pts"],["Optional extra","40 to 50 pts"],["Three days in a row","Streak badge"],["Seven days in a row","Steady Going badge"],["Eight weekly check-ins","Honest Reflection badge"],["Look back at week eight","Growth Visible badge"]].map(([a,r])=>(
               <div key={a} style={{display:"flex",justifyContent:"space-between",paddingBottom:8,marginBottom:8,borderBottom:"1px solid #eef1f2",fontSize:13}}>
                 <span style={{color:"#4a5760"}}>{a}</span><span style={{fontWeight:600,color:"#4A7690"}}>{r}</span>
               </div>
@@ -554,7 +516,7 @@ export function Landing({ onStart }) {
       <h1 style={{fontFamily:"Newsreader,Georgia,serif",fontSize:28,color:"#20303A",marginBottom:10,lineHeight:1.3}}>Your Caregiver Wellness Wheel</h1>
       <p style={{color:"#5c6b72",fontSize:15,lineHeight:1.7,marginBottom:28,maxWidth:420,margin:"0 auto 28px"}}>Made for parents and family carers of a child with disability, complex medical needs or a rare condition. Eight parts of life that add up to your wellbeing, a short reflection to see where things sit, and eight weeks of small, doable steps that fit around real caregiving.</p>
       <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit, minmax(170px, 1fr))",gap:12,marginBottom:28,textAlign:"left"}}>
-        {[["document","A short reflection","Eight gentle questions for each part of life"],["chart","Your wellbeing picture","Where you're steady, and where you might start"],["target","Eight weeks of tiny steps","A few small actions a week, around what matters to you"],["medal","Small wins to notice","Gentle encouragement as you go, at your own pace"],["partnership","Someone alongside you","Invite a person who gets it, if you'd like"],["moon","Weekly check-ins","A moment to notice how you're travelling"],["sparkle","Optional extras","A little more, for the weeks that feel lighter"],["chart","Before and after","Look back at week eight and notice what has shifted"]].map(([icon,title,desc],i)=>(
+        {[["document","A short reflection","Eight gentle questions for each part of life"],["chart","Your wellbeing picture","Where you're steady, and where you might start"],["target","Eight weeks of tiny steps","A few small actions a week, around what matters to you"],["medal","Small wins to notice","Gentle encouragement as you go, at your own pace"],["mark","Private by default","Your answers stay on your device, for you alone"],["moon","Weekly check-ins","A moment to notice how you're travelling"],["sparkle","Optional extras","A little more, for the weeks that feel lighter"],["chart","Before and after","Look back at week eight and notice what has shifted"]].map(([icon,title,desc],i)=>(
           <div key={i} style={{background:"white",borderRadius:12,padding:"14px",border:"1px solid #e9edef"}}>
             <div style={{marginBottom:8,color:"#4A7690"}}><Icon name={icon} size={22}/></div>
             <div style={{fontWeight:600,fontSize:13,fontFamily:"Newsreader,Georgia,serif",color:"#20303A",marginBottom:3}}>{title}</div>

@@ -71,7 +71,6 @@ export const BADGES = [
   { id: "streak7",     name: "Steady Going",     icon: "sparkle", desc: "Seven days in a row" },
   { id: "inner3",      name: "Inner Work",       icon: "spiritual", desc: "Three Spiritual or Emotional steps" },
   { id: "bonus1",      name: "A Little Extra",   icon: "sparkle", desc: "Picked up an optional extra" },
-  { id: "buddy",       name: "Better Together",  icon: "partnership", desc: "Invited someone to walk alongside you" },
   { id: "check_in8",   name: "Honest Reflection", icon: "document", desc: "Eight weekly check-ins" },
   { id: "reassessed",  name: "Growth Visible",   icon: "chart", desc: "Looked back at week eight" },
 ];

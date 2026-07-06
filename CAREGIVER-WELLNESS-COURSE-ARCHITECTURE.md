@@ -111,7 +111,7 @@ Timing:
 
 **Persistence — done:** the tool now has real persistence. Progress (scores, completed activities, points, badges, streak, check-ins) saves automatically to local storage, so it survives a reload with no account needed. A Supabase adapter (magic-link auth + Postgres, RLS'd per user) is built and ready — it activates automatically once a real Supabase project is connected (env vars + running `app/supabase/schema.sql`), and local storage stays the fallback either way.
 
-**Still open:** the accountability-partner invite is UI-only (no real email sends yet), and there's no event coming out of the app yet for n8n/Notion to react to (badge earned, week completed, reassessment submitted) — see §8.
+**Still open:** there's no event coming out of the app yet for n8n/Notion to react to (badge earned, week completed, reassessment submitted) — see §8. (The accountability-partner invite has been removed entirely: the course is fully self-directed, done individually on the app/website.)
 
 ### 4.3 Gamification (as built)
 
@@ -290,7 +290,7 @@ These three are **not yet activated** (left as drafts) on purpose: with zero rea
 | **0 — Content intake** | ✅ Done — Wellness Wheel tool received and integrated, Guidebook received as research source, weekly theme scaffold drafted (§4.4) | — |
 | **1 — Write the real curriculum** | Turn the 8 weekly-theme scaffolds into actual scripts/modules in your voice (§1 voice rules) | You + this doc |
 | **2 — Notion skeleton** | ✅ Built — 5 databases (§7) live under the 🌿 Caregiver Wellness Course hub (Cohorts now deprecated). Populated only by form intake so far; nothing else writes real participants/sponsors yet. | — |
-| **3 — Wellness Wheel backend** | 🔶 Partially done — local-storage persistence is live (survives a reload, no account needed) and the Supabase adapter (magic-link auth + Postgres, RLS'd) is built and ready; still needed: connect a real Supabase project, and wire the accountability-partner invite to a real email send (§4.2) | — |
+| **3 — Wellness Wheel backend** | 🔶 Partially done — local-storage persistence is live (survives a reload, no account needed) and the Supabase adapter (magic-link auth + Postgres, RLS'd) is built and ready; still needed: connect a real Supabase project (§4.2) | — |
 | **4 — Website surfaces** | ✅ Built — sales page, sponsor pitch page, "apply for sponsorship" form, public Supporters page, and the Wellness Wheel as a real Vite app the site links to (see `caregiver-wellness-course/website/` and `caregiver-wellness-course/app/`). Forms now submit to Notion (see §8); no real checkout yet since pricing isn't finalised. | Pricing sign-off (§3) for real checkout |
 | **5 — n8n automations** | 🔶 Started — website form intake, weekly check-in email, week-8 reassessment invite, and sponsor impact report are all built (§8). The last three are left unpublished (draft) since there's no real participant yet to run against, and no Gmail credential connected. Still needed: enrollment routing past intake (Stripe/redemption-link flows), drip curriculum release, wellness wheel sync (needs the app to emit events — see §4.2). | Phases 2–4 |
 | **6 — Pilot participants** | Run a handful of real self-directed participants (even with a friendly sponsor or free seats) to prove the loop before selling hard. This is also when the 3 draft automations get connected (Gmail) and activated for the first time. | Phase 5 |
