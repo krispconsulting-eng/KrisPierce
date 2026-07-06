@@ -477,5 +477,4 @@ textarea { resize: vertical; min-height: 110px; }
   * { scroll-behavior: auto !important; }
   .reveal.is-ready, .reveal-stagger.is-ready > * { opacity: 1 !important; transform: none !important; transition: none !important; }
   .btn:hover, .card.interactive:hover { transform: none !important; }
-  .hero-graphic .breathe { animation: none !important; }
 }

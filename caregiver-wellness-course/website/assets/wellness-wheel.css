@@ -1,0 +1,281 @@
+/* Signature Wellness Wheel v3.0
+   Calm, premium, framework-free component.
+   Uses existing site fonts when available: Newsreader and Hanken Grotesk.
+*/
+
+.ww-signature,
+.ww-signature * {
+  box-sizing: border-box;
+}
+
+.ww-signature {
+  --ww-ink: #20303A;
+  --ww-muted: #5C6B72;
+  --ww-paper: #FFFFFF;
+  --ww-line: #DDE7E5;
+  --ww-shadow: rgba(32, 48, 58, 0.16);
+  width: min(100%, 460px);
+  margin-inline: auto;
+}
+
+.ww-stage {
+  position: relative;
+  width: 100%;
+  min-height: 480px;
+  padding: 98px 16px 18px;
+  isolation: isolate;
+}
+
+.ww-orbit {
+  position: absolute;
+  inset: 72px 26px 26px;
+  border-radius: 999px;
+  background:
+    radial-gradient(circle at 45% 38%, rgba(223, 241, 237, 0.58), rgba(223, 241, 237, 0.08) 42%, rgba(223, 241, 237, 0) 68%),
+    radial-gradient(circle at 62% 64%, rgba(244, 232, 207, 0.34), rgba(244, 232, 207, 0) 58%);
+  filter: blur(2px);
+  transform: translate3d(0, 0, 0);
+  animation: ww-light-drift 16s ease-in-out infinite;
+  z-index: 0;
+}
+
+.ww-svg {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: auto;
+  display: block;
+  overflow: visible;
+  transform: translate3d(0, 0, 0);
+  animation: ww-float 12s ease-in-out infinite;
+}
+
+.ww-ambient {
+  transform-origin: 180px 180px;
+  animation: ww-ambient-breathe 8.4s ease-in-out infinite;
+}
+
+.ww-breathe {
+  transform-origin: 180px 180px;
+  animation: ww-wheel-breathe 7.6s ease-in-out infinite;
+}
+
+.ww-wheel {
+  transform-box: view-box;
+  transform-origin: 180px 180px;
+  will-change: transform;
+}
+
+.ww-wedge {
+  transform-box: view-box;
+  transform-origin: 180px 180px;
+  transition:
+    transform 680ms cubic-bezier(.19, 1, .22, 1),
+    opacity 520ms ease,
+    filter 520ms ease;
+  will-change: transform, opacity, filter;
+}
+
+.ww-wedge.is-soft {
+  opacity: 0.42;
+}
+
+.ww-wedge.is-lifted {
+  opacity: 1;
+  filter: url(#wwLiftShadow);
+  transition:
+    transform 760ms cubic-bezier(.16, 1, .3, 1),
+    opacity 420ms ease-out,
+    filter 420ms ease-out;
+}
+
+.ww-hub,
+.ww-mark {
+  transform-box: view-box;
+  transform-origin: 180px 180px;
+  transition: transform 640ms cubic-bezier(.22, 1, .36, 1);
+}
+
+/* The mark sits inside a positioning wrapper group; scale it about its
+   own centre rather than the view-box point. */
+.ww-mark {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.ww-mark.is-awake {
+  transform: scale(1.025);
+}
+
+.ww-callout {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  z-index: 3;
+  width: min(92%, 318px);
+  transform: translateX(-50%) translateY(10px);
+  opacity: 0;
+  pointer-events: none;
+  filter: blur(4px);
+  transition:
+    opacity 460ms ease,
+    transform 660ms cubic-bezier(.22, 1, .36, 1),
+    filter 520ms ease;
+}
+
+.ww-callout.is-in {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+  filter: blur(0);
+}
+
+.ww-callout-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 78px;
+  padding: 13px 20px 14px;
+  border: 1px solid rgba(221, 231, 229, 0.95);
+  border-radius: 18px;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.96), rgba(250,252,251,0.94));
+  box-shadow:
+    0 1px 2px rgba(32, 48, 58, 0.06),
+    0 18px 36px -24px rgba(32, 48, 58, 0.50);
+  backdrop-filter: blur(8px);
+}
+
+.ww-pill {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  transform: translateY(4px);
+  opacity: 0;
+  transition:
+    transform 420ms cubic-bezier(.22, 1, .36, 1),
+    opacity 320ms ease-out;
+}
+
+.ww-callout.is-in .ww-pill {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.ww-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  flex: none;
+  box-shadow: 0 0 0 4px rgba(32, 48, 58, 0.045);
+}
+
+.ww-name {
+  font: 650 15px/1 "Hanken Grotesk", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: var(--ww-ink);
+  letter-spacing: 0.005em;
+}
+
+.ww-tag {
+  max-width: 246px;
+  margin-top: 6px;
+  font: italic 400 13.5px/1.38 "Newsreader", Georgia, serif;
+  color: var(--ww-muted);
+  text-align: center;
+  text-wrap: balance;
+  transform: translateY(5px);
+  opacity: 0;
+  transition:
+    transform 460ms cubic-bezier(.22, 1, .36, 1) 90ms,
+    opacity 360ms ease-out 90ms;
+}
+
+.ww-callout.is-in .ww-tag {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.ww-connector {
+  width: 120px;
+  height: 58px;
+  display: block;
+  margin: -2px auto 0;
+  overflow: visible;
+  opacity: 0;
+  transform: translateY(-2px) scaleY(0.94);
+  transform-origin: top center;
+  transition:
+    opacity 420ms ease 120ms,
+    transform 540ms cubic-bezier(.22, 1, .36, 1) 120ms;
+}
+
+.ww-callout.is-in .ww-connector {
+  opacity: 1;
+  transform: translateY(0) scaleY(1);
+}
+
+.ww-connector path {
+  fill: none;
+  stroke: rgba(92, 107, 114, 0.32);
+  stroke-width: 1.15;
+  stroke-linecap: round;
+}
+
+.ww-connector circle {
+  fill: rgba(92, 107, 114, 0.34);
+}
+
+@keyframes ww-light-drift {
+  0%, 100% { transform: translate3d(-1px, 1px, 0) scale(1); opacity: 0.85; }
+  42% { transform: translate3d(3px, -2px, 0) scale(1.018); opacity: 1; }
+  70% { transform: translate3d(-2px, -1px, 0) scale(0.99); opacity: 0.92; }
+}
+
+@keyframes ww-float {
+  0%, 100% { transform: translate3d(0, 1px, 0); }
+  50% { transform: translate3d(0, -2px, 0); }
+}
+
+@keyframes ww-ambient-breathe {
+  0%, 100% { transform: scale(1); opacity: 0.92; }
+  52% { transform: scale(1.028); opacity: 1; }
+}
+
+@keyframes ww-wheel-breathe {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.012); }
+}
+
+@media (max-width: 420px) {
+  .ww-stage {
+    min-height: 430px;
+    padding-top: 92px;
+  }
+
+  .ww-callout-card {
+    padding-inline: 16px;
+  }
+
+  .ww-tag {
+    font-size: 13px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ww-orbit,
+  .ww-svg,
+  .ww-ambient,
+  .ww-breathe {
+    animation: none !important;
+  }
+
+  .ww-wheel,
+  .ww-wedge,
+  .ww-callout,
+  .ww-pill,
+  .ww-tag,
+  .ww-connector,
+  .ww-hub,
+  .ww-mark {
+    transition-duration: 1ms !important;
+  }
+}

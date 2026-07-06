@@ -4,9 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>The Caregiver Wellbeing Journey: an 8-week wellbeing course for family carers</title>
-<meta name="description" content="A self-paced 8-week wellbeing course for family caregivers of people with rare diseases. Free wellness wheel assessment and a gamified plan built around your actual life, on your phone or computer.">
+<meta name="description" content="A self-paced 8-week wellbeing course for family caregivers of people with rare diseases. Free wellbeing assessment and a gamified plan built around your actual life, on your phone or computer.">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22><circle cx=%2212%22 cy=%2212%22 r=%2211%22 fill=%22%234A7690%22/></svg>">
 <link rel="stylesheet" href="assets/styles.css">
+<link rel="stylesheet" href="assets/wellness-wheel.css">
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
@@ -261,43 +262,61 @@
           A wellbeing course built around the life you actually have, not the one wellness content assumes you have. Start with a free assessment, then work through eight weeks of practical, guided support, entirely at your own pace, on your phone or your computer.
         </p>
         <div class="hero-actions">
-          <a href="app/" class="btn btn-primary">Start your free wellness wheel <svg class="icon"><use href="#icon-arrow-right"/></svg></a>
+          <a href="app/" class="btn btn-primary">Start your free assessment <svg class="icon"><use href="#icon-arrow-right"/></svg></a>
           <a href="#how-it-works" class="btn btn-ghost">See how it works</a>
         </div>
         <p class="hero-note"><svg class="icon icon-sm"><use href="#icon-clock"/></svg> Takes about 10 minutes. No payment, no account needed to see your results.</p>
       </div>
-      <div class="hero-graphic reveal" aria-hidden="true">
-        <svg viewBox="0 0 320 320" style="max-width:400px;margin:0 auto;overflow:visible;">
-          <defs>
-            <linearGradient id="gradCedar" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0" stop-color="#4A7690"/><stop offset="1" stop-color="#5FA0A0"/>
-            </linearGradient>
-            <linearGradient id="gradMeadow" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0" stop-color="#5FA0A0"/><stop offset="1" stop-color="#BFE0DC"/>
-            </linearGradient>
-            <linearGradient id="gradClay" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0" stop-color="#B3707A"/><stop offset="1" stop-color="#C98F97"/>
-            </linearGradient>
-            <radialGradient id="gradGlow" cx="0.5" cy="0.5" r="0.5">
-              <stop offset="0" stop-color="#5FA0A0" stop-opacity="0.35"/>
-              <stop offset="1" stop-color="#5FA0A0" stop-opacity="0"/>
-            </radialGradient>
-          </defs>
-          <circle class="breathe" cx="160" cy="160" r="150" fill="url(#gradGlow)"/>
-          <g class="breathe" style="transform-origin:160px 160px;">
-            <path d="M160.0,114.0 L160.0,22.0 A138,138 0 0 1 257.6,62.4 L192.5,127.5 A46,46 0 0 0 160.0,114.0 Z" fill="#8E9AC8" opacity="0.92"/>
-            <path d="M192.5,127.5 L257.6,62.4 A138,138 0 0 1 298.0,160.0 L206.0,160.0 A46,46 0 0 0 192.5,127.5 Z" fill="#4A7690" opacity="0.92"/>
-            <path d="M206.0,160.0 L298.0,160.0 A138,138 0 0 1 257.6,257.6 L192.5,192.5 A46,46 0 0 0 206.0,160.0 Z" fill="#6E8570" opacity="0.92"/>
-            <path d="M192.5,192.5 L257.6,257.6 A138,138 0 0 1 160.0,298.0 L160.0,206.0 A46,46 0 0 0 192.5,192.5 Z" fill="#7CA7C4" opacity="0.92"/>
-            <path d="M160.0,206.0 L160.0,298.0 A138,138 0 0 1 62.4,257.6 L127.5,192.5 A46,46 0 0 0 160.0,206.0 Z" fill="#8093A6" opacity="0.92"/>
-            <path d="M127.5,192.5 L62.4,257.6 A138,138 0 0 1 22.0,160.0 L114.0,160.0 A46,46 0 0 0 127.5,192.5 Z" fill="#C98F97" opacity="0.92"/>
-            <path d="M114.0,160.0 L22.0,160.0 A138,138 0 0 1 62.4,62.4 L127.5,127.5 A46,46 0 0 0 114.0,160.0 Z" fill="#5FA0A0" opacity="0.92"/>
-            <path d="M127.5,127.5 L62.4,62.4 A138,138 0 0 1 160.0,22.0 L160.0,114.0 A46,46 0 0 0 127.5,127.5 Z" fill="#CDA66B" opacity="0.92"/>
-            <circle cx="160" cy="160" r="46" fill="#F7F8F6"/>
-            <g transform="translate(148,148)" color="#4A7690"><svg width="24" height="24"><use href="#icon-mark"/></svg></g>
-          </g>
-        </svg>
-        <p class="text-center text-muted" style="font-size:.85rem;margin-top:8px;">Your Wellbeing Journey: 8 dimensions, one picture.</p>
+      <div class="hero-graphic reveal">
+        <section class="ww-signature" aria-label="Caregiver Wellbeing Wheel">
+          <div class="ww-stage" data-wellness-wheel>
+            <div class="ww-orbit" aria-hidden="true"></div>
+
+            <div class="ww-callout" aria-live="polite">
+              <div class="ww-callout-card">
+                <div class="ww-pill">
+                  <span class="ww-dot" data-ww-dot></span>
+                  <span class="ww-name" data-ww-name>Financial</span>
+                </div>
+                <div class="ww-tag" data-ww-tag>Some real control over what caring costs.</div>
+              </div>
+              <svg class="ww-connector" viewBox="0 0 120 58" aria-hidden="true">
+                <path d="M60 6 C60 22 60 34 60 48" />
+                <circle cx="60" cy="51" r="2.8" />
+              </svg>
+            </div>
+
+            <svg class="ww-svg" viewBox="0 0 360 360" role="img" aria-labelledby="wwTitle wwDesc">
+              <title id="wwTitle">Animated Caregiver Wellbeing Wheel</title>
+              <desc id="wwDesc">Eight wellbeing domains rotate gently. Each domain is highlighted in turn with its name and a short description.</desc>
+              <defs>
+                <radialGradient id="wwAmbient" cx="46%" cy="42%" r="58%">
+                  <stop offset="0%" stop-color="#DCEFEB" stop-opacity="0.72" />
+                  <stop offset="56%" stop-color="#EAF2EF" stop-opacity="0.28" />
+                  <stop offset="100%" stop-color="#EAF2EF" stop-opacity="0" />
+                </radialGradient>
+                <radialGradient id="wwPaper" cx="42%" cy="36%" r="76%">
+                  <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.90" />
+                  <stop offset="100%" stop-color="#EEF3F0" stop-opacity="0.96" />
+                </radialGradient>
+                <filter id="wwSoftShadow" x="-22%" y="-22%" width="144%" height="144%">
+                  <feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#20303A" flood-opacity="0.16" />
+                  <feDropShadow dx="0" dy="3" stdDeviation="5" flood-color="#20303A" flood-opacity="0.10" />
+                </filter>
+                <filter id="wwLiftShadow" x="-36%" y="-36%" width="172%" height="172%">
+                  <feDropShadow dx="0" dy="15" stdDeviation="13" flood-color="#20303A" flood-opacity="0.28" />
+                  <feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#20303A" flood-opacity="0.12" />
+                </filter>
+              </defs>
+
+              <circle class="ww-ambient" cx="180" cy="180" r="172" fill="url(#wwAmbient)" />
+              <g class="ww-breathe">
+                <g class="ww-wheel" data-ww-wheel filter="url(#wwSoftShadow)"></g>
+              </g>
+            </svg>
+          </div>
+        </section>
+        <p class="text-center text-muted" style="font-size:.85rem;margin-top:8px;" aria-hidden="true">Your Wellbeing Journey: 8 dimensions, one picture.</p>
       </div>
     </div>
   </section>
@@ -571,7 +590,7 @@
         </details>
         <details class="faq-item">
           <summary>What if my seat is sponsored by a pharmaceutical or industry partner? <svg class="icon icon-md"><use href="#icon-arrow-right"/></svg></summary>
-          <p>Sponsors fund seats, they don't see your individual wellness wheel data or activity. What they receive is aggregate, anonymised impact reporting (completion rates, average wellbeing improvement) as their sponsored participants complete.</p>
+          <p>Sponsors fund seats, they don't see your individual assessment data or activity. What they receive is aggregate, anonymised impact reporting (completion rates, average wellbeing improvement) as their sponsored participants complete.</p>
         </details>
         <details class="faq-item">
           <summary>Do I need to be tech-savvy? <svg class="icon icon-md"><use href="#icon-arrow-right"/></svg></summary>
@@ -638,10 +657,7 @@
   </div>
 </footer>
 
-<style>
-  .breathe { animation: breathe var(--dur-breathe, 4200ms) ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
-  @keyframes breathe { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.028); } }
-</style>
 <script src="assets/site.js"></script>
+<script src="assets/wellness-wheel.js"></script>
 </body>
 </html>
