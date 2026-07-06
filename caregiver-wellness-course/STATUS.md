@@ -1,15 +1,21 @@
-# Caregiver Wellness Course — Where We're At
+# The Caregiver Wellbeing Journey — Where We're At
 
-*Last updated: 6 July 2026, branch `claude/caregiver-wellness-course-arch-vqurrm`.*
+*Last updated: 6 July 2026. PR #11 (branch `claude/caregiver-wellness-course-arch-vqurrm`)
+is merged into the default branch `claude/eloquent-curie-4jElo`.*
 
 A snapshot for picking this back up: what's built, what's live-tested, what's
 still blocked, and the short list of things only you can do.
+
+**The website is live:** `https://krispconsulting-eng.github.io/KrisPierce/`
+— GitHub Pages deploy confirmed working end to end (page loads, nav links
+resolve, the link into the Wellbeing Journey app works), verified directly by
+you in a browser on 6 July 2026.
 
 ---
 
 ## 1. The app
 
-**Wellness Wheel** — a Vite + React 19 app at `app/`, built into `website/app/`.
+**Wellbeing Journey** — a Vite + React 19 app at `app/`, built into `website/app/`.
 
 - 64-question reflection across 8 wellbeing dimensions (Social, Occupational,
   Environmental, Intellectual, Spiritual, Emotional, Physical, Financial).
@@ -56,9 +62,12 @@ public supporters page, all linking to the built app.
 
 - Waitlist / sponsor / scholarship forms POST to an n8n webhook ("Website
   Form Intake", **active**) that routes to the matching Notion database.
-- A **GitHub Actions deploy workflow** (`.github/workflows/deploy-pages.yml`)
-  now builds the app and publishes `website/` to GitHub Pages on push —
-  not yet turned on (see §5).
+- **Live and deployed:** `.github/workflows/deploy-pages.yml` builds the app
+  and publishes `website/` to GitHub Pages on every push to the default
+  branch that touches `caregiver-wellness-course/website/**` or `app/**`.
+  Pages is enabled, the deploy has succeeded, and the site is confirmed
+  working at `https://krispconsulting-eng.github.io/KrisPierce/`. No further
+  action needed here — it just keeps redeploying itself.
 
 ## 4. The automation stack (n8n + Notion)
 
@@ -86,21 +95,20 @@ Every Notion write across all four workflows fails with:
 > and databases are shared with your integration "n8n".*
 
 **The fix is one step, about 30 seconds, and only you can do it:**
-Notion → open **🌿 Caregiver Wellness Course** → **⋯ → Connections → add
+Notion → open **🌿 The Caregiver Wellbeing Journey** → **⋯ → Connections → add
 "n8n"**. All four databases live under that page, so this single share
 unblocks every workflow at once.
 
 ## 6. What's left for you (the activation checklist)
 
 1. **Share the Notion page with the n8n integration** (§5) — unblocks forms,
-   the app's opt-in bridge, and every scheduled email.
+   the app's opt-in bridge, and every scheduled email. **This is now the only
+   blocker left in the whole stack.**
 2. **Add a Gmail (or SMTP) credential in n8n** and attach it to the three
    email workflows' send nodes — nothing can email until this exists.
 3. **Toggle the three email workflows Active** (App Events and the intake
    webhook are already published/active).
-4. **Enable GitHub Pages** (Settings → Pages → Source: "GitHub Actions") so
-   the site is actually reachable — or point Cloudflare Pages/Netlify at
-   `website/` if the repo needs to stay private.
+4. ~~Enable GitHub Pages~~ **Done** — site is live and confirmed working.
 5. **Decide on Supabase** — deliberately skipped for the pilot; local storage
    plus the opt-in webhook covers it without account complexity. Revisit
    only when cross-device sync genuinely matters.
@@ -140,7 +148,11 @@ copy underselling what data was actually shared), two silent-data-loss bugs,
 a stale-state migration bug, three stale documentation claims, and a deploy
 workflow that would never have fired because it targeted the wrong branch.
 
-## 9. Everything is committed and pushed
+## 9. Everything is committed, merged, and deployed
 
-Branch `claude/caregiver-wellness-course-arch-vqurrm`, latest commit
-`3b70b1a`. Nothing is sitting uncommitted.
+`claude/caregiver-wellness-course-arch-vqurrm` (latest commit `78dcc78`) was
+merged via PR #11 into the default branch `claude/eloquent-curie-4jElo`.
+Nothing is sitting uncommitted, and the merge itself triggered the first
+successful GitHub Pages deploy. Any further work should branch fresh off
+`claude/eloquent-curie-4jElo`, since this PR is finished and shouldn't be
+built on top of directly.

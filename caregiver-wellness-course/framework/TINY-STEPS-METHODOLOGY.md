@@ -106,6 +106,6 @@ Each example is mapped to one dimension of the Caregiver Wellbeing Wheel. Each i
 
 ## Using Tiny Steps across the programme
 
-Within the eight-week guided programme, each week offers one Tiny Step tied to that week's theme and to a Wellness Wheel dimension. Caregivers are always free to keep an earlier step, swap it, or set it down. The steps are not cumulative and are not tracked against each other. A caregiver who carries one single Tiny Step through the whole eight weeks has done this well.
+Within the eight-week guided programme, each week offers one Tiny Step tied to that week's theme and to a Wellbeing Journey dimension. Caregivers are always free to keep an earlier step, swap it, or set it down. The steps are not cumulative and are not tracked against each other. A caregiver who carries one single Tiny Step through the whole eight weeks has done this well.
 
 The goal is never a full wheel or a perfect record. The goal is that tending your own wellbeing starts to feel possible, in the life you actually have.

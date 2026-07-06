@@ -1,6 +1,6 @@
-# Caregiver Wellness Course — Architecture
+# The Caregiver Wellbeing Journey — Architecture
 
-**Status:** 📋 Updated 2026-07-04. Course length is now **8 weeks**. It was briefly run at 6 weeks (to match the tool as originally built, rather than fabricate content), but the tool has since been genuinely extended: two more real weeks of activities were written for all 8 dimensions, so the course now runs the full 8 weeks with a second Wellness Wheel assessment at week 8, not a shortcut back to the old plan. A separate, broader-audience "women 40+" wellness-wheel side hustle was scoped and explicitly **parked** — not part of this project; this document is about the rare-disease caregiver course only.
+**Status:** 📋 Updated 2026-07-04. Course length is now **8 weeks**. It was briefly run at 6 weeks (to match the tool as originally built, rather than fabricate content), but the tool has since been genuinely extended: two more real weeks of activities were written for all 8 dimensions, so the course now runs the full 8 weeks with a second Wellbeing Journey app assessment at week 8, not a shortcut back to the old plan. A separate, broader-audience "women 40+" wellness-wheel side hustle was scoped and explicitly **parked** — not part of this project; this document is about the rare-disease caregiver course only.
 
 ---
 
@@ -8,9 +8,9 @@
 
 - **The cohort model is removed (2026-07-04).** The course is now fully self-directed and start-anytime: each caregiver's 8 weeks begin the day they enroll, done on their phone or computer (phone preferred). No fixed rounds, no weekly live group session. The aim is unchanged and sharper: improve caregiver wellbeing by giving caregivers genuinely low-lift time for themselves.
 
-- The **Wellness Wheel is a real, working asset**, not a placeholder — now a proper Vite + React app (assessment → report → gamified plan → reassessment) with 8 dimensions, 64 questions, 192 weekly activities, a full points/badges/levels system, and a before/after comparison view. It's built for a genuine **8-week** plan: the earlier 6-week cut was a temporary match to what existed at the time, not a permanent scope decision, and weeks 7–8 now have real, caregiver-specific content rather than being force-fit.
+- The **Wellbeing Journey app is a real, working asset**, not a placeholder — now a proper Vite + React app (assessment → report → gamified plan → reassessment) with 8 dimensions, 64 questions, 192 weekly activities, a full points/badges/levels system, and a before/after comparison view. It's built for a genuine **8-week** plan: the earlier 6-week cut was a temporary match to what existed at the time, not a permanent scope decision, and weeks 7–8 now have real, caregiver-specific content rather than being force-fit.
 - The tool also gained real persistence: progress (scores, points, badges, streaks, check-ins) now survives a reload via local storage, with an optional Supabase adapter (magic-link auth + Postgres) ready to activate once a real project is connected.
-- The Wellness Wheel is **personalised per participant** (each person picks their own 2–3 lowest-scoring focus areas after the baseline assessment, and their weekly activities are generated from that). The course's **weekly curriculum** (one self-guided theme per week) is a separate layer that sits alongside it — see §4.2 for how the two connect.
+- The Wellbeing Journey app is **personalised per participant** (each person picks their own 2–3 lowest-scoring focus areas after the baseline assessment, and their weekly activities are generated from that). The course's **weekly curriculum** (one self-guided theme per week) is a separate layer that sits alongside it — see §4.2 for how the two connect.
 - Content sourcing: the **NAC/Global Genes Circle of Care Guidebook** (89-page reference on caregiving for children with rare/serious illness) is now the primary research base for weekly teaching content — see §4.4 and the **IP note** below.
 - Voice/tone rules (below) are adopted from separate brand-voice work you'd done, because they're genuinely good caregiver-audience writing rules independent of which venture they were drafted for.
 
@@ -20,7 +20,7 @@
 
 ## 1. What this is
 
-An 8-week digital wellbeing course for **family/informal caregivers** of people with rare diseases (parents, partners, siblings — unpaid carers, not paid support workers). You own the content as IP. Delivery is a **hybrid**: your website is the storefront and pitch surface, Notion (+ a community space) is where participants actually do the course, n8n is the glue that moves people and data between the two automatically. The Wellness Wheel tool is the assessment, gamification, and outcome-measurement engine embedded inside it.
+An 8-week digital wellbeing course for **family/informal caregivers** of people with rare diseases (parents, partners, siblings — unpaid carers, not paid support workers). You own the content as IP. Delivery is a **hybrid**: your website is the storefront and pitch surface, Notion (+ a community space) is where participants actually do the course, n8n is the glue that moves people and data between the two automatically. The Wellbeing Journey app is the assessment, gamification, and outcome-measurement engine embedded inside it.
 
 Two buyer types, one product:
 - **Industry** (pharma, biotech, patient-org partners) sponsors seats — this is also your **fundraising mechanism**, not just a sales channel.
@@ -95,11 +95,11 @@ This report is a natural n8n job (pull Notion data → assemble via a doc/deck t
 
 - **8 self-paced weeks, start any day.** Each participant's week 1 begins the day they enroll; their weekly rhythm is theirs alone. No fixed rounds and no live group sessions — the course must be doable at 11pm on a hospital chair, on a phone.
 - **Fully self-directed delivery.** Weekly themes ship as short recorded pieces (audio/video + a reflection prompt) the participant opens whenever it suits them. No facilitator is required to run a week, which is also what makes the unit economics work.
-- Each week has a **curriculum theme** (see §4.4 for the theme mapping) alongside the personalised activity plan from the Wellness Wheel.
+- Each week has a **curriculum theme** (see §4.4 for the theme mapping) alongside the personalised activity plan from the Wellbeing Journey app.
 
-### 4.2 The Wellness Wheel: how it plugs into the 8-week structure
+### 4.2 The Wellbeing Journey app: how it plugs into the 8-week structure
 
-The Wellness Wheel is a self-contained Vite + React app covering the full arc: assessment → personalised report → sign-up → 8-week gamified plan → reassessment → before/after comparison. It runs two layers at once:
+The Wellbeing Journey app is a self-contained Vite + React app covering the full arc: assessment → personalised report → sign-up → 8-week gamified plan → reassessment → before/after comparison. It runs two layers at once:
 
 1. **Curriculum layer (the course):** every participant gets the same weekly theme content, worked through in their own time — see §4.4.
 2. **Personalised layer (the tool):** at intake, each participant takes the 64-question assessment (8 questions × 8 dimensions: Social, Occupational, Environmental, Intellectual, Spiritual, Emotional, Physical, Financial), gets a scored wheel + report, then picks their own 2–3 lowest-scoring focus areas. Their week-by-week activity plan (3 activities/week, drawn from `ACTIVITIES[dimension][week]`) is generated from those focus areas — so two people in the same week number may be working on different dimensions day to day, even while the curriculum theme for that week is the same.
@@ -127,7 +127,7 @@ Deliberately no competitive leaderboard, consistent with the original design cal
 
 ### 4.4 Weekly curriculum themes (shared layer)
 
-A first-draft structure, sourced from the NAC/Global Genes Guidebook's *Self-Care for the Caregiver* section plus its broader caregiving-journey content (see IP note in §0 — use as research grounding, write the actual teaching content yourself). Each week pairs a curriculum theme with the Wellness Wheel dimensions it most naturally supports:
+A first-draft structure, sourced from the NAC/Global Genes Guidebook's *Self-Care for the Caregiver* section plus its broader caregiving-journey content (see IP note in §0 — use as research grounding, write the actual teaching content yourself). Each week pairs a curriculum theme with the Wellbeing Journey app dimensions it most naturally supports:
 
 | Week | Theme | Wheel dimensions | Guidebook grounding |
 |---|---|---|---|
@@ -155,7 +155,7 @@ This is a scaffold for you to write the real scripts/modules against, not the mo
                     │  - "Apply for a sponsored  │
                     │     spot" form             │
                     │  - Public Supporters page  │
-                    │  - Embedded Wellness Wheel │
+                    │  - Embedded Wellbeing Journey app │
                     │     app (assessment/plan)  │
                     └────────────┬─────────────┘
                                  │  (Stripe checkout / form submit / wheel events)
@@ -176,7 +176,7 @@ This is a scaffold for you to write the real scripts/modules against, not the mo
           │  - Participants DB │   │   session)              │
           │  - Cohorts DB (deprecated)      │   └──────────────────────┘
           │  - Enrollments DB  │
-          │  - Wellness Wheel  │
+          │  - Wellbeing Journey app  │
           │    submissions     │
           │  - Weekly content  │
           │    (unlocked on    │
@@ -186,12 +186,12 @@ This is a scaffold for you to write the real scripts/modules against, not the mo
                         │ (persisted user state: scores, completed
                         │  activities, points, badges, streak)
           ┌───────────────────┐
-          │  SUPABASE          │  ← Wellness Wheel's own backend
+          │  SUPABASE          │  ← Wellbeing Wellbeing Journey app's own backend
           │  (auth + Postgres)  │     (see §4.2 rebuild note)
           └───────────────────┘
 ```
 
-**Why this shape:** the website never has to become a full LMS (cheap, fast to build). Notion is already where your business brain lives (per `NOTION-BUSINESS-PLAN.md`), so the course CRM extends it rather than duplicating it. The Wellness Wheel needs its own lightweight backend (Supabase) for per-user state, since that's real interactive app state, not documents — but its *summary* data (baseline/reassessment scores, completion, badges) syncs into Notion via n8n so it lives alongside everything else about that participant.
+**Why this shape:** the website never has to become a full LMS (cheap, fast to build). Notion is already where your business brain lives (per `NOTION-BUSINESS-PLAN.md`), so the course CRM extends it rather than duplicating it. The Wellbeing Journey app needs its own lightweight backend (Supabase) for per-user state, since that's real interactive app state, not documents — but its *summary* data (baseline/reassessment scores, completion, badges) syncs into Notion via n8n so it lives alongside everything else about that participant.
 
 ---
 
@@ -214,26 +214,26 @@ This is a scaffold for you to write the real scripts/modules against, not the mo
 All three then:
 4. **Participants DB** entry created, linked to their **Enrollment** (entry path, sponsor if any, enrolled date — the date that anchors their 8 weeks) →
 5. Welcome sequence (email) →
-6. Account created in the Wellness Wheel app (Supabase) + **Week-1 baseline assessment** →
+6. Account created in the Wellbeing Journey app (Supabase) + **Week-1 baseline assessment** →
 7. They start immediately: week 1 begins the day they enroll.
 
 ---
 
 ## 7. Customer management — Notion data model (extends your existing business system)
 
-✅ **Built.** Live under the [🌿 Caregiver Wellness Course](https://app.notion.com/p/393a5163e45d81fe823ac06a628016bd) hub page in your workspace, as its own hub (parallel to 🟢 SCN2A Australia, 🟣 UNSW, 🔵 KrisPierce Consulting, 🟠 Committees) since this is a distinct IP product line, not client-services work:
+✅ **Built.** Live under the [🌿 The Caregiver Wellbeing Journey](https://app.notion.com/p/393a5163e45d81fe823ac06a628016bd) hub page in your workspace, as its own hub (parallel to 🟢 SCN2A Australia, 🟣 UNSW, 🔵 KrisPierce Consulting, 🟠 Committees) since this is a distinct IP product line, not client-services work:
 
 | Database | Key fields | Relations |
 |---|---|---|
 | **[Sponsors](https://app.notion.com/p/b4f23c8ce0c045c186e51c3f284cac68)** | Org name, contact, tier, total seats purchased, annual commitment (checkbox), public opt-in | ↔ Enrollments |
 | **[Cohorts](https://app.notion.com/p/9200d2124e67426f843482a61359bd30)** | ⚠️ Deprecated with the move to self-directed delivery — kept only as an optional grouping label for enrollment rounds; nothing operational reads it any more. `Enrolled Date` on Enrollments is now the anchor for all timing. |
-| **[Participants](https://app.notion.com/p/48c6cd4d8ded4b4eb495d110909b2f41)** | Name, email, entry path (self-pay/sponsored-named/scholarship), testimonial + data-sharing consent flags | ↔ Enrollments, ↔ Wellness Wheel Submissions |
+| **[Participants](https://app.notion.com/p/48c6cd4d8ded4b4eb495d110909b2f41)** | Name, email, entry path (self-pay/sponsored-named/scholarship), testimonial + data-sharing consent flags | ↔ Enrollments, ↔ Wellbeing Journey Submissions |
 | **[Enrollments](https://app.notion.com/p/437394770dc44d33970e349433d75384)** | Participant ↔ Sponsor (if any), payment status, completion status, badges earned, **Enrolled Date (the anchor for each participant's own 8-week clock)**, plus convenience fields for the automations in §8: `Participant Name`/`Participant Email`/`Sponsor Contact Email` (rollups, so n8n doesn't need extra lookups per row), `Reassessment Invite Sent` (checkbox, prevents duplicate sends). The old Cohort relation and `Cohort Start Date` rollup remain but are no longer read. | hub record — links everything |
-| **[Wellness Wheel Submissions](https://app.notion.com/p/81d5e53cdf7d4707af1da562a3ee2b71)** | Participant, timepoint (week 1 baseline / week 8 reassessment), per-dimension scores — synced from the app via the App Events webhook for caregivers who opt in (see §8) | → Participants |
+| **[Wellbeing Journey Submissions](https://app.notion.com/p/81d5e53cdf7d4707af1da562a3ee2b71)** | Participant, timepoint (week 1 baseline / week 8 reassessment), per-dimension scores — synced from the app via the App Events webhook for caregivers who opt in (see §8) | → Participants |
 
 (Cohorts previously carried `Report Sent` / `Impact Report Summary` for the cohort-end report; superseded by the per-sponsor periodic report in §8.1.)
 
-This sits alongside, not inside, your existing Projects/Contacts/Money master databases — a deliberate call given this is Kris's own IP business rather than a consulting client, so it gets its own hub rather than living inside `🧩 Client Framework & CRM`. **Website form submissions and, for opted-in caregivers, the Wellness Wheel app itself both populate this** (§8) — all four workflows currently block on the same one-off Notion-sharing step (see `STACK-AND-CONNECTIONS.md` §6).
+This sits alongside, not inside, your existing Projects/Contacts/Money master databases — a deliberate call given this is Kris's own IP business rather than a consulting client, so it gets its own hub rather than living inside `🧩 Client Framework & CRM`. **Website form submissions and, for opted-in caregivers, the Wellbeing Journey app itself both populate this** (§8) — all four workflows currently block on the same one-off Notion-sharing step (see `STACK-AND-CONNECTIONS.md` §6).
 
 ---
 
@@ -241,20 +241,20 @@ This sits alongside, not inside, your existing Projects/Contacts/Money master da
 
 ✅ **Row 1 built:** website form submissions now create real Notion records. The **[Caregiver Course - Website Form Intake](https://scn2a-krispierce.app.n8n.cloud/workflow/NNwZQpTpj12niO9m)** n8n workflow is live: a webhook (`https://scn2a-krispierce.app.n8n.cloud/webhook/caregiver-course-intake`) receives all three website forms (waitlist, sponsor enquiry, scholarship application), routes by form type, and creates the matching Participant or Sponsor record in Notion. `website/assets/site.js` now POSTs real form data to it instead of showing a fake success state.
 
-**⚠️ One manual step still needed:** the workflow's Notion writes currently 404 with *"Make sure the relevant pages and databases are shared with your integration 'n8n'"*. Notion integrations only see pages explicitly shared with them — open the [🌿 Caregiver Wellness Course](https://app.notion.com/p/393a5163e45d81fe823ac06a628016bd) page in Notion, click **"•••" → "Connections"**, and add the **n8n** integration. Once that's done, the workflow works with no further changes.
+**⚠️ One manual step still needed:** the workflow's Notion writes currently 404 with *"Make sure the relevant pages and databases are shared with your integration 'n8n'"*. Notion integrations only see pages explicitly shared with them — open the [🌿 The Caregiver Wellbeing Journey](https://app.notion.com/p/393a5163e45d81fe823ac06a628016bd) page in Notion, click **"•••" → "Connections"**, and add the **n8n** integration. Once that's done, the workflow works with no further changes.
 
 | Trigger | Action |
 |---|---|
 | ✅ Website form submitted (waitlist / sponsor enquiry / scholarship application) | Create Participant or Sponsor record in Notion — **built**, pending the Notion sharing step above |
-| Stripe checkout completes (self-pay) | Create Participant + Enrollment → send welcome email → provision Wellness Wheel account |
+| Stripe checkout completes (self-pay) | Create Participant + Enrollment → send welcome email → provision Wellbeing Journey account |
 | Sponsor redemption link used | Same as above, tagged to that sponsor |
 | Scholarship application submitted | Notify you for review → on approval, create Enrollment (currently just creates the Participant record; approval routing not yet built) |
 | Enrollment created | Prompt baseline assessment + welcome email; week 1 starts immediately |
 | Each week of a participant's own 8 weeks | Their weekly theme + reminder, timed off their Enrolled Date (see §8.1) |
-| ✅ Wellness Wheel: caregiver opts in with an email at sign-up | Create Participant + Enrollment (Enrolled Date = today) + Week 1 Baseline submission via the App Events webhook — **built and published**, pending the Notion sharing step above. Caregivers who leave email blank never trigger this; nothing about badges or weekly activity completion is synced, by design. |
-| ✅ Wellness Wheel: week-8 look-back submitted (opted-in caregivers only) | Write the Week 8 submission to Wellness Wheel Submissions and mark the Enrollment Completed — **built and published**, same webhook, pending the Notion sharing step above. |
+| ✅ Wellbeing Journey app: caregiver opts in with an email at sign-up | Create Participant + Enrollment (Enrolled Date = today) + Week 1 Baseline submission via the App Events webhook — **built and published**, pending the Notion sharing step above. Caregivers who leave email blank never trigger this; nothing about badges or weekly activity completion is synced, by design. |
+| ✅ Wellbeing Journey app: week-8 look-back submitted (opted-in caregivers only) | Write the Week 8 submission to Wellbeing Journey Submissions and mark the Enrollment Completed — **built and published**, same webhook, pending the Notion sharing step above. |
 | ✅ Weekly (every Monday) | Send every actively-enrolled caregiver a check-in email referencing their actual current week's curriculum theme, computed from their own Enrolled Date — **built**, see below |
-| ✅ Weekly (every Monday) | Invite anyone who's reached week 8 (from their Enrolled Date) to retake the Wellness Wheel, once, then mark it sent — **built**, see below |
+| ✅ Weekly (every Monday) | Invite anyone who's reached week 8 (from their Enrolled Date) to retake the Wellbeing Journey app, once, then mark it sent — **built**, see below |
 | ✅ Monthly | Assemble each sponsor's impact report (aggregate + anonymised wellness-wheel delta, completion rate across all their funded participants to date) → email to the sponsor — **built**, see below. Public Supporters page update and completion certificates are not yet part of this. |
 
 ### 8.1 Weekly automations (built)
@@ -263,7 +263,7 @@ Two more n8n workflows, both on the **same weekly Monday 9am schedule** (deliber
 
 - **[Caregiver Course - Weekly Check-in Email](https://scn2a-krispierce.app.n8n.cloud/workflow/EAJiUxr7PmcQmSAD)** — for every Enrollment with Completion Status "In Progress", computes their current week from their own `Enrolled Date` (self-directed: everyone is on their own clock) and sends a short, warm email referencing that week's actual curriculum theme (§4.4), not a generic blast.
 - **[Caregiver Course - Week 8 Reassessment Invite](https://scn2a-krispierce.app.n8n.cloud/workflow/TjjnyLql1ujJ1f53)** — for every Enrollment that's reached week 8 and hasn't been invited yet (`Reassessment Invite Sent` checkbox, new on Enrollments), sends the retake-the-wheel invite and marks it sent so it never repeats.
-- **[Caregiver Course - Sponsor Impact Report](https://scn2a-krispierce.app.n8n.cloud/workflow/hzyoWVhFrH1Jjp8I)** — monthly, for each sponsor with completed funded participants: pulls those participants' baseline and reassessment Wellness Wheel Submissions, computes an anonymised aggregate delta per dimension plus a completion rate across everything they've funded to date, and emails it to the sponsor contact.
+- **[Caregiver Course - Sponsor Impact Report](https://scn2a-krispierce.app.n8n.cloud/workflow/hzyoWVhFrH1Jjp8I)** — monthly, for each sponsor with completed funded participants: pulls those participants' baseline and reassessment Wellbeing Journey Submissions, computes an anonymised aggregate delta per dimension plus a completion rate across everything they've funded to date, and emails it to the sponsor contact.
 
 **Two things need to happen before these can actually send anything:**
 1. The same Notion-sharing step from above (all three read/write the CRM databases).
@@ -288,11 +288,11 @@ These three are **not yet activated** (left as drafts) on purpose: with zero rea
 
 | Phase | Deliverable | Depends on |
 |---|---|---|
-| **0 — Content intake** | ✅ Done — Wellness Wheel tool received and integrated, Guidebook received as research source, weekly theme scaffold drafted (§4.4) | — |
+| **0 — Content intake** | ✅ Done — Wellbeing Journey app tool received and integrated, Guidebook received as research source, weekly theme scaffold drafted (§4.4) | — |
 | **1 — Write the real curriculum** | Turn the 8 weekly-theme scaffolds into actual scripts/modules in your voice (§1 voice rules) | You + this doc |
-| **2 — Notion skeleton** | ✅ Built — 5 databases (§7) live under the 🌿 Caregiver Wellness Course hub (Cohorts now deprecated). Populated only by form intake so far; nothing else writes real participants/sponsors yet. | — |
-| **3 — Wellness Wheel backend** | 🔶 Partially done — local-storage persistence is live (survives a reload, no account needed) and the Supabase adapter (magic-link auth + Postgres, RLS'd) is built and ready; still needed: connect a real Supabase project (§4.2) | — |
-| **4 — Website surfaces** | ✅ Built — sales page, sponsor pitch page, "apply for sponsorship" form, public Supporters page, and the Wellness Wheel as a real Vite app the site links to (see `caregiver-wellness-course/website/` and `caregiver-wellness-course/app/`). Forms now submit to Notion (see §8); no real checkout yet since pricing isn't finalised. | Pricing sign-off (§3) for real checkout |
+| **2 — Notion skeleton** | ✅ Built — 5 databases (§7) live under the 🌿 The Caregiver Wellbeing Journey hub (Cohorts now deprecated). Populated only by form intake so far; nothing else writes real participants/sponsors yet. | — |
+| **3 — Wellbeing Journey app backend** | 🔶 Partially done — local-storage persistence is live (survives a reload, no account needed) and the Supabase adapter (magic-link auth + Postgres, RLS'd) is built and ready; still needed: connect a real Supabase project (§4.2) | — |
+| **4 — Website surfaces** | ✅ Built — sales page, sponsor pitch page, "apply for sponsorship" form, public Supporters page, and the Wellbeing Journey app as a real Vite app the site links to (see `caregiver-wellness-course/website/` and `caregiver-wellness-course/app/`). Forms now submit to Notion (see §8); no real checkout yet since pricing isn't finalised. | Pricing sign-off (§3) for real checkout |
 | **5 — n8n automations** | 🔶 Started — website form intake, weekly check-in email, week-8 reassessment invite, and sponsor impact report are all built (§8). The last three are left unpublished (draft) since there's no real participant yet to run against, and no Gmail credential connected. Still needed: enrollment routing past intake (Stripe/redemption-link flows), drip curriculum release, wellness wheel sync (needs the app to emit events — see §4.2). | Phases 2–4 |
 | **6 — Pilot participants** | Run a handful of real self-directed participants (even with a friendly sponsor or free seats) to prove the loop before selling hard. This is also when the 3 draft automations get connected (Gmail) and activated for the first time. | Phase 5 |
 | **7 — Impact reporting + iterate** | First sponsor report generated, feed learnings back into pricing/tiers | Phase 6 |

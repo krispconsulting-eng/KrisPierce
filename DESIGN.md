@@ -1,5 +1,5 @@
 ---
-name: Caregiver Wellness Course
+name: The Caregiver Wellbeing Journey
 description: A grounded, quietly premium wellbeing course for family caregivers of people with rare diseases
 colors:
   cedar-900: "#16281C"
@@ -94,7 +94,7 @@ components:
 > carry over into Sky & Tide; the palette and typefaces in this file do not.
 
 
-# Design System: Caregiver Wellness Course
+# Design System: The Caregiver Wellbeing Journey
 
 ## 1. Overview
 
@@ -102,7 +102,7 @@ components:
 
 This is what it feels like to be the reliable one, finally offered something reliable in return. The system rejects two default temptations at once: the clinical calm of a healthcare product (cold blues, sterile whites, certificate badges) and the loud, cheerful gamification of a consumer wellness app (candy colors, confetti, exclamation-point copy). Instead: a grounded, natural palette carried with restraint, a real hand-built icon and graphic system in place of emoji or stock icon packs, and motion that feels considered rather than decorative. Premium here means craft you can feel in the details, not luxury signifiers layered on top.
 
-The site is not a plain marketing shell wrapped around a plainer tool. The embedded Wellness Wheel assessment inherits the same palette, type, iconography, and elevation language as the marketing pages: one product, two moments in the same journey.
+The site is not a plain marketing shell wrapped around a plainer tool. The embedded Wellbeing Journey assessment inherits the same palette, type, iconography, and elevation language as the marketing pages: one product, two moments in the same journey.
 
 Density stays generous. This audience is often depleted; the design should never ask for more attention than it's willing to reward with clarity. Rhythm varies deliberately: not every three-things-to-say becomes a card grid, not every section opens with an eyebrow. Sameness is the failure mode this system is built to avoid.
 
@@ -127,7 +127,7 @@ The palette is restrained and earthbound: two natural hues (cedar green, warm cl
 - **Clay Ember** (`#A85D39`): Clay's darker step, the one that IS safe for white text (4.9:1). Secondary buttons, the "apply/scholarship" CTA family.
 
 ### Tertiary
-- **Antique Brass** (`#C9A15A` accent / `#8F6F35` text-safe): The achievement color. Reserved exclusively for milestone moments inside the Wellness Wheel: a badge unlocking, a level advancing, the week-6 reassessment reveal. **The Earned Gold Rule.** Brass never appears as decoration and never covers more than roughly 10% of any screen; if it shows up, the user just accomplished something real. This is what separates "premium achievement" from "gamified badge farm."
+- **Antique Brass** (`#C9A15A` accent / `#8F6F35` text-safe): The achievement color. Reserved exclusively for milestone moments inside the Wellbeing Journey: a badge unlocking, a level advancing, the week-6 reassessment reveal. **The Earned Gold Rule.** Brass never appears as decoration and never covers more than roughly 10% of any screen; if it shows up, the user just accomplished something real. This is what separates "premium achievement" from "gamified badge farm."
 
 ### Neutral
 - **Linen** (`#FDFBF7`): The resting background. Warm, not sterile, not a generic AI-cream default; it's the one deliberate warm neutral in the system, always paired against a Cedar Deep or Clay Ember moment somewhere on the same page so the page never reads as cream-section-after-cream-section.
@@ -194,7 +194,7 @@ Flat and tonal by default. Depth is conveyed through Linen/Linen Deep/Paper laye
 ### Navigation
 - Sticky, translucent Linen background with a subtle blur (the one legitimate use of `backdrop-filter` in this system: functional readability over scrolling content, not decorative glass-card styling). Hairline bottom border. Active link in Cedar Green, weight 700.
 
-### Wellness Wheel (signature component)
+### Wellbeing Journey (signature component)
 The centerpiece graphic and the assessment/plan tool share one visual language: gradient-filled wedges in Cedar/Meadow/Clay tones (never flat single-tone fills), a soft ambient glow behind the wheel rather than a hard drop shadow, and gentle continuous motion (a slow breathing scale, ~4s ease-in-out loop) on the hero wheel graphic specifically, to signal "alive" without being distracting. Badges are custom-drawn medallions (a circular seal with an inset icon), not emoji, and only ever render in Bark Ink/Cedar tones by default, switching to the full Antique Brass treatment plus the Achievement Glow at the moment they unlock.
 
 ## 6. Do's and Don'ts
@@ -207,11 +207,11 @@ The centerpiece graphic and the assessment/plan tool share one visual language: 
 - **Do** use ease-out-quart/quint timing for all transitions; every animation needs a `prefers-reduced-motion` crossfade fallback.
 
 ### Don't:
-- **Don't** use emoji anywhere in the shipped product, per PRODUCT.md's anti-references; every emoji currently in the site or the Wellness Wheel component is a placeholder to replace.
+- **Don't** use emoji anywhere in the shipped product, per PRODUCT.md's anti-references; every emoji currently in the site or the Wellbeing Journey component is a placeholder to replace.
 - **Don't** open more than one section per page with a small uppercase tracked eyebrow (the No-Eyebrow Rule); this is the single most common AI-landing-page tell and the current site over-uses it.
 - **Don't** repeat the identical icon-in-a-rounded-box, three-up card grid as the default answer for every "here are three things" moment; the current site does this seven times across four pages.
 - **Don't** pair a visible 1px border with a shadow of 16px blur or more on the same element (the Earned Shadow Rule); pick one.
 - **Don't** use border-radius above 20px on any card, section, or input; full-pill is reserved for buttons and tags.
 - **Don't** use `background-clip: text` gradient headings; emphasis comes from weight, size, or color, never gradient text.
 - **Don't** reach for glassmorphism as decoration; the sticky nav's blur is the one functional exception, not a precedent for glass cards elsewhere.
-- **Don't** design the Wellness Wheel tool as a plainer "app register" experience; it carries the same premium visual language as the marketing pages (per PRODUCT.md's "one continuous brand, two surfaces" principle).
+- **Don't** design the Wellbeing Journey app as a plainer "app register" experience; it carries the same premium visual language as the marketing pages (per PRODUCT.md's "one continuous brand, two surfaces" principle).

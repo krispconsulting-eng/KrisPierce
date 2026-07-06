@@ -1,6 +1,6 @@
 # Week 1: Where you are right now
 
-**Theme:** Orientation, the reality of an invisible workload, and your first Wellness Wheel check-in.
+**Theme:** Orientation, the reality of an invisible workload, and your first Wellbeing Journey check-in.
 
 *This week is the template for weeks 2 to 8. It follows the framework's 7-part session structure. There is nothing to complete and nothing to get right. Take what helps and leave the rest.*
 
@@ -82,7 +82,7 @@ If you forget, that is fine. There will be another red light, and another day. T
 
 ---
 
-## 6. Wellness Wheel check-in
+## 6. Wellbeing Journey check-in
 
 The Caregiver Wellbeing Wheel has eight parts. This week, we are only taking a first, gentle look. This is not a test, and there are no good or bad scores. It is a way of noticing where you are right now, so that later you can notice what changes.
 
