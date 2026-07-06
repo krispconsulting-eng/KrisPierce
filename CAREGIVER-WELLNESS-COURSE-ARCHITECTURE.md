@@ -111,15 +111,16 @@ Timing:
 
 **Persistence — done:** the tool now has real persistence. Progress (scores, completed activities, points, badges, streak, check-ins) saves automatically to local storage, so it survives a reload with no account needed. A Supabase adapter (magic-link auth + Postgres, RLS'd per user) is built and ready — it activates automatically once a real Supabase project is connected (env vars + running `app/supabase/schema.sql`), and local storage stays the fallback either way.
 
-**Still open:** there's no event coming out of the app yet for n8n/Notion to react to (badge earned, week completed, reassessment submitted) — see §8. (The accountability-partner invite has been removed entirely: the course is fully self-directed, done individually on the app/website.)
+**Consent-first CRM bridge — done:** the app now emits events. On the sign-up screen a caregiver can optionally leave an email; leaving it blank keeps everything on-device as before. If they opt in, the app calls a new n8n webhook ("App Events", `/webhook/caregiver-course-app-events`) which creates the Participant + Enrollment (Enrolled Date = today) and the Week 1 Baseline wheel submission, then at the week-8 look-back records the Week 8 submission and marks the Enrollment completed. See `caregiver-wellness-course/STACK-AND-CONNECTIONS.md` for the full flow and its current live-tested status (the workflow is built and published, but blocked on the same Notion-sharing step as every other n8n workflow — see §8).
+
+The accountability-partner invite has been removed entirely: the course is fully self-directed, done individually on the app/website, with no partner-invite feature anywhere in the product.
 
 ### 4.3 Gamification (as built)
 
 Already implemented in the tool, not just planned:
 - **Points:** 10–26 pts per activity (scaling up each week), +25 bonus for a fully completed week, 40–50 pts for optional bonus challenges (one per dimension).
 - **Levels:** Seed (0) → Sprout (100) → Bloom (250) → Flourish (500) → Radiant (800).
-- **12 badges**, including streak badges (3-day, 7-day), "Halfway There" (week 4), "Journey Complete" (week 8), "Full Circle" (an activity in every dimension), and "Growth Visible" (completing the reassessment).
-- **Accountability partner** — invite one person to check in with you weekly (needs real email sending wired up — see §4.2).
+- **11 badges**, including streak badges (3-day, 7-day), "Halfway There" (week 4), "All Eight Weeks" (week 8), "Full Circle" (a step in every dimension), and "Growth Visible" (completing the reassessment).
 - **Weekly mood check-in** — 1–5 scale + optional note, separate from the activity plan.
 
 Deliberately no competitive leaderboard, consistent with the original design call for this audience.
@@ -228,11 +229,11 @@ All three then:
 | **[Cohorts](https://app.notion.com/p/9200d2124e67426f843482a61359bd30)** | ⚠️ Deprecated with the move to self-directed delivery — kept only as an optional grouping label for enrollment rounds; nothing operational reads it any more. `Enrolled Date` on Enrollments is now the anchor for all timing. |
 | **[Participants](https://app.notion.com/p/48c6cd4d8ded4b4eb495d110909b2f41)** | Name, email, entry path (self-pay/sponsored-named/scholarship), testimonial + data-sharing consent flags | ↔ Enrollments, ↔ Wellness Wheel Submissions |
 | **[Enrollments](https://app.notion.com/p/437394770dc44d33970e349433d75384)** | Participant ↔ Sponsor (if any), payment status, completion status, badges earned, **Enrolled Date (the anchor for each participant's own 8-week clock)**, plus convenience fields for the automations in §8: `Participant Name`/`Participant Email`/`Sponsor Contact Email` (rollups, so n8n doesn't need extra lookups per row), `Reassessment Invite Sent` (checkbox, prevents duplicate sends). The old Cohort relation and `Cohort Start Date` rollup remain but are no longer read. | hub record — links everything |
-| **[Wellness Wheel Submissions](https://app.notion.com/p/81d5e53cdf7d4707af1da562a3ee2b71)** | Participant, timepoint (week 1 baseline / week 8 reassessment), per-dimension scores (to be synced from the app via n8n — not yet built, see §8) | → Participants |
+| **[Wellness Wheel Submissions](https://app.notion.com/p/81d5e53cdf7d4707af1da562a3ee2b71)** | Participant, timepoint (week 1 baseline / week 8 reassessment), per-dimension scores — synced from the app via the App Events webhook for caregivers who opt in (see §8) | → Participants |
 
 (Cohorts previously carried `Report Sent` / `Impact Report Summary` for the cohort-end report; superseded by the per-sponsor periodic report in §8.1.)
 
-This sits alongside, not inside, your existing Projects/Contacts/Money master databases — a deliberate call given this is Kris's own IP business rather than a consulting client, so it gets its own hub rather than living inside `🧩 Client Framework & CRM`. **Website form submissions now populate this** (§8); the Wellness Wheel app still doesn't sync its own submissions here (needs the app to emit events, not yet built).
+This sits alongside, not inside, your existing Projects/Contacts/Money master databases — a deliberate call given this is Kris's own IP business rather than a consulting client, so it gets its own hub rather than living inside `🧩 Client Framework & CRM`. **Website form submissions and, for opted-in caregivers, the Wellness Wheel app itself both populate this** (§8) — all four workflows currently block on the same one-off Notion-sharing step (see `STACK-AND-CONNECTIONS.md` §6).
 
 ---
 
@@ -250,8 +251,8 @@ This sits alongside, not inside, your existing Projects/Contacts/Money master da
 | Scholarship application submitted | Notify you for review → on approval, create Enrollment (currently just creates the Participant record; approval routing not yet built) |
 | Enrollment created | Prompt baseline assessment + welcome email; week 1 starts immediately |
 | Each week of a participant's own 8 weeks | Their weekly theme + reminder, timed off their Enrolled Date (see §8.1) |
-| Wellness Wheel: activity/badge/week completed | Sync progress into the Enrollment record; trigger badge-earned email on milestones. Not yet built — the app doesn't emit any event today (local storage / Supabase only). |
-| Wellness Wheel: baseline or reassessment submitted | Write scores to Wellness Wheel Submissions → (at week 8) compute delta. Not yet built, same reason. |
+| ✅ Wellness Wheel: caregiver opts in with an email at sign-up | Create Participant + Enrollment (Enrolled Date = today) + Week 1 Baseline submission via the App Events webhook — **built and published**, pending the Notion sharing step above. Caregivers who leave email blank never trigger this; nothing about badges or weekly activity completion is synced, by design. |
+| ✅ Wellness Wheel: week-8 look-back submitted (opted-in caregivers only) | Write the Week 8 submission to Wellness Wheel Submissions and mark the Enrollment Completed — **built and published**, same webhook, pending the Notion sharing step above. |
 | ✅ Weekly (every Monday) | Send every actively-enrolled caregiver a check-in email referencing their actual current week's curriculum theme, computed from their own Enrolled Date — **built**, see below |
 | ✅ Weekly (every Monday) | Invite anyone who's reached week 8 (from their Enrolled Date) to retake the Wellness Wheel, once, then mark it sent — **built**, see below |
 | ✅ Monthly | Assemble each sponsor's impact report (aggregate + anonymised wellness-wheel delta, completion rate across all their funded participants to date) → email to the sponsor — **built**, see below. Public Supporters page update and completion certificates are not yet part of this. |

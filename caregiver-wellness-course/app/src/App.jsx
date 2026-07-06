@@ -15,6 +15,11 @@ export default function App() {
   // { participantId, enrollmentId } from the course CRM, so the week-8
   // reassessment can be recorded against the same enrolment.
   const [remote, setRemote] = useState(null);
+  // Holds the opt-in details until the CRM confirms them (network hiccup or
+  // a temporarily unreachable webhook must not lose consent silently) —
+  // retried once per app open until remote is set.
+  const [pendingEnroll, setPendingEnroll] = useState(null);
+  const retriedThisSession = useRef(false);
   const skipNextSave = useRef(true);
 
   useEffect(() => {
@@ -28,6 +33,7 @@ export default function App() {
         setFocusAreas(saved.focusAreas ?? []);
         setPlanState(saved.planState ?? null);
         setRemote(saved.remote ?? null);
+        setPendingEnroll(saved.pendingEnroll ?? null);
       }
       setHydrated(true);
     });
@@ -37,15 +43,26 @@ export default function App() {
   useEffect(() => {
     if (!hydrated) return;
     if (skipNextSave.current) { skipNextSave.current = false; return; }
-    saveState({ stage, scores, userName, focusAreas, planState, remote });
-  }, [hydrated, stage, scores, userName, focusAreas, planState, remote]);
+    saveState({ stage, scores, userName, focusAreas, planState, remote, pendingEnroll });
+  }, [hydrated, stage, scores, userName, focusAreas, planState, remote, pendingEnroll]);
+
+  // Retries a still-pending opt-in once per app open (covers a webhook that
+  // was unreachable or briefly failing when the caregiver first signed up),
+  // rather than dropping their consent the moment the first attempt fails.
+  useEffect(() => {
+    if (!hydrated || !pendingEnroll || remote || retriedThisSession.current) return;
+    retriedThisSession.current = true;
+    sendEnrolled(pendingEnroll).then((ids) => { if (ids) { setRemote(ids); setPendingEnroll(null); } });
+  }, [hydrated, pendingEnroll, remote]);
 
   function handleStart(name, focus, email) {
     setUserName(name);
     setFocusAreas(focus);
     setStage("plan");
     if (email) {
-      sendEnrolled({ name, email, scores }).then((ids) => { if (ids) setRemote(ids); });
+      const enroll = { name, email, scores };
+      setPendingEnroll(enroll);
+      sendEnrolled(enroll).then((ids) => { if (ids) { setRemote(ids); setPendingEnroll(null); } });
     }
   }
 

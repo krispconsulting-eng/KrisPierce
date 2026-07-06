@@ -13,12 +13,14 @@ The 8-week digital wellbeing course for family caregivers of people with rare di
 **Built and working:**
 - The Wellness Wheel app, a real Vite + React 19 build (`app/`) — 64-question reflection across 8 dimensions, personalised report (expressed in words, not scores), animated wheel, 8-week self-directed plan (points, streaks, badges), weekly check-ins, and a before/after week-8 comparison. Fully self-directed and private: progress persists automatically to local storage (survives a reload, no account needed), with an optional Supabase adapter for accounts + cross-device sync once a project is connected (see `app/.env.example` and `app/supabase/schema.sql`). Installable to a phone home screen (PWA manifest + icons).
 - A standalone, zero-build marketing website (`website/`): landing page, sponsor pitch page, scholarship application, public supporters page, all linking to the built Wellness Wheel app. Verified end-to-end in-browser (desktop + mobile), no console errors. See `website/README.md` for details.
-- Website forms wired live: waitlist, sponsor and scholarship forms POST to an n8n webhook that creates the matching record in the Notion CRM. See `STACK-AND-CONNECTIONS.md` for the full map.
-- Three n8n email automations built (weekly check-in, week-8 reassessment invite, monthly sponsor impact report) — inactive until an email credential is added (see `STACK-AND-CONNECTIONS.md` §8).
+- Website forms and the app's consent-first sign-up both POST to n8n webhooks that create records in the Notion CRM, and three n8n email automations are built (weekly check-in, week-8 reassessment invite, monthly sponsor impact report). **None of these can write to Notion yet**: the Notion databases have never been shared with the n8n integration, so every Notion write currently fails 404. See `STACK-AND-CONNECTIONS.md` for the full map, the live-tested status, and the one-step fix.
+- A GitHub Actions workflow (`.github/workflows/deploy-pages.yml`) builds the app and deploys the website to GitHub Pages on push, once Pages is enabled in repo settings.
 
 **Still needed before real participants can run:**
-1. An email (Gmail/SMTP) credential in n8n, attached to the three send nodes, then the workflows switched on — see the activation checklist in `STACK-AND-CONNECTIONS.md`.
-2. Connect a real Supabase project (env vars + running the `app/supabase/schema.sql` migration) if cross-device accounts are wanted — the code path exists and degrades gracefully to local storage until then.
-3. The 8 weekly curriculum modules written in full against the scaffold in `COURSE-CONTENT-OUTLINE.md` and the framework in `framework/`.
+1. Share the Notion workspace page with the "n8n" integration — the single blocker for all four n8n workflows (see `STACK-AND-CONNECTIONS.md` §6, step 1).
+2. An email (Gmail/SMTP) credential in n8n, attached to the three send nodes, then all four workflows switched on — see the activation checklist in `STACK-AND-CONNECTIONS.md`.
+3. Enable GitHub Pages (or point Cloudflare Pages/Netlify at `website/`) so the site is actually reachable by a real visitor.
+4. Connect a real Supabase project (env vars + running the `app/supabase/schema.sql` migration) if cross-device accounts are wanted — deliberately skipped for the pilot; the code path exists and degrades gracefully to local storage until then.
+5. The 8 weekly curriculum modules written in full against the scaffold in `COURSE-CONTENT-OUTLINE.md` and the framework in `framework/`.
 
 See the architecture doc's §10 phased build plan for sequencing.

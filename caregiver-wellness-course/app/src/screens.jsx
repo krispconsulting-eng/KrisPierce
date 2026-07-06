@@ -6,6 +6,8 @@ import {
 } from "./data";
 import { WellnessWheelSVG, ProgressRing, BadgeMedallion, BadgeModal } from "./components";
 
+const SUPPORT_EMAIL = "info@scn2aaustralia.org";
+
 export function Assessment({ onComplete }) {
   const [cW,setCW]=useState(0), [cQ,setCQ]=useState(0), [answers,setAnswers]=useState({}), [sel,setSel]=useState(null);
   const wedge=WEDGES[cW], cfg=WEDGE_CONFIG[wedge], qs=QUESTIONS[wedge];
@@ -100,11 +102,15 @@ export function Report({ scores, onSignUp }) {
   );
 }
 
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
 export function SignUp({ scores, onStart }) {
   const [name,setName]=useState(""), [focus,setFocus]=useState([]), [email,setEmail]=useState("");
   const suggested=[...WEDGES].sort((a,b)=>scores[a]-scores[b]).slice(0,3);
   const toggle=w=>focus.includes(w)?setFocus(focus.filter(x=>x!==w)):focus.length<3?setFocus([...focus,w]):null;
-  const ok=name.trim()&&focus.length>=2;
+  const emailTrimmed=email.trim();
+  const emailValid=emailTrimmed===""||EMAIL_RE.test(emailTrimmed);
+  const ok=name.trim()&&focus.length>=2&&emailValid;
 
   return (
     <div style={{maxWidth:560,margin:"0 auto",padding:"24px 16px"}}>
@@ -117,8 +123,9 @@ export function SignUp({ scores, onStart }) {
         <label style={{display:"block",fontSize:13,fontWeight:600,color:"#4a5760",marginBottom:6,fontFamily:"Newsreader,Georgia,serif"}}>Your first name</label>
         <input value={name} onChange={e=>setName(e.target.value)} placeholder="First name" style={{width:"100%",padding:"10px 14px",borderRadius:8,border:"1.5px solid #dde3e6",fontSize:15,fontFamily:"Hanken Grotesk,sans-serif",boxSizing:"border-box"}}/>
         <label style={{display:"block",fontSize:13,fontWeight:600,color:"#4a5760",margin:"18px 0 6px",fontFamily:"Newsreader,Georgia,serif"}}>A weekly check-in by email? (optional)</label>
-        <input type="email" value={email} onChange={e=>setEmail(e.target.value)} placeholder="you@example.com" style={{width:"100%",padding:"10px 14px",borderRadius:8,border:"1.5px solid #dde3e6",fontSize:15,fontFamily:"Hanken Grotesk,sans-serif",boxSizing:"border-box"}}/>
-        <p style={{fontSize:12,color:"#93a0a6",lineHeight:1.6,margin:"8px 0 0"}}>Leave this blank and everything stays on your device. Add your email and we'll send one gentle check-in a week during your eight weeks, nothing else, and you can stop any time.</p>
+        <input type="email" value={email} onChange={e=>setEmail(e.target.value)} placeholder="you@example.com" style={{width:"100%",padding:"10px 14px",borderRadius:8,border:`1.5px solid ${emailTrimmed&&!emailValid?"#C98F97":"#dde3e6"}`,fontSize:15,fontFamily:"Hanken Grotesk,sans-serif",boxSizing:"border-box"}}/>
+        {emailTrimmed&&!emailValid&&<p style={{fontSize:12,color:"#B3707A",margin:"6px 0 0"}}>That doesn't look like a full email address yet.</p>}
+        <p style={{fontSize:12,color:"#93a0a6",lineHeight:1.6,margin:"8px 0 0"}}>Leave this blank and everything stays on your device, always. Add your email and we'll share your name, email and wellbeing check-in results with the team running this course, so they can send you a weekly email and a note when it's time for your week 8 look-back. Your results also help them see, in combined and de-identified form, how the course is helping. There's no unsubscribe link yet: if you change your mind, email {SUPPORT_EMAIL} and ask to be removed.</p>
       </div>
       <div style={{background:"white",borderRadius:14,padding:"24px",border:"1px solid #e9edef",marginBottom:28}}>
         <div style={{fontSize:13,fontWeight:600,color:"#4a5760",marginBottom:4,fontFamily:"Newsreader,Georgia,serif"}}>Choose 2–3 focus areas</div>
@@ -140,17 +147,20 @@ export function SignUp({ scores, onStart }) {
   );
 }
 
+const VALID_TABS = ["plan","bonus","checkin","badges","wheel","reassess","compare"];
+
 export function GamifiedPlan({ scores: initialScores, userName, focusAreas, initialState, onStateChange, onReassessed }) {
   const init = initialState || {};
+  const knownBadgeIds = new Set(BADGES.map(b=>b.id));
   const [completed,setCompleted]=useState(init.completed ?? {});
   const [bonusDone,setBonusDone]=useState(init.bonusDone ?? {});
   const [points,setPoints]=useState(init.points ?? 50);
-  const [badges,setBadges]=useState(init.badges ?? ["first_step"]);
+  const [badges,setBadges]=useState((init.badges ?? ["first_step"]).filter(id=>knownBadgeIds.has(id)));
   const [badgeModal,setBadgeModal]=useState(null);
   const [streak,setStreak]=useState(init.streak ?? 0);
   const [lastActiveDate,setLastActiveDate]=useState(init.lastActiveDate ?? null);
   const [currentWeek,setCurrentWeek]=useState(init.currentWeek ?? 1);
-  const [tab,setTab]=useState(init.tab ?? "plan");
+  const [tab,setTab]=useState(VALID_TABS.includes(init.tab)?init.tab:"plan");
   const [checkIns,setCheckIns]=useState(init.checkIns ?? {});
   const [showCheckIn,setShowCheckIn]=useState(false);
   const [checkInWeek,setCheckInWeek]=useState(null);

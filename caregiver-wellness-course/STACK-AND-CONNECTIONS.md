@@ -79,6 +79,15 @@ Legend: ● live and running · ○ built but switched off (see §6 for why).
   the week-8 look-back it records the Week 8 submission (feeding the sponsor
   impact report) and marks the Enrollment completed. All calls are
   fire-and-forget: offline or failed requests never affect the app.
+- **Consent copy is explicit about what is sent**: name, email and wellbeing
+  check-in results (not just "check-in emails"), that week-8 results feed
+  combined/de-identified sponsor reporting, and that there is no unsubscribe
+  link yet (email the course inbox to be removed). The email field is
+  format-validated before it can be submitted (a typo can't silently create a
+  CRM record nobody will ever see). If the first send fails (e.g. the Notion
+  share below isn't done yet, or the caregiver was briefly offline), the
+  opt-in is kept and retried automatically the next time they open the app,
+  rather than being silently and permanently lost.
 
 ---
 
