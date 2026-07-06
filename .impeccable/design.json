@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "generatedAt": "2026-07-03T00:00:00Z",
-  "title": "Design System: Caregiver Wellness Course",
+  "title": "Design System: The Caregiver Wellbeing Journey",
   "extensions": {
     "colorMeta": {
       "cedar-700": { "role": "primary", "displayName": "Cedar Green", "canonical": "#3C6B4A", "tonalRamp": ["#1B3122", "#2E5238", "#40724F", "#529366", "#6CAD7F", "#96C4A4", "#BEDAC6", "#E8F2EB"] },
@@ -85,7 +85,7 @@
   ],
   "narrative": {
     "northStar": "The Steady Hand",
-    "overview": "This is what it feels like to be the reliable one, finally offered something reliable in return. The system rejects two default temptations at once: the clinical calm of a healthcare product and the loud, cheerful gamification of a consumer wellness app. Instead: a grounded, natural palette carried with restraint, a real hand-built icon and graphic system in place of emoji, and motion that feels considered rather than decorative. The site is not a plain marketing shell wrapped around a plainer tool; the embedded Wellness Wheel assessment inherits the same palette, type, iconography, and elevation language as the marketing pages.",
+    "overview": "This is what it feels like to be the reliable one, finally offered something reliable in return. The system rejects two default temptations at once: the clinical calm of a healthcare product and the loud, cheerful gamification of a consumer wellness app. Instead: a grounded, natural palette carried with restraint, a real hand-built icon and graphic system in place of emoji, and motion that feels considered rather than decorative. The site is not a plain marketing shell wrapped around a plainer tool; the embedded Wellbeing Journey assessment inherits the same palette, type, iconography, and elevation language as the marketing pages.",
     "keyCharacteristics": [
       "A grounded natural palette (cedar green, warm clay) carried with restraint, not saturation.",
       "A dedicated, sparingly-used achievement color (antique brass) that only appears at real milestone moments.",
@@ -115,7 +115,7 @@
       "Don't use border-radius above 20px on any card, section, or input.",
       "Don't use background-clip text gradient headings.",
       "Don't reach for glassmorphism as decoration beyond the sticky nav's functional blur.",
-      "Don't design the Wellness Wheel tool as a plainer app-register experience; it carries the same premium visual language as the marketing pages."
+      "Don't design the Wellbeing Journey app as a plainer app-register experience; it carries the same premium visual language as the marketing pages."
     ]
   }
 }

@@ -1,8 +1,8 @@
-# Caregiver Wellness Course — 8-Week Content Outline
+# The Caregiver Wellbeing Journey — 8-Week Content Outline
 
-**Status:** 📋 First-draft scaffold, not final scripts. Delivery is fully self-directed (no cohorts, no live sessions): each week's guided session is a short recorded audio/video piece the participant opens whenever it suits them, on phone or computer. This maps each week to a curriculum theme, the Wellness Wheel dimensions it supports, and the research it's grounded in. **You still need to write the actual teaching content** (video/audio scripts, reflection prompts) in your own words and voice — see the IP note below.
+**Status:** 📋 First-draft scaffold, not final scripts. Delivery is fully self-directed (no cohorts, no live sessions): each week's guided session is a short recorded audio/video piece the participant opens whenever it suits them, on phone or computer. This maps each week to a curriculum theme, the Wellbeing Journey dimensions it supports, and the research it's grounded in. **You still need to write the actual teaching content** (video/audio scripts, reflection prompts) in your own words and voice — see the IP note below.
 
-See `../CAREGIVER-WELLNESS-COURSE-ARCHITECTURE.md` for the full business/technical architecture this sits inside.
+See `../CAREGIVER-WELLBEING-JOURNEY-ARCHITECTURE.md` for the full business/technical architecture this sits inside.
 
 ---
 
@@ -34,7 +34,7 @@ The research grounding below draws on the **NAC/Global Genes Circle of Care Guid
 - Isolation is common: caregivers report struggling both with the caregiving burden itself and with not being able to relate to other parents/carers around them.
 
 **Participant actions this week:**
-- Complete the 64-question Wellness Wheel assessment.
+- Complete the 64-question Wellbeing Journey assessment.
 - Get their personalised report and pick 2–3 focus areas.
 - Optional: say hello in the community space, if they want company along the way.
 

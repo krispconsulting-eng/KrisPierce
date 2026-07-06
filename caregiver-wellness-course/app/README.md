@@ -1,6 +1,6 @@
-# Wellness Wheel App
+# Wellbeing Journey App
 
-A Vite + React 19 build of the Wellness Wheel: a 64-question assessment across 8 wellbeing dimensions, a personalised report, and a gamified 8-week plan (points, streaks, 12 badges, weekly check-ins, an accountability-partner invite, and a before/after reassessment), built for family caregivers of someone with a rare disease.
+A Vite + React 19 build of the Wellbeing Journey: a 64-question assessment across 8 wellbeing dimensions, a personalised report, and a gamified 8-week plan (points, streaks, 12 badges, weekly check-ins, an accountability-partner invite, and a before/after reassessment), built for family caregivers of someone with a rare disease.
 
 ## Develop
 

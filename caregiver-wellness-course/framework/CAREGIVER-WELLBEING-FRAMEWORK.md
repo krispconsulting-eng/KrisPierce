@@ -184,7 +184,7 @@ Every session, module and week follows the same seven parts. The consistency is 
 3. **Evidence-informed learning.** The 30%. What is happening and why it makes sense, in plain language, grounded in credible sources.
 4. **Guided reflection.** The 50%. Three or four gentle prompts that turn the learning inward.
 5. **One small step.** The 20%. A single Tiny Step, realistically doable in under five minutes.
-6. **Wellness Wheel check-in.** A brief check against the eight dimensions of the Caregiver Wellbeing Wheel, so the caregiver can notice where they are without judgement.
+6. **Wellbeing Journey check-in.** A brief check against the eight dimensions of the Caregiver Wellbeing Wheel, so the caregiver can notice where they are without judgement.
 7. **Looking ahead.** A soft close and a gentle bridge to what comes next, so the reader leaves with continuity, not a cliffhanger or a task.
 
 ---

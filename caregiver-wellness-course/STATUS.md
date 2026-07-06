@@ -1,4 +1,4 @@
-# Caregiver Wellness Course — Where We're At
+# The Caregiver Wellbeing Journey — Where We're At
 
 *Last updated: 6 July 2026. PR #11 (branch `claude/caregiver-wellness-course-arch-vqurrm`)
 is merged into the default branch `claude/eloquent-curie-4jElo`.*
@@ -8,14 +8,14 @@ still blocked, and the short list of things only you can do.
 
 **The website is live:** `https://krispconsulting-eng.github.io/KrisPierce/`
 — GitHub Pages deploy confirmed working end to end (page loads, nav links
-resolve, the link into the Wellness Wheel app works), verified directly by
+resolve, the link into the Wellbeing Journey app works), verified directly by
 you in a browser on 6 July 2026.
 
 ---
 
 ## 1. The app
 
-**Wellness Wheel** — a Vite + React 19 app at `app/`, built into `website/app/`.
+**Wellbeing Journey** — a Vite + React 19 app at `app/`, built into `website/app/`.
 
 - 64-question reflection across 8 wellbeing dimensions (Social, Occupational,
   Environmental, Intellectual, Spiritual, Emotional, Physical, Financial).
@@ -95,7 +95,7 @@ Every Notion write across all four workflows fails with:
 > and databases are shared with your integration "n8n".*
 
 **The fix is one step, about 30 seconds, and only you can do it:**
-Notion → open **🌿 Caregiver Wellness Course** → **⋯ → Connections → add
+Notion → open **🌿 The Caregiver Wellbeing Journey** → **⋯ → Connections → add
 "n8n"**. All four databases live under that page, so this single share
 unblocks every workflow at once.
 

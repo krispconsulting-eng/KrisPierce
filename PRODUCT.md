@@ -14,7 +14,7 @@ Two distinct audiences, one shared surface:
 
 ## Product Purpose
 
-A standalone marketing site (landing page, sponsor pitch, scholarship application, public supporters page) plus one embedded interactive tool (the Wellness Wheel: a 64-question assessment, personalised report, and 6-week gamified plan) that together sell and deliver a 6-week wellbeing course for family caregivers of people with rare diseases. Success looks like: a caregiver completes the free assessment and either self-pays or applies for sponsorship; a sponsor reads the pitch page and commits to funding seats. The whole surface, marketing pages and embedded tool alike, is one continuous brand experience, not a plain marketing shell wrapped around a generic app.
+A standalone marketing site (landing page, sponsor pitch, scholarship application, public supporters page) plus one embedded interactive tool (the Wellbeing Journey: a 64-question assessment, personalised report, and 6-week gamified plan) that together sell and deliver a 6-week wellbeing course for family caregivers of people with rare diseases. Success looks like: a caregiver completes the free assessment and either self-pays or applies for sponsorship; a sponsor reads the pitch page and commits to funding seats. The whole surface, marketing pages and embedded tool alike, is one continuous brand experience, not a plain marketing shell wrapped around a generic app.
 
 ## Brand Personality
 
@@ -32,7 +32,7 @@ Grounded, nurturing, quietly premium. Calm confidence rather than energy or hype
 
 1. **Premium through craft, not through volume.** Every custom graphic, icon, and animation should look intentionally designed, not templated. If it looks like a stock icon set or an AI-default pattern, redo it.
 2. **Nurturing, not gamey.** Gamification (badges, streaks, levels, the wellness wheel itself) should feel like a calm companion tracking real progress, not a game layered on top of a health product.
-3. **One continuous brand, two surfaces.** The marketing pages and the embedded Wellness Wheel tool must feel like the same product designed by the same hand, not a polished shell around a plainer app.
+3. **One continuous brand, two surfaces.** The marketing pages and the embedded Wellbeing Journey app must feel like the same product designed by the same hand, not a polished shell around a plainer app.
 4. **Low ongoing lift for the owner.** Stays a zero-build static site (plain HTML/CSS/JS plus the existing React component). Richness comes from design quality, not from added tooling or maintenance surface.
 5. **Respect the reader's state.** The audience is often tired or emotionally stretched. Motion, copy density, and visual noise should never demand more energy than the reader has to give, even while looking premium.
 

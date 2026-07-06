@@ -16,5 +16,5 @@ Central hub linking all projects by Kris Pierce Consulting.
 | Doc | Description |
 |---|---|
 | [NOTION-BUSINESS-PLAN.md](NOTION-BUSINESS-PLAN.md) | Notion-based business system for consulting, research, content, and money |
-| [CAREGIVER-WELLNESS-COURSE-ARCHITECTURE.md](CAREGIVER-WELLNESS-COURSE-ARCHITECTURE.md) | Architecture for the caregiver wellness course (business model, CRM, automation) |
-| [caregiver-wellness-course/](caregiver-wellness-course/) | The course itself: content outline and the Wellness Wheel app |
+| [CAREGIVER-WELLBEING-JOURNEY-ARCHITECTURE.md](CAREGIVER-WELLBEING-JOURNEY-ARCHITECTURE.md) | Architecture for The Caregiver Wellbeing Journey (business model, CRM, automation) |
+| [caregiver-wellness-course/](caregiver-wellness-course/) | The Caregiver Wellbeing Journey itself: content outline and the app |

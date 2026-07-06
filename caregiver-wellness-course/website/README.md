@@ -1,4 +1,4 @@
-# Caregiver Wellness Course — Website
+# The Caregiver Wellbeing Journey — Website
 
 A standalone, zero-build marketing site. Open `index.html` directly in a browser, or serve the folder with any static file server, no npm install and no bundler required.
 
@@ -10,13 +10,13 @@ A standalone, zero-build marketing site. Open `index.html` directly in a browser
 | `sponsors.html` | Industry/partner pitch page: how sponsorship works, tiers, impact reporting, enquiry form |
 | `apply.html` | Application for a no-cost sponsored/scholarship spot |
 | `supporters.html` | Public acknowledgment page (honestly empty pre-launch, ready to populate as the first sponsored participants complete) |
-| `app/` | The built Wellness Wheel app (assessment → report → 8-week gamified plan) — see below |
+| `app/` | The built Wellbeing Journey app (assessment → report → 8-week gamified plan) — see below |
 
 ## Design system
 
 Full spec lives in `/DESIGN.md` and `/PRODUCT.md` at the repo root (written via the `impeccable` design skill). Short version: **"The Steady Hand"** — a grounded, quietly premium feel built from restraint and craft rather than loud color or decoration.
 
-- **Colors:** Cedar green (primary) + warm clay (secondary, the sponsor/scholarship thread) + a reserved Antique Brass accent that appears *only* at genuine achievement moments in the Wellness Wheel (see the Earned Gold Rule in `DESIGN.md`). Warm Linen neutral background, one deliberate full-bleed dark "drenched" section per page for visual rhythm.
+- **Colors:** Cedar green (primary) + warm clay (secondary, the sponsor/scholarship thread) + a reserved Antique Brass accent that appears *only* at genuine achievement moments in the Wellbeing Journey (see the Earned Gold Rule in `DESIGN.md`). Warm Linen neutral background, one deliberate full-bleed dark "drenched" section per page for visual rhythm.
 - **Type:** Literata (display, chosen over generic AI-default serifs like Lora/Fraunces/Playfair for its calmer, built-for-reading character) + Raleway (body).
 - **Icons:** A hand-built inline SVG sprite (`assets/icons.svg`, ~28 icons, consistent stroke/weight), not emoji and not a stock icon package. Injected into every page by `assets/inject-icons.py` (see below) so the site stays a zero-build static site.
 - **Motion:** Scroll-reveal via IntersectionObserver, with a safety-net timeout so content never gets stuck invisible for a full-page screenshot tool, print view, or a user who never scrolls (see `assets/site.js`).
@@ -32,9 +32,9 @@ No Tailwind CDN: hand-written CSS keeps the site fast and dependency-light, sinc
 python3 assets/inject-icons.py
 ```
 
-## The Wellness Wheel app
+## The Wellbeing Journey app
 
-The Wellness Wheel is a real Vite + React 19 app, developed at `../app/` (its own `package.json`, source in `../app/src/`) and built into `app/` in this folder so the marketing site can link straight to it with no separate deploy target.
+The Wellbeing Journey is a real Vite + React 19 app, developed at `../app/` (its own `package.json`, source in `../app/src/`) and built into `app/` in this folder so the marketing site can link straight to it with no separate deploy target.
 
 `../app/vite.config.js` sets `outDir: '../website/app'`, so:
 
@@ -50,7 +50,7 @@ npm run build
 
 ## Forms submit to Notion via n8n
 
-The waitlist, sponsor enquiry, and application forms POST to a live n8n webhook (`assets/site.js`, `INTAKE_WEBHOOK_URL`), which creates the matching Participant or Sponsor record in Notion. See `../../CAREGIVER-WELLNESS-COURSE-ARCHITECTURE.md` §8 for the workflow and the one manual Notion-sharing step still needed before writes succeed.
+The waitlist, sponsor enquiry, and application forms POST to a live n8n webhook (`assets/site.js`, `INTAKE_WEBHOOK_URL`), which creates the matching Participant or Sponsor record in Notion. See `../../CAREGIVER-WELLBEING-JOURNEY-ARCHITECTURE.md` §8 for the workflow and the one manual Notion-sharing step still needed before writes succeed.
 
 ## Verified
 

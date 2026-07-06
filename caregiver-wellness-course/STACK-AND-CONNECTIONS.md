@@ -18,7 +18,7 @@ workflow, and schema fetches of the live Notion databases.
 ```
   CAREGIVER (phone or computer)
         │
-        ├─ uses ─────────────►  THE APP  (Wellness Wheel)
+        ├─ uses ─────────────►  THE APP  (Wellbeing Journey)
         │                       React + Vite, static files under website/app/
         │                       Saves progress in the browser (local storage).
         │                       Optional Supabase sync (not configured yet).
@@ -55,7 +55,7 @@ Legend: ● live and running · ○ built but switched off (see §6 for why).
 
 ---
 
-## 2. The app (Wellness Wheel)
+## 2. The app (Wellbeing Journey)
 
 - **What it is:** a React 19 + Vite build. Source in `app/src/`, built into
   `website/app/` so the marketing site links straight to it. Installable to a
@@ -192,7 +192,7 @@ choice, not a surprise.
    Participant + Enrollment when a caregiver opts in with an email on sign-up.
    Caregivers who leave email blank stay fully private and off the CRM, which
    is by design.
-2. ~~Nothing writes to the Wellness Wheel Submissions database~~ **Resolved
+2. ~~Nothing writes to the Wellbeing Journey Submissions database~~ **Resolved
    (pending the Notion share):** the same webhook records the Week 1 Baseline
    and Week 8 Reassessment submissions for opted-in caregivers, which is what
    the sponsor impact report aggregates.
@@ -219,7 +219,7 @@ choice, not a surprise.
 When you come back, this is the whole list to make forms and emails live:
 
 1. **Share the Notion workspace page with n8n** (fixes the forms immediately):
-   in Notion, open **🌿 Caregiver Wellness Course** → ⋯ → Connections → add
+   in Notion, open **🌿 The Caregiver Wellbeing Journey** → ⋯ → Connections → add
    **n8n**. This unblocks all four workflows' Notion steps at once.
 2. In n8n, add a **Gmail** credential (or SMTP), signing in with the mailbox the
    course should send from.

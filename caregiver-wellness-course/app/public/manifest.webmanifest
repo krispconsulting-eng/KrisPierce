@@ -1,6 +1,6 @@
 {
-  "name": "Wellness Wheel — Caregiver Wellbeing",
-  "short_name": "Wellness Wheel",
+  "name": "The Caregiver Wellbeing Journey",
+  "short_name": "Wellbeing Journey",
   "description": "A self-paced 8-week wellbeing companion for family caregivers of someone with a rare disease. Assess, reflect, and take a little time for yourself.",
   "start_url": "./index.html",
   "scope": "./",
