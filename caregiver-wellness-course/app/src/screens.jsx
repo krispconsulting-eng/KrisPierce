@@ -63,7 +63,7 @@ export function Assessment({ onComplete }) {
   );
 }
 
-export function Report({ scores, onSignUp }) {
+export function Report({ scores, onContinue }) {
   const sorted=[...WEDGES].sort((a,b)=>scores[a]-scores[b]);
   const lowest=sorted.slice(0,3), highest=sorted.slice(-3).reverse();
   const overall=Math.round(WEDGES.reduce((s,w)=>s+scores[w],0)/8);
@@ -95,9 +95,34 @@ export function Report({ scores, onSignUp }) {
         <p style={{fontSize:13,color:"#5c6b72",marginBottom:12,lineHeight:1.6}}>The parts you've managed to hold onto, even now. Worth noticing, and worth leaning on.</p>
         {highest.map(w=><div key={w} style={{display:"flex",alignItems:"center",gap:10,marginBottom:8}}><Icon name={WEDGE_CONFIG[w].icon} size={19} color={WEDGE_CONFIG[w].color}/><strong style={{fontFamily:"Newsreader,Georgia,serif",color:"#20303A"}}>{w}</strong><span style={{color:"#93a0a6",fontSize:13}}>· {getLevel(scores[w]).label}</span></div>)}
       </div>
-      <button onClick={onSignUp} style={{width:"100%",padding:"16px",background:"#4A7690",color:"white",border:"none",borderRadius:999,fontSize:16,fontWeight:600,cursor:"pointer",fontFamily:"Hanken Grotesk,sans-serif",transition:"background 180ms"}}>
-        Start My 8-Week Wellness Plan →
+      <button onClick={onContinue} style={{width:"100%",padding:"16px",background:"#4A7690",color:"white",border:"none",borderRadius:999,fontSize:16,fontWeight:600,cursor:"pointer",fontFamily:"Hanken Grotesk,sans-serif",transition:"background 180ms"}}>
+        See how to start your 8 weeks →
       </button>
+    </div>
+  );
+}
+
+// Shown after the free report, in place of the old direct-to-plan handoff.
+// The assessment and this report are free; the 8-week plan is not (self-pay
+// or a sponsored/scholarship seat) and enrollment is opening in a pilot
+// round, not instant right now — so this sends people back to the real
+// website paths (waitlist / apply) instead of quietly unlocking the whole
+// program.
+export function JoinGate() {
+  return (
+    <div style={{maxWidth:560,margin:"0 auto",padding:"24px 16px",textAlign:"center"}}>
+      <div style={{display:"flex",justifyContent:"center",marginBottom:16}}><Icon name="mark" size={40} color="#4A7690"/></div>
+      <h2 style={{fontFamily:"Newsreader,Georgia,serif",fontSize:25,color:"#20303A",marginBottom:10}}>You've seen where you stand. Here's how the 8 weeks work.</h2>
+      <p style={{color:"#5c6b72",fontSize:14,lineHeight:1.7,maxWidth:440,margin:"0 auto 28px"}}>The assessment and this report are free. The 8-week plan itself isn't: pay your own way, or apply for a sponsored spot if cost is the barrier. We're finishing a pilot round right now, so joining takes one extra step.</p>
+      <div style={{display:"grid",gap:14,marginBottom:8}}>
+        <a href="../index.html?path=self-pay#waitlist" style={{display:"flex",alignItems:"center",justifyContent:"center",gap:8,width:"100%",padding:"16px",background:"#4A7690",color:"white",borderRadius:999,fontSize:15,fontWeight:600,fontFamily:"Hanken Grotesk,sans-serif",textDecoration:"none",boxSizing:"border-box"}}>
+          Pay my own way, $97 <Icon name="arrowRight" size={16} color="white"/>
+        </a>
+        <a href="../apply.html" style={{display:"flex",alignItems:"center",justifyContent:"center",gap:8,width:"100%",padding:"16px",background:"white",color:"#4A7690",border:"2px solid #4A7690",borderRadius:999,fontSize:15,fontWeight:600,fontFamily:"Hanken Grotesk,sans-serif",textDecoration:"none",boxSizing:"border-box"}}>
+          <Icon name="partnership" size={16} color="#4A7690"/> Apply for a sponsored spot
+        </a>
+      </div>
+      <p style={{fontSize:12,color:"#93a0a6",marginTop:16}}>Your results are saved on this device. Come back any time, nothing is lost.</p>
     </div>
   );
 }

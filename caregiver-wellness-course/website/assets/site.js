@@ -11,6 +11,16 @@
 const INTAKE_WEBHOOK_URL = 'https://scn2a-krispierce.app.n8n.cloud/webhook/caregiver-course-intake';
 
 document.addEventListener('DOMContentLoaded', () => {
+  // Prefills the waitlist form's path dropdown when arriving from a link
+  // like index.html?path=self-pay#waitlist (e.g. the app's post-report
+  // join gate), so the handoff from the assessment feels connected rather
+  // than dropping the caregiver back at a blank form.
+  const pathParam = new URLSearchParams(window.location.search).get('path');
+  const pathSelect = document.getElementById('wl-path');
+  if (pathParam && pathSelect && [...pathSelect.options].some((o) => o.value === pathParam)) {
+    pathSelect.value = pathParam;
+  }
+
   const toggle = document.querySelector('.nav-toggle');
   const links = document.querySelector('.nav-links');
   if (toggle && links) {

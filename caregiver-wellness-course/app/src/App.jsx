@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { Icon } from "./icons";
-import { Landing, Assessment, Report, SignUp, GamifiedPlan } from "./screens";
+import { Landing, Assessment, Report, JoinGate, SignUp, GamifiedPlan } from "./screens";
 import { loadState, saveState } from "./persistence";
 import { sendEnrolled, sendReassessment } from "./events";
 
@@ -11,6 +11,11 @@ export default function App() {
   const [userName, setUserName] = useState("");
   const [focusAreas, setFocusAreas] = useState([]);
   const [planState, setPlanState] = useState(null);
+  // True only for the manually-enrolled pilot cohort: Kris hands out a link
+  // with ?enrolled=1 once she's confirmed payment or a sponsored seat
+  // outside the app (no live checkout/redemption exists yet). Everyone else
+  // hits the JoinGate after their free report instead of the free plan.
+  const [enrolled, setEnrolled] = useState(false);
   // Set only when the caregiver opted in to email check-ins on sign-up:
   // { participantId, enrollmentId } from the course CRM, so the week-8
   // reassessment can be recorded against the same enrolment.
@@ -34,6 +39,12 @@ export default function App() {
         setPlanState(saved.planState ?? null);
         setRemote(saved.remote ?? null);
         setPendingEnroll(saved.pendingEnroll ?? null);
+        setEnrolled(saved.enrolled ?? false);
+      }
+      // A ?enrolled=1 link always wins over saved state (never demotes an
+      // already-enrolled device, and lets Kris re-send the link if needed).
+      if (new URLSearchParams(window.location.search).get("enrolled") === "1") {
+        setEnrolled(true);
       }
       setHydrated(true);
     });
@@ -43,8 +54,8 @@ export default function App() {
   useEffect(() => {
     if (!hydrated) return;
     if (skipNextSave.current) { skipNextSave.current = false; return; }
-    saveState({ stage, scores, userName, focusAreas, planState, remote, pendingEnroll });
-  }, [hydrated, stage, scores, userName, focusAreas, planState, remote, pendingEnroll]);
+    saveState({ stage, scores, userName, focusAreas, planState, remote, pendingEnroll, enrolled });
+  }, [hydrated, stage, scores, userName, focusAreas, planState, remote, pendingEnroll, enrolled]);
 
   // Retries a still-pending opt-in once per app open (covers a webhook that
   // was unreachable or briefly failing when the caregiver first signed up),
@@ -86,13 +97,14 @@ export default function App() {
           <div><div style={{fontWeight:600,fontSize:14,color:"#20303A",fontFamily:"Newsreader,Georgia,serif"}}>Wellbeing Journey</div><div style={{fontSize:10,color:"#93a0a6"}}>For family caregivers</div></div>
         </div>
         {stage!=="landing"&&<div style={{display:"flex",gap:6}}>
-          {["assessment","report","plan"].map((s,i)=>{const stages=["assessment","report","signup","plan"];const done=stages.indexOf(stage)>i;const current=stage===s||(s==="report"&&stage==="signup");return <div key={s} style={{width:24,height:6,borderRadius:3,background:done?"#4A7690":current?"#5FA0A0":"#dde3e6",transition:"background 0.3s"}}/>;})}
+          {["assessment","report","plan"].map((s,i)=>{const stages=["assessment","report","join","signup","plan"];const done=stages.indexOf(stage)>i;const current=stage===s||(s==="report"&&(stage==="join"||stage==="signup"));return <div key={s} style={{width:24,height:6,borderRadius:3,background:done?"#4A7690":current?"#5FA0A0":"#dde3e6",transition:"background 0.3s"}}/>;})}
         </div>}
       </div>
       <div style={{paddingBottom:48}}>
         {stage==="landing"&&<Landing onStart={()=>setStage("assessment")}/>}
         {stage==="assessment"&&<Assessment onComplete={s=>{setScores(s);setPlanState(null);setStage("report");}}/>}
-        {stage==="report"&&<Report scores={scores} onSignUp={()=>setStage("signup")}/>}
+        {stage==="report"&&<Report scores={scores} onContinue={()=>setStage(enrolled?"signup":"join")}/>}
+        {stage==="join"&&<JoinGate/>}
         {stage==="signup"&&<SignUp scores={scores} onStart={handleStart}/>}
         {stage==="plan"&&<GamifiedPlan scores={scores} userName={userName} focusAreas={focusAreas} initialState={planState} onStateChange={setPlanState} onReassessed={handleReassessed}/>}
       </div>

@@ -1,7 +1,11 @@
 # The Caregiver Wellbeing Journey — Where We're At
 
-*Last updated: 6 July 2026. PR #11 (branch `claude/caregiver-wellness-course-arch-vqurrm`)
-is merged into the default branch `claude/eloquent-curie-4jElo`.*
+*Last updated: 6 July 2026 (overnight pass). Branch
+`claude/caregiver-wellness-course-arch-vqurrm`, on top of the merged PR #11
+base. Product renamed to "The Caregiver Wellbeing Journey" throughout
+(docs, app, website, Notion, n8n), the marketing site's hero wheel animation
+rebuilt and de-glitched, and — the important one — the app no longer gives
+away the whole paid course for free. See §0 below before anything else.*
 
 A snapshot for picking this back up: what's built, what's live-tested, what's
 still blocked, and the short list of things only you can do.
@@ -10,6 +14,40 @@ still blocked, and the short list of things only you can do.
 — GitHub Pages deploy confirmed working end to end (page loads, nav links
 resolve, the link into the Wellbeing Journey app works), verified directly by
 you in a browser on 6 July 2026.
+
+---
+
+## 0. Tonight's fix: the app was giving the paid course away for free
+
+You said it plainly: "intention is not free, you either pay for yourself or
+get a sponsor." Before tonight, the app didn't actually enforce that —
+finishing the free assessment dropped anyone straight into the full 8-week
+plan, no payment, no sponsorship check, nothing. The marketing site already
+knew better (it says "enrollment isn't open yet" and runs a waitlist), the
+app just wasn't listening.
+
+Fixed: **Report is now the end of the free part.** After the pretty report,
+caregivers hit a new screen ("You've seen where you stand. Here's how the 8
+weeks work.") with two real buttons:
+- **Pay my own way, $97** → sends them to the website's waitlist, pre-filled
+  to the self-pay path (real Stripe checkout still doesn't exist — see §6.1
+  below — so self-pay currently joins the same waitlist as everyone else).
+- **Apply for a sponsored spot** → the existing scholarship application page.
+
+Nobody reaches the actual 8-week plan through the normal flow any more.
+
+**The pilot-cohort workaround:** since there's no real checkout or
+redemption yet, you can still get someone into the real plan by hand — send
+them the app link with `?enrolled=1` on the end (e.g.
+`https://.../app/?enrolled=1`). That flag sticks on their device (survives a
+reload) and skips straight past the new gate to the sign-up + plan, exactly
+like the old behaviour. **This is an honour system, not real security** —
+anyone who knew to add that to the URL could let themselves in — which is a
+fine trade-off for a handful of pilot participants you're personally
+tracking, but it must not be how this works once you're actually marketing
+the course. Real Stripe checkout and a real sponsor-redemption/scholarship-
+approval flow need to replace it first (tracked as open decision §9.7 in the
+architecture doc).
 
 ---
 
@@ -148,11 +186,11 @@ copy underselling what data was actually shared), two silent-data-loss bugs,
 a stale-state migration bug, three stale documentation claims, and a deploy
 workflow that would never have fired because it targeted the wrong branch.
 
-## 9. Everything is committed, merged, and deployed
+## 9. Where things stand with git
 
-`claude/caregiver-wellness-course-arch-vqurrm` (latest commit `78dcc78`) was
-merged via PR #11 into the default branch `claude/eloquent-curie-4jElo`.
-Nothing is sitting uncommitted, and the merge itself triggered the first
-successful GitHub Pages deploy. Any further work should branch fresh off
-`claude/eloquent-curie-4jElo`, since this PR is finished and shouldn't be
-built on top of directly.
+PR #11 (the original build) and PR #12 (the product rename) are both merged
+into the default branch `claude/eloquent-curie-4jElo`. Since then, three more
+commits have gone up on `claude/caregiver-wellness-course-arch-vqurrm`: the
+hero wheel replacement + its glitch fixes (PR #13, open), and tonight's
+free/paid gating fix (this pass — check whether it has its own PR by the
+time you read this, or ask for one). Nothing is sitting uncommitted.

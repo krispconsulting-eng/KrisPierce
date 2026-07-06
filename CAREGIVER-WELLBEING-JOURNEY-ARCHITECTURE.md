@@ -211,6 +211,11 @@ This is a scaffold for you to write the real scripts/modules against, not the mo
 2. **Sponsored, named:** receives a redemption link/code from the sponsor or you → redeems, no payment.
 3. **Applied for scholarship:** submits application → reviewed → approved → allocated a pool seat.
 
+**✅ Fixed (2026-07-06): the app was quietly giving away the whole paid product for free.** Before this, finishing the assessment dropped anyone straight into the full 8-week gamified plan with no join step at all, silently bypassing all three paths above and everything in §3 — the exact opposite of "assessment is free, the course is not." The app now ends the free teaser at the report and sends people back to the real website paths instead of unlocking anything itself:
+
+- **Report → JoinGate screen** ("You've seen where you stand. Here's how the 8 weeks work.") with two real buttons: *Pay my own way, $97* → `index.html?path=self-pay#waitlist` (prefills the waitlist form's path dropdown — real checkout isn't wired up yet, see §9.7, so self-pay currently joins the waitlist same as everyone else), and *Apply for a sponsored spot* → `apply.html` (the existing scholarship form).
+- **Manual pilot-cohort bypass:** since there's no live checkout or redemption yet, a caregiver Kris has actually confirmed payment or a sponsored seat for (outside the app) can be sent a link with `?enrolled=1`. That flag is sticky (saved to the app's local persistence, survives reload) and skips the JoinGate straight to SignUp → the real plan, exactly like before this fix. This is an honest, temporary stand-in for real payment/redemption verification, not a security boundary — anyone who knows the query param could self-grant it, which is an acceptable risk for a small manually-run pilot but **must** be replaced with real Stripe checkout + redemption/approval before any paid marketing push (see §9.7).
+
 All three then:
 4. **Participants DB** entry created, linked to their **Enrollment** (entry path, sponsor if any, enrolled date — the date that anchors their 8 weeks) →
 5. Welcome sequence (email) →
@@ -281,6 +286,7 @@ These three are **not yet activated** (left as drafts) on purpose: with zero rea
 4. **Exact self-pay price ($97 proposed)** — sanity-check against what a caregiver in this community would actually pay; open to a pay-what-you-can band instead of a fixed number if that fits your brand better.
 5. ~~Facilitator/session cost~~ — moot in the self-directed model; delivery cost is hosting + admin only.
 6. **Guidebook attribution** — decide how you want to credit the NAC/Global Genes Guidebook as a research source (a line in course materials, a resources page) if you draw statistics or structure from it, per the IP note in §0.
+7. **Real checkout/redemption still doesn't exist.** The app's `?enrolled=1` bypass (§6.2) is a manual, honour-system stand-in — there's no Stripe checkout, no sponsor redemption link/code, and no scholarship-approval routing that actually grants access. Anyone who knows the query param can self-grant the free plan today. Fine for a small, personally-run pilot; not fine once this is marketed or handed out at any real scale. Build real Stripe checkout for self-pay and a real redemption/approval flow for sponsored/scholarship seats before then.
 
 ---
 
