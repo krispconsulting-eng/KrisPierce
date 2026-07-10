@@ -18,7 +18,7 @@ window.Scenes.s12 = () => {
     ${A.put(1150, 705, 1, false, A.dam(720, 170))}
     ${A.put(1495, 762, 0.9, false, A.reeds(4, 90))}
     ${A.put(905, 786, 0.85, false, A.reeds(4, 100))}
-    ${A.put(960, 778, 1, false, A.mudPatch(280, 46))}
+    ${A.put(985, 792, 1, false, A.mudPatch(280, 42))}
     ${A.put(690, 782, 1, false, A.hoofprints(3, 56, -4, 0, 0.35))}
 
     <!-- the crowd, small and still on the left edge -->
@@ -30,19 +30,25 @@ window.Scenes.s12 = () => {
     <!-- Will, the offered hay, and the held breath -->
     ${A.put(555, 715, 1.05, false, A.will('offer', 'calm'))}
 
-    <!-- Rocky, mid-emergence: shoulders clear of the water -->
-    ${A.put(1140, 748, 0.95, true, A.cow('rocky', 'stuck', { mood: 'calm', wet: true, weed: true }))}
-    <!-- one heavy hoof at a time: the front leg pulling out -->
-    <g transform="translate(1035 645) rotate(18)">
-      <rect x="-13" y="0" width="26" height="88" rx="12" fill="${C.rockyDark}"/>
+    <!-- Rocky, mid-emergence: front rising toward the hay, rear still deep -->
+    <g transform="rotate(8 1160 728)">
+      ${A.put(1160, 728, 0.98, true, A.cow('rocky', 'stuck', { mood: 'calm', wet: true, weed: true }))}
     </g>
-    <!-- mud + water drawn OVER his lowest part -->
-    <ellipse cx="1140" cy="722" rx="285" ry="38" fill="${C.dam}"/>
-    <ellipse cx="1095" cy="727" rx="120" ry="20" fill="${C.damDeep}" opacity="0.65"/>
-    <path d="M950 704 q42 10 84 2 M1240 708 q42 9 84 1 M1010 730 q34 8 68 1"
+    <!-- wet mud line on his flank -->
+    <ellipse cx="1220" cy="668" rx="70" ry="14" fill="${C.mudWet}" opacity="0.4"/>
+    <ellipse cx="1150" cy="690" rx="55" ry="11" fill="${C.mudWet}" opacity="0.35"/>
+    <!-- mud + water drawn OVER only his lowest part -->
+    <ellipse cx="1330" cy="692" rx="200" ry="42" fill="${C.dam}"/>
+    <ellipse cx="1360" cy="698" rx="120" ry="24" fill="${C.damDeep}" opacity="0.6"/>
+    <ellipse cx="1010" cy="722" rx="175" ry="27" fill="${C.dam}"/>
+    <ellipse cx="1150" cy="718" rx="130" ry="22" fill="${C.dam}"/>
+    <path d="M930 708 q42 10 84 2 M1250 682 q42 9 84 1 M1030 734 q34 8 68 1 M1130 704 q30 8 60 1"
           stroke="${C.damEdge}" stroke-width="5" fill="none" stroke-linecap="round" opacity="0.8"/>
-    <ellipse cx="1000" cy="736" rx="90" ry="16" fill="${C.mudWet}" opacity="0.6"/>
-    ${A.mudSplats([[1060, 700, 6], [1180, 696, 5], [1250, 704, 5]])}
+    <ellipse cx="965" cy="742" rx="90" ry="15" fill="${C.mudWet}" opacity="0.55"/>
+    <!-- one heavy hoof at a time: the front leg out of the water, onto the bank -->
+    <path d="M1010 734 q-8 -42 -26 -42 q-18 0 -18 38" stroke="${C.rockyDark}" stroke-width="22" fill="none" stroke-linecap="round"/>
+    <path d="M946 728 q22 10 44 3 M990 738 q20 8 40 2" stroke="${C.damEdge}" stroke-width="4.5" fill="none" stroke-linecap="round" opacity="0.85"/>
+    ${A.mudSplats([[1032, 706, 6], [1235, 672, 5], [1290, 690, 5]])}
 
     <!-- foreground -->
     ${A.put(120, 792, 1.2, false, A.grassTuft(1))}
@@ -82,8 +88,8 @@ window.Scenes.s13 = () => {
     <circle cx="122" cy="522" r="5" fill="${C.mud}"/>
 
     <!-- Cleo springing away, foreground -->
-    <ellipse cx="510" cy="796" rx="58" ry="10" fill="${C.grassDark}" opacity="0.14"/>
-    ${A.put(505, 792, 0.95, false, A.cleo('run'))}
+    <ellipse cx="485" cy="796" rx="58" ry="10" fill="${C.grassDark}" opacity="0.14"/>
+    ${A.put(480, 792, 0.95, false, A.cleo('run'))}
 
     <!-- extra mud flying, plus what already landed -->
     ${A.mudSplats([[175, 505, 7], [240, 468, 6], [330, 440, 6], [470, 452, 7], [560, 505, 6], [608, 574, 5], [140, 583, 6], [660, 645, 4]])}
@@ -109,19 +115,19 @@ window.Scenes.s14 = () => {
 
     <!-- the farmhouse, warm windows -->
     ${A.put(1125, 470, 0.85, false, A.farmhouseNight(1))}
-    <ellipse cx="1290" cy="372" rx="82" ry="48" fill="#F2D9A0" opacity="0.16"/>
-    <ellipse cx="1362" cy="374" rx="62" ry="42" fill="#F2D9A0" opacity="0.14"/>
-    <ellipse cx="1310" cy="482" rx="160" ry="24" fill="#F2D9A0" opacity="0.10"/>
+    <ellipse cx="1288" cy="372" rx="58" ry="40" fill="#F2D9A0" opacity="0.12"/>
+    <ellipse cx="1360" cy="374" rx="44" ry="34" fill="#F2D9A0" opacity="0.11"/>
+    <ellipse cx="1300" cy="490" rx="110" ry="15" fill="#F2D9A0" opacity="0.08"/>
 
     <!-- the night count -->
     <ellipse cx="360" cy="718" rx="86" ry="12" fill="#2F4028" opacity="0.35"/>
     <ellipse cx="450" cy="714" rx="46" ry="11" fill="#2F4028" opacity="0.35"/>
     <ellipse cx="1050" cy="730" rx="130" ry="15" fill="#2F4028" opacity="0.35"/>
-    <ellipse cx="1400" cy="742" rx="140" ry="16" fill="#2F4028" opacity="0.35"/>
+    <ellipse cx="1445" cy="750" rx="130" ry="15" fill="#2F4028" opacity="0.35"/>
     ${A.put(338, 714, 1, false, A.cleo('flop'))}
     ${A.put(436, 712, 1.05, false, A.will('type', 'calm'))}
     ${A.put(1045, 726, 0.92, true, A.cow('rocky', 'stand', { mood: 'smug', weed: true }))}
-    ${A.put(1400, 740, 0.95, true, A.cow('freddie', 'graze', { mood: 'calm' }))}
+    ${A.put(1445, 748, 0.9, true, A.cow('freddie', 'graze', { mood: 'calm' }))}
 
     <g opacity="0.55">
       ${A.put(150, 790, 1.15, false, A.grassTuft(1))}
