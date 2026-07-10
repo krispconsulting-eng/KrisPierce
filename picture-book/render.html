@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>render harness</title>
+<style>
+  body { margin: 0; background: #888; }
+  .frame { width: 1600px; height: 800px; margin: 8px auto; background: #FDFAF4; position: relative; }
+  .frame svg { display: block; width: 1600px; height: 800px; }
+  .gutter { position: absolute; top: 0; left: 750px; width: 100px; height: 100%;
+            background: rgba(200,40,40,0.08); border-left: 1px dashed rgba(160,30,30,0.5);
+            border-right: 1px dashed rgba(160,30,30,0.5); pointer-events: none; }
+  .label { position: absolute; top: 6px; left: 10px; font: 700 20px sans-serif; color: #B03030;
+           background: rgba(255,255,255,0.7); padding: 2px 8px; pointer-events: none; }
+</style>
+</head>
+<body>
+<div id="out"></div>
+<script src="art.js"></script>
+<script src="scenes-a.js"></script>
+<script src="scenes-b.js"></script>
+<script src="scenes-c.js"></script>
+<script src="scenes-d.js"></script>
+<script>
+  // ?scene=s09  → one scene; ?guides=0 hides gutter overlay; default: all.
+  const q = new URLSearchParams(location.search);
+  const only = q.get('scene');
+  const guides = q.get('guides') !== '0';
+  const S = window.Scenes || {};
+  const names = only ? [only] : Object.keys(S);
+  const out = document.getElementById('out');
+  for (const n of names) {
+    if (typeof S[n] !== 'function') continue;
+    const d = document.createElement('div');
+    d.className = 'frame'; d.id = 'frame-' + n;
+    let svg;
+    try { svg = S[n](); } catch (e) { svg = `<svg viewBox="0 0 1600 800"><text x="40" y="80" font-size="40" fill="red">${n}: ${String(e).replace(/</g,'&lt;')}</text></svg>`; }
+    d.innerHTML = svg + (guides ? `<div class="gutter"></div><div class="label">${n}</div>` : '');
+    out.appendChild(d);
+  }
+</script>
+</body>
+</html>
