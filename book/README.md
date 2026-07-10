@@ -1,29 +1,38 @@
-# The Book
+# The Families We Become
 
-A memoir. Personal, vulnerable, true.
+A memoir project — creative, historical, emotional and publishing — run as a
+strategic initiative with defined workstreams, governance and milestones.
 
-## How this works
+The outcome is not just a manuscript. It is a book, an author platform and a
+body of work that can lead to speaking, advocacy and broader impact.
 
-We build the book in this folder, in stages:
+## Repository map
 
-1. **`01-questions.md`** — the interview. Answer questions in any order, in
-   whatever depth you like. Bullet points, voice-memo transcripts, half
-   sentences — all fine. Raw beats polished at this stage.
-2. **`00-outline.md`** — the living outline. It starts as a set of educated
-   guesses and gets rewritten as your answers come in. Chapters will move,
-   merge, and split — that's normal.
-3. **`chapters/`** — once the outline holds, we draft one chapter at a time.
-   Each chapter gets its own file (`chapters/01-<slug>.md`).
-4. **`scraps/`** — anything that doesn't have a home yet: memories, scenes,
-   lines of dialogue, photos-described-in-words. Nothing gets thrown away.
+| Folder | Purpose |
+|---|---|
+| `PROJECT.md` | Governance: phases, streams, status dashboard, long-term ecosystem |
+| `01-vision/` | Purpose, mission, audience, themes, promise, success criteria |
+| `02-timeline/` | Entire life, year by year; family timeline; memory prompts |
+| `03-characters/` | Every important person — biography, arcs, turning points |
+| `04-locations/` | Home, hospitals, farm, schools, holiday places, conferences, Parliament |
+| `05-scenes/` | The scene library. Target: **150–250 scenes**. Probably the biggest folder |
+| `06-themes/` | Hope, motherhood, care, loss, identity, resilience, leadership, grief, love, systems, purpose, belonging |
+| `07-research/` | Photos, records, medical timelines, emails, family history |
+| `08-chapters/` | Story architecture + current manuscript drafts |
+| `09-deleted-scenes/` | **Never delete.** Move here. Many become future talks |
+| `10-publishing/` | Proposal, marketing, agent, publisher, launch |
 
-## Working principles
+## Guiding principles (every decision satisfies these)
 
-- **Scenes over summary.** "The day the diagnosis came" is a chapter;
-  "my child's medical journey" is a folder of chapters.
-- **You own the vulnerability dial.** The questions file has a section on
-  boundaries — what's on the page, what's off, and who gets a veto. We decide
-  that early so drafting is free, not fearful.
-- **Other people's stories.** Where the book touches your partner, kids,
-  family, colleagues — flag anyone who should read pages before the world does.
-- **Draft ugly.** First drafts are for getting it down. We make it good later.
+1. **Truth over perfection** — tell the emotional truth, even when uncomfortable.
+2. **Family first** — protect dignity over drama.
+3. **Universal before specific** — every chapter answers: *why will someone
+   with no connection to rare disease care about this?*
+4. **Story before advocacy** — readers fall in love with stories; advocacy follows.
+5. **Show, don't explain** — scenes first, reflection second.
+
+## The success measure
+
+The project succeeds if readers say **"I saw my own family in yours."**
+Not "I learned about SCN2A." Not "I learned about Alzheimer's."
+The diseases are the context. **The family is the story.**
