@@ -18,9 +18,20 @@ across the book's span.
 - Is there a specific chair / window / corridor you can still see with your eyes closed?
 - As a nurse, hospitals were your territory. What was it like when your territory became your captivity?
 
-## The farm
+## The farm — essential, not a side story
 
-- The farm appears in your location list — childhood? family? refuge? Map what it means and which scenes live there.
+The farm, the Highland cattle, Rocky, Freddie. These are the book's
+**emotional recovery points** — every memoir needs places where readers can
+breathe, and hard chapters need the farm chapter after them. The farm may
+also be the still point each reinvention returns to (see
+`../06-themes/motifs.md`).
+
+- When and why did the farm happen? Was it a deliberate choice of refuge, a dream deferred finally claimed, or an accident that became essential?
+- Rocky and Freddie: who are they (introduce them like characters — because they are), and what's each one's best scene?
+- What do the Highland cattle give you that people can't?
+- What does Will do at the farm? What does the farm let Will be that other places don't? (Same question for Ella, David, Bob.)
+- What's the farm's daily liturgy — the feeding, the fences, the weather? Physical work as therapy the reader can feel.
+- Is there a farm scene that belongs beside the hardest chapters — grief walked out in a paddock?
 
 ## Schools
 

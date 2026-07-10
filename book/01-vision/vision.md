@@ -31,14 +31,28 @@ Create a book that:
 - Leaves a lasting legacy for Will, Ella and future generations
 - Has the quality and positioning to become a bestselling memoir
 
-## Narrative promise (DRAFT — for Kris to react to)
+## Narrative promise — the thesis (v2, from the motif work)
 
-> By the last page, the reader believes that a family is not what happens to
-> you — it is what you make, again and again, out of what happens to you.
-> They close the book thinking about *their own* mother, sibling, child —
-> and feel less alone in whatever their family became.
+> **This is a book about how one family kept reinventing itself every time
+> life asked it to become something new.** Each reinvention wasn't chosen —
+> it was called for by what life placed in front of the family. Readers who
+> have never heard of SCN2A finish it understanding something new about
+> their own lives, because every family is eventually asked to become
+> something it didn't plan.
 
-Alternative framings to test:
+The reinvention chain (the whole cast, not just the narrator):
+- Kris: mother after IVF → rare disease parent → advocate → national leader → founder → entrepreneur and author
+- Ella: a sibling in extraordinary circumstances → an individual with her own voice
+- David: a father navigating uncertainty → the other half of "our work"
+- Mum: grandmother → a woman living with Alzheimer's
+- Bob: a husband caring for his wife → a father supporting his daughter
+
+The emotional spine is **care across generations** — three caregiving
+stories, not one: becoming a mother through IVF; caring for a child with a
+rare disease; caring for Mum through Alzheimer's.
+
+Earlier framings (kept as pull-quote candidates):
+- *A family is not what happens to you — it is what you make, again and again, out of what happens to you.*
 - *You don't get the family you planned. You become the family your life asks of you.*
 - *Care is not what shrank this life. Care is what built it.*
 

@@ -18,10 +18,12 @@ Engine (what happened / what changed / why it matters / why now) and the
 universal test (*why will someone with no connection to rare disease care?*).
 
 ### Part I — HOPE (Hope → Joy)
-The family being dreamed and made. Young Kris, nursing, the marriage, the
-IVF years, Will's arrival. **Job: make the reader love what's at stake.**
-- Candidate chapters: the dreamer · becoming a nurse · him · the IVF years (the wanting) · Will arrives
-- Questions: Where does the book OPEN — chronologically here, or with a cold-open scene from later (diagnosis day? Parliament? Mum's kitchen?) before rewinding? What's the single image of pure "before" joy the book can return to at the end?
+The family being dreamed and made. Teenage Kris (Kris has flagged the story
+starting "around when I started going out"), nursing, David, the IVF years,
+Will's arrival. **Job: make the reader love what's at stake — readers love
+meeting the person before life changed.**
+- Candidate chapters: teenage Kris (the music, the friendships, who she thought she'd become) · becoming a nurse (the patients who changed her) · David · the IVF years (the wanting, not just the treatment) · Will arrives
+- Questions: Straight chronological open with teenage Kris, or a cold-open scene from later (diagnosis day? Parliament? Mum's kitchen? the farm?) before rewinding to her? What's the single image of pure "before" joy the book returns to at the end?
 
 ### Part II — THE LINE (Fear → Uncertainty)
 First signs, diagnosis, the fall into a new world.
@@ -42,11 +44,19 @@ while losing the woman who built your first family.
 - Questions: Interleave the charity's rise with Mum's decline chapter-by-chapter, or run them in blocks? (Interleaving is harder and probably right — that WAS the lived texture.) Did Mum know about / witness the charity's success — is there a scene where your two worlds met in her presence?
 
 ### Part V — THE FAMILIES WE BECOME (Renewal → Peace)
-After. Who everyone is now. Will a young man; Ella an individual finding
-her voice; the marriage still here; Kris still becoming. What "peace" means
-when nothing is fixed.
-- Candidate chapters: after her · Will, now · Ella, in her own voice(?) · what I know about care · still becoming
-- Questions: What is the FINAL SCENE? (Candidates: a return to the Part I joy-image, changed; an ordinary Tuesday now; a scene with all four of you that says peace without the word.) Does Ella get direct voice here — a conversation, a letter, her own pages?
+After. Who everyone is now — and the reinventions still happening. Will a
+young man; Ella an individual finding her voice; the marriage still here;
+Bob in the after; Kris becoming an entrepreneur and author. What "peace"
+means when nothing is fixed.
+- Candidate chapters: after her (and Bob's after) · Will, now · Ella, in her own voice(?) · from fighting to building (the frameworks, the collaborative — creating instead of getting through) · backing myself (krispierce.com.au, consulting, the AI room with the Disney and TikTok people — imposter syndrome as the rhyme of the first medical conference) · what I know about care · still becoming
+- Questions: How much of the professional/AI reinvention belongs in the book vs. the platform? (Guard rail: it earns its place as *another reinvention in the pattern*, not as career news.) What is the FINAL SCENE? (Candidates: the farm — the still point, all of them in it; a return to the Part I joy-image, changed; an ordinary Tuesday now.) Does Ella get direct voice here — a conversation, a letter, her own pages?
+
+## Breathing places (structural rule)
+
+The farm — the Highland cattle, Rocky, Freddie — provides the book's
+**emotional recovery points**. Rule: no two devastating chapters adjacent
+without air between them; farm scenes (and uncomplicated-joy scenes) are
+the air. Distribute them deliberately across Parts II–V.
 
 ## Structural devices to decide
 

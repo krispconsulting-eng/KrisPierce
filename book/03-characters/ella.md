@@ -9,6 +9,15 @@ Young woman → **Individual**
 through the book — a rising line. Early: glimpses in the corner of scenes.
 Middle: her own scenes. Late: her own voice, possibly her own chapter.
 
+## The emotional question of her thread
+
+> **How do you raise two children fairly when one child's needs are
+> extraordinary?**
+
+Every parent-reader carries some version of this. Ella is likely to become
+one of the book's most loved characters — currently the most underdeveloped
+thread, so she gets priority in scene capture.
+
 ## Biography
 
 - Born when — and what was the family already carrying when she arrived?

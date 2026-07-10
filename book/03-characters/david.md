@@ -1,9 +1,14 @@
-# Husband — the partner journey
+# David — the partner journey
+
+## The signature detail
+
+Kris always says **"our work," never "my work."** That pronoun is the
+marriage on the page — trace it across decades as a deliberate motif.
 
 ## Arc (draft — needs his input)
 
-Young man she married → Intended father → IVF partner → Father →
-Co-carer → The other half of the load → **Still here**
+Young man she married → Intended father → IVF partner → Father navigating
+uncertainty → Co-carer → The other half of "our work" → **Still here**
 
 "Still here" may be the most powerful thing about him on the page: the
 statistics on marriages under this kind of load make endurance itself a
@@ -16,6 +21,11 @@ story.
 - What did HE imagine fatherhood would be?
 
 ## Shaping questions
+
+### The partnership over decades
+- How did you make the big decisions together — IVF, the charity, the farm, the consulting leap? Reconstruct ONE decision conversation in detail as a scene.
+- When did you seriously disagree? What was the disagreement really about, underneath?
+- How has the partnership evolved across each reinvention — who led which era, and who followed?
 
 ### The marriage under load
 - How do the two of you divide the caring — and how did that division get negotiated: explicitly, by drift, or by fight?
@@ -35,10 +45,10 @@ story.
 - What's off the page for him? Ask before drafting, not after.
 
 ## Relationship map
-- Husband ↔ Kris: —
-- Husband ↔ Will: —
-- Husband ↔ Ella: —
-- Husband ↔ your parents: —
+- David ↔ Kris: —
+- David ↔ Will: —
+- David ↔ Ella: —
+- David ↔ your parents: —
 
 ## Turning points
 1. —

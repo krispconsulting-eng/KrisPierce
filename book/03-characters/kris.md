@@ -3,7 +3,13 @@
 ## Arc (the identity journey)
 
 Dreamer → Nurse → IVF → Mother → Carer → Advocate → Leader → Daughter →
-Grieving daughter → Founder → Strategist → **Still becoming**
+Grieving daughter → Founder → Strategist → Entrepreneur → Author →
+**Still becoming**
+
+Underneath the whole arc, one defining characteristic: whether it's
+hospitals, government, charities, research, caregiving, consulting or AI,
+**Kris always tries to improve systems rather than simply work within
+them.** Every era of the arc is that instinct meeting a new system.
 
 The book's deepest question lives here: *who is Kris when she is not being
 what someone else needs?*
@@ -46,6 +52,19 @@ what someone else needs?*
 - What do you do under pressure that you're proud of? What do you do that you're not?
 - What's your characteristic flaw as the narrator of this story — control? over-functioning? not asking for help? deflecting with competence?
 - Where were you wrong — genuinely wrong — in this story? (Memoirs live or die on the narrator's honesty about this.)
+
+### The teenager (the story may open here)
+- What was teenage Kris like — around when you started going out? What music defined it, which friendships mattered, what did you dream about, who did you think you'd become?
+- Readers love meeting the person before life changed. What in teenage Kris would a reader recognise in founder Kris?
+
+### The expert who never intended to be one
+- Consumer engagement methodologist, national advocate, founder, strategic adviser, systems thinker — none of it planned. Trace the accidental curriculum: what did each necessity teach?
+- When did "getting through" become "creating"? (The fighting→building shift: SCN2A Australia → National Rare and Complex Epilepsies Collaborative → consumer engagement frameworks → Caregiver Wellbeing Framework → national standards → strategic consulting.) Is there a scene where you noticed the shift in yourself?
+
+### The reinventor (the current chapter)
+- krispierce.com.au, consulting publicly for the first time, three days a week at UNSW while building a business: what did it take to publicly back yourself after decades of building *other* organisations? Where's the fear, specifically?
+- IP over hours, work untethered from a desk — Tahiti, Hawaii, Mexico, Nairobi: what is that dream really about? Freedom from what, exactly?
+- AI: the moment it stopped being a tool. The founding MasterClass Executive cohort — sitting with people who shaped Disney and TikTok, carrying imposter syndrome. How does this rhyme with walking into your first medical conference as "just a mum"? (Same feeling, different room — a deliberate mirror scene.)
 
 ### Still becoming
 - Who are you now that Mum is gone and the charity stands on its own legs?

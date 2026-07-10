@@ -21,6 +21,9 @@ fluids" is a scene.
 Tick as captured. This list is a net, not a cage — add everything it misses.
 
 ### The before
+- [ ] Teenage Kris — a night out, the music, the friends (the story may open here)
+- [ ] Who teenage Kris thought she'd become — a scene that shows the dream
+- [ ] Childhood with Bob and Mum — first memories, a family holiday, school
 - [ ] The moment you decided to become a nurse
 - [ ] Meeting your husband
 - [ ] The wedding — one true detail, not the album version
@@ -72,6 +75,23 @@ Tick as captured. This list is a net, not a cage — add everything it misses.
 - [ ] A win that mattered; a loss that taught
 - [ ] Meeting a family a few steps behind you
 - [ ] Losing a child in the community — grief once removed
+- [ ] SCN2A Australia: the first success
+- [ ] SCN2A Australia: the first setback
+- [ ] The moment one family wasn't enough — when you realised people were looking to you
+- [ ] The fighting→building shift — a scene where you noticed you were creating, not just getting through
+
+### The farm (breathing scenes — capture several)
+- [ ] The day the farm became yours / the decision
+- [ ] Rocky's best scene · Freddie's best scene
+- [ ] The Highland cattle at dawn — the daily liturgy
+- [ ] Will at the farm — what the farm lets him be
+- [ ] Grief walked out in a paddock
+
+### The reinvention (now)
+- [ ] Registering krispierce.com.au / going public as a consultant — the courage scene
+- [ ] The AI moment — when it stopped being another tool
+- [ ] The MasterClass Executive cohort — imposter syndrome beside the Disney and TikTok people (mirror of the first medical conference)
+- [ ] The Tahiti/Nairobi daydream — a real moment of imagining the untethered life
 
 ### Mum
 - [ ] Mum in her prime — the scene that IS her
