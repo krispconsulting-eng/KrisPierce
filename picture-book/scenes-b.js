@@ -20,9 +20,14 @@ window.Scenes.s05 = () => {
     ${A.put(575, 622, 1, false, A.gate(18))}
 
     <!-- hoofprinted mud leading right (clue 2) -->
-    ${A.put(880, 692, 1, false, A.mudPatch(310, 72))}
-    ${A.put(788, 682, 1, false, A.hoofprints(3, 58, 8, 8, 0.7))}
-    ${A.put(985, 706, 1, false, A.hoofprints(4, 66, 5, 4, 0.6))}
+    ${A.put(915, 702, 1, false, A.mudPatch(300, 66))}
+    <g fill="${C.mudDeep}" opacity="0.75">
+      <ellipse cx="852" cy="696" rx="7" ry="9"/><ellipse cx="868" cy="696" rx="7" ry="9"/>
+      <ellipse cx="912" cy="710" rx="7" ry="9"/><ellipse cx="928" cy="710" rx="7" ry="9"/>
+      <ellipse cx="964" cy="694" rx="7" ry="9"/><ellipse cx="980" cy="694" rx="7" ry="9"/>
+    </g>
+    ${A.put(700, 688, 1, false, A.hoofprints(3, 56, 6, 8, 0.6))}
+    ${A.put(1075, 712, 1, false, A.hoofprints(4, 64, 2, 2, 0.55))}
 
     <!-- Freddie half a beat behind Will -->
     ${A.put(150, 722, 0.92, false, A.cow('freddie', 'stand'))}
@@ -61,9 +66,9 @@ window.Scenes.s06 = () => {
     ${A.put(1300, 712, 1, false, A.hoofprints(4, 68, -3, 2, 0.45))}
 
     <!-- Freddie came too, half a beat behind -->
-    ${A.put(275, 718, 0.95, false, A.cow('freddie', 'walk'))}
+    ${A.put(345, 718, 0.95, false, A.cow('freddie', 'walk'))}
     <!-- Will: the plan, pointing the way -->
-    ${A.put(635, 722, 1, false, A.will('point', 'calm'))}
+    ${A.put(615, 722, 1, false, A.will('point', 'calm'))}
     <!-- Cleo flat-out in front, all four feet off the ground -->
     ${A.put(1160, 706, 1.05, false, A.cleo('run'))}
 
@@ -108,8 +113,8 @@ window.Scenes.s07 = () => {
     ${A.put(1230, 650, 0.75, false, A.hoofprints(4, 56, 0, 0, 0.4))}
 
     <!-- the trio, small, mid-journey between tree and tank -->
-    ${A.put(545, 615, 0.55, false, A.cow('freddie', 'walk'))}
-    ${A.put(660, 612, 0.6, false, A.will('walk', 'calm'))}
+    ${A.put(500, 615, 0.55, false, A.cow('freddie', 'walk'))}
+    ${A.put(650, 612, 0.6, false, A.will('walk', 'calm'))}
     ${A.put(895, 602, 0.55, false, A.cleo('run'))}
 
     ${A.put(60, 788, 1.35, false, A.grassTuft(1))}
@@ -136,7 +141,7 @@ window.Scenes.s08 = () => {
     ${A.dirtTrack(560, 1230, 505, 300, 40)}
 
     <!-- a hoofprint or two skirting the lettuce beds -->
-    ${A.put(1140, 745, 1, false, A.hoofprints(3, 62, -6, 4, 0.5))}
+    ${A.put(1250, 764, 1, false, A.hoofprints(3, 60, -8, 6, 0.5))}
 
     <!-- left page: the expedition, polite and still -->
     ${A.put(170, 718, 0.95, false, A.cow('freddie', 'stand'))}
@@ -144,10 +149,10 @@ window.Scenes.s08 = () => {
     ${A.put(560, 722, 1, false, A.cleo('sit'))}
 
     <!-- right page: the neighbour, kind but exasperated, pointing down-track -->
-    ${A.put(1055, 714, 1.02, false, A.neighbour('point'))}
+    ${A.put(1145, 732, 1.02, false, A.neighbour('point'))}
 
     <!-- her lettuce patch, half of it gone -->
-    ${A.put(1370, 788, 1, false, A.lettucePatch(3, 5, [0, 1]))}
+    ${A.put(1400, 790, 1, false, A.lettucePatch(3, 5, [0, 1]))}
 
     ${A.put(70, 786, 1.25, false, A.grassTuft(1))}
     ${A.put(700, 792, 1.1, false, A.grassTuft(1))}
