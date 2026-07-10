@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="theme-color" content="#8FB98B">
+<title>Will and the Missing Highland Cow</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='55' r='38' fill='%23D9A441'/%3E%3Cpath d='M18 40 Q8 25 20 18 Q22 32 30 36 Z' fill='%23B8863B'/%3E%3Cpath d='M82 40 Q92 25 80 18 Q78 32 70 36 Z' fill='%23B8863B'/%3E%3Cellipse cx='50' cy='70' rx='20' ry='13' fill='%23E8C27A'/%3E%3Cpath d='M28 38 Q50 22 72 38 L70 52 Q50 42 30 52 Z' fill='%23C08F3E'/%3E%3C/svg%3E">
+<style>:root{--paper: #FBF3E4;--paddock: #8FB98B;--oat: #E8D9BD;--sandstone: #E3CBA4;--sky: #BFD9E2;--apricot: #F2C29B;--sea: #7FB5AE;--rocky: #D9A441;--freddie: #9A6B4F;--cleo: #DDB25E;--cleo-blue: #4A7BA6;--pearl: #F2EDE2;--slate: #6E7B86;--banksia: #E0A93E;--charcoal: #3D4248;--olive: #7A7D4E;--tanboot: #B98A5A;--coral: #E8896A;--night: #39465C;--ink: #4A3C2C}*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}html,body{height:100%;overflow:hidden;background:var(--paper);font-family:-apple-system,Segoe UI,Helvetica Neue,Arial,sans-serif;color:var(--ink);touch-action:manipulation;user-select:none;-webkit-user-select:none}#app{position:fixed;inset:0}#title-screen{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:linear-gradient(180deg,var(--sky) 0%,var(--sky) 45%,var(--paddock) 45.2%,var(--paddock) 100%);transition:opacity 1.2s ease;z-index:30}#title-screen.fading{opacity:0;pointer-events:none}.title-card{text-align:center;padding:24px;max-width:640px}#title-art{width:min(52vw,420px);margin:0 auto 8px}#title-art svg{width:100%;height:auto;display:block}h1{font-size:clamp(26px,4.5vw,44px);font-weight:700;letter-spacing:.01em;color:var(--ink);text-shadow:0 2px 0 rgba(251,243,228,.6);margin-bottom:20px}.big-soft-btn{width:108px;height:108px;border:none;background:none;cursor:pointer;border-radius:50%;transition:transform .4s ease}.big-soft-btn:active{transform:scale(.94)}.big-soft-btn svg{width:100%;height:100%;filter:drop-shadow(0 4px 6px rgba(74,60,44,.25))}.title-sub{margin-top:18px;font-size:clamp(13px,1.8vw,16px);color:var(--ink);opacity:.85}#stage-wrap{position:absolute;inset:0}#stage{width:100%;height:100%;display:block}#scene-old,#scene-current{transition:opacity 1.3s ease}.scene-hidden{opacity:0}.tappable{cursor:pointer}#stage g{outline:none}.tappable:focus-visible .hitring{opacity:.9}.select-ring{fill:none;stroke:var(--coral);stroke-width:7;opacity:0;transition:opacity .5s ease}.selected .select-ring{opacity:.85}.hitring{fill:none;stroke:var(--coral);stroke-width:5;stroke-dasharray:14 10;opacity:0;transition:opacity .4s ease}@keyframes shimmer-soft{0%,to{opacity:0}50%{opacity:.55}}.shimmering .shimmer-halo{animation:shimmer-soft 2.8s ease-in-out infinite}.shimmer-halo{opacity:0;pointer-events:none}body.big-shimmer .shimmer-halo{stroke-width:26}@keyframes sway{0%,to{transform:rotate(-1.6deg)}50%{transform:rotate(1.6deg)}}.sways{animation:sway 5s ease-in-out infinite;transform-box:fill-box;transform-origin:50% 100%}@keyframes drift{0%{transform:translate(0)}to{transform:translate(70px)}}.drifts{animation:drift 26s ease-in-out infinite alternate}@keyframes bob{0%,to{transform:translateY(0)}50%{transform:translateY(-7px)}}.bobs{animation:bob 3.6s ease-in-out infinite;transform-box:fill-box}@keyframes breathe{0%,to{transform:scale(1)}50%{transform:scale(1.015)}}.breathes{animation:breathe 4.5s ease-in-out infinite;transform-box:fill-box;transform-origin:50% 90%}@keyframes tailwag{0%,to{transform:rotate(-14deg)}50%{transform:rotate(16deg)}}.wagging{animation:tailwag .9s ease-in-out infinite;transform-box:fill-box;transform-origin:10% 50%}@keyframes flutter{0%{transform:translate(0) rotate(0)}25%{transform:translate(26px,-20px) rotate(7deg)}50%{transform:translate(54px,-6px) rotate(-6deg)}75%{transform:translate(30px,12px) rotate(5deg)}to{transform:translate(0) rotate(0)}}.flutters{animation:flutter 9s ease-in-out infinite;transform-box:fill-box}@keyframes hop{0%,to{transform:translateY(0)}40%{transform:translateY(-26px)}}.hop-once{animation:hop .7s ease-in-out 1;transform-box:fill-box}@keyframes wiggle{0%,to{transform:rotate(0)}30%{transform:rotate(-5deg)}70%{transform:rotate(5deg)}}.wiggle-once{animation:wiggle .9s ease-in-out 1;transform-box:fill-box;transform-origin:50% 85%}@keyframes spin-once{0%{transform:rotate(0)}to{transform:rotate(360deg)}}.spin-once{animation:spin-once 1s ease-in-out 1;transform-box:fill-box;transform-origin:50% 60%}@keyframes fringe-shake{0%,to{transform:rotate(0)}25%{transform:rotate(-8deg)}50%{transform:rotate(7deg)}75%{transform:rotate(-5deg)}}.fringe-shake{animation:fringe-shake 1s ease-in-out 1;transform-box:fill-box;transform-origin:50% 20%}@keyframes walk-rock{0%,to{transform:rotate(-1.6deg)}50%{transform:rotate(1.6deg)}}.walking .rocker{animation:walk-rock .55s ease-in-out infinite;transform-box:fill-box;transform-origin:50% 92%}.char-move{transition:transform 2.4s cubic-bezier(.45,.05,.4,1)}#bubble-layer{position:absolute;inset:0;pointer-events:none;z-index:10}.bubble{position:absolute;width:118px;height:118px;background:var(--paper);border:4px solid rgba(74,60,44,.55);border-radius:28px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;box-shadow:0 6px 14px #4a3c2c2e;opacity:0;transform:translateY(14px) scale(.9);transition:opacity .7s ease,transform .7s ease}.bubble.shown{opacity:1;transform:translateY(0) scale(1)}.bubble.leaving{opacity:0;transform:translateY(-26px) scale(.96)}.bubble svg{width:62px;height:62px}.bubble .bubble-word{font-size:17px;font-weight:700;color:var(--ink);letter-spacing:.02em}.bubble.picture{width:190px;height:140px;border-radius:22px}.bubble.picture svg{width:160px;height:108px}#hud{position:absolute;top:max(12px,env(safe-area-inset-top));right:max(12px,env(safe-area-inset-right));display:flex;flex-direction:column;gap:14px;z-index:20}.hud-btn{width:76px;height:76px;border:none;cursor:pointer;background:var(--paper);border-radius:24px;box-shadow:0 3px 8px #4a3c2c38;padding:10px;transition:transform .35s ease}.hud-btn:active{transform:scale(.93)}.hud-btn svg{width:100%;height:100%}.hud-btn.subtle{opacity:.62}.overlay{position:absolute;inset:0;background:#4a3c2c59;display:flex;align-items:center;justify-content:center;z-index:25;opacity:1;transition:opacity .6s ease}.overlay[hidden]{display:none}.overlay-card{position:relative;background:var(--paper);border-radius:34px;padding:34px 38px 30px;max-width:min(860px,92vw);max-height:86vh;overflow-y:auto;box-shadow:0 14px 40px #4a3c2c4d}.overlay-card h2{font-size:26px;margin-bottom:20px;color:var(--ink)}.close-btn{position:absolute;top:14px;right:14px;width:76px;height:76px;border:none;background:none;cursor:pointer;border-radius:22px}.close-btn:active{background:#4a3c2c14}.close-btn svg{width:40px;height:40px}#sticker-grid,#map-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:18px;min-width:min(640px,78vw)}.sticker-slot{aspect-ratio:1;background:var(--oat);border-radius:26px;border:none;display:flex;align-items:center;justify-content:center;cursor:pointer;padding:14px;transition:transform .35s ease}.sticker-slot:active{transform:scale(.95)}.sticker-slot svg{width:100%;height:100%}.sticker-slot.empty{opacity:.4;cursor:default}.sticker-slot .slot-dash{width:62%;height:62%;border:4px dashed rgba(74,60,44,.35);border-radius:20px}.map-tile{aspect-ratio:4 / 3;border:none;border-radius:24px;overflow:hidden;cursor:pointer;padding:0;background:var(--oat);box-shadow:0 3px 8px #4a3c2c29;transition:transform .35s ease}.map-tile:active{transform:scale(.95)}.map-tile svg{width:100%;height:100%;display:block}.map-tile.locked{opacity:.35;cursor:default}.setting-row{display:flex;align-items:center;justify-content:space-between;gap:26px;padding:13px 0;min-width:min(520px,74vw)}.setting-row label{font-size:18px;font-weight:600}.setting-row input[type=range]{width:220px;height:44px;accent-color:var(--coral)}.setting-row input[type=checkbox]{width:30px;height:30px;accent-color:var(--coral)}.text-btn{border:3px solid var(--ink);background:none;color:var(--ink);font-size:17px;font-weight:600;padding:13px 22px;border-radius:18px;cursor:pointer}.text-btn:active{background:#4a3c2c14}.grownups-note{margin-top:20px;font-size:14px;line-height:1.6;opacity:.8;max-width:480px}@media(prefers-reduced-motion:reduce){.sways,.drifts,.bobs,.breathes,.flutters,.wagging,.walking .rocker,.shimmering .shimmer-halo{animation:none!important}.char-move{transition-duration:.9s}}body.motion-minimal .sways,body.motion-minimal .drifts,body.motion-minimal .bobs,body.motion-minimal .breathes,body.motion-minimal .flutters,body.motion-minimal .walking .rocker{animation:none!important}body.motion-gentle .sways{animation-duration:8s}body.motion-gentle .drifts{animation-duration:40s}body.motion-gentle .bobs{animation-duration:5.5s}</style>
+</head>
+<body>
+<main id="app" aria-label="Will and the Missing Highland Cow">
+  <!-- Title screen -->
+  <div id="title-screen">
+    <div class="title-card">
+      <div id="title-art" aria-hidden="true"></div>
+      <h1>Will and the<br>Missing Highland Cow</h1>
+      <button id="btn-play" class="big-soft-btn" aria-label="Play">
+        <svg viewBox="0 0 60 60" aria-hidden="true"><circle cx="30" cy="30" r="28" fill="#E8896A"/><path d="M24 18 L44 30 L24 42 Z" fill="#FDF6EA"/></svg>
+      </button>
+      <p class="title-sub">A calm, cosy adventure. No reading needed, no time pressure, playable with one finger.</p>
+    </div>
+  </div>
+
+  <!-- Game stage -->
+  <div id="stage-wrap" hidden>
+    <svg id="stage" viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice" role="application"
+         aria-label="The farm. Tap a friend, then tap something in the world.">
+      <g id="scene-old"></g>
+      <g id="scene-current"></g>
+      <g id="fx-layer"></g>
+    </svg>
+
+    <!-- speech / symbol bubble layer -->
+    <div id="bubble-layer" aria-live="polite"></div>
+
+    <!-- corner UI -->
+    <div id="hud">
+      <button id="btn-stickers" class="hud-btn" aria-label="Sticker book" hidden>
+        <svg viewBox="0 0 64 64" aria-hidden="true">
+          <rect x="10" y="8" width="44" height="48" rx="6" fill="#FDF6EA" stroke="#8A6F4D" stroke-width="3"/>
+          <rect x="10" y="8" width="10" height="48" rx="4" fill="#C98A5B"/>
+          <circle cx="38" cy="26" r="8" fill="#E8B54A"/>
+          <path d="M30 44 q8 -8 16 0" stroke="#7FA37A" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+        </svg>
+      </button>
+      <button id="btn-map" class="hud-btn" aria-label="Farm map" hidden>
+        <svg viewBox="0 0 64 64" aria-hidden="true">
+          <path d="M12 16 L26 10 L40 16 L54 10 V46 L40 52 L26 46 L12 52 Z" fill="#FDF6EA" stroke="#8A6F4D" stroke-width="3" stroke-linejoin="round"/>
+          <path d="M20 38 Q30 24 44 20" stroke="#E8896A" stroke-width="3.5" fill="none" stroke-dasharray="1 7" stroke-linecap="round"/>
+        </svg>
+      </button>
+      <button id="btn-grownups" class="hud-btn subtle" aria-label="For grown-ups. Press and hold to open.">
+        <svg viewBox="0 0 64 64" aria-hidden="true">
+          <circle cx="32" cy="32" r="22" fill="none" stroke="#8A6F4D" stroke-width="3.5"/>
+          <circle cx="32" cy="25" r="7" fill="#8A6F4D"/>
+          <path d="M20 45 q12 -12 24 0" stroke="#8A6F4D" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Sticker book overlay -->
+  <div id="stickers-overlay" class="overlay" hidden>
+    <div class="overlay-card" role="dialog" aria-label="Sticker book">
+      <h2>Found things</h2>
+      <div id="sticker-grid"></div>
+      <button class="close-btn" data-close="stickers-overlay" aria-label="Close">
+        <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M14 14 L34 34 M34 14 L14 34" stroke="#8A6F4D" stroke-width="5" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Farm map overlay (free play) -->
+  <div id="map-overlay" class="overlay" hidden>
+    <div class="overlay-card" role="dialog" aria-label="Farm map">
+      <h2>Where shall we go?</h2>
+      <div id="map-grid"></div>
+      <button class="close-btn" data-close="map-overlay" aria-label="Close">
+        <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M14 14 L34 34 M34 14 L14 34" stroke="#8A6F4D" stroke-width="5" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Grown-ups overlay -->
+  <div id="grownups-overlay" class="overlay" hidden>
+    <div class="overlay-card" role="dialog" aria-label="For grown-ups">
+      <h2>For grown-ups</h2>
+      <div class="setting-row">
+        <label for="set-ambient">Background sounds</label>
+        <input type="range" id="set-ambient" min="0" max="100" value="55">
+      </div>
+      <div class="setting-row">
+        <label for="set-effects">Sound effects &amp; voice</label>
+        <input type="range" id="set-effects" min="0" max="100" value="80">
+      </div>
+      <div class="setting-row">
+        <label for="set-motion">Animation intensity</label>
+        <input type="range" id="set-motion" min="0" max="100" value="100">
+      </div>
+      <div class="setting-row">
+        <label for="set-shimmer">Larger shimmer cues</label>
+        <input type="checkbox" id="set-shimmer">
+      </div>
+      <div class="setting-row">
+        <button id="btn-restart" class="text-btn">Start the story again</button>
+      </div>
+      <p class="grownups-note">No ads. No notifications. No timers. Nothing to buy.<br>
+      Made for one particular young man on the Sunshine Coast, and for everyone who plays like he does.</p>
+      <button class="close-btn" data-close="grownups-overlay" aria-label="Close">
+        <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M14 14 L34 34 M34 14 L14 34" stroke="#8A6F4D" stroke-width="5" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+  </div>
+</main>
+
+<script>const GameAudio=(()=>{let e=null,p=null,v=null,b=[],k=null;const m={ambient:.55,effects:.8};function d(){if(e)return!0;try{const t=window.AudioContext||window.webkitAudioContext;return e=new t,p=e.createGain(),p.gain.value=m.ambient*.14,p.connect(e.destination),v=e.createGain(),v.gain.value=m.effects*.5,v.connect(e.destination),!0}catch{return!1}}function A(){d()&&(e.state==="suspended"&&e.resume(),x())}function G(t){m.ambient=t,p&&p.gain.setTargetAtTime(t*.14,e.currentTime,.3)}function B(t){m.effects=t,v&&v.gain.setTargetAtTime(t*.5,e.currentTime,.3)}function r(t,n,{type:i="sine",vol:g=.5,attack:u=.02,curve:s=null,out:l=null}={}){if(!e)return;const c=e.createOscillator(),o=e.createGain();c.type=i,c.frequency.value=t,s&&c.frequency.setTargetAtTime(s,e.currentTime+n*.3,n*.35),o.gain.value=0,o.gain.setTargetAtTime(g,e.currentTime,u),o.gain.setTargetAtTime(0,e.currentTime+n*.55,n*.28),c.connect(o),o.connect(l||v),c.start(),c.stop(e.currentTime+n+.5)}function a(t,{freq:n=800,q:i=1,vol:g=.4,attack:u=.01,out:s=null}={}){if(!e)return;const l=Math.max(1,Math.floor(e.sampleRate*(t+.1))),c=e.createBuffer(1,l,e.sampleRate),o=c.getChannelData(0);for(let T=0;T<l;T++)o[T]=Math.random()*2-1;const f=e.createBufferSource();f.buffer=c;const h=e.createBiquadFilter();h.type="bandpass",h.frequency.value=n,h.Q.value=i;const q=e.createGain();q.gain.value=0,q.gain.setTargetAtTime(g,e.currentTime,u),q.gain.setTargetAtTime(0,e.currentTime+t*.5,t*.3),f.connect(h),h.connect(q),q.connect(s||v),f.start(),f.stop(e.currentTime+t+.4)}const y={cowLow(){r(96,1.5,{type:"triangle",vol:.5,attack:.12,curve:72}),r(192,1.3,{type:"sine",vol:.18,attack:.12,curve:150})},cowLowBig(){r(82,1.9,{type:"triangle",vol:.55,attack:.14,curve:62}),r(164,1.6,{type:"sine",vol:.2,attack:.14,curve:128})},bark(){a(.09,{freq:900,q:2.5,vol:.5,attack:.005}),r(340,.12,{type:"square",vol:.12,attack:.005,curve:220})},barkBark(){y.bark(),setTimeout(()=>y.bark(),260)},billClap(){a(.05,{freq:1600,q:6,vol:.45,attack:.002}),setTimeout(()=>a(.05,{freq:1250,q:6,vol:.4,attack:.002}),150)},wingbeat(){a(.35,{freq:320,q:.8,vol:.28,attack:.06})},splash(){a(.45,{freq:1900,q:.7,vol:.3,attack:.02}),a(.6,{freq:650,q:.9,vol:.22,attack:.05})},phoneClick(){a(.03,{freq:2300,q:8,vol:.3,attack:.002})},found(){r(523,.5,{type:"sine",vol:.3,attack:.01}),setTimeout(()=>r(784,.8,{type:"sine",vol:.3,attack:.01}),190)},gate(){r(180,.6,{type:"triangle",vol:.16,attack:.05,curve:240}),a(.3,{freq:500,q:3,vol:.14,attack:.04})},thump(){r(58,.7,{type:"sine",vol:.65,attack:.005,curve:40}),a(.12,{freq:240,q:1.4,vol:.3,attack:.005})},birds(){[0,120,230,380,520].forEach((t,n)=>setTimeout(()=>r(1900+n*260,.12,{type:"sine",vol:.1,attack:.01,curve:2500+n*200}),t))},plop(){r(300,.18,{type:"sine",vol:.3,attack:.005,curve:130})},step(){a(.07,{freq:380,q:1.2,vol:.12,attack:.008})},brush(){a(.3,{freq:1050,q:.8,vol:.2,attack:.05})},stone(){a(.06,{freq:700,q:4,vol:.3,attack:.004})},tinkle(){r(1568,.35,{type:"sine",vol:.12,attack:.01})},page(){a(.22,{freq:1400,q:.9,vol:.2,attack:.03})},wag(){a(.1,{freq:1100,q:1.5,vol:.16,attack:.02})},bump(){a(.05,{freq:420,q:2,vol:.3,attack:.003})}};function S(t){!e||!y[t]||y[t]()}function w(){b.forEach(t=>{try{t.stop?t.stop():t.disconnect()}catch{}}),b=[]}function C(t){if(!e)return;w();const n=Math.floor(e.sampleRate*4),i=e.createBuffer(1,n,e.sampleRate),g=i.getChannelData(0);for(let f=0;f<n;f++)g[f]=Math.random()*2-1;const u=e.createBufferSource();u.buffer=i,u.loop=!0;const s=e.createBiquadFilter();s.type="lowpass",s.frequency.value=t==="beach"?620:t==="creek"?900:480;const l=e.createGain();l.gain.value=t==="beach"?1:t==="creek"?.8:.55;const c=e.createOscillator();c.frequency.value=t==="beach"?.11:.07;const o=e.createGain();o.gain.value=t==="beach"?.5:.2,c.connect(o),o.connect(l.gain),u.connect(s),s.connect(l),l.connect(p),u.start(),c.start(),b=[u,c,l,s,o]}function x(){if(!("speechSynthesis"in window))return;const t=()=>{const n=window.speechSynthesis.getVoices();k=n.find(i=>i.lang==="en-AU")||n.find(i=>i.lang==="en-GB")||n.find(i=>i.lang&&i.lang.startsWith("en"))||null};t(),k||(window.speechSynthesis.onvoiceschanged=t)}function M(t){if("speechSynthesis"in window&&!(m.effects<=.02))try{window.speechSynthesis.cancel();const n=new SpeechSynthesisUtterance(t);k&&(n.voice=k),n.rate=.82,n.pitch=1,n.volume=Math.min(1,m.effects),window.speechSynthesis.speak(n)}catch{}}return{resume:A,play:S,say:M,startAmbient:C,stopAmbient:w,setAmbientLevel:G,setEffectsLevel:B}})();</script>
+<script>const Art=(()=>{const l={paper:"#FBF3E4",paddock:"#8FB98B",paddockDeep:"#7CA878",oat:"#E8D9BD",sandstone:"#E3CBA4",sky:"#BFD9E2",apricot:"#F2C29B",sea:"#7FB5AE",seaDeep:"#6AA39C",rocky:"#D9A441",rockyDark:"#B8863B",rockyLight:"#E8C27A",freddie:"#9A6B4F",freddieDark:"#7E543D",freddieLight:"#B5876A",cleo:"#DDB25E",cleoDark:"#C29A45",cleoBlue:"#4A7BA6",pearl:"#F2EDE2",slate:"#6E7B86",slateDark:"#59646E",banksia:"#E0A93E",charcoal:"#3D4248",olive:"#7A7D4E",tan:"#B98A5A",tanDark:"#9A7048",coral:"#E8896A",night:"#39465C",ink:"#4A3C2C",skin:"#E9B98D",hairWill:"#6B4E31",hairElla:"#A9784A",wood:"#A9805A",woodDark:"#8A6746",leaf:"#6E9668",leafDark:"#5B8156",appleRed:"#C96F5B",stone:"#B9AF9C",mud:"#8A6F55"};function y(e){const s=e==="rocky",i=s?l.rocky:l.freddie,t=s?l.rockyDark:l.freddieDark,o=s?l.rockyLight:l.freddieLight,r=s?1:1.1;let c="";for(let n=0;n<8;n++){const Q=-108*r+n*(27*r);c+=`<path d="M${Q} -78 q${10*r} 26 ${24*r} 2 Z" style="fill:${i}"/>`}const a=s?`<g class="fringe">
+           <path d="M56 -196 q-14 -26 8 -34 q20 -10 34 6 q16 -12 30 2 q16 -10 26 6 q12 16 -4 26 q6 18 -12 22 q-40 12 -82 -28Z" style="fill:${t}"/>
+           <path d="M66 -186 q4 22 -8 30 M92 -190 q8 20 -2 32 M118 -184 q10 16 2 28"
+                 style="stroke:${t};stroke-width:9;fill:none;stroke-linecap:round"/>
+         </g>`:`<g class="fringe">
+           <path d="M60 -200 q42 -26 88 -2 q10 20 -6 28 q-38 14 -76 0 q-14 -10 -6 -26Z" style="fill:${t}"/>
+           <path d="M74 -180 q4 14 -2 22 M96 -178 q4 14 0 22 M118 -178 q4 12 -2 20"
+                 style="stroke:${t};stroke-width:8;fill:none;stroke-linecap:round"/>
+         </g>`,z=s?"":`<circle cx="82" cy="-152" r="6" style="fill:${l.ink}"/>
+         <circle cx="116" cy="-152" r="6" style="fill:${l.ink}"/>`,f="M66 -192 C 30 -196, 8 -212, 6 -244 C 6 -252, 14 -254, 20 -248 C 32 -226, 48 -212, 74 -208 Z",k="M128 -192 C 164 -196, 186 -212, 188 -244 C 188 -252, 180 -254, 174 -248 C 162 -226, 146 -212, 120 -208 Z",P=s?`<path d="${f}" style="fill:${l.oat};stroke:${l.tanDark};stroke-width:3" transform="rotate(-22 66 -192)"/>
+         <path d="${k}" style="fill:${l.oat};stroke:${l.tanDark};stroke-width:3"/>`:`<path d="${f}" style="fill:${l.oat};stroke:${l.tanDark};stroke-width:3"/>
+         <path d="${k}" style="fill:${l.oat};stroke:${l.tanDark};stroke-width:3"/>`,G=`
+      <ellipse cx="52" cy="-186" rx="16" ry="10" style="fill:${t}" transform="rotate(-34 52 -186)"/>
+      <ellipse cx="142" cy="-186" rx="16" ry="10" style="fill:${t}" transform="rotate(34 142 -186)"/>`,H=s?`<path d="M88 -108 q12 9 24 0" style="stroke:${l.ink};stroke-width:4;fill:none;stroke-linecap:round"/>`:`<path d="M90 -106 q10 7 20 0" style="stroke:${l.ink};stroke-width:4;fill:none;stroke-linecap:round"/>`;return`
+      <g class="rocker">
+        <ellipse class="select-ring" cx="0" cy="-4" rx="${135*r}" ry="26"/>
+        <ellipse class="shimmer-halo" cx="0" cy="-110" rx="${150*r}" ry="120"
+                 style="fill:none;stroke:${l.coral};stroke-width:14" />
+        <!-- legs -->
+        <rect x="${-96*r}" y="-74" width="26" height="76" rx="12" style="fill:${t}"/>
+        <rect x="${-46*r}" y="-74" width="26" height="76" rx="12" style="fill:${t}"/>
+        <rect x="${28*r}" y="-74" width="26" height="76" rx="12" style="fill:${t}"/>
+        <rect x="${74*r}" y="-74" width="26" height="76" rx="12" style="fill:${t}"/>
+        <!-- tail -->
+        <g class="tail">
+          <path d="M${-112*r} -150 q-34 20 -26 62" style="stroke:${t};stroke-width:12;fill:none;stroke-linecap:round"/>
+          <circle cx="${-140*r}" cy="-84" r="16" style="fill:${t}"/>
+        </g>
+        <!-- shaggy body -->
+        <g class="breathes">
+          <ellipse cx="0" cy="-138" rx="${118*r}" ry="70" style="fill:${i}"/>
+          <path d="M${-110*r} -170 q${40*r} -34 ${110*r} -30 q${70*r} -6 ${104*r} 28"
+                style="fill:none;stroke:${o};stroke-width:12;stroke-linecap:round"/>
+          ${c}
+        </g>
+        <!-- head -->
+        <g class="head">
+          ${P}
+          ${G}
+          <circle cx="97" cy="-158" r="52" style="fill:${i}"/>
+          <ellipse cx="100" cy="-120" rx="34" ry="23" style="fill:${o}"/>
+          <!-- nostrils -->
+          <ellipse cx="88" cy="-124" rx="4" ry="6" style="fill:${t}"/>
+          <ellipse cx="114" cy="-124" rx="4" ry="6" style="fill:${t}"/>
+          ${H}
+          ${z}
+          ${a}
+        </g>
+      </g>`}function p(){return`
+      <g class="rocker">
+        <ellipse class="select-ring" cx="0" cy="-2" rx="86" ry="18"/>
+        <ellipse class="shimmer-halo" cx="0" cy="-58" rx="95" ry="70"
+                 style="fill:none;stroke:${l.coral};stroke-width:12"/>
+        <!-- tail: proud flag -->
+        <g class="tail">
+          <path d="M-62 -78 q-30 -22 -24 -46" style="stroke:${l.cleoDark};stroke-width:13;fill:none;stroke-linecap:round"/>
+        </g>
+        <!-- legs with feathering -->
+        <path d="M-46 -50 q-6 30 -2 48 l16 0 q4 -22 0 -46 Z" style="fill:${l.cleo}"/>
+        <path d="M26 -50 q-6 30 -2 48 l16 0 q4 -22 0 -46 Z" style="fill:${l.cleo}"/>
+        <!-- body -->
+        <g class="breathes">
+          <ellipse cx="-8" cy="-62" rx="62" ry="36" style="fill:${l.cleo}"/>
+          <path d="M-56 -46 q-10 18 -2 34 M-36 -42 q-8 18 -2 32 M40 -44 q8 16 4 30"
+                style="stroke:${l.cleoDark};stroke-width:7;fill:none;stroke-linecap:round"/>
+        </g>
+        <!-- head, held high -->
+        <g class="head">
+          <circle cx="48" cy="-104" r="32" style="fill:${l.cleo}"/>
+          <!-- long wavy spaniel ear -->
+          <path d="M24 -116 q-22 4 -24 40 q-2 26 12 34 q14 6 18 -12 q4 -30 2 -56Z" style="fill:${l.cleoDark}"/>
+          <!-- muzzle -->
+          <ellipse cx="74" cy="-94" rx="18" ry="13" style="fill:${l.rockyLight}"/>
+          <ellipse cx="84" cy="-98" rx="7" ry="6" style="fill:${l.ink}"/>
+          <circle cx="52" cy="-112" r="5" style="fill:${l.ink}"/>
+          <path d="M66 -86 q8 6 16 1" style="stroke:${l.ink};stroke-width:3.5;fill:none;stroke-linecap:round"/>
+          <!-- collar: blue, round gold tag, always visible -->
+          <path d="M22 -84 q26 14 52 2" style="stroke:${l.cleoBlue};stroke-width:10;fill:none;stroke-linecap:round"/>
+          <circle cx="50" cy="-72" r="8" style="fill:${l.banksia};stroke:${l.tanDark};stroke-width:2"/>
+        </g>
+      </g>`}function x(){return`
+      <g class="rocker">
+        <ellipse class="select-ring" cx="0" cy="-2" rx="62" ry="15"/>
+        <ellipse class="shimmer-halo" cx="0" cy="-95" rx="70" ry="105"
+                 style="fill:none;stroke:${l.coral};stroke-width:12"/>
+        <!-- boots -->
+        <path d="M-24 -26 l0 18 q0 8 10 8 l12 0 0 -26Z" style="fill:${l.tan}"/>
+        <path d="M4 -26 l0 18 q0 8 10 8 l12 0 0 -26Z" style="fill:${l.tan}"/>
+        <!-- legs -->
+        <rect x="-22" y="-66" width="18" height="44" rx="8" style="fill:${l.skin}"/>
+        <rect x="6" y="-66" width="18" height="44" rx="8" style="fill:${l.skin}"/>
+        <!-- olive shorts -->
+        <path d="M-26 -104 l54 0 0 30 q0 8 -8 8 l-12 0 -6 -18 -6 18 -14 0 q-8 0 -8 -8Z" style="fill:${l.olive}"/>
+        <!-- black tee, arms relaxed, hands in pockets -->
+        <g class="torso">
+          <path d="M-26 -156 q26 -12 52 0 l6 54 -64 0Z" style="fill:${l.charcoal}"/>
+          <!-- arms down into pockets -->
+          <path d="M-26 -150 q-16 24 -8 52 q2 8 10 6" style="stroke:${l.charcoal};stroke-width:15;fill:none;stroke-linecap:round"/>
+          <path d="M26 -150 q16 24 8 52 q-2 8 -10 6" style="stroke:${l.charcoal};stroke-width:15;fill:none;stroke-linecap:round"/>
+          <!-- small gold crown on the tee (the band tee, Queen-spirit) -->
+          <path d="M-9 -136 l3 -8 4 6 4 -9 4 9 4 -6 3 8 q-11 5 -22 0Z" style="fill:${l.banksia}"/>
+          <!-- lanyard + phone: part of his silhouette, never remarked on -->
+          <path d="M-12 -158 q12 10 24 0 l-8 22 -8 0Z" style="fill:none;stroke:${l.slateDark};stroke-width:4"/>
+          <g class="phone">
+            <rect x="-11" y="-128" width="22" height="32" rx="5" style="fill:${l.slateDark}"/>
+            <rect x="-7.5" y="-124" width="15" height="22" rx="3" style="fill:${l.paper}"/>
+          </g>
+        </g>
+        <!-- head with the slight, characteristic tilt -->
+        <g class="head" transform="rotate(-6 0 -172)">
+          <circle cx="0" cy="-180" r="26" style="fill:${l.skin}"/>
+          <path d="M-26 -184 q2 -24 26 -24 q24 0 26 24 q-12 -12 -26 -10 q-14 -2 -26 10Z" style="fill:${l.hairWill}"/>
+          <circle cx="-8" cy="-180" r="3.2" style="fill:${l.ink}"/>
+          <circle cx="9" cy="-180" r="3.2" style="fill:${l.ink}"/>
+          <path d="M-6 -166 q6 5 13 0" style="stroke:${l.ink};stroke-width:3;fill:none;stroke-linecap:round"/>
+        </g>
+      </g>`}function $(e="stand"){const s=e==="lift"?`<path d="M-20 -150 q-14 -30 -6 -58" style="stroke:${l.charcoal};stroke-width:14;fill:none;stroke-linecap:round"/>
+         <path d="M20 -150 q14 -30 6 -58" style="stroke:${l.charcoal};stroke-width:14;fill:none;stroke-linecap:round"/>`:e==="jog"?`<path d="M-20 -148 q-20 10 -16 34" style="stroke:${l.charcoal};stroke-width:14;fill:none;stroke-linecap:round"/>
+         <path d="M20 -148 q22 4 20 -26" style="stroke:${l.charcoal};stroke-width:14;fill:none;stroke-linecap:round"/>`:`<path d="M-21 -148 q-14 26 -8 50" style="stroke:${l.charcoal};stroke-width:14;fill:none;stroke-linecap:round"/>
+         <path d="M21 -148 q14 26 8 50" style="stroke:${l.charcoal};stroke-width:14;fill:none;stroke-linecap:round"/>`,i=e==="jog"?`<path d="M-12 -66 q-16 20 -14 40 l14 6 q8 -20 10 -44Z" style="fill:${l.slate}"/>
+         <path d="M12 -66 q14 16 26 22 l-4 14 q-22 -4 -34 -22Z" style="fill:${l.slate}"/>`:`<rect x="-21" y="-70" width="18" height="50" rx="8" style="fill:${l.slate}"/>
+         <rect x="4" y="-70" width="18" height="50" rx="8" style="fill:${l.slate}"/>`,t=e==="jog"?`<g><path d="M-30 -22 l22 4 0 12 -24 0Z" style="fill:${l.pearl}"/><rect x="-30" y="-12" width="22" height="4" rx="2" style="fill:${l.coral}"/>
+         <path d="M30 -34 l8 20 -22 0 2 -16Z" style="fill:${l.pearl}"/><rect x="16" y="-18" width="20" height="4" rx="2" style="fill:${l.coral}" transform="rotate(14 26 -16)"/></g>`:`<g><path d="M-24 -22 l0 14 q0 8 10 8 l12 0 0 -22Z" style="fill:${l.pearl}"/><rect x="-24" y="-8" width="22" height="5" rx="2.5" style="fill:${l.coral}"/>
+         <path d="M4 -22 l0 14 q0 8 10 8 l12 0 0 -22Z" style="fill:${l.pearl}"/><rect x="4" y="-8" width="22" height="5" rx="2.5" style="fill:${l.coral}"/></g>`;return`
+      <g class="rocker">
+        <ellipse class="select-ring" cx="0" cy="-2" rx="62" ry="15"/>
+        <ellipse class="shimmer-halo" cx="0" cy="-100" rx="70" ry="108"
+                 style="fill:none;stroke:${l.coral};stroke-width:12"/>
+        ${t}
+        ${i}
+        <!-- slate shorts over leggings -->
+        <path d="M-24 -104 l48 0 0 28 q0 8 -8 8 l-10 0 -6 -16 -6 16 -10 0 q-8 0 -8 -8Z" style="fill:${l.slateDark}"/>
+        <!-- charcoal tank, strong shoulders -->
+        <g class="torso">
+          <path d="M-25 -158 q25 -14 50 0 l5 54 -60 0Z" style="fill:${l.charcoal}"/>
+          ${s}
+          <!-- headphones resting round her neck -->
+          <path d="M-16 -152 q16 14 32 0" style="stroke:${l.slateDark};stroke-width:8;fill:none;stroke-linecap:round"/>
+          <circle cx="-17" cy="-150" r="7" style="fill:${l.slateDark}"/>
+          <circle cx="17" cy="-150" r="7" style="fill:${l.slateDark}"/>
+          <!-- shaker bottle clipped at the waist -->
+          <rect x="20" y="-112" width="14" height="24" rx="5" style="fill:${l.pearl};stroke:${l.slateDark};stroke-width:2.5"/>
+          <rect x="22" y="-116" width="10" height="6" rx="2" style="fill:${l.coral}"/>
+        </g>
+        <!-- head: Will's tilt, honey-brown hair tied back with a coral tie -->
+        <g class="head" transform="rotate(-6 0 -174)">
+          <circle cx="0" cy="-182" r="25" style="fill:${l.skin}"/>
+          <path d="M-25 -186 q2 -23 25 -23 q23 0 25 23 q-11 -11 -25 -9 q-14 -2 -25 9Z" style="fill:${l.hairElla}"/>
+          <path d="M-22 -196 q-16 8 -14 34 q-2 16 8 22 q6 -22 4 -40Z" style="fill:${l.hairElla}"/>
+          <circle cx="-24" cy="-176" r="4.5" style="fill:${l.coral}"/>
+          <circle cx="-8" cy="-182" r="3.2" style="fill:${l.ink}"/>
+          <circle cx="9" cy="-182" r="3.2" style="fill:${l.ink}"/>
+          <path d="M-6 -168 q6 5 13 0" style="stroke:${l.ink};stroke-width:3;fill:none;stroke-linecap:round"/>
+        </g>
+      </g>`}function g(e="stand"){return e==="fly"?`
+        <g class="rocker">
+          <ellipse class="select-ring" cx="0" cy="10" rx="100" ry="18"/>
+          <ellipse class="shimmer-halo" cx="0" cy="-30" rx="120" ry="70"
+                   style="fill:none;stroke:${l.coral};stroke-width:12"/>
+          <ellipse cx="0" cy="-24" rx="52" ry="26" style="fill:${l.pearl}"/>
+          <path d="M-30 -34 q-70 -46 -118 -28 q34 40 96 42Z" style="fill:${l.slate}"/>
+          <path d="M18 -34 q56 -50 104 -40 q-22 44 -84 52Z" style="fill:${l.slate}"/>
+          <circle cx="52" cy="-44" r="20" style="fill:${l.pearl}"/>
+          <circle cx="58" cy="-48" r="3.6" style="fill:${l.ink}"/>
+          <path d="M66 -44 l58 8 q4 4 -2 8 l-56 -4 q-8 -4 0 -12Z" style="fill:${l.banksia}"/>
+        </g>`:`
+      <g class="rocker">
+        <ellipse class="select-ring" cx="0" cy="-2" rx="70" ry="15"/>
+        <ellipse class="shimmer-halo" cx="0" cy="-72" rx="82" ry="82"
+                 style="fill:none;stroke:${l.coral};stroke-width:12"/>
+        <!-- legs -->
+        <path d="M-12 -34 l-2 30 m-8 0 l18 0" style="stroke:${l.banksia};stroke-width:6;fill:none;stroke-linecap:round"/>
+        <path d="M14 -34 l2 30 m-8 0 l18 0" style="stroke:${l.banksia};stroke-width:6;fill:none;stroke-linecap:round"/>
+        <!-- body -->
+        <g class="breathes">
+          <path d="M-52 -66 q-4 -46 44 -50 q22 -2 30 12 q10 26 4 48 q-8 26 -44 24 q-32 -2 -34 -34Z" style="fill:${l.pearl}"/>
+          <!-- folded slate wing -->
+          <path d="M-46 -74 q30 -22 66 -8 q-4 30 -34 34 q-28 2 -32 -26Z" style="fill:${l.slate}"/>
+          <!-- tail -->
+          <path d="M-52 -60 q-18 2 -26 14 q14 8 28 2Z" style="fill:${l.slate}"/>
+        </g>
+        <!-- neck + head -->
+        <g class="head">
+          <path d="M10 -102 q-4 -26 10 -38" style="stroke:${l.pearl};stroke-width:20;fill:none;stroke-linecap:round"/>
+          <circle cx="22" cy="-142" r="19" style="fill:${l.pearl}"/>
+          <circle cx="28" cy="-146" r="3.6" style="fill:${l.ink}"/>
+          <!-- the famous bill, banksia yellow, with pouch -->
+          <g class="bill">
+            <path d="M36 -142 l66 10 q5 3 -1 7 l-64 -5 q-8 -5 -1 -12Z" style="fill:${l.banksia}"/>
+            <path d="M37 -130 l62 5 q-16 22 -44 12 q-16 -5 -18 -17Z" style="fill:#D89C64"/>
+          </g>
+        </g>
+      </g>`}function h(e=420,s=!1){const i=[],t=Math.round(e/105);for(let o=0;o<=t;o++){const r=o*(e/t),c=s&&o===t?` transform="rotate(14 ${r} 0)"`:"";i.push(`<rect x="${r-8}" y="-92" width="16" height="94" rx="6" style="fill:${l.wood}"${c}/>`)}return`
+      <g>
+        <rect x="0" y="-74" width="${e}" height="12" rx="6" style="fill:${l.woodDark}"/>
+        <rect x="0" y="-40" width="${e}" height="12" rx="6" style="fill:${l.woodDark}"/>
+        ${i.join("")}
+      </g>`}function w(){return`
+      <g>
+        <rect x="-14" y="-104" width="18" height="106" rx="7" style="fill:${l.woodDark}"/>
+        <g class="gate-leaf" style="transform-box:fill-box;transform-origin:0% 50%;transition:transform 1.6s ease">
+          <rect x="6" y="-86" width="132" height="11" rx="5" style="fill:${l.wood}"/>
+          <rect x="6" y="-52" width="132" height="11" rx="5" style="fill:${l.wood}"/>
+          <rect x="6" y="-92" width="12" height="92" rx="5" style="fill:${l.wood}"/>
+          <rect x="126" y="-92" width="12" height="92" rx="5" style="fill:${l.wood}"/>
+          <path d="M12 -84 L130 -50 M12 -50 L130 -84" style="stroke:${l.wood};stroke-width:8;stroke-linecap:round"/>
+        </g>
+        <rect x="140" y="-104" width="18" height="106" rx="7" style="fill:${l.woodDark}"/>
+      </g>`}function q(e=3,s=52,i=-8,t=0){let o="";for(let r=0;r<e;r++){const c=r*s,a=r*i;o+=`<g transform="translate(${c} ${a}) rotate(${t})" style="opacity:0.55">
+              <path d="M-8 0 a7 9 0 1 0 0.1 0Z M8 0 a7 9 0 1 0 0.1 0Z" style="fill:${l.mud}"/>
+            </g>`}return`<g>${o}</g>`}function u(e=1){return`
+      <g transform="scale(${e})">
+        <ellipse cx="0" cy="-34" rx="64" ry="40" style="fill:${l.leaf}"/>
+        <ellipse cx="-38" cy="-22" rx="36" ry="26" style="fill:${l.leafDark}"/>
+        <ellipse cx="40" cy="-24" rx="34" ry="25" style="fill:${l.leafDark}"/>
+        <circle cx="-12" cy="-52" r="6" style="fill:${l.coral};opacity:0.85"/>
+        <circle cx="22" cy="-40" r="5" style="fill:${l.coral};opacity:0.7"/>
+      </g>`}function M(e=1,s=!1){const i=s?`<g class="apples">
+           <circle class="apple" cx="-52" cy="-208" r="12" style="fill:${l.appleRed}"/>
+           <circle class="apple" cx="8" cy="-232" r="12" style="fill:${l.appleRed}"/>
+           <circle class="apple" cx="58" cy="-198" r="12" style="fill:${l.appleRed}"/>
+           <circle class="apple" cx="-14" cy="-186" r="11" style="fill:${l.appleRed}"/>
+         </g>`:"";return`
+      <g transform="scale(${e})">
+        <path d="M-12 0 q-8 -80 -4 -150 l32 0 q6 70 -4 150Z" style="fill:${l.wood}"/>
+        <path d="M0 -140 q-30 -20 -66 -14 M4 -150 q30 -24 68 -16" style="stroke:${l.wood};stroke-width:14;fill:none;stroke-linecap:round"/>
+        <g class="sways">
+          <ellipse cx="-58" cy="-196" rx="58" ry="44" style="fill:${l.leaf}"/>
+          <ellipse cx="52" cy="-206" rx="62" ry="48" style="fill:${l.leafDark}"/>
+          <ellipse cx="-4" cy="-238" rx="66" ry="48" style="fill:${l.leaf}"/>
+          ${i}
+        </g>
+        <g class="birds">
+          <path class="bird" d="M-30 -260 q6 -8 12 0 q6 -8 12 0" style="stroke:${l.slateDark};stroke-width:3.5;fill:none;stroke-linecap:round"/>
+          <path class="bird" d="M26 -276 q6 -8 12 0 q6 -8 12 0" style="stroke:${l.slateDark};stroke-width:3.5;fill:none;stroke-linecap:round"/>
+        </g>
+      </g>`}function D(e=1){return`
+      <g transform="scale(${e})" style="opacity:0.9">
+        <ellipse cx="0" cy="0" rx="66" ry="26" style="fill:${l.paper}"/>
+        <ellipse cx="-34" cy="-14" rx="34" ry="20" style="fill:${l.paper}"/>
+        <ellipse cx="28" cy="-16" rx="40" ry="22" style="fill:${l.paper}"/>
+      </g>`}function d(){return`
+      <g class="flutters">
+        <g transform="scale(1.7)">
+          <ellipse cx="-8" cy="-2" rx="10" ry="13" style="fill:${l.coral}" transform="rotate(-24 -8 -2)"/>
+          <ellipse cx="8" cy="-2" rx="10" ry="13" style="fill:${l.coral};opacity:0.8" transform="rotate(24 8 -2)"/>
+          <rect x="-2.5" y="-10" width="5" height="20" rx="2.5" style="fill:${l.ink}"/>
+          <path d="M-3 -10 q-5 -8 -9 -9 M3 -10 q5 -8 9 -9" style="stroke:${l.ink};stroke-width:2;fill:none;stroke-linecap:round"/>
+        </g>
+      </g>`}function B(e=42){return`<ellipse cx="0" cy="0" rx="${e}" ry="${e*.42}" style="fill:${l.stone};stroke:${l.slateDark};stroke-width:3;opacity:0.95"/>`}function m(){return`
+      <g>
+        <path d="M-130 -10 q60 -34 260 -14 q30 4 20 20 q-140 22 -270 6 q-16 -6 -10 -12Z" style="fill:${l.woodDark}"/>
+        <path d="M-60 -22 q-16 -26 -4 -44 M60 -22 q20 -22 12 -44 M140 -14 q22 -14 24 -34"
+              style="stroke:${l.woodDark};stroke-width:11;fill:none;stroke-linecap:round"/>
+        <ellipse cx="-64" cy="-62" rx="22" ry="12" style="fill:${l.leafDark}" transform="rotate(-30 -64 -62)"/>
+        <ellipse cx="76" cy="-62" rx="22" ry="12" style="fill:${l.leaf}" transform="rotate(24 76 -62)"/>
+        <ellipse cx="168" cy="-46" rx="20" ry="11" style="fill:${l.leafDark}" transform="rotate(30 168 -46)"/>
+      </g>`}function v(e=5,s=150){let i="";const t=[l.coral,l.banksia,l.pearl];for(let o=0;o<e;o++){const r=-s/2+s/(e-1)*o,c=-6-o%2*10,a=t[o%3];i+=`<g transform="translate(${r} ${c})"><g class="sways">
+              <line x1="0" y1="0" x2="0" y2="-22" style="stroke:${l.leafDark};stroke-width:3.5"/>
+              <circle cx="0" cy="-27" r="9" style="fill:${a}"/>
+              <circle cx="0" cy="-27" r="3.5" style="fill:${l.paper}"/>
+            </g></g>`}return`<g>${i}</g>`}function A(){return`
+      <g class="sways">
+        <path d="M0 0 q-8 -18 -4 -34 M0 0 q2 -20 10 -30 M0 0 q-14 -10 -22 -22"
+              style="stroke:${l.paddockDeep};stroke-width:5;fill:none;stroke-linecap:round"/>
+      </g>`}function E(){return`
+      <g>
+        <rect x="0" y="-200" width="330" height="200" rx="6" style="fill:${l.oat}"/>
+        <path d="M-24 -200 L165 -292 L354 -200 Z" style="fill:${l.freddie}"/>
+        <rect x="36" y="-140" width="70" height="140" rx="4" style="fill:${l.woodDark}"/>
+        <rect x="150" y="-150" width="80" height="72" rx="6" style="fill:${l.sky};stroke:${l.woodDark};stroke-width:6"/>
+        <path d="M150 -114 l80 0 M190 -150 l0 72" style="stroke:${l.woodDark};stroke-width:5"/>
+        <rect x="-24" y="-208" width="378" height="14" rx="7" style="fill:${l.wood}"/>
+        <rect x="-14" y="-196" width="12" height="196" rx="5" style="fill:${l.wood}"/>
+        <rect x="346" y="-196" width="12" height="196" rx="5" style="fill:${l.wood}"/>
+      </g>`}function b(e,s,i,t){return`
+      <g>
+        <circle cx="${e}" cy="${s}" r="${i*1.7}" style="fill:${t};opacity:0.25"/>
+        <circle cx="${e}" cy="${s}" r="${i}" style="fill:${t};opacity:0.85"/>
+      </g>`}function Z(e,s,i,t,o){return`<ellipse cx="${e}" cy="${s}" rx="${i}" ry="${t}" style="fill:${o}"/>`}function F(){return`
+      <g>
+        <rect x="-90" y="-14" width="180" height="14" rx="7" style="fill:${l.woodDark}"/>
+        <circle cx="-78" cy="-22" r="17" style="fill:${l.slateDark}"/>
+        <circle cx="78" cy="-22" r="17" style="fill:${l.slateDark}"/>
+        <rect x="-64" y="-26" width="128" height="9" rx="4.5" style="fill:${l.slate}"/>
+        <rect x="120" y="-70" width="12" height="70" rx="5" style="fill:${l.wood}"/>
+        <rect x="180" y="-70" width="12" height="70" rx="5" style="fill:${l.wood}"/>
+        <rect x="112" y="-74" width="88" height="10" rx="5" style="fill:${l.coral}"/>
+      </g>`}function C(){return`
+      <g>
+        <ellipse cx="0" cy="-30" rx="34" ry="30" style="fill:${l.banksia}"/>
+        <ellipse cx="0" cy="-30" rx="20" ry="17" style="fill:none;stroke:${l.tanDark};stroke-width:4"/>
+        <ellipse cx="0" cy="-30" rx="8" ry="7" style="fill:none;stroke:${l.tanDark};stroke-width:3"/>
+      </g>`}function L(){return`
+      <g>
+        <ellipse cx="0" cy="-18" rx="26" ry="18" style="fill:${l.coral}"/>
+        <path d="M-10 -34 q0 16 0 16 M10 -34 q0 16 0 16" style="stroke:${l.tanDark};stroke-width:3;fill:none"/>
+        <rect x="-3" y="-42" width="6" height="10" rx="3" style="fill:${l.leafDark}"/>
+      </g>`}const R={go:'<svg viewBox="0 0 60 60"><circle cx="30" cy="30" r="26" fill="#8FB98B"/><path d="M20 30 h16 m-7 -9 l9 9 -9 9" stroke="#FBF3E4" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>',look:'<svg viewBox="0 0 60 60"><circle cx="30" cy="30" r="26" fill="#4A7BA6"/><ellipse cx="30" cy="30" rx="16" ry="10" fill="#FBF3E4"/><circle cx="30" cy="30" r="5.5" fill="#3D4248"/></svg>',open:'<svg viewBox="0 0 60 60"><circle cx="30" cy="30" r="26" fill="#B98A5A"/><rect x="18" y="20" width="10" height="22" rx="2" fill="#FBF3E4"/><rect x="31" y="18" width="10" height="22" rx="2" fill="#FBF3E4" transform="rotate(18 31 18)"/></svg>',found:'<svg viewBox="0 0 60 60"><circle cx="30" cy="30" r="26" fill="#E8896A"/><path d="M30 42 C14 32 18 16 30 24 C42 16 46 32 30 42Z" fill="#FBF3E4"/></svg>',home:'<svg viewBox="0 0 60 60"><circle cx="30" cy="30" r="26" fill="#7A7D4E"/><path d="M16 32 L30 18 L44 32" stroke="#FBF3E4" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/><rect x="22" y="32" width="16" height="12" rx="2" fill="#FBF3E4"/></svg>',more:'<svg viewBox="0 0 60 60"><circle cx="30" cy="30" r="26" fill="#DDB25E"/><path d="M30 18 v24 M18 30 h24" stroke="#FBF3E4" stroke-width="6" stroke-linecap="round"/></svg>',help:'<svg viewBox="0 0 60 60"><circle cx="30" cy="30" r="26" fill="#6E7B86"/><path d="M22 26 q0 -10 9 -9 q8 1 7 9 q-1 6 -8 9 l0 4" stroke="#FBF3E4" stroke-width="5" fill="none" stroke-linecap="round"/><circle cx="30" cy="45" r="3" fill="#FBF3E4"/></svg>'},j={go:"go",look:"look",open:"open",found:"found you",home:"home",more:"more",help:"help"},W={tailOverDune:`<svg viewBox="0 0 160 108">
+      <rect x="0" y="0" width="160" height="108" rx="10" fill="#BFD9E2"/>
+      <ellipse cx="80" cy="112" rx="110" ry="46" fill="#E3CBA4"/>
+      <path d="M96 62 q18 -18 8 -34 q22 8 12 36 q-6 10 -20 -2Z" fill="#D9A441"/>
+      <circle cx="118" cy="34" r="7" fill="#D9A441"/>
+      <path d="M20 84 q10 -6 20 0 M48 90 q10 -6 20 0" stroke="#B98A5A" stroke-width="3" fill="none" stroke-linecap="round"/>
+    </svg>`,rockyOnBeach:`<svg viewBox="0 0 160 108">
+      <rect x="0" y="0" width="160" height="108" rx="10" fill="#BFD9E2"/>
+      <rect x="0" y="56" width="160" height="30" fill="#7FB5AE"/>
+      <rect x="0" y="80" width="160" height="28" fill="#E3CBA4"/>
+      <ellipse cx="80" cy="72" rx="30" ry="16" fill="#D9A441"/>
+      <circle cx="104" cy="62" r="12" fill="#D9A441"/>
+      <path d="M96 52 q-4 -8 4 -10 M112 52 q4 -8 -4 -10" stroke="#B8863B" stroke-width="4" fill="none" stroke-linecap="round"/>
+      <path d="M100 66 q5 4 10 0" stroke="#4A3C2C" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+    </svg>`},O={fluff:{label:"A tuft of golden fluff from the fence wire",svg:'<svg viewBox="0 0 100 100"><circle cx="50" cy="52" r="26" fill="#E8C27A"/><path d="M30 40 q-12 -10 -6 -22 q12 2 14 14 M52 30 q0 -14 12 -18 q6 12 -4 20 M70 44 q12 -8 22 0 q-6 12 -18 8" fill="#D9A441"/></svg>'},feather:{label:"One of Pearl's soft feathers",svg:'<svg viewBox="0 0 100 100"><path d="M50 88 q-26 -34 -8 -66 q10 -16 22 -6 q14 14 -2 44 q-6 16 -12 28Z" fill="#F2EDE2" stroke="#6E7B86" stroke-width="3"/><path d="M50 84 q2 -34 8 -58" stroke="#6E7B86" stroke-width="3" fill="none"/></svg>'},apple:{label:"The one apple the birds missed",svg:'<svg viewBox="0 0 100 100"><circle cx="50" cy="58" r="28" fill="#C96F5B"/><path d="M50 32 q-2 -12 6 -16" stroke="#8A6746" stroke-width="5" fill="none" stroke-linecap="round"/><ellipse cx="62" cy="24" rx="10" ry="6" fill="#6E9668" transform="rotate(24 62 24)"/></svg>'},hairtie:{label:"Ella's spare hair tie",svg:'<svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="26" fill="none" stroke="#E8896A" stroke-width="12"/><circle cx="50" cy="50" r="26" fill="none" stroke="#D9764F" stroke-width="12" stroke-dasharray="14 20"/></svg>'},shell:{label:"A shell from the beach where Rocky was found",svg:'<svg viewBox="0 0 100 100"><path d="M50 84 L22 46 q28 -32 56 0 Z" fill="#E3CBA4" stroke="#B98A5A" stroke-width="3"/><path d="M50 82 L36 48 M50 82 L50 44 M50 82 L64 48" stroke="#B98A5A" stroke-width="3" fill="none"/></svg>'}};function T(){return`<svg viewBox="0 0 400 290" aria-hidden="true">
+      <ellipse cx="200" cy="278" rx="190" ry="22" fill="#8FB98B"/>
+      <g transform="translate(200 268) scale(0.86)">${y("rocky")}</g>
+      <g transform="translate(10 282)">${h(380,!1)}</g>
+      <g transform="translate(48 40)">${d()}</g>
+    </svg>`}return{C:l,cow:y,cleo:p,will:x,ella:$,pearl:g,fence:h,gate:w,hoofprints:q,bush:u,gumTree:M,cloud:D,butterfly:d,steppingStone:B,gumBranch:m,flowers:v,grassTuft:A,verandaHouse:E,sunGlow:b,hill:Z,gym:F,hayBale:C,pumpkin:L,symbols:R,symbolWords:j,billPictures:W,stickers:O,titleArt:T}})();</script>
+<script>const Engine=(()=>{const A="http://www.w3.org/2000/svg",D=()=>document.getElementById("stage"),S=()=>document.getElementById("scene-current"),R=()=>document.getElementById("scene-old"),M="wills-farm-save-v1";let p={sceneIndex:0,storyDone:!1,stickers:[],visited:["farm"],settings:{ambient:55,effects:80,motion:100,bigShimmer:!1}};try{const t=localStorage.getItem(M);t&&(p=Object.assign(p,JSON.parse(t)))}catch{}function k(){try{localStorage.setItem(M,JSON.stringify(p))}catch{}}const n={selected:null,chars:{},props:{},pairs:{},busy:!1,sceneId:null,hintIds:[]},g=t=>new Promise(e=>setTimeout(e,t));function w(t,e){const s=document.createElementNS(A,"g");return t&&s.setAttribute("class",t),e&&s.setAttribute("transform",e),s}function E(t,e,s=1e3){return t?(t.classList.remove(e),t.getBoundingClientRect(),t.classList.add(e),g(s).then(()=>t.classList.remove(e))):Promise.resolve()}function I(t,e){const s=D(),i=s.createSVGPoint();i.x=t,i.y=e;const r=s.getScreenCTM();if(!r)return{x:0,y:0};const l=i.matrixTransform(r);return{x:l.x,y:l.y}}function j(t,e){const{svg:s,x:i,y:r,scale:l=1,facing:d=1,label:u,reactions:o=[]}=e,c=w("char-outer char-move tappable",`translate(${i} ${r})`);c.dataset.id=t,c.setAttribute("role","button"),c.setAttribute("tabindex","0"),c.setAttribute("aria-label",u);const f=w("flip");f.setAttribute("transform",`scale(${l*d} ${l})`),f.innerHTML=s,c.appendChild(f),S().appendChild(c);const a=B(f),L=18,b=Math.max(65,a.width/2+L),h=Math.max(65,a.height/2+L),m=document.createElementNS(A,"ellipse");m.setAttribute("cx",a.x+a.width/2),m.setAttribute("cy",a.y+a.height/2),m.setAttribute("rx",b),m.setAttribute("ry",h),m.setAttribute("style","fill:transparent"),f.appendChild(m);const y=document.createElementNS(A,"ellipse");y.setAttribute("class","hitring"),y.setAttribute("cx",a.x+a.width/2),y.setAttribute("cy",a.y+a.height/2),y.setAttribute("rx",b-8),y.setAttribute("ry",h-8),f.appendChild(y);const O={id:t,el:c,flip:f,x:i,y:r,scale:l,facing:d,label:u,reactions:o,reactIx:0,hitEl:m,ringEl:y};return n.chars[t]=O,N(c,()=>J(t)),O}function B(t){const e=t.querySelectorAll(".shimmer-halo, .select-ring, .hitring");e.forEach(i=>{i.style.display="none"});const s=t.getBBox();return e.forEach(i=>{i.style.display=""}),s}function V(t,e){const s=t.flip.querySelector(".rocker");s&&(s.outerHTML=e);const i=t.flip.querySelector(".rocker");if(!i||!t.hitEl)return;const r=B(i),l=18,d=Math.max(65,r.width/2+l),u=Math.max(65,r.height/2+l);for(const[o,c]of[[t.hitEl,0],[t.ringEl,8]])o.setAttribute("cx",r.x+r.width/2),o.setAttribute("cy",r.y+r.height/2),o.setAttribute("rx",d-c),o.setAttribute("ry",u-c)}function F(t,e){const{svg:s,x:i,y:r,scale:l=1,label:d,tappable:u=!1,onTap:o=null,hitR:c=90,layer:f=null}=e,a=w(u?"prop tappable":"prop",`translate(${i} ${r}) scale(${l})`);if(a.dataset.id=t,a.innerHTML=s,u){a.setAttribute("role","button"),a.setAttribute("tabindex","0"),a.setAttribute("aria-label",d||t);const b=document.createElementNS(A,"circle");b.setAttribute("cx",0),b.setAttribute("cy",-c*.5),b.setAttribute("r",c),b.setAttribute("style","fill:transparent"),a.appendChild(b);const h=document.createElementNS(A,"circle");h.setAttribute("class","shimmer-halo"),h.setAttribute("cx",0),h.setAttribute("cy",-c*.5),h.setAttribute("r",c*.85),h.setAttribute("style",`fill:none;stroke:${Art.C.coral};stroke-width:12`),a.appendChild(h),N(a,()=>W(t))}(f||S()).appendChild(a);const L={id:t,el:a,x:i,y:r,scale:l,label:d,onTap:o};return n.props[t]=L,L}function N(t,e){t.addEventListener("pointerdown",s=>{s.stopPropagation(),v(),e()}),t.addEventListener("keydown",s=>{(s.key==="Enter"||s.key===" ")&&(s.preventDefault(),v(),e())})}function $(t){n.selected&&n.chars[n.selected]&&n.chars[n.selected].el.classList.remove("selected"),n.selected=t,t&&n.chars[t]&&n.chars[t].el.classList.add("selected")}async function J(t){if(n.busy)return;const e=n.chars[t];if(e){if(n.selected&&n.selected!==t){const s=`${n.selected}>${t}`;if(n.pairs[s]){n.busy=!0;try{await n.pairs[s]()}finally{n.busy=!1}return}}if($(t),e.reactions.length){const s=Math.floor(Math.random()*e.reactions.length),i=e.reactions[s===e.reactIx&&e.reactions.length>1?(s+1)%e.reactions.length:s];e.reactIx=s;try{await i(e)}catch{}}}}async function W(t){if(n.busy)return;const e=n.props[t];if(e){if(n.selected){const s=`${n.selected}>${t}`;if(n.pairs[s]){n.busy=!0;try{await n.pairs[s]()}finally{n.busy=!1}return}}if(e.onTap)try{await e.onTap(e)}catch{}else E(e.el,"wiggle-once",900)}}function Y(t,e){n.pairs[t]=e}function P(t,e){const s=e>=t.x?1:-1;s!==t.facing&&(t.facing=s,t.flip.setAttribute("transform",`scale(${t.scale*s} ${t.scale})`))}function _(t,e,s,i=null){P(t,e);const r=Math.hypot(e-t.x,s-t.y),l=i||Math.max(.9,Math.min(3.4,r/260));return t.el.classList.add("walking"),t.el.style.transitionDuration=`${l}s`,t.el.setAttribute("transform",`translate(${e} ${s})`),t.x=e,t.y=s,g(l*1e3+60).then(()=>t.el.classList.remove("walking"))}function z(t,e,s){t.el.style.transitionDuration="0s",t.el.setAttribute("transform",`translate(${e} ${s})`),t.x=e,t.y=s,t.el.getBoundingClientRect(),t.el.style.transitionDuration=""}function C(t,e,s,{word:i=null,dur:r=2600,picture:l=!1}={}){const d=document.getElementById("bubble-layer"),u=I(t,e),o=document.createElement("div");return o.className="bubble"+(l?" picture":""),o.innerHTML=s+(i?`<span class="bubble-word">${i}</span>`:""),o.style.left=`${u.x-(l?95:59)}px`,o.style.top=`${u.y-(l?170:150)}px`,d.appendChild(o),requestAnimationFrame(()=>o.classList.add("shown")),g(r).then(()=>(o.classList.add("leaving"),g(700).then(()=>o.remove())))}function Q(t){const e=n.chars.will;if(!e)return Promise.resolve();GameAudio.play("phoneClick");const s=Art.symbolWords[t]||t;GameAudio.say(s);const i=e.el.querySelector(".phone");return i&&E(i,"hop-once",700),C(e.x,e.y-190*e.scale,Art.symbols[t],{word:s})}function U(t){const e=n.chars.pearl;if(!e)return Promise.resolve();GameAudio.play("billClap");const s=e.el.querySelector(".bill");return s&&E(s,"wiggle-once",900),C(e.x,e.y-160*e.scale,Art.billPictures[t],{dur:3600,picture:!0})}function H(t){return p.stickers.includes(t)}async function X(t,e,s){if(H(t))return;p.stickers.push(t),k(),GameAudio.play("found");const i=Art.stickers[t];await C(e,s,i.svg,{dur:2200}),document.getElementById("btn-stickers").hidden=!1}let T=null,x=null;function v(){x&&(x.classList.remove("shimmering"),x=null),T&&clearTimeout(T),T=setTimeout(q,1e4)}function q(){if(n.busy){v();return}let t=null;for(const e of n.hintIds){const s=n.props[e]||n.chars[e];if(s&&s.el.isConnected){t=s.el;break}}if(!t){const e=[...Object.values(n.chars),...Object.values(n.props)].filter(s=>s.el.classList.contains("tappable")&&s.el.isConnected);e.length&&(t=e[Math.floor(Math.random()*e.length)].el)}t&&(x=t,t.classList.add("shimmering"),setTimeout(()=>{x===t&&t.classList.remove("shimmering")},6e3)),T=setTimeout(q,14e3)}const G={};function Z(t,e){G[t]=e}async function K(t,e={}){const s=G[t];if(!s)return;n.busy=!0;const i=R(),r=S();for(i.innerHTML="";r.firstChild;)i.appendChild(r.firstChild);if(i.classList.remove("scene-hidden"),r.classList.add("scene-hidden"),n.chars={},n.props={},n.pairs={},n.hintIds=[],$(null),n.sceneId=t,document.getElementById("bubble-layer").innerHTML="",p.visited.includes(t)||(p.visited.push(t),k()),await s.build(e),requestAnimationFrame(()=>{r.classList.remove("scene-hidden"),i.classList.add("scene-hidden")}),await g(1350),i.innerHTML="",n.busy=!1,v(),s.ambient&&GameAudio.startAmbient(s.ambient),s.intro){n.busy=!0;try{await s.intro(e)}finally{n.busy=!1}}}function tt(t){n.hintIds=t}function et(t){const e=w("scene-bg");return e.innerHTML=t,S().appendChild(e),e}return{save:p,persist:k,state:n,wait:g,animOnce:E,toScreen:I,addChar:j,addProp:F,setPose:V,pair:Y,selectChar:$,walkTo:_,placeAt:z,faceToward:P,showBubble:C,willSays:Q,pearlShows:U,awardSticker:X,hasSticker:H,registerScene:Z,loadScene:K,setHints:tt,background:et,noteActivity:v,gEl:w}})();</script>
+<script>const Scenes=(()=>{const a=Engine,t=Art,s=Art.C,d=a.wait,v=["farm","paddock","creek","orchard","headland","beach"],D={farm:"The farm",paddock:"The paddock gate",creek:"The creek",orchard:"The orchard",headland:"The headland",beach:"The beach"};function g(i,l,n,c=640){const e="g"+Math.random().toString(36).slice(2,8);return`
+      <defs>
+        <linearGradient id="${e}" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="${i}"/>
+          <stop offset="1" stop-color="${l}"/>
+        </linearGradient>
+      </defs>
+      <rect x="-50" y="-50" width="1700" height="${c+50}" fill="url(#${e})"/>
+      <rect x="-50" y="${c}" width="1700" height="${1e3-c+50}" style="fill:${n}"/>`}function u(){return`
+      <g class="drifts"><g transform="translate(280 150)">${t.cloud(1.1)}</g></g>
+      <g class="drifts" style="animation-duration:38s"><g transform="translate(1050 110)">${t.cloud(.8)}</g></g>`}function m(){return[async i=>{await a.willSays("look")},async i=>{const l=i.el.querySelector(".phone");GameAudio.play("phoneClick"),await a.animOnce(l,"hop-once",700)},async i=>{GameAudio.play("tinkle"),await a.animOnce(i.el.querySelector(".head"),"wiggle-once",900)}]}function k(){return[async i=>{GameAudio.play("wag");const l=i.el.querySelector(".tail");l.classList.add("wagging"),await d(1400),l.classList.remove("wagging")},async i=>{GameAudio.play("bark"),await a.animOnce(i.el.querySelector(".rocker"),"spin-once",1e3)},async i=>{GameAudio.play("barkBark"),await a.animOnce(i.el,"hop-once",700)}]}function b(){let i=0;return[async l=>{GameAudio.play("cowLow"),await a.animOnce(l.el.querySelector(".head"),"wiggle-once",1100)},async l=>{i++,GameAudio.play("brush"),await a.animOnce(l.el.querySelector(".fringe"),"fringe-shake",1e3),i%3===0&&GameAudio.play("cowLow")},async l=>{GameAudio.play("step"),await a.animOnce(l.el.querySelector(".tail"),"wiggle-once",900)}]}function B(){return[async i=>{GameAudio.play("cowLowBig"),await a.animOnce(i.el.querySelector(".head"),"wiggle-once",1200)},async i=>{GameAudio.play("brush"),await a.animOnce(i.el.querySelector(".fringe"),"fringe-shake",1e3)},async i=>{GameAudio.play("splash"),await C()}]}function S(){return[async i=>{GameAudio.play("billClap"),await a.animOnce(i.el.querySelector(".bill"),"wiggle-once",900)},async i=>{GameAudio.play("wingbeat"),await a.animOnce(i.el,"hop-once",700)},async i=>{await a.animOnce(i.el.querySelector(".head"),"wiggle-once",900)}]}async function C(){const i=document.getElementById("fx-layer"),l=a.gEl("");l.innerHTML=`<ellipse cx="800" cy="1400" rx="620" ry="480" style="fill:#E8A28A;opacity:0.92"/>
+                   <ellipse cx="800" cy="1400" rx="420" ry="330" style="fill:#EFB4A0;opacity:0.9"/>`,l.style.transition="transform 1.1s ease-in-out",i.appendChild(l),requestAnimationFrame(()=>{l.style.transform="translateY(-720px)"}),await d(1100),l.style.transition="transform 0.9s ease-in",l.style.transform="translateY(300px)",await d(950),l.remove()}function G(i=900,l=-230){const n=a.state.chars.freddie,c=a.state.chars.will;!n||!c||setTimeout(()=>{GameAudio.play("step"),a.walkTo(n,c.x+l,Math.min(c.y+12,960))},i)}function w(i,l,n){const c=a.addProp("waymark",{x:i,y:l,label:"The path onward",tappable:!0,hitR:100,svg:`<ellipse cx="0" cy="0" rx="66" ry="26" style="fill:${s.sandstone};stroke:${s.tanDark};stroke-width:4"/>
+            <ellipse cx="0" cy="-3" rx="42" ry="14" style="fill:${s.oat}"/>`,onTap:async()=>{const e=a.state.chars.cleo;e&&(GameAudio.play("bark"),await a.walkTo(e,i-90,l-6,1.4),a.faceToward(e,-9999),GameAudio.play("barkBark"))}});return a.pair("will>waymark",async()=>{const e=a.state.chars.will;await a.willSays("go"),await a.walkTo(e,i,l-8),n()}),a.setHints(["waymark"]),c}function f(i){const l=v.indexOf(i),n=v[(l+1)%v.length];a.save.storyDone||(a.save.sceneIndex=Math.max(a.save.sceneIndex,l+1),a.persist()),i==="beach"?a.loadScene("farm",{mode:a.save.storyDone?"freeplay":"ending"}):a.loadScene(n)}return a.registerScene("farm",{ambient:"farm",async build(i){const l=i.mode||(a.save.storyDone?"freeplay":"opening"),n=l==="ending";a.background(g(n?"#E8B48C":s.sky,n?"#F2C29B":"#D6E4DA",s.paddock,620)+t.sunGlow(n?320:1310,170,70,n?"#EFA76B":"#F2DDA4")+u()+`<g transform="translate(120 620)">${t.verandaHouse()}</g>
+         <g transform="translate(620 640)">${t.fence(560,!n&&l==="opening")}</g>
+         <g transform="translate(${l==="opening"?700:880} 780)">${t.flowers(5,180)}</g>
+         <g transform="translate(380 900)">${t.grassTuft()}</g>
+         <g transform="translate(1380 940)">${t.grassTuft()}</g>`),l==="opening"&&(a.background(`
+          <ellipse cx="1010" cy="720" rx="120" ry="26" style="fill:${s.paddockDeep};opacity:0.7"/>
+          <g transform="translate(1080 740)">${t.hoofprints(4,58,4,10)}</g>`),a.addProp("hoofprints",{x:1150,y:760,label:"Hoofprints leading through the fence",tappable:!0,hitR:110,svg:'<g style="opacity:0.001"><rect x="-100" y="-40" width="200" height="80"/></g>',onTap:async()=>{await a.willSays("look")}}),a.addProp("butterfly",{x:1010,y:660,label:"A butterfly over Rocky\u2019s empty spot",tappable:!0,hitR:80,svg:t.butterfly(),onTap:async e=>{GameAudio.play("tinkle"),await a.animOnce(e.el.querySelector(".flutters")||e.el,"hop-once",700)}})),a.addProp("bush1",{x:l==="opening"?480:700,y:860,label:"A bush",tappable:!0,hitR:95,svg:t.bush(1),onTap:async e=>{GameAudio.play("brush"),await a.animOnce(e.el,"wiggle-once",900)}});const c=a.addChar("will",{svg:t.will(),x:l==="opening"?430:510,y:900,scale:1.05,label:"Will",reactions:m()});if(a.addChar("cleo",{svg:t.cleo(),x:560,y:920,scale:.95,label:"Cleo the dog",reactions:k()}),a.addChar("freddie",{svg:t.cow("freddie"),x:820,y:930,scale:.82,facing:-1,label:"Freddie the highland cow",reactions:b()}),l!=="opening"){a.addChar("rocky",{svg:t.cow("rocky"),x:1120,y:930,scale:.85,facing:-1,label:"Rocky the highland cow",reactions:B()}),a.background(`<g transform="translate(240 950)">${t.gym()}</g>`),a.addProp("haybale",{x:90,y:950,label:"A hay bale",tappable:!0,hitR:80,svg:t.hayBale(),onTap:async r=>{GameAudio.play("thump"),await a.animOnce(r.el,"hop-once",700)}});const e=a.addChar("ella",{svg:t.ella("stand"),x:300,y:900,scale:1.02,facing:-1,label:"Ella",reactions:[async r=>{GameAudio.play("bump"),await a.animOnce(r.el.querySelector(".torso"),"wiggle-once",900)},async r=>{GameAudio.play("bump"),await a.animOnce(r.el,"hop-once",700);const p=a.state.chars.will;p&&await a.animOnce(p.el,"hop-once",700)},async r=>{a.setPose(r,t.ella("lift"));const p=Math.random()>.18,o=a.gEl("");o.innerHTML=p?t.hayBale():t.pumpkin(),o.setAttribute("transform","translate(0 -215)"),r.flip.appendChild(o),GameAudio.play("thump"),await d(2600),o.remove(),a.setPose(r,t.ella("stand")),GameAudio.play("bump")}]})}l==="opening"?(a.addProp("gap",{x:1330,y:900,label:"The gap in the fence where the hoofprints lead",tappable:!0,hitR:120,svg:`<g style="opacity:0.9">
+                  <ellipse cx="0" cy="6" rx="80" ry="22" style="fill:${s.paddockDeep};opacity:0.6"/>
+                  ${t.hoofprints(3,46,-6,8)}
+                </g>`,onTap:async()=>{const e=a.state.chars.cleo;e&&(GameAudio.play("bark"),await a.walkTo(e,1240,916,1.4),a.faceToward(e,-9999),GameAudio.play("barkBark"))}}),a.pair("will>gap",async()=>{await a.willSays("go"),await a.walkTo(c,1310,906),G(300),await d(700),f("farm")}),a.setHints(["gap"])):w(1440,930,()=>a.loadScene("paddock")),a.pair("freddie>will",async()=>{const e=a.state.chars.freddie,r=a.state.chars.will;await a.walkTo(e,r.x-150,r.y+16),GameAudio.play("cowLow"),await a.animOnce(e.el.querySelector(".rocker"),"wiggle-once",1100)}),a.pair("cleo>bush1",async()=>{const e=a.state.chars.cleo;await a.walkTo(e,a.state.props.bush1.x+20,890),GameAudio.play("brush"),await a.animOnce(a.state.props.bush1.el,"wiggle-once",900),GameAudio.play("bark")})},async intro(i){const l=i.mode||(a.save.storyDone?"freeplay":"opening");if(l==="opening"&&a.save.sceneIndex===0){await d(700);const n=a.state.chars.cleo;GameAudio.play("bark"),await a.walkTo(n,1240,916,1.7),a.faceToward(n,-9999),GameAudio.play("barkBark")}else if(l==="ending"){const{will:n,cleo:c,freddie:e,rocky:r}=a.state.chars;a.placeAt(n,1700,900),a.placeAt(c,1820,920),a.placeAt(e,1960,930),r&&a.placeAt(r,2100,930),await d(400),a.walkTo(n,600,900,4),setTimeout(()=>a.walkTo(c,520,920,4),500),setTimeout(()=>a.walkTo(e,860,930,4.4),900),r&&setTimeout(()=>a.walkTo(r,1120,930,4.6),1300),await d(4600),await a.willSays("home"),GameAudio.play("cowLowBig"),a.save.storyDone||(a.save.storyDone=!0,a.persist(),document.getElementById("btn-map").hidden=!1)}}}),a.registerScene("paddock",{ambient:"farm",async build(){a.background(g(s.sky,"#D6E4DA",s.paddock,600)+t.sunGlow(1340,150,64,"#F2DDA4")+u()+t.hill(200,620,500,110,s.paddockDeep)+t.hill(1400,640,560,130,"#86AF82")+`<g transform="translate(360 700)">${t.fence(430)}</g>
+         <g transform="translate(300 850)">${t.flowers(4,130)}</g>
+         <g transform="translate(1300 960)">${t.grassTuft()}</g>
+         <g transform="translate(150 940)">${t.grassTuft()}</g>
+         <g transform="translate(880 780)">${t.hoofprints(4,66,10,14)}</g>`);const i=a.addProp("gate",{x:1020,y:700,label:"The paddock gate",tappable:!0,hitR:120,svg:t.gate(),onTap:async e=>{GameAudio.play("gate"),await a.animOnce(e.el,"wiggle-once",900)}});a.addProp("fluff",{x:950,y:660,label:"A tuft of golden fluff caught on the fence",tappable:!0,hitR:85,svg:`<g class="sways">
+                <path d="M0 0 q-10 -14 -2 -26 q10 -8 18 2 q10 -6 12 8 q2 14 -12 16 q-12 4 -16 0Z" style="fill:${s.rockyLight};stroke:${s.rocky};stroke-width:3"/>
+              </g>`,onTap:async e=>{a.hasSticker("fluff")?(GameAudio.play("tinkle"),await a.animOnce(e.el,"wiggle-once",900)):(await a.willSays("found"),await a.awardSticker("fluff",950,660),e.el.style.transition="opacity 1s ease",e.el.style.opacity="0",setTimeout(()=>e.el.remove(),1100),c())}}),a.addProp("bushP",{x:210,y:800,label:"A bush",tappable:!0,hitR:95,svg:t.bush(.9),onTap:async e=>{GameAudio.play("brush"),await a.animOnce(e.el,"wiggle-once",900)}});const l=a.addChar("will",{svg:t.will(),x:330,y:920,scale:1.05,label:"Will",reactions:m()});a.addChar("cleo",{svg:t.cleo(),x:480,y:940,scale:.95,label:"Cleo the dog",reactions:k()}),a.addChar("freddie",{svg:t.cow("freddie"),x:140,y:950,scale:.85,label:"Freddie the highland cow",reactions:b()});let n=!1;const c=()=>{n&&!a.state.props.waymark&&w(1420,940,()=>f("paddock"))};a.pair("will>gate",async()=>{await a.walkTo(l,900,930),G(),await a.willSays("open"),GameAudio.play("gate");const e=i.el.querySelector(".gate-leaf");e.style.transform="rotate(-64deg)",n=!0,await d(1600),c()}),a.pair("cleo>gate",async()=>{const e=a.state.chars.cleo;await a.walkTo(e,960,950,1.5),GameAudio.play("barkBark"),await a.animOnce(e.el,"hop-once",700)}),a.pair("will>fluff",async()=>{await a.walkTo(l,880,920),G(),await a.state.props.fluff.onTap(a.state.props.fluff)}),a.pair("cleo>bushP",async()=>{const e=a.state.chars.cleo;await a.walkTo(e,260,850,1.4),GameAudio.play("brush"),await a.animOnce(a.state.props.bushP.el,"wiggle-once",900),GameAudio.play("bark"),a.background(`<g transform="translate(330 880)">${t.hoofprints(3,60,6,10)}</g>`)}),a.setHints(["fluff","gate"])}}),a.registerScene("creek",{ambient:"creek",async build(){a.background(g(s.sky,"#D9E6DE",s.paddock,560)+u()+t.hill(300,580,520,100,s.paddockDeep)+`<path d="M-50 700 Q 400 640 800 700 T 1650 690 L1650 850 Q 1200 900 800 850 T -50 860 Z" style="fill:${s.sea}"/>
+         <path d="M-50 730 Q 500 690 900 740 T 1650 730" style="fill:none;stroke:${s.paper};stroke-width:5;opacity:0.35"/>
+         <g transform="translate(180 680)">${t.grassTuft()}</g>
+         <g transform="translate(1430 970)">${t.grassTuft()}</g>
+         <g transform="translate(1240 660)">${t.flowers(3,90)}</g>`),a.addProp("mud",{x:320,y:660,label:"A muddy patch where somebody had a lovely roll",tappable:!0,hitR:110,svg:`<ellipse cx="0" cy="0" rx="105" ry="30" style="fill:${s.mud};opacity:0.85"/>
+              ${t.hoofprints(3,54,-4,-8)}`,onTap:async p=>{GameAudio.play("splash"),await a.animOnce(p.el,"wiggle-once",900),await a.willSays("look")}});const i=[560,730,900,1070];i.forEach((p,o)=>{a.addProp(`stone${o}`,{x:p,y:790-o%2*26,label:`Stepping stone ${o+1}`,tappable:!0,hitR:85,svg:t.steppingStone(46),onTap:async y=>{GameAudio.play("stone"),await a.animOnce(y.el,"hop-once",700),await e(o)}})});const l=a.addChar("will",{svg:t.will(),x:320,y:940,scale:1.05,label:"Will",reactions:m()});a.addChar("cleo",{svg:t.cleo(),x:430,y:950,scale:.95,label:"Cleo the dog",reactions:k()}),a.addChar("freddie",{svg:t.cow("freddie"),x:90,y:960,scale:.85,label:"Freddie the highland cow",reactions:b()});let n=-1,c=!1;async function e(p){if(!c){for(let o=n+1;o<=p;o++){const y=a.state.props[`stone${o}`];GameAudio.play("stone"),await a.walkTo(l,y.x,y.y+40,1),await a.animOnce(l.el.querySelector(".rocker"),"hop-once",700),n=o}if(n===i.length-1){c=!0,GameAudio.play("splash"),await a.walkTo(l,1260,930,1.4);const o=a.state.chars.cleo,y=a.state.chars.freddie;a.walkTo(o,1180,950,2.2).then(()=>GameAudio.play("bark")),setTimeout(()=>{GameAudio.play("splash"),a.walkTo(y,1050,960,3.2)},900),await d(1300),await r()}}}a.pair("will>stone0",()=>e(0)),a.pair("will>stone1",()=>e(1)),a.pair("will>stone2",()=>e(2)),a.pair("will>stone3",()=>e(3)),a.pair("will>mud",async()=>{await a.walkTo(l,430,700),await a.willSays("look"),GameAudio.play("splash")}),a.pair("cleo>mud",async()=>{const p=a.state.chars.cleo;await a.walkTo(p,400,700,1.4),GameAudio.play("splash"),await a.animOnce(p.el.querySelector(".rocker"),"spin-once",1e3),GameAudio.play("barkBark")});async function r(){if(a.state.chars.pearl)return;const p=a.addChar("pearl",{svg:t.pearl("fly"),x:1900,y:300,scale:.9,facing:-1,label:"Pearl the pelican",reactions:S()});GameAudio.play("wingbeat"),await a.walkTo(p,1380,820,2.6),a.setPose(p,t.pearl("stand")),GameAudio.play("billClap"),await d(400),await a.pearlShows("tailOverDune"),a.hasSticker("feather")||a.addProp("featherDrop",{x:1330,y:890,label:"A soft pelican feather",tappable:!0,hitR:85,svg:`<g class="sways"><path d="M0 0 q-14 -20 -4 -40 q8 -10 14 -2 q8 10 -2 28 q-4 8 -8 14Z"
+                    style="fill:${s.pearl};stroke:${s.slate};stroke-width:3"/></g>`,onTap:async o=>{await a.awardSticker("feather",1330,890),o.el.style.transition="opacity 1s ease",o.el.style.opacity="0",setTimeout(()=>o.el.remove(),1100)}}),w(1500,960,()=>f("creek"))}a.setHints(["stone0","mud"])}}),a.registerScene("orchard",{ambient:"farm",async build(){a.background(g(s.sky,"#DCE7D9",s.paddock,620)+u()+t.hill(1400,650,540,120,"#86AF82")+`<path d="M1250 1000 Q1350 880 1650 850 L1650 1000Z" style="fill:${s.sandstone}"/>
+         <g transform="translate(1180 900)">${t.hoofprints(4,62,10,18)}</g>
+         <g transform="translate(240 970)">${t.grassTuft()}</g>`),a.background(`
+        <g transform="translate(560 900)" style="opacity:0.8">
+          <path d="M-8 0 q-6 -18 8 -20 q12 2 8 20 q-4 8 -16 0Z" style="fill:${s.paper};stroke:${s.tanDark};stroke-width:2.5"/>
+        </g>
+        <g transform="translate(840 930)" style="opacity:0.8">
+          <path d="M-8 0 q-6 -18 8 -20 q12 2 8 20 q-4 8 -16 0Z" style="fill:${s.paper};stroke:${s.tanDark};stroke-width:2.5"/>
+        </g>`);const i=[430,780,1120];let l=0;i.forEach((c,e)=>{a.addProp(`tree${e}`,{x:c,y:840,scale:1.15,label:"An apple tree",tappable:!0,hitR:150,svg:t.gumTree(1,!0),onTap:async r=>{GameAudio.play("birds"),r.el.querySelectorAll(".bird").forEach((o,y)=>{o.style.transition="transform 2.4s ease, opacity 2.4s ease",o.style.transform=`translate(${(y?1:-1)*260}px, -300px)`,o.style.opacity="0",setTimeout(()=>{o.style.transition="none",o.style.transform="",o.style.opacity=""},6e3)}),await a.animOnce(r.el.querySelector(".sways"),"wiggle-once",900);const p=[...r.el.querySelectorAll(".apple")].filter(o=>!o.dataset.dropped);if(p.length){const o=p[0];o.dataset.dropped="1",o.style.transition="transform 1.2s cubic-bezier(0.3,0,0.7,1)",o.style.transform=`translateY(${294.95652173913044}px)`,await d(1200),GameAudio.play("plop"),l++;const y=a.state.chars.cleo;y&&l%2===1&&a.walkTo(y,c+90,940,1.6).then(()=>GameAudio.play("barkBark")),l>=2&&!a.state.props.lostApple&&!a.hasSticker("apple")&&(a.addProp("lostApple",{x:660,y:950,label:"The one apple the birds missed",tappable:!0,hitR:80,svg:`<circle cx="0" cy="-12" r="15" style="fill:${s.appleRed}"/>
+                        <rect x="-2" y="-32" width="4" height="9" rx="2" style="fill:${s.woodDark}"/>`,onTap:async x=>{await a.willSays("found"),await a.awardSticker("apple",660,950),x.el.style.transition="opacity 1s ease",x.el.style.opacity="0",setTimeout(()=>x.el.remove(),1100),a.state.props.waymark||w(1480,940,()=>f("orchard"))}}),a.setHints(["lostApple"]))}}})});const n=a.addChar("will",{svg:t.will(),x:310,y:930,scale:1.05,label:"Will",reactions:m()});a.addChar("cleo",{svg:t.cleo(),x:380,y:950,scale:.95,label:"Cleo the dog",reactions:k()}),a.addChar("freddie",{svg:t.cow("freddie"),x:60,y:955,scale:.85,label:"Freddie the highland cow",reactions:b()}),i.forEach((c,e)=>{a.pair(`will>tree${e}`,async()=>{await a.walkTo(n,c-140,935),G(),await a.state.props[`tree${e}`].onTap(a.state.props[`tree${e}`])}),a.pair(`cleo>tree${e}`,async()=>{const r=a.state.chars.cleo;await a.walkTo(r,c+80,945,1.5),GameAudio.play("barkBark"),await a.animOnce(r.el,"hop-once",700),await a.state.props[`tree${e}`].onTap(a.state.props[`tree${e}`])})}),a.hasSticker("apple")&&!a.state.props.waymark&&w(1480,940,()=>f("orchard")),a.setHints(["tree0","tree1","tree2"])}}),a.registerScene("headland",{ambient:"headland",async build(){a.background(g("#B5D3DE","#E4E9D8",s.paddock,680)+u()+`<rect x="1250" y="560" width="400" height="130" style="fill:${s.sea}"/>
+         <path d="M1250 560 L1650 560" style="stroke:${s.paper};stroke-width:4;opacity:0.4"/>
+         <path d="M1250 690 L1650 690 L1650 1000 L1380 1000 Q1300 840 1250 690Z" style="fill:${s.sandstone}"/><g transform="translate(300 760)">${t.flowers(6,260)}</g>
+         <g transform="translate(700 820)">${t.flowers(5,200)}</g>
+         <g transform="translate(180 950)">${t.grassTuft()}</g>
+         <g transform="translate(1000 960)">${t.grassTuft()}</g>
+         <g transform="translate(1100 700)">${t.fence(180)}</g>`);const i=a.addProp("branch",{x:1180,y:880,label:"A big fallen gum branch across the track",tappable:!0,hitR:150,svg:t.gumBranch(),onTap:async()=>{await o("solo")}}),l=a.addChar("will",{svg:t.will(),x:360,y:930,scale:1.05,label:"Will",reactions:m()}),n=a.addChar("cleo",{svg:t.cleo(),x:470,y:950,scale:.95,label:"Cleo the dog",reactions:k()}),c=a.addChar("freddie",{svg:t.cow("freddie"),x:120,y:955,scale:.85,label:"Freddie the highland cow",reactions:b()});let e=0,r=!1,p=!1;async function o(A){if(r||p){GameAudio.play("brush"),await a.animOnce(i.el,"wiggle-once",900);return}e++,e===1?(GameAudio.play("bark"),await a.walkTo(n,1050,950,1.6),GameAudio.play("barkBark"),await a.animOnce(n.el,"hop-once",700),GameAudio.play("barkBark")):e===2?(await a.walkTo(c,960,960,2.2),GameAudio.play("cowLow"),await a.animOnce(c.el.querySelector(".head"),"wiggle-once",1200)):await y()}a.pair("will>branch",async()=>{await a.walkTo(l,1e3,935),await a.willSays("help"),await o("will")}),a.pair("cleo>branch",()=>o("cleo")),a.pair("freddie>branch",()=>o("freddie"));async function y(){if(p||r)return;p=!0,a.setHints([]);const A=i.el.querySelector(".shimmer-halo");A&&A.remove(),i.el.classList.remove("shimmering");const h=a.addChar("ella",{svg:t.ella("jog"),x:-160,y:940,scale:1.02,label:"Ella",reactions:[async T=>{GameAudio.play("bump"),await a.animOnce(T.el,"hop-once",700)}]});await a.walkTo(h,1060,935,2.6),a.setPose(h,t.ella("lift")),await d(500);const $=i.el.firstElementChild;$.style.transition="transform 1.6s ease",$.style.transform="translate(0px, -190px)",await d(1700),$.style.transition="transform 1.8s ease",$.style.transform="translate(240px, 60px) rotate(8deg)",await d(1850),GameAudio.play("thump"),a.setPose(h,t.ella("stand")),await a.walkTo(h,l.x+120,935,1.6),GameAudio.play("bump"),await a.animOnce(h.el,"hop-once",700),await a.animOnce(l.el,"hop-once",700),await a.animOnce(l.el.querySelector(".head"),"wiggle-once",900),a.setPose(h,t.ella("jog")),await a.walkTo(h,1900,930,2.8),h.el.remove(),delete a.state.chars.ella,r=!0,p=!1,a.hasSticker("hairtie")||a.addProp("hairtieDrop",{x:1060,y:950,label:"Ella's spare hair tie",tappable:!0,hitR:80,svg:`<circle cx="0" cy="-8" r="13" style="fill:none;stroke:${s.coral};stroke-width:7"/>`,onTap:async T=>{await a.awardSticker("hairtie",1060,950),T.el.style.transition="opacity 1s ease",T.el.style.opacity="0",setTimeout(()=>T.el.remove(),1100)}}),await x()}async function x(){const A=a.addChar("pearl",{svg:t.pearl("fly"),x:1900,y:260,scale:.9,facing:-1,label:"Pearl the pelican",reactions:S()});GameAudio.play("wingbeat"),await a.walkTo(A,800,830,2.6),a.setPose(A,t.pearl("stand")),GameAudio.play("billClap"),await d(400),await a.pearlShows("rockyOnBeach"),await a.willSays("go"),w(1330,940,()=>f("headland"))}a.setHints(["branch"])}}),a.registerScene("beach",{ambient:"beach",async build(){a.background(g("#BFD9E2","#E8D9BD",s.sandstone,760)+t.sunGlow(1290,160,66,"#F2DDA4")+u()+`<rect x="-50" y="560" width="1700" height="220" style="fill:${s.sea}"/>
+         <path d="M-50 560 L1650 560" style="stroke:${s.paper};stroke-width:5;opacity:0.4"/>
+         <path d="M-50 760 Q 400 738 800 760 T 1650 758 L1650 790 Q 1200 812 800 790 T -50 800 Z"
+               style="fill:${s.paper};opacity:0.5"/>`),a.addProp("water",{x:500,y:650,label:"The sea. Tap it and Pearl dives for fish.",tappable:!0,hitR:160,svg:'<g style="opacity:0.001"><rect x="-300" y="-90" width="600" height="180"/></g>',onTap:()=>c()}),a.addProp("shell",{x:380,y:900,label:"A shell on the sand",tappable:!0,hitR:80,svg:`<path d="M0 6 L-18 -18 q18 -20 36 0 Z" style="fill:${s.oat};stroke:${s.tanDark};stroke-width:3"/>`,onTap:async e=>{a.hasSticker("shell")?(GameAudio.play("tinkle"),await a.animOnce(e.el,"wiggle-once",900)):await a.awardSticker("shell",380,900)}});const i=a.addChar("rocky",{svg:t.cow("rocky"),x:1150,y:800,scale:.95,facing:-1,label:"Rocky the highland cow, found at last",reactions:B()});a.addChar("pearl",{svg:t.pearl("stand"),x:740,y:845,scale:.9,label:"Pearl the pelican",reactions:S()}),a.addProp("pelican2",{x:1380,y:820,label:"A curious pelican",tappable:!0,hitR:95,svg:`<g transform="scale(-0.75 0.75)">${t.pearl("stand")}</g>`,onTap:async e=>{GameAudio.play("billClap"),await a.animOnce(e.el,"wiggle-once",900)}});const l=a.addChar("will",{svg:t.will(),x:300,y:930,scale:1.05,label:"Will",reactions:m()});a.addChar("cleo",{svg:t.cleo(),x:420,y:945,scale:.95,label:"Cleo the dog",reactions:k()}),a.addChar("freddie",{svg:t.cow("freddie"),x:70,y:950,scale:.85,label:"Freddie the highland cow",reactions:b()});let n=!1;async function c(){const e=a.state.chars.pearl;if(!e)return;GameAudio.play("wingbeat"),a.setPose(e,t.pearl("fly")),await a.walkTo(e,620,380,1.6),await a.walkTo(e,540,640,.9),GameAudio.play("splash"),await d(700),a.setPose(e,t.pearl("stand"));const r=a.gEl("");r.innerHTML=`<ellipse cx="60" cy="-138" rx="14" ry="6" style="fill:${s.slate}"/>
+                          <path d="M72 -138 l10 -6 0 12Z" style="fill:${s.slate}"/>`,e.flip.appendChild(r),await a.walkTo(e,740,845,1.6),GameAudio.play("billClap"),await d(1400),r.remove()}a.pair("will>rocky",async()=>{if(n){await a.walkTo(l,i.x-170,930),GameAudio.play("cowLowBig");return}n=!0,await a.willSays("found"),await a.walkTo(l,i.x-160,920,2.6),l.flip.style.transition="transform 1.4s ease",l.flip.setAttribute("transform",`scale(${l.scale} ${l.scale}) rotate(8)`),GameAudio.play("cowLowBig");const e=a.state.chars.freddie;await d(900),GameAudio.play("step"),await a.walkTo(e,i.x+210,940,3),a.faceToward(e,-9999),GameAudio.play("cowLow"),await d(1200);const r=document.getElementById("fx-layer"),p=a.gEl("");p.innerHTML='<rect x="-50" y="-50" width="1700" height="1100" style="fill:#EFA76B"/>',p.style.opacity="0",p.style.transition="opacity 4s ease",p.style.pointerEvents="none",r.appendChild(p),requestAnimationFrame(()=>{p.style.opacity="0.22"}),await d(2e3),l.flip.setAttribute("transform",`scale(${l.scale} ${l.scale})`),await d(1450),l.flip.style.transition="",w(120,970,()=>{document.getElementById("fx-layer").innerHTML="",f("beach")});const o=a.state.chars.cleo;GameAudio.play("bark"),await a.walkTo(o,240,960,1.8),a.faceToward(o,9999)}),a.pair("cleo>rocky",async()=>{const e=a.state.chars.cleo;await a.walkTo(e,i.x-130,950,1.8),GameAudio.play("barkBark"),await a.animOnce(e.el,"hop-once",700),GameAudio.play("cowLowBig"),await a.animOnce(i.el.querySelector(".fringe"),"fringe-shake",1e3)}),a.pair("freddie>rocky",async()=>{const e=a.state.chars.freddie;await a.walkTo(e,i.x+230,945,2.6),a.faceToward(e,-9999),GameAudio.play("cowLow"),await d(400),GameAudio.play("cowLowBig")}),a.pair("pearl>water",()=>c()),a.pair("pearl>rocky",async()=>{const e=a.state.chars.pearl;await a.walkTo(e,i.x-140,850,1.8),GameAudio.play("billClap"),await a.animOnce(e.el.querySelector(".bill"),"wiggle-once",900)}),a.setHints(["rocky","water"])}}),{ORDER:v,SCENE_NAMES:D,THUMBS:{farm:'<svg viewBox="0 0 160 120"><rect width="160" height="120" fill="#BFD9E2"/><rect y="70" width="160" height="50" fill="#8FB98B"/><path d="M30 70 L60 46 L90 70Z" fill="#9A6B4F"/><rect x="38" y="70" width="44" height="28" fill="#E8D9BD"/><circle cx="122" cy="84" r="14" fill="#D9A441"/></svg>',paddock:'<svg viewBox="0 0 160 120"><rect width="160" height="120" fill="#BFD9E2"/><rect y="66" width="160" height="54" fill="#8FB98B"/><path d="M20 78 h120 M20 94 h120" stroke="#A9805A" stroke-width="6"/><rect x="24" y="70" width="6" height="34" fill="#8A6746"/><rect x="76" y="70" width="6" height="34" fill="#8A6746"/><rect x="128" y="70" width="6" height="34" fill="#8A6746"/></svg>',creek:'<svg viewBox="0 0 160 120"><rect width="160" height="120" fill="#BFD9E2"/><rect y="60" width="160" height="60" fill="#8FB98B"/><path d="M0 80 Q40 70 80 82 T160 80 L160 104 Q120 112 80 104 T0 106Z" fill="#7FB5AE"/><ellipse cx="60" cy="92" rx="12" ry="5" fill="#B9AF9C"/><ellipse cx="100" cy="88" rx="12" ry="5" fill="#B9AF9C"/></svg>',orchard:'<svg viewBox="0 0 160 120"><rect width="160" height="120" fill="#BFD9E2"/><rect y="76" width="160" height="44" fill="#8FB98B"/><rect x="46" y="52" width="8" height="30" fill="#A9805A"/><circle cx="50" cy="42" r="22" fill="#6E9668"/><circle cx="42" cy="38" r="4" fill="#C96F5B"/><rect x="106" y="52" width="8" height="30" fill="#A9805A"/><circle cx="110" cy="42" r="22" fill="#5B8156"/><circle cx="118" cy="46" r="4" fill="#C96F5B"/></svg>',headland:'<svg viewBox="0 0 160 120"><rect width="160" height="120" fill="#B5D3DE"/><rect x="100" y="56" width="60" height="18" fill="#7FB5AE"/><path d="M0 74 L160 74 L160 120 L0 120Z" fill="#8FB98B"/><circle cx="34" cy="88" r="5" fill="#E8896A"/><circle cx="58" cy="96" r="5" fill="#E0A93E"/><circle cx="82" cy="88" r="5" fill="#F2EDE2"/></svg>',beach:'<svg viewBox="0 0 160 120"><rect width="160" height="120" fill="#BFD9E2"/><rect y="52" width="160" height="34" fill="#7FB5AE"/><rect y="86" width="160" height="34" fill="#E3CBA4"/><ellipse cx="104" cy="82" rx="22" ry="12" fill="#D9A441"/><circle cx="120" cy="72" r="9" fill="#D9A441"/></svg>'}}})();</script>
+<script>(()=>{const t=Engine,n=e=>document.getElementById(e);n("title-art").innerHTML=Art.titleArt(),n("btn-play").addEventListener("pointerdown",async()=>{GameAudio.resume(),o(),n("title-screen").classList.add("fading"),n("stage-wrap").hidden=!1,setTimeout(()=>{n("title-screen").remove()},1300),t.save.stickers.length&&(n("btn-stickers").hidden=!1),t.save.storyDone&&(n("btn-map").hidden=!1);const e=t.save.storyDone?"farm":Scenes.ORDER[Math.min(t.save.sceneIndex,Scenes.ORDER.length-1)];await t.loadScene(e,t.save.storyDone?{mode:"freeplay"}:{})},{once:!0});function o(){const e=t.save.settings;GameAudio.setAmbientLevel(e.ambient/100),GameAudio.setEffectsLevel(e.effects/100),document.body.classList.toggle("motion-minimal",e.motion<=33),document.body.classList.toggle("motion-gentle",e.motion>33&&e.motion<=66),document.body.classList.toggle("big-shimmer",!!e.bigShimmer),n("set-ambient").value=e.ambient,n("set-effects").value=e.effects,n("set-motion").value=e.motion,n("set-shimmer").checked=!!e.bigShimmer}n("set-ambient").addEventListener("input",e=>{t.save.settings.ambient=+e.target.value,t.persist(),GameAudio.setAmbientLevel(+e.target.value/100)}),n("set-effects").addEventListener("input",e=>{t.save.settings.effects=+e.target.value,t.persist(),GameAudio.setEffectsLevel(+e.target.value/100)}),n("set-motion").addEventListener("input",e=>{t.save.settings.motion=+e.target.value,t.persist(),o()}),n("set-shimmer").addEventListener("change",e=>{t.save.settings.bigShimmer=e.target.checked,t.persist(),o()}),n("btn-restart").addEventListener("click",async()=>{t.save.sceneIndex=0,t.save.storyDone=!1,t.persist(),c("grownups-overlay"),n("btn-map").hidden=!0,await t.loadScene("farm",{mode:"opening"})});function r(e){GameAudio.play("page"),n(e).hidden=!1}function c(e){n(e).hidden=!0}document.querySelectorAll(".close-btn").forEach(e=>{e.addEventListener("click",()=>c(e.dataset.close))}),document.querySelectorAll(".overlay").forEach(e=>{e.addEventListener("pointerdown",s=>{s.target===e&&(e.hidden=!0)})});const m=["fluff","feather","apple","hairtie","shell"];n("btn-stickers").addEventListener("click",()=>{const e=n("sticker-grid");e.innerHTML="",m.forEach(s=>{const i=document.createElement("button"),a=t.hasSticker(s);i.className="sticker-slot"+(a?"":" empty"),i.setAttribute("aria-label",a?Art.stickers[s].label:"Not found yet"),i.innerHTML=a?Art.stickers[s].svg:'<span class="slot-dash"></span>',a&&i.addEventListener("click",()=>{GameAudio.play("found")}),e.appendChild(i)}),r("stickers-overlay")}),n("btn-map").addEventListener("click",()=>{const e=n("map-grid");e.innerHTML="",Scenes.ORDER.forEach(s=>{const i=t.save.visited.includes(s)||t.save.storyDone,a=document.createElement("button");a.className="map-tile"+(i?"":" locked"),a.setAttribute("aria-label",Scenes.SCENE_NAMES[s]),a.innerHTML=Scenes.THUMBS[s],i&&a.addEventListener("click",async()=>{c("map-overlay"),await t.loadScene(s,s==="farm"?{mode:"freeplay"}:{})}),e.appendChild(a)}),r("map-overlay")});let l=null;const d=n("btn-grownups");d.addEventListener("pointerdown",()=>{l=setTimeout(()=>r("grownups-overlay"),1400)}),["pointerup","pointerleave","pointercancel"].forEach(e=>d.addEventListener(e,()=>clearTimeout(l))),d.addEventListener("keydown",e=>{e.key==="Enter"&&r("grownups-overlay")}),document.addEventListener("pointerdown",()=>t.noteActivity(),{passive:!0})})();</script>
+</body>
+</html>
