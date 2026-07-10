@@ -18,10 +18,20 @@ Every parent-reader carries some version of this. Ella is likely to become
 one of the book's most loved characters — currently the most underdeveloped
 thread, so she gets priority in scene capture.
 
+## ⚠️ Fact to resolve first
+
+Public sources describe Ella as **Will's twin**; the project brief's arc
+said "little sister." If twins: Ella didn't arrive into a family already
+carrying the diagnosis — she was *there from day 4*, her infancy ran
+inside the crisis, and every milestone of hers was a split-screen against
+his. That rewrites her whole thread (and several questions below).
+Kris to confirm.
+
 ## Biography
 
 - Born when — and what was the family already carrying when she arrived?
 - What was she like as a little girl, in her own right?
+- If twins: what was it like to have one newborn seizing and one thriving in the same room? Did watching Ella develop make Will's differences visible in real time — the living yardstick nobody asked for?
 
 ## Shaping questions
 

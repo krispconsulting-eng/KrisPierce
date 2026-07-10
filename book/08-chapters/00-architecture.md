@@ -26,9 +26,14 @@ meeting the person before life changed.**
 - Questions: Straight chronological open with teenage Kris, or a cold-open scene from later (diagnosis day? Parliament? Mum's kitchen? the farm?) before rewinding to her? What's the single image of pure "before" joy the book returns to at the end?
 
 ### Part II — THE LINE (Fear → Uncertainty)
-First signs, diagnosis, the fall into a new world.
-- Candidate chapters: the wrongness · diagnosis day · 3am university (the Googling, the learning) · telling everyone · the new language
-- Questions: How long should the reader stay inside the uncertainty before any adaptation begins? (Resist compressing it — readers need to live there.) Where does Ella's birth sit relative to this part, and how does that timing shape her whole thread?
+**Rebuilt per the verified record:** this is not a single diagnosis-day
+pivot. The public record confirms seizures from day 4 of Will's life, an
+Alpers Syndrome misdiagnosis in his first year — sent home for palliative
+care, told he had months — and then a **14-year diagnostic odyssey** before
+SCN2A was named (via Prof Ingrid Scheffer's research panel). Two lines,
+not one: the day life changed, and the day it finally had a name.
+- Candidate chapters: day 4 (the first seizure) · the wrong name (Alpers) · sent home to say goodbye — and the months that didn't end · living unnamed (the odyssey years: 3am Googling, specialists, hope and its rationing) · the call from the research panel — a name, at 14 · what a name changes and what it doesn't
+- Questions: What did 14 years without a name DO — to hope, to treatment, to how you answered "what does he have?" at parties? Was the SCN2A diagnosis relief, grief, anticlimax, or all three — the "answer" arriving after you'd stopped needing one? How long should the reader live inside the unnamed years before any adaptation begins? (Resist compressing — this is the book's crucible.) Where does Ella sit in all this? (⚠️ verify: sources say Will and Ella are TWINS — if so she was there from day 4 and Part II is also HER infancy.)
 
 ### Part III — THE LONG MIDDLE (Survival → Acceptance)
 The years of care. The marriage under load. Ella growing up in the weather
