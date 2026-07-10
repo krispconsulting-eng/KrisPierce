@@ -8,9 +8,16 @@ anything that doesn't land — a skipped question is information too.
 
 ## Part 1 — Framing (answer these first; everything else hangs off them)
 
-1. **Who is this book for?** Your kids someday? Other parents walking a
-   similar road? A general reader? Yourself? (The honest answer changes the
-   voice more than anything else.)
+1. **Who is this book for?** ✅ *Answered: adult readers — mature themes,
+   not softened for family or kids.* Still useful to narrow: adults in
+   general, or a specific adult reader (parents on a similar road, people in
+   long partnerships, someone specific)?
+   1b. **Memoir or fiction?** *Current answer: not sure yet — either a memoir
+   or a fiction version of our lives.* That's fine; answer everything below
+   as truth, and we'll test-draft a key chapter both ways once the story is
+   mapped. But note here if you feel a pull either direction, and *why* —
+   the "why" usually contains the answer. (Wanting freedom to go further =
+   fiction's veil. Wanting it to matter *because it happened* = memoir.)
 2. **Whose story is "our"?** You wrote "the story of *our* lives" — you and
    your partner? Your whole family? Who are the main characters?
 3. **What's the time span?** "The last how many years" — where does the story

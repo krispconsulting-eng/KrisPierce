@@ -7,10 +7,38 @@
 
 ## What I think this book might be
 
-A memoir spanning roughly the last [N] years, told by Kris, weaving two
-lives (and a family) through a turn nobody chose — with work, money,
-advocacy, and a charity born out of it running alongside. Personal and
-vulnerable by design: the point is not that it was hard, but what it made.
+A book **for adult readers** — unflinching, mature, not softened for family —
+spanning roughly the last [N] years: two lives (and a family) woven through a
+turn nobody chose, with work, money, advocacy, and a charity born out of it
+running alongside. Personal and vulnerable by design: the point is not that
+it was hard, but what it made.
+
+**Decided:** adult audience.
+**Undecided:** memoir vs. a fiction version of the same lives — see below.
+
+## Memoir or fiction? (open decision — no rush)
+
+Both start from the same place: your real story, mapped honestly. The choice
+is about how it gets rendered, and it can be made *after* the interview
+questions are answered. What each buys you:
+
+| | Memoir | Fiction (novel drawn from life) |
+|---|---|---|
+| **Truth contract** | Everything on the page happened. Enormous power; readers lean in harder. | Freedom to compress, invent, and reorder. "Emotionally true" is the only contract. |
+| **Vulnerability** | Maximum exposure — it's you, by name. | A veil. You can go *further* into the raw material because it's "a character." |
+| **Other people** | Partner, kids, family are identifiable. Needs consent conversations, possibly name changes. | Built-in protection — identities blur, composites allowed. |
+| **Craft demands** | Structure and honesty carry it. | Also needs plot mechanics, invented scenes, character arcs beyond your own. |
+| **The tell** | Some stories lose their force when fictionalized ("this really happened" *is* the point). | Some stories only become tellable behind the veil. |
+
+There's also a middle path — **autofiction / a novel "based on a true
+story"** — which many writers of vulnerable material land on precisely
+because it lets them write the hardest scenes at full intensity while
+protecting the people in them.
+
+**Practical plan:** answer the questions as *truth* (fiction built on vague
+memory is weaker than fiction built on precise memory). Once the story is
+mapped, we draft the same key chapter both ways — one page as memoir, one as
+fiction — and the choice usually makes itself.
 
 **Working titles:** *(collecting — add anything, judge nothing)*
 - —
@@ -76,7 +104,9 @@ the present. Alternative shapes noted at the bottom.
 
 ## Open questions blocking the outline
 
-- [ ] Audience (Q1) — family keepsake vs. published memoir changes everything
+- [x] Audience (Q1) — **adult readers**; not softened for family/kids
+- [ ] Memoir vs. fiction rendering — deferred until the story is mapped
+      (we'll test-draft one chapter both ways)
 - [ ] Who "our" includes (Q2)
 - [ ] The actual turning point and time span (Q3, Q16)
 - [ ] The one-sentence "this is a book about ___" (Q5)
