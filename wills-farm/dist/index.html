@@ -1,0 +1,2916 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="theme-color" content="#8FB98B">
+<title>Will and the Missing Highland Cow</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='55' r='38' fill='%23D9A441'/%3E%3Cpath d='M18 40 Q8 25 20 18 Q22 32 30 36 Z' fill='%23B8863B'/%3E%3Cpath d='M82 40 Q92 25 80 18 Q78 32 70 36 Z' fill='%23B8863B'/%3E%3Cellipse cx='50' cy='70' rx='20' ry='13' fill='%23E8C27A'/%3E%3Cpath d='M28 38 Q50 22 72 38 L70 52 Q50 42 30 52 Z' fill='%23C08F3E'/%3E%3C/svg%3E">
+<style>
+/* ==========================================================================
+   Will and the Missing Highland Cow — style
+   Hard rules (from the design doc, section 5):
+   - Nothing flashes. No animation approaches 3 pulses/second.
+   - Mid-saturation palette only. No neon, no pure white/black fields.
+   - Interactive elements: >= 4.5:1 contrast, big targets (>= 75pt).
+   ========================================================================== */
+
+:root {
+  --paper:      #FBF3E4;  /* warm cream paper */
+  --paddock:    #8FB98B;  /* soft eucalyptus green */
+  --oat:        #E8D9BD;  /* warm oat */
+  --sandstone:  #E3CBA4;  /* pale sandstone */
+  --sky:        #BFD9E2;  /* pale warm blue */
+  --apricot:    #F2C29B;  /* day's edges */
+  --sea:        #7FB5AE;  /* gentle teal */
+  --rocky:      #D9A441;  /* golden ginger */
+  --freddie:    #9A6B4F;  /* russet brown */
+  --cleo:       #DDB25E;  /* honey gold */
+  --cleo-blue:  #4A7BA6;  /* Cleo's collar */
+  --pearl:      #F2EDE2;  /* soft white */
+  --slate:      #6E7B86;  /* Pearl wings / Ella slate */
+  --banksia:    #E0A93E;  /* pelican bill yellow */
+  --charcoal:   #3D4248;  /* Ella / Will tee (never pure black) */
+  --olive:      #7A7D4E;  /* Will's shorts */
+  --tanboot:    #B98A5A;
+  --coral:      #E8896A;  /* single accent, used sparingly */
+  --night:      #39465C;  /* deep blue-grey */
+  --ink:        #4A3C2C;  /* warm dark for text, 4.5:1+ on paper */
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+html, body {
+  height: 100%;
+  overflow: hidden;
+  background: var(--paper);
+  font-family: -apple-system, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  color: var(--ink);
+  touch-action: manipulation;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+#app { position: fixed; inset: 0; }
+
+/* ---------- Title screen ---------- */
+
+#title-screen {
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  background: linear-gradient(180deg, var(--sky) 0%, var(--sky) 45%, var(--paddock) 45.2%, var(--paddock) 100%);
+  transition: opacity 1.2s ease;
+  z-index: 30;
+}
+#title-screen.fading { opacity: 0; pointer-events: none; }
+
+.title-card { text-align: center; padding: 24px; max-width: 640px; }
+#title-art { width: min(52vw, 420px); margin: 0 auto 8px; }
+#title-art svg { width: 100%; height: auto; display: block; }
+
+h1 {
+  font-size: clamp(26px, 4.5vw, 44px);
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  color: var(--ink);
+  text-shadow: 0 2px 0 rgba(251, 243, 228, 0.6);
+  margin-bottom: 20px;
+}
+
+.big-soft-btn {
+  width: 108px; height: 108px;
+  border: none; background: none; cursor: pointer;
+  border-radius: 50%;
+  transition: transform 0.4s ease;
+}
+.big-soft-btn:active { transform: scale(0.94); }
+.big-soft-btn svg { width: 100%; height: 100%; filter: drop-shadow(0 4px 6px rgba(74, 60, 44, 0.25)); }
+
+.title-sub {
+  margin-top: 18px;
+  font-size: clamp(13px, 1.8vw, 16px);
+  color: var(--ink);
+  opacity: 0.85;
+}
+
+/* ---------- Stage ---------- */
+
+#stage-wrap { position: absolute; inset: 0; }
+#stage { width: 100%; height: 100%; display: block; }
+
+#scene-old, #scene-current { transition: opacity 1.3s ease; }
+.scene-hidden { opacity: 0; }
+
+/* Every interactive thing in the world */
+.tappable { cursor: pointer; }
+#stage g { outline: none; }   /* focus is shown via .hitring, never a browser box */
+.tappable:focus-visible .hitring { opacity: 0.9; }
+
+/* selection glow under a chosen character — soft, steady, no pulsing */
+.select-ring {
+  fill: none;
+  stroke: var(--coral);
+  stroke-width: 7;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+.selected .select-ring { opacity: 0.85; }
+
+/* focus ring for switch/keyboard users */
+.hitring {
+  fill: none;
+  stroke: var(--coral);
+  stroke-width: 5;
+  stroke-dasharray: 14 10;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+/* Idle shimmer: one slow soft pulse, ~2.8s period (far below any flash threshold) */
+@keyframes shimmer-soft {
+  0%, 100% { opacity: 0; }
+  50%      { opacity: 0.55; }
+}
+.shimmering .shimmer-halo { animation: shimmer-soft 2.8s ease-in-out infinite; }
+.shimmer-halo { opacity: 0; pointer-events: none; }
+body.big-shimmer .shimmer-halo { stroke-width: 26; }
+
+/* ---------- Gentle ambient motion (all slow, all soft) ---------- */
+
+@keyframes sway {
+  0%, 100% { transform: rotate(-1.6deg); }
+  50%      { transform: rotate(1.6deg); }
+}
+.sways { animation: sway 5s ease-in-out infinite; transform-box: fill-box; transform-origin: 50% 100%; }
+
+@keyframes drift {
+  from { transform: translateX(0); }
+  to   { transform: translateX(70px); }
+}
+.drifts { animation: drift 26s ease-in-out infinite alternate; }
+
+@keyframes bob {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-7px); }
+}
+.bobs { animation: bob 3.6s ease-in-out infinite; transform-box: fill-box; }
+
+@keyframes breathe {
+  0%, 100% { transform: scale(1); }
+  50%      { transform: scale(1.015); }
+}
+.breathes { animation: breathe 4.5s ease-in-out infinite; transform-box: fill-box; transform-origin: 50% 90%; }
+
+@keyframes tailwag {
+  0%, 100% { transform: rotate(-14deg); }
+  50%      { transform: rotate(16deg); }
+}
+.wagging { animation: tailwag 0.9s ease-in-out infinite; transform-box: fill-box; transform-origin: 10% 50%; }
+
+@keyframes flutter {
+  0%   { transform: translate(0, 0) rotate(0deg); }
+  25%  { transform: translate(26px, -20px) rotate(7deg); }
+  50%  { transform: translate(54px, -6px) rotate(-6deg); }
+  75%  { transform: translate(30px, 12px) rotate(5deg); }
+  100% { transform: translate(0, 0) rotate(0deg); }
+}
+.flutters { animation: flutter 9s ease-in-out infinite; transform-box: fill-box; }
+
+/* one-shot reaction animations */
+@keyframes hop {
+  0%, 100% { transform: translateY(0); }
+  40%      { transform: translateY(-26px); }
+}
+.hop-once { animation: hop 0.7s ease-in-out 1; transform-box: fill-box; }
+
+@keyframes wiggle {
+  0%, 100% { transform: rotate(0deg); }
+  30%      { transform: rotate(-5deg); }
+  70%      { transform: rotate(5deg); }
+}
+.wiggle-once { animation: wiggle 0.9s ease-in-out 1; transform-box: fill-box; transform-origin: 50% 85%; }
+
+@keyframes spin-once {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+.spin-once { animation: spin-once 1s ease-in-out 1; transform-box: fill-box; transform-origin: 50% 60%; }
+
+@keyframes fringe-shake {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-8deg); }
+  50% { transform: rotate(7deg); }
+  75% { transform: rotate(-5deg); }
+}
+.fringe-shake { animation: fringe-shake 1s ease-in-out 1; transform-box: fill-box; transform-origin: 50% 20%; }
+
+/* walking characters get a gentle rock */
+@keyframes walk-rock {
+  0%, 100% { transform: rotate(-1.6deg); }
+  50%      { transform: rotate(1.6deg); }
+}
+.walking .rocker { animation: walk-rock 0.55s ease-in-out infinite; transform-box: fill-box; transform-origin: 50% 92%; }
+
+/* character group position transitions (walks) are driven from JS via
+   transform with transition */
+.char-move { transition: transform 2.4s cubic-bezier(0.45, 0.05, 0.4, 1); }
+
+/* ---------- Bubbles (Will's phone symbols, Pearl's bill pictures) ---------- */
+
+#bubble-layer { position: absolute; inset: 0; pointer-events: none; z-index: 10; }
+
+.bubble {
+  position: absolute;
+  width: 118px; height: 118px;
+  background: var(--paper);
+  border: 4px solid rgba(74, 60, 44, 0.55);
+  border-radius: 28px;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 2px;
+  box-shadow: 0 6px 14px rgba(74, 60, 44, 0.18);
+  opacity: 0;
+  transform: translateY(14px) scale(0.9);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.bubble.shown { opacity: 1; transform: translateY(0) scale(1); }
+.bubble.leaving { opacity: 0; transform: translateY(-26px) scale(0.96); }
+.bubble svg { width: 62px; height: 62px; }
+.bubble .bubble-word {
+  font-size: 17px; font-weight: 700; color: var(--ink); letter-spacing: 0.02em;
+}
+.bubble.picture { width: 190px; height: 140px; border-radius: 22px; }
+.bubble.picture svg { width: 160px; height: 108px; }
+
+/* ---------- HUD ---------- */
+
+#hud {
+  position: absolute; top: max(12px, env(safe-area-inset-top)); right: max(12px, env(safe-area-inset-right));
+  display: flex; flex-direction: column; gap: 14px;
+  z-index: 20;
+}
+.hud-btn {
+  width: 76px; height: 76px;               /* >= 75pt targets */
+  border: none; cursor: pointer;
+  background: var(--paper);
+  border-radius: 24px;
+  box-shadow: 0 3px 8px rgba(74, 60, 44, 0.22);
+  padding: 10px;
+  transition: transform 0.35s ease;
+}
+.hud-btn:active { transform: scale(0.93); }
+.hud-btn svg { width: 100%; height: 100%; }
+.hud-btn.subtle { opacity: 0.62; }
+
+/* ---------- Overlays ---------- */
+
+.overlay {
+  position: absolute; inset: 0;
+  background: rgba(74, 60, 44, 0.35);
+  display: flex; align-items: center; justify-content: center;
+  z-index: 25;
+  opacity: 1;
+  transition: opacity 0.6s ease;
+}
+.overlay[hidden] { display: none; }
+
+.overlay-card {
+  position: relative;
+  background: var(--paper);
+  border-radius: 34px;
+  padding: 34px 38px 30px;
+  max-width: min(860px, 92vw);
+  max-height: 86vh;
+  overflow-y: auto;
+  box-shadow: 0 14px 40px rgba(74, 60, 44, 0.3);
+}
+.overlay-card h2 { font-size: 26px; margin-bottom: 20px; color: var(--ink); }
+
+.close-btn {
+  position: absolute; top: 14px; right: 14px;
+  width: 76px; height: 76px;
+  border: none; background: none; cursor: pointer;
+  border-radius: 22px;
+}
+.close-btn:active { background: rgba(74, 60, 44, 0.08); }
+.close-btn svg { width: 40px; height: 40px; }
+
+/* sticker grid */
+#sticker-grid, #map-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 18px;
+  min-width: min(640px, 78vw);
+}
+.sticker-slot {
+  aspect-ratio: 1;
+  background: var(--oat);
+  border-radius: 26px;
+  border: none;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  padding: 14px;
+  transition: transform 0.35s ease;
+}
+.sticker-slot:active { transform: scale(0.95); }
+.sticker-slot svg { width: 100%; height: 100%; }
+.sticker-slot.empty { opacity: 0.4; cursor: default; }
+.sticker-slot .slot-dash {
+  width: 62%; height: 62%; border: 4px dashed rgba(74, 60, 44, 0.35); border-radius: 20px;
+}
+
+.map-tile {
+  aspect-ratio: 4 / 3;
+  border: none; border-radius: 24px; overflow: hidden;
+  cursor: pointer; padding: 0;
+  background: var(--oat);
+  box-shadow: 0 3px 8px rgba(74, 60, 44, 0.16);
+  transition: transform 0.35s ease;
+}
+.map-tile:active { transform: scale(0.95); }
+.map-tile svg { width: 100%; height: 100%; display: block; }
+.map-tile.locked { opacity: 0.35; cursor: default; }
+
+/* grown-ups settings */
+.setting-row {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 26px;
+  padding: 13px 0;
+  min-width: min(520px, 74vw);
+}
+.setting-row label { font-size: 18px; font-weight: 600; }
+.setting-row input[type="range"] { width: 220px; height: 44px; accent-color: var(--coral); }
+.setting-row input[type="checkbox"] { width: 30px; height: 30px; accent-color: var(--coral); }
+.text-btn {
+  border: 3px solid var(--ink); background: none; color: var(--ink);
+  font-size: 17px; font-weight: 600;
+  padding: 13px 22px; border-radius: 18px; cursor: pointer;
+}
+.text-btn:active { background: rgba(74, 60, 44, 0.08); }
+.grownups-note {
+  margin-top: 20px; font-size: 14px; line-height: 1.6; opacity: 0.8; max-width: 480px;
+}
+
+/* ---------- Reduce motion: honour the system setting and the slider ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .sways, .drifts, .bobs, .breathes, .flutters, .wagging,
+  .walking .rocker, .shimmering .shimmer-halo { animation: none !important; }
+  .char-move { transition-duration: 0.9s; }
+}
+body.motion-minimal .sways, body.motion-minimal .drifts, body.motion-minimal .bobs,
+body.motion-minimal .breathes, body.motion-minimal .flutters,
+body.motion-minimal .walking .rocker { animation: none !important; }
+body.motion-gentle .sways   { animation-duration: 8s; }
+body.motion-gentle .drifts  { animation-duration: 40s; }
+body.motion-gentle .bobs    { animation-duration: 5.5s; }
+
+</style>
+</head>
+<body>
+<main id="app" aria-label="Will and the Missing Highland Cow">
+  <!-- Title screen -->
+  <div id="title-screen">
+    <div class="title-card">
+      <div id="title-art" aria-hidden="true"></div>
+      <h1>Will and the<br>Missing Highland Cow</h1>
+      <button id="btn-play" class="big-soft-btn" aria-label="Play">
+        <svg viewBox="0 0 60 60" aria-hidden="true"><circle cx="30" cy="30" r="28" fill="#E8896A"/><path d="M24 18 L44 30 L24 42 Z" fill="#FDF6EA"/></svg>
+      </button>
+      <p class="title-sub">A calm, cosy adventure. No reading needed, no time pressure, playable with one finger.</p>
+    </div>
+  </div>
+
+  <!-- Game stage -->
+  <div id="stage-wrap" hidden>
+    <svg id="stage" viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice" role="application"
+         aria-label="The farm. Tap a friend, then tap something in the world.">
+      <g id="scene-old"></g>
+      <g id="scene-current"></g>
+      <g id="fx-layer"></g>
+    </svg>
+
+    <!-- speech / symbol bubble layer -->
+    <div id="bubble-layer" aria-live="polite"></div>
+
+    <!-- corner UI -->
+    <div id="hud">
+      <button id="btn-stickers" class="hud-btn" aria-label="Sticker book" hidden>
+        <svg viewBox="0 0 64 64" aria-hidden="true">
+          <rect x="10" y="8" width="44" height="48" rx="6" fill="#FDF6EA" stroke="#8A6F4D" stroke-width="3"/>
+          <rect x="10" y="8" width="10" height="48" rx="4" fill="#C98A5B"/>
+          <circle cx="38" cy="26" r="8" fill="#E8B54A"/>
+          <path d="M30 44 q8 -8 16 0" stroke="#7FA37A" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+        </svg>
+      </button>
+      <button id="btn-map" class="hud-btn" aria-label="Farm map" hidden>
+        <svg viewBox="0 0 64 64" aria-hidden="true">
+          <path d="M12 16 L26 10 L40 16 L54 10 V46 L40 52 L26 46 L12 52 Z" fill="#FDF6EA" stroke="#8A6F4D" stroke-width="3" stroke-linejoin="round"/>
+          <path d="M20 38 Q30 24 44 20" stroke="#E8896A" stroke-width="3.5" fill="none" stroke-dasharray="1 7" stroke-linecap="round"/>
+        </svg>
+      </button>
+      <button id="btn-grownups" class="hud-btn subtle" aria-label="For grown-ups. Press and hold to open.">
+        <svg viewBox="0 0 64 64" aria-hidden="true">
+          <circle cx="32" cy="32" r="22" fill="none" stroke="#8A6F4D" stroke-width="3.5"/>
+          <circle cx="32" cy="25" r="7" fill="#8A6F4D"/>
+          <path d="M20 45 q12 -12 24 0" stroke="#8A6F4D" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Sticker book overlay -->
+  <div id="stickers-overlay" class="overlay" hidden>
+    <div class="overlay-card" role="dialog" aria-label="Sticker book">
+      <h2>Found things</h2>
+      <div id="sticker-grid"></div>
+      <button class="close-btn" data-close="stickers-overlay" aria-label="Close">
+        <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M14 14 L34 34 M34 14 L14 34" stroke="#8A6F4D" stroke-width="5" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Farm map overlay (free play) -->
+  <div id="map-overlay" class="overlay" hidden>
+    <div class="overlay-card" role="dialog" aria-label="Farm map">
+      <h2>Where shall we go?</h2>
+      <div id="map-grid"></div>
+      <button class="close-btn" data-close="map-overlay" aria-label="Close">
+        <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M14 14 L34 34 M34 14 L14 34" stroke="#8A6F4D" stroke-width="5" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Grown-ups overlay -->
+  <div id="grownups-overlay" class="overlay" hidden>
+    <div class="overlay-card" role="dialog" aria-label="For grown-ups">
+      <h2>For grown-ups</h2>
+      <div class="setting-row">
+        <label for="set-ambient">Background sounds</label>
+        <input type="range" id="set-ambient" min="0" max="100" value="55">
+      </div>
+      <div class="setting-row">
+        <label for="set-effects">Sound effects &amp; voice</label>
+        <input type="range" id="set-effects" min="0" max="100" value="80">
+      </div>
+      <div class="setting-row">
+        <label for="set-motion">Animation intensity</label>
+        <input type="range" id="set-motion" min="0" max="100" value="100">
+      </div>
+      <div class="setting-row">
+        <label for="set-shimmer">Larger shimmer cues</label>
+        <input type="checkbox" id="set-shimmer">
+      </div>
+      <div class="setting-row">
+        <button id="btn-restart" class="text-btn">Start the story again</button>
+      </div>
+      <p class="grownups-note">No ads. No notifications. No timers. Nothing to buy.<br>
+      Made for one particular young man on the Sunshine Coast, and for everyone who plays like he does.</p>
+      <button class="close-btn" data-close="grownups-overlay" aria-label="Close">
+        <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M14 14 L34 34 M34 14 L14 34" stroke="#8A6F4D" stroke-width="5" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+  </div>
+</main>
+
+<script>
+/* =========================================================================
+   Gentle sound. Everything synthesised quietly with WebAudio — naturalistic,
+   soft, never sudden. Two independent buses: ambient bed and effects/voice.
+   The whole game is fully playable with sound off.
+   ========================================================================= */
+
+const GameAudio = (() => {
+  let ctx = null;
+  let ambientGain = null;
+  let fxGain = null;
+  let ambientNodes = [];
+  let voice = null;
+
+  const settings = { ambient: 0.55, effects: 0.8 };
+
+  function ensure() {
+    if (ctx) return true;
+    try {
+      const AC = window.AudioContext || window.webkitAudioContext;
+      ctx = new AC();
+      ambientGain = ctx.createGain();
+      ambientGain.gain.value = settings.ambient * 0.14;
+      ambientGain.connect(ctx.destination);
+      fxGain = ctx.createGain();
+      fxGain.gain.value = settings.effects * 0.5;
+      fxGain.connect(ctx.destination);
+      return true;
+    } catch (e) { return false; }
+  }
+
+  function resume() {
+    if (!ensure()) return;
+    if (ctx.state === 'suspended') ctx.resume();
+    pickVoice();
+  }
+
+  function setAmbientLevel(v) {
+    settings.ambient = v;
+    if (ambientGain) ambientGain.gain.setTargetAtTime(v * 0.14, ctx.currentTime, 0.3);
+  }
+  function setEffectsLevel(v) {
+    settings.effects = v;
+    if (fxGain) fxGain.gain.setTargetAtTime(v * 0.5, ctx.currentTime, 0.3);
+  }
+
+  /* ---------- little synth helpers ---------- */
+
+  function tone(freq, dur, { type = 'sine', vol = 0.5, attack = 0.02, curve = null, out = null } = {}) {
+    if (!ctx) return;
+    const o = ctx.createOscillator();
+    const g = ctx.createGain();
+    o.type = type;
+    o.frequency.value = freq;
+    if (curve) o.frequency.setTargetAtTime(curve, ctx.currentTime + dur * 0.3, dur * 0.35);
+    g.gain.value = 0;
+    g.gain.setTargetAtTime(vol, ctx.currentTime, attack);
+    g.gain.setTargetAtTime(0, ctx.currentTime + dur * 0.55, dur * 0.28);
+    o.connect(g); g.connect(out || fxGain);
+    o.start();
+    o.stop(ctx.currentTime + dur + 0.5);
+  }
+
+  function noiseBurst(dur, { freq = 800, q = 1, vol = 0.4, attack = 0.01, out = null } = {}) {
+    if (!ctx) return;
+    const len = Math.max(1, Math.floor(ctx.sampleRate * (dur + 0.1)));
+    const buf = ctx.createBuffer(1, len, ctx.sampleRate);
+    const data = buf.getChannelData(0);
+    for (let i = 0; i < len; i++) data[i] = Math.random() * 2 - 1;
+    const src = ctx.createBufferSource();
+    src.buffer = buf;
+    const f = ctx.createBiquadFilter();
+    f.type = 'bandpass'; f.frequency.value = freq; f.Q.value = q;
+    const g = ctx.createGain();
+    g.gain.value = 0;
+    g.gain.setTargetAtTime(vol, ctx.currentTime, attack);
+    g.gain.setTargetAtTime(0, ctx.currentTime + dur * 0.5, dur * 0.3);
+    src.connect(f); f.connect(g); g.connect(out || fxGain);
+    src.start();
+    src.stop(ctx.currentTime + dur + 0.4);
+  }
+
+  /* ---------- effects vocabulary ---------- */
+
+  const fx = {
+    // a real, unhurried highland-cow low
+    cowLow() {
+      tone(96, 1.5, { type: 'triangle', vol: 0.5, attack: 0.12, curve: 72 });
+      tone(192, 1.3, { type: 'sine', vol: 0.18, attack: 0.12, curve: 150 });
+    },
+    cowLowBig() {
+      tone(82, 1.9, { type: 'triangle', vol: 0.55, attack: 0.14, curve: 62 });
+      tone(164, 1.6, { type: 'sine', vol: 0.2, attack: 0.14, curve: 128 });
+    },
+    // one soft officious bark
+    bark() {
+      noiseBurst(0.09, { freq: 900, q: 2.5, vol: 0.5, attack: 0.005 });
+      tone(340, 0.12, { type: 'square', vol: 0.12, attack: 0.005, curve: 220 });
+    },
+    barkBark() {
+      fx.bark();
+      setTimeout(() => fx.bark(), 260);
+    },
+    // pelican bill-clap: two woody clicks
+    billClap() {
+      noiseBurst(0.05, { freq: 1600, q: 6, vol: 0.45, attack: 0.002 });
+      setTimeout(() => noiseBurst(0.05, { freq: 1250, q: 6, vol: 0.4, attack: 0.002 }), 150);
+    },
+    wingbeat() {
+      noiseBurst(0.35, { freq: 320, q: 0.8, vol: 0.28, attack: 0.06 });
+    },
+    // water: a gentle splash / paddle
+    splash() {
+      noiseBurst(0.45, { freq: 1900, q: 0.7, vol: 0.3, attack: 0.02 });
+      noiseBurst(0.6, { freq: 650, q: 0.9, vol: 0.22, attack: 0.05 });
+    },
+    // Will's phone: one soft click
+    phoneClick() {
+      noiseBurst(0.03, { freq: 2300, q: 8, vol: 0.3, attack: 0.002 });
+    },
+    // sticker found: two soft marimba notes
+    found() {
+      tone(523, 0.5, { type: 'sine', vol: 0.3, attack: 0.01 });
+      setTimeout(() => tone(784, 0.8, { type: 'sine', vol: 0.3, attack: 0.01 }), 190);
+    },
+    // gate / wooden creak
+    gate() {
+      tone(180, 0.6, { type: 'triangle', vol: 0.16, attack: 0.05, curve: 240 });
+      noiseBurst(0.3, { freq: 500, q: 3, vol: 0.14, attack: 0.04 });
+    },
+    // Ella's branch landing: one satisfying, unhurried thump
+    thump() {
+      tone(58, 0.7, { type: 'sine', vol: 0.65, attack: 0.005, curve: 40 });
+      noiseBurst(0.12, { freq: 240, q: 1.4, vol: 0.3, attack: 0.005 });
+    },
+    // small birds scattering
+    birds() {
+      [0, 120, 230, 380, 520].forEach((d, i) =>
+        setTimeout(() => tone(1900 + i * 260, 0.12, { type: 'sine', vol: 0.1, attack: 0.01, curve: 2500 + i * 200 }), d));
+    },
+    // apple / soft object drop
+    plop() {
+      tone(300, 0.18, { type: 'sine', vol: 0.3, attack: 0.005, curve: 130 });
+    },
+    // hoofstep on grass
+    step() {
+      noiseBurst(0.07, { freq: 380, q: 1.2, vol: 0.12, attack: 0.008 });
+    },
+    // brush stroke through a shaggy coat
+    brush() {
+      noiseBurst(0.3, { freq: 1050, q: 0.8, vol: 0.2, attack: 0.05 });
+    },
+    // stone hop
+    stone() {
+      noiseBurst(0.06, { freq: 700, q: 4, vol: 0.3, attack: 0.004 });
+    },
+    // butterfly / tiny sparkle (very soft)
+    tinkle() {
+      tone(1568, 0.35, { type: 'sine', vol: 0.12, attack: 0.01 });
+    },
+    // page turn for the book / map
+    page() {
+      noiseBurst(0.22, { freq: 1400, q: 0.9, vol: 0.2, attack: 0.03 });
+    },
+    // a happy contented dog wag (little pant)
+    wag() {
+      noiseBurst(0.1, { freq: 1100, q: 1.5, vol: 0.16, attack: 0.02 });
+    },
+    // fist bump: tiny soft pat
+    bump() {
+      noiseBurst(0.05, { freq: 420, q: 2, vol: 0.3, attack: 0.003 });
+    },
+  };
+
+  function play(name) {
+    if (!ctx || !fx[name]) return;
+    fx[name]();
+  }
+
+  /* ---------- ambient beds ---------- */
+
+  function stopAmbient() {
+    ambientNodes.forEach(n => { try { n.stop ? n.stop() : n.disconnect(); } catch (e) {} });
+    ambientNodes = [];
+  }
+
+  // a very quiet looping filtered-noise bed: wind in grass / waves
+  function startAmbient(kind) {
+    if (!ctx) return;
+    stopAmbient();
+    const len = Math.floor(ctx.sampleRate * 4);
+    const buf = ctx.createBuffer(1, len, ctx.sampleRate);
+    const data = buf.getChannelData(0);
+    for (let i = 0; i < len; i++) data[i] = Math.random() * 2 - 1;
+    const src = ctx.createBufferSource();
+    src.buffer = buf; src.loop = true;
+    const f = ctx.createBiquadFilter();
+    f.type = 'lowpass';
+    f.frequency.value = kind === 'beach' ? 620 : kind === 'creek' ? 900 : 480;
+    const g = ctx.createGain();
+    g.gain.value = kind === 'beach' ? 1.0 : kind === 'creek' ? 0.8 : 0.55;
+    // slow swell LFO — one cycle every ~9 seconds, nothing like a flash
+    const lfo = ctx.createOscillator();
+    lfo.frequency.value = kind === 'beach' ? 0.11 : 0.07;
+    const lfoGain = ctx.createGain();
+    lfoGain.gain.value = kind === 'beach' ? 0.5 : 0.2;
+    lfo.connect(lfoGain); lfoGain.connect(g.gain);
+    src.connect(f); f.connect(g); g.connect(ambientGain);
+    src.start(); lfo.start();
+    ambientNodes = [src, lfo, g, f, lfoGain];
+  }
+
+  /* ---------- Will's voice: single soft AAC words ---------- */
+
+  function pickVoice() {
+    if (!('speechSynthesis' in window)) return;
+    const pick = () => {
+      const vs = window.speechSynthesis.getVoices();
+      voice = vs.find(v => v.lang === 'en-AU')
+           || vs.find(v => v.lang === 'en-GB')
+           || vs.find(v => v.lang && v.lang.startsWith('en'))
+           || null;
+    };
+    pick();
+    if (!voice) window.speechSynthesis.onvoiceschanged = pick;
+  }
+
+  function say(word) {
+    if (!('speechSynthesis' in window)) return;
+    if (settings.effects <= 0.02) return;
+    try {
+      window.speechSynthesis.cancel();
+      const u = new SpeechSynthesisUtterance(word);
+      if (voice) u.voice = voice;
+      u.rate = 0.82;
+      u.pitch = 1.0;
+      u.volume = Math.min(1, settings.effects);
+      window.speechSynthesis.speak(u);
+    } catch (e) {}
+  }
+
+  return { resume, play, say, startAmbient, stopAmbient, setAmbientLevel, setEffectsLevel };
+})();
+
+</script>
+<script>
+/* =========================================================================
+   Art — storybook SVG builders for the cast and props.
+   Every character is drawn with feet at local (0,0), centred on x=0,
+   facing RIGHT. The engine flips with scaleX(-1) to face left.
+
+   Canon rules honoured here:
+   - Will: Queen-spirit tee (small gold crown — private build), olive shorts,
+     tan boots, hands in pockets, slight head tilt, phone on a lanyard.
+   - Rocky: golden, wild fringe, one crooked horn, smug.
+   - Freddie: russet, tidier fringe, calm visible eyes, rounder and heavier.
+   - Cleo: honey-gold cocker spaniel, blue collar with round tag, in charge.
+   - Pearl: soft white, slate wings, banksia-yellow bill.
+   - Ella: charcoal + slate activewear, coral accent in every pose,
+     honey-brown hair tied back, headphones round neck, shaker bottle,
+     Will's head tilt.
+   ========================================================================= */
+
+const Art = (() => {
+  const C = {
+    paper: '#FBF3E4', paddock: '#8FB98B', paddockDeep: '#7CA878',
+    oat: '#E8D9BD', sandstone: '#E3CBA4', sky: '#BFD9E2', apricot: '#F2C29B',
+    sea: '#7FB5AE', seaDeep: '#6AA39C',
+    rocky: '#D9A441', rockyDark: '#B8863B', rockyLight: '#E8C27A',
+    freddie: '#9A6B4F', freddieDark: '#7E543D', freddieLight: '#B5876A',
+    cleo: '#DDB25E', cleoDark: '#C29A45', cleoBlue: '#4A7BA6',
+    pearl: '#F2EDE2', slate: '#6E7B86', slateDark: '#59646E', banksia: '#E0A93E',
+    charcoal: '#3D4248', olive: '#7A7D4E', tan: '#B98A5A', tanDark: '#9A7048',
+    coral: '#E8896A', night: '#39465C', ink: '#4A3C2C',
+    skin: '#E9B98D', hairWill: '#6B4E31', hairElla: '#A9784A',
+    wood: '#A9805A', woodDark: '#8A6746', leaf: '#6E9668', leafDark: '#5B8156',
+    appleRed: '#C96F5B', stone: '#B9AF9C', mud: '#8A6F55',
+  };
+
+  /* ---------------- characters ---------------- */
+
+  // Highland cow. kind: 'rocky' | 'freddie'
+  function cow(kind) {
+    const isRocky = kind === 'rocky';
+    const body = isRocky ? C.rocky : C.freddie;
+    const dark = isRocky ? C.rockyDark : C.freddieDark;
+    const light = isRocky ? C.rockyLight : C.freddieLight;
+    const w = isRocky ? 1 : 1.1;             // Freddie is rounder and heavier
+    // shaggy bottom edge of the coat
+    let shag = '';
+    for (let i = 0; i < 8; i++) {
+      const x = -108 * w + i * (27 * w);
+      shag += `<path d="M${x} -78 q${10 * w} 26 ${24 * w} 2 Z" style="fill:${body}"/>`;
+    }
+    const fringe = isRocky
+      // wild fringe: jagged strands every which way
+      ? `<g class="fringe">
+           <path d="M56 -196 q-14 -26 8 -34 q20 -10 34 6 q16 -12 30 2 q16 -10 26 6 q12 16 -4 26 q6 18 -12 22 q-40 12 -82 -28Z" style="fill:${dark}"/>
+           <path d="M66 -186 q4 22 -8 30 M92 -190 q8 20 -2 32 M118 -184 q10 16 2 28"
+                 style="stroke:${dark};stroke-width:9;fill:none;stroke-linecap:round"/>
+         </g>`
+      // tidy fringe: neat curtain, calm eyes visible below
+      : `<g class="fringe">
+           <path d="M60 -200 q42 -26 88 -2 q10 20 -6 28 q-38 14 -76 0 q-14 -10 -6 -26Z" style="fill:${dark}"/>
+           <path d="M74 -180 q4 14 -2 22 M96 -178 q4 14 0 22 M118 -178 q4 12 -2 20"
+                 style="stroke:${dark};stroke-width:8;fill:none;stroke-linecap:round"/>
+         </g>`;
+    const eyes = isRocky
+      ? `` // Rocky's eyes hide under the wild fringe (classic highland)
+      : `<circle cx="82" cy="-152" r="6" style="fill:${C.ink}"/>
+         <circle cx="116" cy="-152" r="6" style="fill:${C.ink}"/>`;
+    // classic highland horns: sweep out from the head, then curve up to a tip
+    const hornL = `M66 -192 C 30 -196, 8 -212, 6 -244 C 6 -252, 14 -254, 20 -248 C 32 -226, 48 -212, 74 -208 Z`;
+    const hornR = `M128 -192 C 164 -196, 186 -212, 188 -244 C 188 -252, 180 -254, 174 -248 C 162 -226, 146 -212, 120 -208 Z`;
+    const horns = isRocky
+      // one crooked horn (his right, our left) — canon
+      ? `<path d="${hornL}" style="fill:${C.oat};stroke:${C.tanDark};stroke-width:3" transform="rotate(-22 66 -192)"/>
+         <path d="${hornR}" style="fill:${C.oat};stroke:${C.tanDark};stroke-width:3"/>`
+      : `<path d="${hornL}" style="fill:${C.oat};stroke:${C.tanDark};stroke-width:3"/>
+         <path d="${hornR}" style="fill:${C.oat};stroke:${C.tanDark};stroke-width:3"/>`;
+    const ears = `
+      <ellipse cx="52" cy="-186" rx="16" ry="10" style="fill:${dark}" transform="rotate(-34 52 -186)"/>
+      <ellipse cx="142" cy="-186" rx="16" ry="10" style="fill:${dark}" transform="rotate(34 142 -186)"/>`;
+    const mouth = isRocky
+      ? `<path d="M88 -108 q12 9 24 0" style="stroke:${C.ink};stroke-width:4;fill:none;stroke-linecap:round"/>` // smug
+      : `<path d="M90 -106 q10 7 20 0" style="stroke:${C.ink};stroke-width:4;fill:none;stroke-linecap:round"/>`;
+    return `
+      <g class="rocker">
+        <ellipse class="select-ring" cx="0" cy="-4" rx="${135 * w}" ry="26"/>
+        <ellipse class="shimmer-halo" cx="0" cy="-110" rx="${150 * w}" ry="120"
+                 style="fill:none;stroke:${C.coral};stroke-width:14" />
+        <!-- legs -->
+        <rect x="${-96 * w}" y="-74" width="26" height="76" rx="12" style="fill:${dark}"/>
+        <rect x="${-46 * w}" y="-74" width="26" height="76" rx="12" style="fill:${dark}"/>
+        <rect x="${28 * w}" y="-74" width="26" height="76" rx="12" style="fill:${dark}"/>
+        <rect x="${74 * w}" y="-74" width="26" height="76" rx="12" style="fill:${dark}"/>
+        <!-- tail -->
+        <g class="tail">
+          <path d="M${-112 * w} -150 q-34 20 -26 62" style="stroke:${dark};stroke-width:12;fill:none;stroke-linecap:round"/>
+          <circle cx="${-140 * w}" cy="-84" r="16" style="fill:${dark}"/>
+        </g>
+        <!-- shaggy body -->
+        <g class="breathes">
+          <ellipse cx="0" cy="-138" rx="${118 * w}" ry="70" style="fill:${body}"/>
+          <path d="M${-110 * w} -170 q${40 * w} -34 ${110 * w} -30 q${70 * w} -6 ${104 * w} 28"
+                style="fill:none;stroke:${light};stroke-width:12;stroke-linecap:round"/>
+          ${shag}
+        </g>
+        <!-- head -->
+        <g class="head">
+          ${horns}
+          ${ears}
+          <circle cx="97" cy="-158" r="52" style="fill:${body}"/>
+          <ellipse cx="100" cy="-120" rx="34" ry="23" style="fill:${light}"/>
+          <!-- nostrils -->
+          <ellipse cx="88" cy="-124" rx="4" ry="6" style="fill:${dark}"/>
+          <ellipse cx="114" cy="-124" rx="4" ry="6" style="fill:${dark}"/>
+          ${mouth}
+          ${eyes}
+          ${fringe}
+        </g>
+      </g>`;
+  }
+
+  // Cleo the cocker spaniel — honey gold, blue collar, in charge of everyone
+  function cleo() {
+    return `
+      <g class="rocker">
+        <ellipse class="select-ring" cx="0" cy="-2" rx="86" ry="18"/>
+        <ellipse class="shimmer-halo" cx="0" cy="-58" rx="95" ry="70"
+                 style="fill:none;stroke:${C.coral};stroke-width:12"/>
+        <!-- tail: proud flag -->
+        <g class="tail">
+          <path d="M-62 -78 q-30 -22 -24 -46" style="stroke:${C.cleoDark};stroke-width:13;fill:none;stroke-linecap:round"/>
+        </g>
+        <!-- legs with feathering -->
+        <path d="M-46 -50 q-6 30 -2 48 l16 0 q4 -22 0 -46 Z" style="fill:${C.cleo}"/>
+        <path d="M26 -50 q-6 30 -2 48 l16 0 q4 -22 0 -46 Z" style="fill:${C.cleo}"/>
+        <!-- body -->
+        <g class="breathes">
+          <ellipse cx="-8" cy="-62" rx="62" ry="36" style="fill:${C.cleo}"/>
+          <path d="M-56 -46 q-10 18 -2 34 M-36 -42 q-8 18 -2 32 M40 -44 q8 16 4 30"
+                style="stroke:${C.cleoDark};stroke-width:7;fill:none;stroke-linecap:round"/>
+        </g>
+        <!-- head, held high -->
+        <g class="head">
+          <circle cx="48" cy="-104" r="32" style="fill:${C.cleo}"/>
+          <!-- long wavy spaniel ear -->
+          <path d="M24 -116 q-22 4 -24 40 q-2 26 12 34 q14 6 18 -12 q4 -30 2 -56Z" style="fill:${C.cleoDark}"/>
+          <!-- muzzle -->
+          <ellipse cx="74" cy="-94" rx="18" ry="13" style="fill:${C.rockyLight}"/>
+          <ellipse cx="84" cy="-98" rx="7" ry="6" style="fill:${C.ink}"/>
+          <circle cx="52" cy="-112" r="5" style="fill:${C.ink}"/>
+          <path d="M66 -86 q8 6 16 1" style="stroke:${C.ink};stroke-width:3.5;fill:none;stroke-linecap:round"/>
+          <!-- collar: blue, round gold tag, always visible -->
+          <path d="M22 -84 q26 14 52 2" style="stroke:${C.cleoBlue};stroke-width:10;fill:none;stroke-linecap:round"/>
+          <circle cx="50" cy="-72" r="8" style="fill:${C.banksia};stroke:${C.tanDark};stroke-width:2"/>
+        </g>
+      </g>`;
+  }
+
+  // Will — the boy who notices things. Feet at 0,0. ~185 tall.
+  function will() {
+    return `
+      <g class="rocker">
+        <ellipse class="select-ring" cx="0" cy="-2" rx="62" ry="15"/>
+        <ellipse class="shimmer-halo" cx="0" cy="-95" rx="70" ry="105"
+                 style="fill:none;stroke:${C.coral};stroke-width:12"/>
+        <!-- boots -->
+        <path d="M-24 -26 l0 18 q0 8 10 8 l12 0 0 -26Z" style="fill:${C.tan}"/>
+        <path d="M4 -26 l0 18 q0 8 10 8 l12 0 0 -26Z" style="fill:${C.tan}"/>
+        <!-- legs -->
+        <rect x="-22" y="-66" width="18" height="44" rx="8" style="fill:${C.skin}"/>
+        <rect x="6" y="-66" width="18" height="44" rx="8" style="fill:${C.skin}"/>
+        <!-- olive shorts -->
+        <path d="M-26 -104 l54 0 0 30 q0 8 -8 8 l-12 0 -6 -18 -6 18 -14 0 q-8 0 -8 -8Z" style="fill:${C.olive}"/>
+        <!-- black tee, arms relaxed, hands in pockets -->
+        <g class="torso">
+          <path d="M-26 -156 q26 -12 52 0 l6 54 -64 0Z" style="fill:${C.charcoal}"/>
+          <!-- arms down into pockets -->
+          <path d="M-26 -150 q-16 24 -8 52 q2 8 10 6" style="stroke:${C.charcoal};stroke-width:15;fill:none;stroke-linecap:round"/>
+          <path d="M26 -150 q16 24 8 52 q-2 8 -10 6" style="stroke:${C.charcoal};stroke-width:15;fill:none;stroke-linecap:round"/>
+          <!-- small gold crown on the tee (the band tee, Queen-spirit) -->
+          <path d="M-9 -136 l3 -8 4 6 4 -9 4 9 4 -6 3 8 q-11 5 -22 0Z" style="fill:${C.banksia}"/>
+          <!-- lanyard + phone: part of his silhouette, never remarked on -->
+          <path d="M-12 -158 q12 10 24 0 l-8 22 -8 0Z" style="fill:none;stroke:${C.slateDark};stroke-width:4"/>
+          <g class="phone">
+            <rect x="-11" y="-128" width="22" height="32" rx="5" style="fill:${C.slateDark}"/>
+            <rect x="-7.5" y="-124" width="15" height="22" rx="3" style="fill:${C.paper}"/>
+          </g>
+        </g>
+        <!-- head with the slight, characteristic tilt -->
+        <g class="head" transform="rotate(-6 0 -172)">
+          <circle cx="0" cy="-180" r="26" style="fill:${C.skin}"/>
+          <path d="M-26 -184 q2 -24 26 -24 q24 0 26 24 q-12 -12 -26 -10 q-14 -2 -26 10Z" style="fill:${C.hairWill}"/>
+          <circle cx="-8" cy="-180" r="3.2" style="fill:${C.ink}"/>
+          <circle cx="9" cy="-180" r="3.2" style="fill:${C.ink}"/>
+          <path d="M-6 -166 q6 5 13 0" style="stroke:${C.ink};stroke-width:3;fill:none;stroke-linecap:round"/>
+        </g>
+      </g>`;
+  }
+
+  // Ella — the twin who lifts things. pose: 'stand' | 'jog' | 'lift'
+  function ella(pose = 'stand') {
+    const arms = pose === 'lift'
+      ? `<path d="M-20 -150 q-14 -30 -6 -58" style="stroke:${C.charcoal};stroke-width:14;fill:none;stroke-linecap:round"/>
+         <path d="M20 -150 q14 -30 6 -58" style="stroke:${C.charcoal};stroke-width:14;fill:none;stroke-linecap:round"/>`
+      : pose === 'jog'
+      ? `<path d="M-20 -148 q-20 10 -16 34" style="stroke:${C.charcoal};stroke-width:14;fill:none;stroke-linecap:round"/>
+         <path d="M20 -148 q22 4 20 -26" style="stroke:${C.charcoal};stroke-width:14;fill:none;stroke-linecap:round"/>`
+      : `<path d="M-21 -148 q-14 26 -8 50" style="stroke:${C.charcoal};stroke-width:14;fill:none;stroke-linecap:round"/>
+         <path d="M21 -148 q14 26 8 50" style="stroke:${C.charcoal};stroke-width:14;fill:none;stroke-linecap:round"/>`;
+    const legs = pose === 'jog'
+      ? `<path d="M-12 -66 q-16 20 -14 40 l14 6 q8 -20 10 -44Z" style="fill:${C.slate}"/>
+         <path d="M12 -66 q14 16 26 22 l-4 14 q-22 -4 -34 -22Z" style="fill:${C.slate}"/>`
+      : `<rect x="-21" y="-70" width="18" height="50" rx="8" style="fill:${C.slate}"/>
+         <rect x="4" y="-70" width="18" height="50" rx="8" style="fill:${C.slate}"/>`;
+    const shoes = pose === 'jog'
+      ? `<g><path d="M-30 -22 l22 4 0 12 -24 0Z" style="fill:${C.pearl}"/><rect x="-30" y="-12" width="22" height="4" rx="2" style="fill:${C.coral}"/>
+         <path d="M30 -34 l8 20 -22 0 2 -16Z" style="fill:${C.pearl}"/><rect x="16" y="-18" width="20" height="4" rx="2" style="fill:${C.coral}" transform="rotate(14 26 -16)"/></g>`
+      : `<g><path d="M-24 -22 l0 14 q0 8 10 8 l12 0 0 -22Z" style="fill:${C.pearl}"/><rect x="-24" y="-8" width="22" height="5" rx="2.5" style="fill:${C.coral}"/>
+         <path d="M4 -22 l0 14 q0 8 10 8 l12 0 0 -22Z" style="fill:${C.pearl}"/><rect x="4" y="-8" width="22" height="5" rx="2.5" style="fill:${C.coral}"/></g>`;
+    return `
+      <g class="rocker">
+        <ellipse class="select-ring" cx="0" cy="-2" rx="62" ry="15"/>
+        <ellipse class="shimmer-halo" cx="0" cy="-100" rx="70" ry="108"
+                 style="fill:none;stroke:${C.coral};stroke-width:12"/>
+        ${shoes}
+        ${legs}
+        <!-- slate shorts over leggings -->
+        <path d="M-24 -104 l48 0 0 28 q0 8 -8 8 l-10 0 -6 -16 -6 16 -10 0 q-8 0 -8 -8Z" style="fill:${C.slateDark}"/>
+        <!-- charcoal tank, strong shoulders -->
+        <g class="torso">
+          <path d="M-25 -158 q25 -14 50 0 l5 54 -60 0Z" style="fill:${C.charcoal}"/>
+          ${arms}
+          <!-- headphones resting round her neck -->
+          <path d="M-16 -152 q16 14 32 0" style="stroke:${C.slateDark};stroke-width:8;fill:none;stroke-linecap:round"/>
+          <circle cx="-17" cy="-150" r="7" style="fill:${C.slateDark}"/>
+          <circle cx="17" cy="-150" r="7" style="fill:${C.slateDark}"/>
+          <!-- shaker bottle clipped at the waist -->
+          <rect x="20" y="-112" width="14" height="24" rx="5" style="fill:${C.pearl};stroke:${C.slateDark};stroke-width:2.5"/>
+          <rect x="22" y="-116" width="10" height="6" rx="2" style="fill:${C.coral}"/>
+        </g>
+        <!-- head: Will's tilt, honey-brown hair tied back with a coral tie -->
+        <g class="head" transform="rotate(-6 0 -174)">
+          <circle cx="0" cy="-182" r="25" style="fill:${C.skin}"/>
+          <path d="M-25 -186 q2 -23 25 -23 q23 0 25 23 q-11 -11 -25 -9 q-14 -2 -25 9Z" style="fill:${C.hairElla}"/>
+          <path d="M-22 -196 q-16 8 -14 34 q-2 16 8 22 q6 -22 4 -40Z" style="fill:${C.hairElla}"/>
+          <circle cx="-24" cy="-176" r="4.5" style="fill:${C.coral}"/>
+          <circle cx="-8" cy="-182" r="3.2" style="fill:${C.ink}"/>
+          <circle cx="9" cy="-182" r="3.2" style="fill:${C.ink}"/>
+          <path d="M-6 -168 q6 5 13 0" style="stroke:${C.ink};stroke-width:3;fill:none;stroke-linecap:round"/>
+        </g>
+      </g>`;
+  }
+
+  // Pearl the pelican. pose: 'stand' | 'fly'
+  function pearl(pose = 'stand') {
+    if (pose === 'fly') {
+      return `
+        <g class="rocker">
+          <ellipse class="select-ring" cx="0" cy="10" rx="100" ry="18"/>
+          <ellipse class="shimmer-halo" cx="0" cy="-30" rx="120" ry="70"
+                   style="fill:none;stroke:${C.coral};stroke-width:12"/>
+          <ellipse cx="0" cy="-24" rx="52" ry="26" style="fill:${C.pearl}"/>
+          <path d="M-30 -34 q-70 -46 -118 -28 q34 40 96 42Z" style="fill:${C.slate}"/>
+          <path d="M18 -34 q56 -50 104 -40 q-22 44 -84 52Z" style="fill:${C.slate}"/>
+          <circle cx="52" cy="-44" r="20" style="fill:${C.pearl}"/>
+          <circle cx="58" cy="-48" r="3.6" style="fill:${C.ink}"/>
+          <path d="M66 -44 l58 8 q4 4 -2 8 l-56 -4 q-8 -4 0 -12Z" style="fill:${C.banksia}"/>
+        </g>`;
+    }
+    return `
+      <g class="rocker">
+        <ellipse class="select-ring" cx="0" cy="-2" rx="70" ry="15"/>
+        <ellipse class="shimmer-halo" cx="0" cy="-72" rx="82" ry="82"
+                 style="fill:none;stroke:${C.coral};stroke-width:12"/>
+        <!-- legs -->
+        <path d="M-12 -34 l-2 30 m-8 0 l18 0" style="stroke:${C.banksia};stroke-width:6;fill:none;stroke-linecap:round"/>
+        <path d="M14 -34 l2 30 m-8 0 l18 0" style="stroke:${C.banksia};stroke-width:6;fill:none;stroke-linecap:round"/>
+        <!-- body -->
+        <g class="breathes">
+          <path d="M-52 -66 q-4 -46 44 -50 q22 -2 30 12 q10 26 4 48 q-8 26 -44 24 q-32 -2 -34 -34Z" style="fill:${C.pearl}"/>
+          <!-- folded slate wing -->
+          <path d="M-46 -74 q30 -22 66 -8 q-4 30 -34 34 q-28 2 -32 -26Z" style="fill:${C.slate}"/>
+          <!-- tail -->
+          <path d="M-52 -60 q-18 2 -26 14 q14 8 28 2Z" style="fill:${C.slate}"/>
+        </g>
+        <!-- neck + head -->
+        <g class="head">
+          <path d="M10 -102 q-4 -26 10 -38" style="stroke:${C.pearl};stroke-width:20;fill:none;stroke-linecap:round"/>
+          <circle cx="22" cy="-142" r="19" style="fill:${C.pearl}"/>
+          <circle cx="28" cy="-146" r="3.6" style="fill:${C.ink}"/>
+          <!-- the famous bill, banksia yellow, with pouch -->
+          <g class="bill">
+            <path d="M36 -142 l66 10 q5 3 -1 7 l-64 -5 q-8 -5 -1 -12Z" style="fill:${C.banksia}"/>
+            <path d="M37 -130 l62 5 q-16 22 -44 12 q-16 -5 -18 -17Z" style="fill:#D89C64"/>
+          </g>
+        </g>
+      </g>`;
+  }
+
+  /* ---------------- props ---------------- */
+
+  function fence(width = 420, leanLastPanel = false) {
+    const posts = [];
+    const n = Math.round(width / 105);
+    for (let i = 0; i <= n; i++) {
+      const x = i * (width / n);
+      const lean = (leanLastPanel && i === n) ? ` transform="rotate(14 ${x} 0)"` : '';
+      posts.push(`<rect x="${x - 8}" y="-92" width="16" height="94" rx="6" style="fill:${C.wood}"${lean}/>`);
+    }
+    return `
+      <g>
+        <rect x="0" y="-74" width="${width}" height="12" rx="6" style="fill:${C.woodDark}"/>
+        <rect x="0" y="-40" width="${width}" height="12" rx="6" style="fill:${C.woodDark}"/>
+        ${posts.join('')}
+      </g>`;
+  }
+
+  // a gate that swings open (class .gate-leaf rotates around the left hinge)
+  function gate() {
+    return `
+      <g>
+        <rect x="-14" y="-104" width="18" height="106" rx="7" style="fill:${C.woodDark}"/>
+        <g class="gate-leaf" style="transform-box:fill-box;transform-origin:0% 50%;transition:transform 1.6s ease">
+          <rect x="6" y="-86" width="132" height="11" rx="5" style="fill:${C.wood}"/>
+          <rect x="6" y="-52" width="132" height="11" rx="5" style="fill:${C.wood}"/>
+          <rect x="6" y="-92" width="12" height="92" rx="5" style="fill:${C.wood}"/>
+          <rect x="126" y="-92" width="12" height="92" rx="5" style="fill:${C.wood}"/>
+          <path d="M12 -84 L130 -50 M12 -50 L130 -84" style="stroke:${C.wood};stroke-width:8;stroke-linecap:round"/>
+        </g>
+        <rect x="140" y="-104" width="18" height="106" rx="7" style="fill:${C.woodDark}"/>
+      </g>`;
+  }
+
+  function hoofprints(n = 3, dx = 52, dy = -8, rot = 0) {
+    let s = '';
+    for (let i = 0; i < n; i++) {
+      const x = i * dx, y = i * dy;
+      s += `<g transform="translate(${x} ${y}) rotate(${rot})" style="opacity:0.55">
+              <path d="M-8 0 a7 9 0 1 0 0.1 0Z M8 0 a7 9 0 1 0 0.1 0Z" style="fill:${C.mud}"/>
+            </g>`;
+    }
+    return `<g>${s}</g>`;
+  }
+
+  function bush(scale = 1) {
+    return `
+      <g transform="scale(${scale})">
+        <ellipse cx="0" cy="-34" rx="64" ry="40" style="fill:${C.leaf}"/>
+        <ellipse cx="-38" cy="-22" rx="36" ry="26" style="fill:${C.leafDark}"/>
+        <ellipse cx="40" cy="-24" rx="34" ry="25" style="fill:${C.leafDark}"/>
+        <circle cx="-12" cy="-52" r="6" style="fill:${C.coral};opacity:0.85"/>
+        <circle cx="22" cy="-40" r="5" style="fill:${C.coral};opacity:0.7"/>
+      </g>`;
+  }
+
+  function gumTree(scale = 1, withApples = false) {
+    const apples = withApples
+      ? `<g class="apples">
+           <circle class="apple" cx="-52" cy="-208" r="12" style="fill:${C.appleRed}"/>
+           <circle class="apple" cx="8" cy="-232" r="12" style="fill:${C.appleRed}"/>
+           <circle class="apple" cx="58" cy="-198" r="12" style="fill:${C.appleRed}"/>
+           <circle class="apple" cx="-14" cy="-186" r="11" style="fill:${C.appleRed}"/>
+         </g>`
+      : '';
+    return `
+      <g transform="scale(${scale})">
+        <path d="M-12 0 q-8 -80 -4 -150 l32 0 q6 70 -4 150Z" style="fill:${C.wood}"/>
+        <path d="M0 -140 q-30 -20 -66 -14 M4 -150 q30 -24 68 -16" style="stroke:${C.wood};stroke-width:14;fill:none;stroke-linecap:round"/>
+        <g class="sways">
+          <ellipse cx="-58" cy="-196" rx="58" ry="44" style="fill:${C.leaf}"/>
+          <ellipse cx="52" cy="-206" rx="62" ry="48" style="fill:${C.leafDark}"/>
+          <ellipse cx="-4" cy="-238" rx="66" ry="48" style="fill:${C.leaf}"/>
+          ${apples}
+        </g>
+        <g class="birds">
+          <path class="bird" d="M-30 -260 q6 -8 12 0 q6 -8 12 0" style="stroke:${C.slateDark};stroke-width:3.5;fill:none;stroke-linecap:round"/>
+          <path class="bird" d="M26 -276 q6 -8 12 0 q6 -8 12 0" style="stroke:${C.slateDark};stroke-width:3.5;fill:none;stroke-linecap:round"/>
+        </g>
+      </g>`;
+  }
+
+  function cloud(scale = 1) {
+    return `
+      <g transform="scale(${scale})" style="opacity:0.9">
+        <ellipse cx="0" cy="0" rx="66" ry="26" style="fill:${C.paper}"/>
+        <ellipse cx="-34" cy="-14" rx="34" ry="20" style="fill:${C.paper}"/>
+        <ellipse cx="28" cy="-16" rx="40" ry="22" style="fill:${C.paper}"/>
+      </g>`;
+  }
+
+  function butterfly() {
+    return `
+      <g class="flutters">
+        <g transform="scale(1.7)">
+          <ellipse cx="-8" cy="-2" rx="10" ry="13" style="fill:${C.coral}" transform="rotate(-24 -8 -2)"/>
+          <ellipse cx="8" cy="-2" rx="10" ry="13" style="fill:${C.coral};opacity:0.8" transform="rotate(24 8 -2)"/>
+          <rect x="-2.5" y="-10" width="5" height="20" rx="2.5" style="fill:${C.ink}"/>
+          <path d="M-3 -10 q-5 -8 -9 -9 M3 -10 q5 -8 9 -9" style="stroke:${C.ink};stroke-width:2;fill:none;stroke-linecap:round"/>
+        </g>
+      </g>`;
+  }
+
+  function steppingStone(rx = 42) {
+    return `<ellipse cx="0" cy="0" rx="${rx}" ry="${rx * 0.42}" style="fill:${C.stone};stroke:${C.slateDark};stroke-width:3;opacity:0.95"/>`;
+  }
+
+  function gumBranch() {
+    return `
+      <g>
+        <path d="M-130 -10 q60 -34 260 -14 q30 4 20 20 q-140 22 -270 6 q-16 -6 -10 -12Z" style="fill:${C.woodDark}"/>
+        <path d="M-60 -22 q-16 -26 -4 -44 M60 -22 q20 -22 12 -44 M140 -14 q22 -14 24 -34"
+              style="stroke:${C.woodDark};stroke-width:11;fill:none;stroke-linecap:round"/>
+        <ellipse cx="-64" cy="-62" rx="22" ry="12" style="fill:${C.leafDark}" transform="rotate(-30 -64 -62)"/>
+        <ellipse cx="76" cy="-62" rx="22" ry="12" style="fill:${C.leaf}" transform="rotate(24 76 -62)"/>
+        <ellipse cx="168" cy="-46" rx="20" ry="11" style="fill:${C.leafDark}" transform="rotate(30 168 -46)"/>
+      </g>`;
+  }
+
+  function flowers(n = 5, spread = 150) {
+    let s = '';
+    const colors = [C.coral, C.banksia, C.pearl];
+    for (let i = 0; i < n; i++) {
+      const x = -spread / 2 + (spread / (n - 1)) * i;
+      const y = -6 - (i % 2) * 10;
+      const col = colors[i % 3];
+      // NOTE: the animated .sways group must not carry its own transform
+      // attribute (the CSS animation would override it) — so wrap it.
+      s += `<g transform="translate(${x} ${y})"><g class="sways">
+              <line x1="0" y1="0" x2="0" y2="-22" style="stroke:${C.leafDark};stroke-width:3.5"/>
+              <circle cx="0" cy="-27" r="9" style="fill:${col}"/>
+              <circle cx="0" cy="-27" r="3.5" style="fill:${C.paper}"/>
+            </g></g>`;
+    }
+    return `<g>${s}</g>`;
+  }
+
+  function grassTuft() {
+    return `
+      <g class="sways">
+        <path d="M0 0 q-8 -18 -4 -34 M0 0 q2 -20 10 -30 M0 0 q-14 -10 -22 -22"
+              style="stroke:${C.paddockDeep};stroke-width:5;fill:none;stroke-linecap:round"/>
+      </g>`;
+  }
+
+  function verandaHouse() {
+    return `
+      <g>
+        <rect x="0" y="-200" width="330" height="200" rx="6" style="fill:${C.oat}"/>
+        <path d="M-24 -200 L165 -292 L354 -200 Z" style="fill:${C.freddie}"/>
+        <rect x="36" y="-140" width="70" height="140" rx="4" style="fill:${C.woodDark}"/>
+        <rect x="150" y="-150" width="80" height="72" rx="6" style="fill:${C.sky};stroke:${C.woodDark};stroke-width:6"/>
+        <path d="M150 -114 l80 0 M190 -150 l0 72" style="stroke:${C.woodDark};stroke-width:5"/>
+        <rect x="-24" y="-208" width="378" height="14" rx="7" style="fill:${C.wood}"/>
+        <rect x="-14" y="-196" width="12" height="196" rx="5" style="fill:${C.wood}"/>
+        <rect x="346" y="-196" width="12" height="196" rx="5" style="fill:${C.wood}"/>
+      </g>`;
+  }
+
+  function sunGlow(cx, cy, r, color) {
+    return `
+      <g>
+        <circle cx="${cx}" cy="${cy}" r="${r * 1.7}" style="fill:${color};opacity:0.25"/>
+        <circle cx="${cx}" cy="${cy}" r="${r}" style="fill:${color};opacity:0.85"/>
+      </g>`;
+  }
+
+  function hill(x, y, rx, ry, color) {
+    return `<ellipse cx="${x}" cy="${y}" rx="${rx}" ry="${ry}" style="fill:${color}"/>`;
+  }
+
+  // simple outdoor gym for Ella's corner
+  function gym() {
+    return `
+      <g>
+        <rect x="-90" y="-14" width="180" height="14" rx="7" style="fill:${C.woodDark}"/>
+        <circle cx="-78" cy="-22" r="17" style="fill:${C.slateDark}"/>
+        <circle cx="78" cy="-22" r="17" style="fill:${C.slateDark}"/>
+        <rect x="-64" y="-26" width="128" height="9" rx="4.5" style="fill:${C.slate}"/>
+        <rect x="120" y="-70" width="12" height="70" rx="5" style="fill:${C.wood}"/>
+        <rect x="180" y="-70" width="12" height="70" rx="5" style="fill:${C.wood}"/>
+        <rect x="112" y="-74" width="88" height="10" rx="5" style="fill:${C.coral}"/>
+      </g>`;
+  }
+
+  function hayBale() {
+    return `
+      <g>
+        <ellipse cx="0" cy="-30" rx="34" ry="30" style="fill:${C.banksia}"/>
+        <ellipse cx="0" cy="-30" rx="20" ry="17" style="fill:none;stroke:${C.tanDark};stroke-width:4"/>
+        <ellipse cx="0" cy="-30" rx="8" ry="7" style="fill:none;stroke:${C.tanDark};stroke-width:3"/>
+      </g>`;
+  }
+
+  function pumpkin() {
+    return `
+      <g>
+        <ellipse cx="0" cy="-18" rx="26" ry="18" style="fill:${C.coral}"/>
+        <path d="M-10 -34 q0 16 0 16 M10 -34 q0 16 0 16" style="stroke:${C.tanDark};stroke-width:3;fill:none"/>
+        <rect x="-3" y="-42" width="6" height="10" rx="3" style="fill:${C.leafDark}"/>
+      </g>`;
+  }
+
+  /* ---------------- AAC symbols & bill-pictures & stickers ---------------- */
+
+  const symbols = {
+    go: `<svg viewBox="0 0 60 60"><circle cx="30" cy="30" r="26" fill="#8FB98B"/><path d="M20 30 h16 m-7 -9 l9 9 -9 9" stroke="#FBF3E4" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
+    look: `<svg viewBox="0 0 60 60"><circle cx="30" cy="30" r="26" fill="#4A7BA6"/><ellipse cx="30" cy="30" rx="16" ry="10" fill="#FBF3E4"/><circle cx="30" cy="30" r="5.5" fill="#3D4248"/></svg>`,
+    open: `<svg viewBox="0 0 60 60"><circle cx="30" cy="30" r="26" fill="#B98A5A"/><rect x="18" y="20" width="10" height="22" rx="2" fill="#FBF3E4"/><rect x="31" y="18" width="10" height="22" rx="2" fill="#FBF3E4" transform="rotate(18 31 18)"/></svg>`,
+    found: `<svg viewBox="0 0 60 60"><circle cx="30" cy="30" r="26" fill="#E8896A"/><path d="M30 42 C14 32 18 16 30 24 C42 16 46 32 30 42Z" fill="#FBF3E4"/></svg>`,
+    home: `<svg viewBox="0 0 60 60"><circle cx="30" cy="30" r="26" fill="#7A7D4E"/><path d="M16 32 L30 18 L44 32" stroke="#FBF3E4" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/><rect x="22" y="32" width="16" height="12" rx="2" fill="#FBF3E4"/></svg>`,
+    more: `<svg viewBox="0 0 60 60"><circle cx="30" cy="30" r="26" fill="#DDB25E"/><path d="M30 18 v24 M18 30 h24" stroke="#FBF3E4" stroke-width="6" stroke-linecap="round"/></svg>`,
+    help: `<svg viewBox="0 0 60 60"><circle cx="30" cy="30" r="26" fill="#6E7B86"/><path d="M22 26 q0 -10 9 -9 q8 1 7 9 q-1 6 -8 9 l0 4" stroke="#FBF3E4" stroke-width="5" fill="none" stroke-linecap="round"/><circle cx="30" cy="45" r="3" fill="#FBF3E4"/></svg>`,
+  };
+  const symbolWords = {
+    go: 'go', look: 'look', open: 'open', found: 'found you',
+    home: 'home', more: 'more', help: 'help',
+  };
+
+  // Pearl's bill-pictures — little visual news bulletins
+  const billPictures = {
+    // a golden tail disappearing over the dune
+    tailOverDune: `<svg viewBox="0 0 160 108">
+      <rect x="0" y="0" width="160" height="108" rx="10" fill="#BFD9E2"/>
+      <ellipse cx="80" cy="112" rx="110" ry="46" fill="#E3CBA4"/>
+      <path d="M96 62 q18 -18 8 -34 q22 8 12 36 q-6 10 -20 -2Z" fill="#D9A441"/>
+      <circle cx="118" cy="34" r="7" fill="#D9A441"/>
+      <path d="M20 84 q10 -6 20 0 M48 90 q10 -6 20 0" stroke="#B98A5A" stroke-width="3" fill="none" stroke-linecap="round"/>
+    </svg>`,
+    // a smug golden shape on the beach below
+    rockyOnBeach: `<svg viewBox="0 0 160 108">
+      <rect x="0" y="0" width="160" height="108" rx="10" fill="#BFD9E2"/>
+      <rect x="0" y="56" width="160" height="30" fill="#7FB5AE"/>
+      <rect x="0" y="80" width="160" height="28" fill="#E3CBA4"/>
+      <ellipse cx="80" cy="72" rx="30" ry="16" fill="#D9A441"/>
+      <circle cx="104" cy="62" r="12" fill="#D9A441"/>
+      <path d="M96 52 q-4 -8 4 -10 M112 52 q4 -8 -4 -10" stroke="#B8863B" stroke-width="4" fill="none" stroke-linecap="round"/>
+      <path d="M100 66 q5 4 10 0" stroke="#4A3C2C" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+    </svg>`,
+  };
+
+  // stickers — found things
+  const stickers = {
+    fluff: {
+      label: 'A tuft of golden fluff from the fence wire',
+      svg: `<svg viewBox="0 0 100 100"><circle cx="50" cy="52" r="26" fill="#E8C27A"/><path d="M30 40 q-12 -10 -6 -22 q12 2 14 14 M52 30 q0 -14 12 -18 q6 12 -4 20 M70 44 q12 -8 22 0 q-6 12 -18 8" fill="#D9A441"/></svg>`,
+    },
+    feather: {
+      label: "One of Pearl's soft feathers",
+      svg: `<svg viewBox="0 0 100 100"><path d="M50 88 q-26 -34 -8 -66 q10 -16 22 -6 q14 14 -2 44 q-6 16 -12 28Z" fill="#F2EDE2" stroke="#6E7B86" stroke-width="3"/><path d="M50 84 q2 -34 8 -58" stroke="#6E7B86" stroke-width="3" fill="none"/></svg>`,
+    },
+    apple: {
+      label: 'The one apple the birds missed',
+      svg: `<svg viewBox="0 0 100 100"><circle cx="50" cy="58" r="28" fill="#C96F5B"/><path d="M50 32 q-2 -12 6 -16" stroke="#8A6746" stroke-width="5" fill="none" stroke-linecap="round"/><ellipse cx="62" cy="24" rx="10" ry="6" fill="#6E9668" transform="rotate(24 62 24)"/></svg>`,
+    },
+    hairtie: {
+      label: "Ella's spare hair tie",
+      svg: `<svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="26" fill="none" stroke="#E8896A" stroke-width="12"/><circle cx="50" cy="50" r="26" fill="none" stroke="#D9764F" stroke-width="12" stroke-dasharray="14 20"/></svg>`,
+    },
+    shell: {
+      label: 'A shell from the beach where Rocky was found',
+      svg: `<svg viewBox="0 0 100 100"><path d="M50 84 L22 46 q28 -32 56 0 Z" fill="#E3CBA4" stroke="#B98A5A" stroke-width="3"/><path d="M50 82 L36 48 M50 82 L50 44 M50 82 L64 48" stroke="#B98A5A" stroke-width="3" fill="none"/></svg>`,
+    },
+  };
+
+  // title art: Rocky peeking over a fence
+  function titleArt() {
+    return `<svg viewBox="0 0 400 290" aria-hidden="true">
+      <ellipse cx="200" cy="278" rx="190" ry="22" fill="#8FB98B"/>
+      <g transform="translate(200 268) scale(0.86)">${cow('rocky')}</g>
+      <g transform="translate(10 282)">${fence(380, false)}</g>
+      <g transform="translate(48 40)">${butterfly()}</g>
+    </svg>`;
+  }
+
+  return {
+    C, cow, cleo, will, ella, pearl,
+    fence, gate, hoofprints, bush, gumTree, cloud, butterfly, steppingStone,
+    gumBranch, flowers, grassTuft, verandaHouse, sunGlow, hill, gym, hayBale, pumpkin,
+    symbols, symbolWords, billPictures, stickers, titleArt,
+  };
+})();
+
+</script>
+<script>
+/* =========================================================================
+   Engine — the two-tap grammar and the world's plumbing.
+
+   The whole game runs on one sentence: WHO, then WHAT.
+   - One tap always gets a response (a character reacts in place).
+   - Two taps make things happen in the world.
+   - Nothing requires dragging, gestures, speed, precision or holding.
+   - There is no way to do any of it wrong.
+   ========================================================================= */
+
+const Engine = (() => {
+  const SVGNS = 'http://www.w3.org/2000/svg';
+  const stage = () => document.getElementById('stage');
+  const layerCurrent = () => document.getElementById('scene-current');
+  const layerOld = () => document.getElementById('scene-old');
+
+  /* ---------------- save state ---------------- */
+
+  const SAVE_KEY = 'wills-farm-save-v1';
+  let save = {
+    sceneIndex: 0,          // progress through the story
+    storyDone: false,
+    stickers: [],
+    visited: ['farm'],
+    settings: { ambient: 55, effects: 80, motion: 100, bigShimmer: false },
+  };
+  try {
+    const raw = localStorage.getItem(SAVE_KEY);
+    if (raw) save = Object.assign(save, JSON.parse(raw));
+  } catch (e) {}
+
+  function persist() {
+    try { localStorage.setItem(SAVE_KEY, JSON.stringify(save)); } catch (e) {}
+  }
+
+  /* ---------------- runtime state ---------------- */
+
+  const state = {
+    selected: null,        // currently chosen character id
+    chars: {},             // id -> record
+    props: {},             // id -> record
+    pairs: {},             // 'who>what' -> async handler
+    busy: false,           // a scripted beat is playing
+    sceneId: null,
+    hintIds: [],           // scene's suggested shimmer order
+  };
+
+  /* ---------------- helpers ---------------- */
+
+  const wait = (ms) => new Promise(r => setTimeout(r, ms));
+
+  function gEl(cls, transform) {
+    const g = document.createElementNS(SVGNS, 'g');
+    if (cls) g.setAttribute('class', cls);
+    if (transform) g.setAttribute('transform', transform);
+    return g;
+  }
+
+  // play a one-shot CSS animation class on a node, remove it after
+  function animOnce(node, cls, dur = 1000) {
+    if (!node) return Promise.resolve();
+    node.classList.remove(cls);
+    void node.getBoundingClientRect(); // restart animation
+    node.classList.add(cls);
+    return wait(dur).then(() => node.classList.remove(cls));
+  }
+
+  // svg world point -> screen px (for HTML bubbles)
+  function toScreen(x, y) {
+    const s = stage();
+    const pt = s.createSVGPoint();
+    pt.x = x; pt.y = y;
+    const m = s.getScreenCTM();
+    if (!m) return { x: 0, y: 0 };
+    const sp = pt.matrixTransform(m);
+    return { x: sp.x, y: sp.y };
+  }
+
+  /* ---------------- entities ---------------- */
+
+  // Adds a character. svg faces RIGHT at scale 1, feet on (0,0).
+  function addChar(id, opts) {
+    const { svg, x, y, scale = 1, facing = 1, label, reactions = [] } = opts;
+    const outer = gEl('char-outer char-move tappable', `translate(${x} ${y})`);
+    outer.dataset.id = id;
+    outer.setAttribute('role', 'button');
+    outer.setAttribute('tabindex', '0');
+    outer.setAttribute('aria-label', label);
+    const flip = gEl('flip');
+    flip.setAttribute('transform', `scale(${scale * facing} ${scale})`);
+    flip.innerHTML = svg;
+    outer.appendChild(flip);
+    layerCurrent().appendChild(outer);
+    // forgiving hit area: the sprite's own bounds, generously padded —
+    // big enough to be easy (>= 75pt), tight enough not to steal a
+    // neighbour's tap
+    const bb = measureSprite(flip);
+    const pad = 18;
+    const rx = Math.max(65, bb.width / 2 + pad);
+    const ry = Math.max(65, bb.height / 2 + pad);
+    const hit = document.createElementNS(SVGNS, 'ellipse');
+    hit.setAttribute('cx', bb.x + bb.width / 2);
+    hit.setAttribute('cy', bb.y + bb.height / 2);
+    hit.setAttribute('rx', rx); hit.setAttribute('ry', ry);
+    hit.setAttribute('style', 'fill:transparent');
+    flip.appendChild(hit);
+    const ring = document.createElementNS(SVGNS, 'ellipse');
+    ring.setAttribute('class', 'hitring');
+    ring.setAttribute('cx', bb.x + bb.width / 2);
+    ring.setAttribute('cy', bb.y + bb.height / 2);
+    ring.setAttribute('rx', rx - 8); ring.setAttribute('ry', ry - 8);
+    flip.appendChild(ring);
+
+    const rec = { id, el: outer, flip, x, y, scale, facing, label, reactions, reactIx: 0,
+                  hitEl: hit, ringEl: ring };
+    state.chars[id] = rec;
+    bindTap(outer, () => onCharTap(id));
+    return rec;
+  }
+
+  // measure a sprite's bounds ignoring its decorative rings/halos, which
+  // are not part of the visible silhouette
+  function measureSprite(node) {
+    const deco = node.querySelectorAll('.shimmer-halo, .select-ring, .hitring');
+    deco.forEach(d => { d.style.display = 'none'; });
+    const bb = node.getBBox();
+    deco.forEach(d => { d.style.display = ''; });
+    return bb;
+  }
+
+  // Swap a character's pose (its .rocker group) and resize the hit area
+  // to the new silhouette — a landed pelican must not keep her flying
+  // wingspan's tap target.
+  function setPose(rec, svg) {
+    const rocker = rec.flip.querySelector('.rocker');
+    if (rocker) rocker.outerHTML = svg;
+    const fresh = rec.flip.querySelector('.rocker');
+    if (!fresh || !rec.hitEl) return;
+    const bb = measureSprite(fresh);
+    const pad = 18;
+    const rx = Math.max(65, bb.width / 2 + pad);
+    const ry = Math.max(65, bb.height / 2 + pad);
+    for (const [el, shrink] of [[rec.hitEl, 0], [rec.ringEl, 8]]) {
+      el.setAttribute('cx', bb.x + bb.width / 2);
+      el.setAttribute('cy', bb.y + bb.height / 2);
+      el.setAttribute('rx', rx - shrink); el.setAttribute('ry', ry - shrink);
+    }
+  }
+
+  function addProp(id, opts) {
+    const { svg, x, y, scale = 1, label, tappable = false, onTap = null, hitR = 90, layer = null } = opts;
+    const outer = gEl(tappable ? 'prop tappable' : 'prop', `translate(${x} ${y}) scale(${scale})`);
+    outer.dataset.id = id;
+    outer.innerHTML = svg;
+    if (tappable) {
+      outer.setAttribute('role', 'button');
+      outer.setAttribute('tabindex', '0');
+      outer.setAttribute('aria-label', label || id);
+      const hit = document.createElementNS(SVGNS, 'circle');
+      hit.setAttribute('cx', 0); hit.setAttribute('cy', -hitR * 0.5);
+      hit.setAttribute('r', hitR);
+      hit.setAttribute('style', 'fill:transparent');
+      outer.appendChild(hit);
+      const halo = document.createElementNS(SVGNS, 'circle');
+      halo.setAttribute('class', 'shimmer-halo');
+      halo.setAttribute('cx', 0); halo.setAttribute('cy', -hitR * 0.5);
+      halo.setAttribute('r', hitR * 0.85);
+      halo.setAttribute('style', `fill:none;stroke:${Art.C.coral};stroke-width:12`);
+      outer.appendChild(halo);
+      bindTap(outer, () => onPropTap(id));
+    }
+    (layer || layerCurrent()).appendChild(outer);
+    const rec = { id, el: outer, x, y, scale, label, onTap };
+    state.props[id] = rec;
+    return rec;
+  }
+
+  function bindTap(el, fn) {
+    el.addEventListener('pointerdown', (e) => { e.stopPropagation(); noteActivity(); fn(); });
+    el.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); noteActivity(); fn(); }
+    });
+  }
+
+  /* ---------------- the two-tap grammar ---------------- */
+
+  function selectChar(id) {
+    if (state.selected && state.chars[state.selected]) {
+      state.chars[state.selected].el.classList.remove('selected');
+    }
+    state.selected = id;
+    if (id && state.chars[id]) state.chars[id].el.classList.add('selected');
+  }
+
+  async function onCharTap(id) {
+    if (state.busy) return;
+    const rec = state.chars[id];
+    if (!rec) return;
+
+    // who-then-WHO: a selected friend can act on another friend
+    if (state.selected && state.selected !== id) {
+      const key = `${state.selected}>${id}`;
+      if (state.pairs[key]) {
+        state.busy = true;
+        try { await state.pairs[key](); } finally { state.busy = false; }
+        return;
+      }
+    }
+    selectChar(id);
+    // one tap always responds: cycle through randomised in-place reactions
+    if (rec.reactions.length) {
+      const ix = Math.floor(Math.random() * rec.reactions.length);
+      const r = rec.reactions[ix === rec.reactIx && rec.reactions.length > 1
+        ? (ix + 1) % rec.reactions.length : ix];
+      rec.reactIx = ix;
+      try { await r(rec); } catch (e) {}
+    }
+  }
+
+  async function onPropTap(id) {
+    if (state.busy) return;
+    const rec = state.props[id];
+    if (!rec) return;
+    if (state.selected) {
+      const key = `${state.selected}>${id}`;
+      if (state.pairs[key]) {
+        state.busy = true;
+        try { await state.pairs[key](); } finally { state.busy = false; }
+        return;
+      }
+    }
+    // prop touched on its own always responds too
+    if (rec.onTap) { try { await rec.onTap(rec); } catch (e) {} }
+    else animOnce(rec.el, 'wiggle-once', 900);
+  }
+
+  function pair(key, fn) { state.pairs[key] = fn; }
+
+  /* ---------------- movement ---------------- */
+
+  function faceToward(rec, tx) {
+    const dir = tx >= rec.x ? 1 : -1;
+    if (dir !== rec.facing) {
+      rec.facing = dir;
+      rec.flip.setAttribute('transform', `scale(${rec.scale * dir} ${rec.scale})`);
+    }
+  }
+
+  function walkTo(rec, tx, ty, dur = null) {
+    faceToward(rec, tx);
+    const dist = Math.hypot(tx - rec.x, ty - rec.y);
+    const t = dur || Math.max(0.9, Math.min(3.4, dist / 260));
+    rec.el.classList.add('walking');
+    rec.el.style.transitionDuration = `${t}s`;
+    rec.el.setAttribute('transform', `translate(${tx} ${ty})`);
+    rec.x = tx; rec.y = ty;
+    return wait(t * 1000 + 60).then(() => rec.el.classList.remove('walking'));
+  }
+
+  function placeAt(rec, tx, ty) {
+    rec.el.style.transitionDuration = '0s';
+    rec.el.setAttribute('transform', `translate(${tx} ${ty})`);
+    rec.x = tx; rec.y = ty;
+    void rec.el.getBoundingClientRect();
+    rec.el.style.transitionDuration = '';
+  }
+
+  /* ---------------- bubbles: symbols and bill-pictures ---------------- */
+
+  function showBubble(worldX, worldY, html, { word = null, dur = 2600, picture = false } = {}) {
+    const layer = document.getElementById('bubble-layer');
+    const p = toScreen(worldX, worldY);
+    const b = document.createElement('div');
+    b.className = 'bubble' + (picture ? ' picture' : '');
+    b.innerHTML = html + (word ? `<span class="bubble-word">${word}</span>` : '');
+    b.style.left = `${p.x - (picture ? 95 : 59)}px`;
+    b.style.top = `${p.y - (picture ? 170 : 150)}px`;
+    layer.appendChild(b);
+    requestAnimationFrame(() => b.classList.add('shown'));
+    return wait(dur).then(() => {
+      b.classList.add('leaving');
+      return wait(700).then(() => b.remove());
+    });
+  }
+
+  // Will speaks: soft click, symbol floats up from the phone, gentle voice
+  function willSays(symbolKey) {
+    const w = state.chars.will;
+    if (!w) return Promise.resolve();
+    GameAudio.play('phoneClick');
+    const word = Art.symbolWords[symbolKey] || symbolKey;
+    GameAudio.say(word);
+    const phone = w.el.querySelector('.phone');
+    if (phone) animOnce(phone, 'hop-once', 700);
+    return showBubble(w.x, w.y - 190 * w.scale, Art.symbols[symbolKey], { word });
+  }
+
+  // Pearl delivers news: bill opens, a small picture floats out
+  function pearlShows(pictureKey) {
+    const p = state.chars.pearl;
+    if (!p) return Promise.resolve();
+    GameAudio.play('billClap');
+    const bill = p.el.querySelector('.bill');
+    if (bill) animOnce(bill, 'wiggle-once', 900);
+    return showBubble(p.x, p.y - 160 * p.scale, Art.billPictures[pictureKey], { dur: 3600, picture: true });
+  }
+
+  /* ---------------- stickers ---------------- */
+
+  function hasSticker(key) { return save.stickers.includes(key); }
+
+  async function awardSticker(key, worldX, worldY) {
+    if (hasSticker(key)) return;
+    save.stickers.push(key);
+    persist();
+    GameAudio.play('found');
+    const st = Art.stickers[key];
+    await showBubble(worldX, worldY, st.svg, { dur: 2200 });
+    document.getElementById('btn-stickers').hidden = false;
+  }
+
+  /* ---------------- idle shimmer (never nags) ---------------- */
+
+  let idleTimer = null;
+  let shimmerNode = null;
+
+  function noteActivity() {
+    if (shimmerNode) { shimmerNode.classList.remove('shimmering'); shimmerNode = null; }
+    if (idleTimer) clearTimeout(idleTimer);
+    idleTimer = setTimeout(idleShimmer, 10000);
+  }
+
+  function idleShimmer() {
+    if (state.busy) { noteActivity(); return; }
+    // prefer the scene's own gentle hint, else any tappable thing
+    let target = null;
+    for (const id of state.hintIds) {
+      const r = state.props[id] || state.chars[id];
+      if (r && r.el.isConnected) { target = r.el; break; }
+    }
+    if (!target) {
+      const all = [...Object.values(state.chars), ...Object.values(state.props)]
+        .filter(r => r.el.classList.contains('tappable') && r.el.isConnected);
+      if (all.length) target = all[Math.floor(Math.random() * all.length)].el;
+    }
+    if (target) {
+      shimmerNode = target;
+      target.classList.add('shimmering');
+      setTimeout(() => { if (shimmerNode === target) target.classList.remove('shimmering'); }, 6000);
+    }
+    idleTimer = setTimeout(idleShimmer, 14000);
+  }
+
+  /* ---------------- scenes ---------------- */
+
+  const sceneRegistry = {};
+  function registerScene(id, def) { sceneRegistry[id] = def; }
+
+  async function loadScene(id, params = {}) {
+    const def = sceneRegistry[id];
+    if (!def) return;
+    state.busy = true;
+
+    // slow cross-fade, >= 1s — a hard rule
+    const oldLayer = layerOld();
+    const curLayer = layerCurrent();
+    oldLayer.innerHTML = '';
+    while (curLayer.firstChild) oldLayer.appendChild(curLayer.firstChild);
+    oldLayer.classList.remove('scene-hidden');
+    curLayer.classList.add('scene-hidden');
+
+    // reset registries
+    state.chars = {}; state.props = {}; state.pairs = {}; state.hintIds = [];
+    selectChar(null);
+    state.sceneId = id;
+    document.getElementById('bubble-layer').innerHTML = '';
+
+    if (!save.visited.includes(id)) { save.visited.push(id); persist(); }
+
+    await def.build(params);      // scene builds into layerCurrent
+
+    requestAnimationFrame(() => {
+      curLayer.classList.remove('scene-hidden');
+      oldLayer.classList.add('scene-hidden');
+    });
+    await wait(1350);
+    oldLayer.innerHTML = '';
+    state.busy = false;
+    noteActivity();
+    if (def.ambient) GameAudio.startAmbient(def.ambient);
+    if (def.intro) { state.busy = true; try { await def.intro(params); } finally { state.busy = false; } }
+  }
+
+  function setHints(ids) { state.hintIds = ids; }
+
+  function background(svgString) {
+    const g = gEl('scene-bg');
+    g.innerHTML = svgString;
+    layerCurrent().appendChild(g);
+    return g;
+  }
+
+  return {
+    save, persist, state, wait, animOnce, toScreen,
+    addChar, addProp, setPose, pair, selectChar, walkTo, placeAt, faceToward,
+    showBubble, willSays, pearlShows, awardSticker, hasSticker,
+    registerScene, loadScene, setHints, background, noteActivity,
+    gEl,
+  };
+})();
+
+</script>
+<script>
+/* =========================================================================
+   Scenes — the opening farm, the five-scene journey, and the open farm.
+
+   Every scene keeps the promises of the design doc:
+   - 5 to 9 interactive things, generously spaced.
+   - One tap always answers. Two taps (who, then what) move the world.
+   - Scenes complete when their small moment happens. Nothing can be
+     done wrong, and nobody is ever hurried.
+   ========================================================================= */
+
+const Scenes = (() => {
+  const E = Engine, A = Art, C = Art.C;
+  const wait = E.wait;
+
+  const ORDER = ['farm', 'paddock', 'creek', 'orchard', 'headland', 'beach'];
+
+  const SCENE_NAMES = {
+    farm: 'The farm', paddock: 'The paddock gate', creek: 'The creek',
+    orchard: 'The orchard', headland: 'The headland', beach: 'The beach',
+  };
+
+  /* ---------------- shared bits ---------------- */
+
+  function sky(top, bottom, groundColor, groundY = 640) {
+    const id = 'g' + Math.random().toString(36).slice(2, 8);
+    return `
+      <defs>
+        <linearGradient id="${id}" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="${top}"/>
+          <stop offset="1" stop-color="${bottom}"/>
+        </linearGradient>
+      </defs>
+      <rect x="-50" y="-50" width="1700" height="${groundY + 50}" fill="url(#${id})"/>
+      <rect x="-50" y="${groundY}" width="1700" height="${1000 - groundY + 50}" style="fill:${groundColor}"/>`;
+  }
+
+  function clouds() {
+    return `
+      <g class="drifts"><g transform="translate(280 150)">${A.cloud(1.1)}</g></g>
+      <g class="drifts" style="animation-duration:38s"><g transform="translate(1050 110)">${A.cloud(0.8)}</g></g>`;
+  }
+
+  // ---- standard reactions for the recurring cast ----
+
+  function willReactions() {
+    return [
+      async (rec) => { await E.willSays('look'); },
+      async (rec) => { // checks his phone, quietly pleased
+        const ph = rec.el.querySelector('.phone');
+        GameAudio.play('phoneClick');
+        await E.animOnce(ph, 'hop-once', 700);
+      },
+      async (rec) => { // his quietly pleased smile — a gentle sway
+        GameAudio.play('tinkle');
+        await E.animOnce(rec.el.querySelector('.head'), 'wiggle-once', 900);
+      },
+    ];
+  }
+
+  function cleoReactions() {
+    return [
+      async (rec) => { // a wag
+        GameAudio.play('wag');
+        const tail = rec.el.querySelector('.tail');
+        tail.classList.add('wagging');
+        await wait(1400);
+        tail.classList.remove('wagging');
+      },
+      async (rec) => { // a spin
+        GameAudio.play('bark');
+        await E.animOnce(rec.el.querySelector('.rocker'), 'spin-once', 1000);
+      },
+      async (rec) => { // an officious little bark at whoever is nearest
+        GameAudio.play('barkBark');
+        await E.animOnce(rec.el, 'hop-once', 700);
+      },
+    ];
+  }
+
+  function freddieReactions() {
+    let brushed = 0;
+    return [
+      async (rec) => { // a calm, contented low
+        GameAudio.play('cowLow');
+        await E.animOnce(rec.el.querySelector('.head'), 'wiggle-once', 1100);
+      },
+      async (rec) => { // loves being brushed — taps grow blissful
+        brushed++;
+        GameAudio.play('brush');
+        await E.animOnce(rec.el.querySelector('.fringe'), 'fringe-shake', 1000);
+        if (brushed % 3 === 0) { GameAudio.play('cowLow'); }
+      },
+      async (rec) => { // tail swish
+        GameAudio.play('step');
+        await E.animOnce(rec.el.querySelector('.tail'), 'wiggle-once', 900);
+      },
+    ];
+  }
+
+  function rockyReactions() {
+    return [
+      async (rec) => { // the big unrepentant low
+        GameAudio.play('cowLowBig');
+        await E.animOnce(rec.el.querySelector('.head'), 'wiggle-once', 1200);
+      },
+      async (rec) => { // shakes his fringe
+        GameAudio.play('brush');
+        await E.animOnce(rec.el.querySelector('.fringe'), 'fringe-shake', 1000);
+      },
+      async (rec) => { // licks the screen — the signature moment
+        GameAudio.play('splash');
+        await lickScreen();
+      },
+    ];
+  }
+
+  function pearlReactions() {
+    return [
+      async (rec) => { GameAudio.play('billClap'); await E.animOnce(rec.el.querySelector('.bill'), 'wiggle-once', 900); },
+      async (rec) => { GameAudio.play('wingbeat'); await E.animOnce(rec.el, 'hop-once', 700); },
+      async (rec) => { await E.animOnce(rec.el.querySelector('.head'), 'wiggle-once', 900); },
+    ];
+  }
+
+  // Rocky licks the screen: a big soft tongue sweeps up and away. Slow, silly.
+  async function lickScreen() {
+    const fx = document.getElementById('fx-layer');
+    const g = E.gEl('');
+    g.innerHTML = `<ellipse cx="800" cy="1400" rx="620" ry="480" style="fill:#E8A28A;opacity:0.92"/>
+                   <ellipse cx="800" cy="1400" rx="420" ry="330" style="fill:#EFB4A0;opacity:0.9"/>`;
+    g.style.transition = 'transform 1.1s ease-in-out';
+    fx.appendChild(g);
+    requestAnimationFrame(() => { g.style.transform = 'translateY(-720px)'; });
+    await wait(1100);
+    g.style.transition = 'transform 0.9s ease-in';
+    g.style.transform = 'translateY(300px)';
+    await wait(950);
+    g.remove();
+  }
+
+  // Freddie is always half a beat behind Will
+  function freddieFollows(delay = 900, offset = -230) {
+    const f = E.state.chars.freddie, w = E.state.chars.will;
+    if (!f || !w) return;
+    setTimeout(() => {
+      GameAudio.play('step');
+      E.walkTo(f, w.x + offset, Math.min(w.y + 12, 960));
+    }, delay);
+  }
+
+  // the way onward: a soft stone waymark; Cleo's look does the pointing
+  function addWaymark(x, y, goNext) {
+    const rec = E.addProp('waymark', {
+      x, y, label: 'The path onward', tappable: true, hitR: 100,
+      svg: `<ellipse cx="0" cy="0" rx="66" ry="26" style="fill:${C.sandstone};stroke:${C.tanDark};stroke-width:4"/>
+            <ellipse cx="0" cy="-3" rx="42" ry="14" style="fill:${C.oat}"/>`,
+      onTap: async () => { // tapping the path alone: Cleo shows the way
+        const cleo = E.state.chars.cleo;
+        if (cleo) {
+          GameAudio.play('bark');
+          await E.walkTo(cleo, x - 90, y - 6, 1.4);
+          E.faceToward(cleo, -9999); // looks back: well, come on then
+          GameAudio.play('barkBark');
+        }
+      },
+    });
+    E.pair('will>waymark', async () => {
+      const w = E.state.chars.will;
+      await E.willSays('go');
+      await E.walkTo(w, x, y - 8);
+      goNext();
+    });
+    E.setHints(['waymark']);
+    return rec;
+  }
+
+  function advanceFrom(id) {
+    const ix = ORDER.indexOf(id);
+    const nextId = ORDER[(ix + 1) % ORDER.length];
+    if (!E.save.storyDone) {
+      E.save.sceneIndex = Math.max(E.save.sceneIndex, ix + 1);
+      E.persist();
+    }
+    if (id === 'beach') {
+      E.loadScene('farm', { mode: E.save.storyDone ? 'freeplay' : 'ending' });
+    } else {
+      E.loadScene(nextId);
+    }
+  }
+
+  /* =========================================================
+     SCENE: the farm — opening, ending and open-farm free play
+     ========================================================= */
+
+  E.registerScene('farm', {
+    ambient: 'farm',
+    async build(params) {
+      const mode = params.mode
+        || (E.save.storyDone ? 'freeplay' : 'opening');
+
+      const apricot = mode === 'ending';
+      E.background(
+        sky(apricot ? '#E8B48C' : C.sky, apricot ? '#F2C29B' : '#D6E4DA', C.paddock, 620) +
+        A.sunGlow(apricot ? 320 : 1310, 170, 70, apricot ? '#EFA76B' : '#F2DDA4') +
+        clouds() +
+        `<g transform="translate(120 620)">${A.verandaHouse()}</g>
+         <g transform="translate(620 640)">${A.fence(560, !apricot && mode === 'opening')}</g>
+         <g transform="translate(${mode === 'opening' ? 700 : 880} 780)">${A.flowers(5, 180)}</g>
+         <g transform="translate(380 900)">${A.grassTuft()}</g>
+         <g transform="translate(1380 940)">${A.grassTuft()}</g>`
+      );
+
+      // Rocky's spot by the fence — empty in the opening
+      if (mode === 'opening') {
+        E.background(`
+          <ellipse cx="1010" cy="720" rx="120" ry="26" style="fill:${C.paddockDeep};opacity:0.7"/>
+          <g transform="translate(1080 740)">${A.hoofprints(4, 58, 4, 10)}</g>`);
+        E.addProp('hoofprints', {
+          x: 1150, y: 760, label: 'Hoofprints leading through the fence', tappable: true, hitR: 110,
+          svg: `<g style="opacity:0.001"><rect x="-100" y="-40" width="200" height="80"/></g>`,
+          onTap: async () => { await E.willSays('look'); },
+        });
+        E.addProp('butterfly', {
+          x: 1010, y: 660, label: 'A butterfly over Rocky’s empty spot', tappable: true, hitR: 80,
+          svg: A.butterfly(),
+          onTap: async (rec) => {
+            GameAudio.play('tinkle');
+            await E.animOnce(rec.el.querySelector('.flutters') || rec.el, 'hop-once', 700);
+          },
+        });
+      }
+
+      E.addProp('bush1', {
+        x: mode === 'opening' ? 480 : 700, y: 860, label: 'A bush', tappable: true, hitR: 95,
+        svg: A.bush(1),
+        onTap: async (rec) => { GameAudio.play('brush'); await E.animOnce(rec.el, 'wiggle-once', 900); },
+      });
+
+      const will = E.addChar('will', {
+        svg: A.will(), x: mode === 'opening' ? 430 : 510, y: 900, scale: 1.05,
+        label: 'Will', reactions: willReactions(),
+      });
+      E.addChar('cleo', {
+        svg: A.cleo(), x: 560, y: 920, scale: 0.95,
+        label: 'Cleo the dog', reactions: cleoReactions(),
+      });
+      E.addChar('freddie', {
+        svg: A.cow('freddie'), x: 820, y: 930, scale: 0.82, facing: -1,
+        label: 'Freddie the highland cow', reactions: freddieReactions(),
+      });
+
+      if (mode !== 'opening') {
+        // Rocky is home. All is well.
+        E.addChar('rocky', {
+          svg: A.cow('rocky'), x: 1120, y: 930, scale: 0.85, facing: -1,
+          label: 'Rocky the highland cow', reactions: rockyReactions(),
+        });
+        // Ella's corner: the little outdoor gym near the barn
+        E.background(`<g transform="translate(240 950)">${A.gym()}</g>`);
+        E.addProp('haybale', {
+          x: 90, y: 950, label: 'A hay bale', tappable: true, hitR: 80,
+          svg: A.hayBale(),
+          onTap: async (rec) => { GameAudio.play('thump'); await E.animOnce(rec.el, 'hop-once', 700); },
+        });
+        const ella = E.addChar('ella', {
+          svg: A.ella('stand'), x: 300, y: 900, scale: 1.02, facing: -1,
+          label: 'Ella', reactions: [
+            async (rec) => { // flexes with a wink
+              GameAudio.play('bump');
+              await E.animOnce(rec.el.querySelector('.torso'), 'wiggle-once', 900);
+            },
+            async (rec) => { // offers Will a high-five; he returns it
+              GameAudio.play('bump');
+              await E.animOnce(rec.el, 'hop-once', 700);
+              const w = E.state.chars.will;
+              if (w) await E.animOnce(w.el, 'hop-once', 700);
+            },
+            async (rec) => { // a slow, serene overhead press of whatever is nearest
+              E.setPose(rec, A.ella('lift'));
+              const nearHay = Math.random() > 0.18;
+              const lifted = E.gEl('');
+              lifted.innerHTML = nearHay ? A.hayBale() : A.pumpkin();
+              lifted.setAttribute('transform', 'translate(0 -215)');
+              rec.flip.appendChild(lifted);
+              GameAudio.play('thump');
+              await wait(2600);
+              lifted.remove();
+              E.setPose(rec, A.ella('stand'));
+              GameAudio.play('bump');
+            },
+          ],
+        });
+        // re-add ella hit bindings lost by outerHTML swaps? bindings are on outer group — safe.
+      }
+
+      // the gap in the fence — the call to adventure
+      if (mode === 'opening') {
+        E.addProp('gap', {
+          x: 1330, y: 900, label: 'The gap in the fence where the hoofprints lead', tappable: true, hitR: 120,
+          svg: `<g style="opacity:0.9">
+                  <ellipse cx="0" cy="6" rx="80" ry="22" style="fill:${C.paddockDeep};opacity:0.6"/>
+                  ${A.hoofprints(3, 46, -6, 8)}
+                </g>`,
+          onTap: async () => {
+            const cleo = E.state.chars.cleo;
+            if (cleo) {
+              GameAudio.play('bark');
+              await E.walkTo(cleo, 1240, 916, 1.4);
+              E.faceToward(cleo, -9999);
+              GameAudio.play('barkBark');
+            }
+          },
+        });
+        E.pair('will>gap', async () => {
+          await E.willSays('go');
+          await E.walkTo(will, 1310, 906);
+          freddieFollows(300);
+          await wait(700);
+          advanceFrom('farm');
+        });
+        E.setHints(['gap']);
+      } else {
+        addWaymark(1440, 930, () => E.loadScene('paddock'));
+      }
+
+      // friendly pairs available everywhere the cast is together
+      E.pair('freddie>will', async () => {
+        const f = E.state.chars.freddie, w = E.state.chars.will;
+        await E.walkTo(f, w.x - 150, w.y + 16);
+        GameAudio.play('cowLow');
+        await E.animOnce(f.el.querySelector('.rocker'), 'wiggle-once', 1100);
+      });
+      E.pair('cleo>bush1', async () => {
+        const c = E.state.chars.cleo;
+        await E.walkTo(c, E.state.props.bush1.x + 20, 890);
+        GameAudio.play('brush');
+        await E.animOnce(E.state.props.bush1.el, 'wiggle-once', 900);
+        GameAudio.play('bark');
+      });
+    },
+
+    async intro(params) {
+      const mode = params.mode || (E.save.storyDone ? 'freeplay' : 'opening');
+      if (mode === 'opening' && E.save.sceneIndex === 0) {
+        // Cleo runs to the gap and looks back. That look is the whole call.
+        await wait(700);
+        const cleo = E.state.chars.cleo;
+        GameAudio.play('bark');
+        await E.walkTo(cleo, 1240, 916, 1.7);
+        E.faceToward(cleo, -9999);
+        GameAudio.play('barkBark');
+      } else if (mode === 'ending') {
+        // everyone walks home together as the light turns apricot
+        const { will, cleo, freddie, rocky } = E.state.chars;
+        E.placeAt(will, 1700, 900); E.placeAt(cleo, 1820, 920);
+        E.placeAt(freddie, 1960, 930); if (rocky) E.placeAt(rocky, 2100, 930);
+        await wait(400);
+        E.walkTo(will, 600, 900, 4);
+        setTimeout(() => E.walkTo(cleo, 520, 920, 4), 500);
+        setTimeout(() => E.walkTo(freddie, 860, 930, 4.4), 900);
+        if (rocky) setTimeout(() => E.walkTo(rocky, 1120, 930, 4.6), 1300);
+        await wait(4600);
+        await E.willSays('home');
+        GameAudio.play('cowLowBig');
+        if (!E.save.storyDone) {
+          E.save.storyDone = true;
+          E.persist();
+          document.getElementById('btn-map').hidden = false;
+        }
+      }
+    },
+  });
+
+  /* =========================================================
+     SCENE 1: the paddock gate
+     ========================================================= */
+
+  E.registerScene('paddock', {
+    ambient: 'farm',
+    async build() {
+      E.background(
+        sky(C.sky, '#D6E4DA', C.paddock, 600) +
+        A.sunGlow(1340, 150, 64, '#F2DDA4') +
+        clouds() +
+        A.hill(200, 620, 500, 110, C.paddockDeep) +
+        A.hill(1400, 640, 560, 130, '#86AF82') +
+        `<g transform="translate(360 700)">${A.fence(430)}</g>
+         <g transform="translate(300 850)">${A.flowers(4, 130)}</g>
+         <g transform="translate(1300 960)">${A.grassTuft()}</g>
+         <g transform="translate(150 940)">${A.grassTuft()}</g>
+         <g transform="translate(880 780)">${A.hoofprints(4, 66, 10, 14)}</g>`
+      );
+
+      // the gate
+      const gateRec = E.addProp('gate', {
+        x: 1020, y: 700, label: 'The paddock gate', tappable: true, hitR: 120,
+        svg: A.gate(),
+        onTap: async (rec) => { GameAudio.play('gate'); await E.animOnce(rec.el, 'wiggle-once', 900); },
+      });
+
+      // golden fluff caught on the wire — the first found thing
+      E.addProp('fluff', {
+        x: 950, y: 660, label: 'A tuft of golden fluff caught on the fence', tappable: true, hitR: 85,
+        svg: `<g class="sways">
+                <path d="M0 0 q-10 -14 -2 -26 q10 -8 18 2 q10 -6 12 8 q2 14 -12 16 q-12 4 -16 0Z" style="fill:${C.rockyLight};stroke:${C.rocky};stroke-width:3"/>
+              </g>`,
+        onTap: async (rec) => {
+          if (!E.hasSticker('fluff')) {
+            await E.willSays('found');
+            await E.awardSticker('fluff', 950, 660);
+            rec.el.style.transition = 'opacity 1s ease';
+            rec.el.style.opacity = '0';
+            setTimeout(() => rec.el.remove(), 1100);
+            maybeOpenWay();
+          } else {
+            GameAudio.play('tinkle');
+            await E.animOnce(rec.el, 'wiggle-once', 900);
+          }
+        },
+      });
+
+      E.addProp('bushP', {
+        x: 210, y: 800, label: 'A bush', tappable: true, hitR: 95,
+        svg: A.bush(0.9),
+        onTap: async (rec) => { GameAudio.play('brush'); await E.animOnce(rec.el, 'wiggle-once', 900); },
+      });
+
+      const will = E.addChar('will', {
+        svg: A.will(), x: 330, y: 920, scale: 1.05, label: 'Will', reactions: willReactions(),
+      });
+      E.addChar('cleo', {
+        svg: A.cleo(), x: 480, y: 940, scale: 0.95, label: 'Cleo the dog', reactions: cleoReactions(),
+      });
+      E.addChar('freddie', {
+        svg: A.cow('freddie'), x: 140, y: 950, scale: 0.85, label: 'Freddie the highland cow', reactions: freddieReactions(),
+      });
+
+      let gateOpen = false;
+      const maybeOpenWay = () => {
+        if (gateOpen && !E.state.props.waymark) {
+          addWaymark(1420, 940, () => advanceFrom('paddock'));
+        }
+      };
+
+      E.pair('will>gate', async () => {
+        await E.walkTo(will, 900, 930);
+        freddieFollows();
+        await E.willSays('open');
+        GameAudio.play('gate');
+        const leaf = gateRec.el.querySelector('.gate-leaf');
+        leaf.style.transform = 'rotate(-64deg)';
+        gateOpen = true;
+        await wait(1600);
+        maybeOpenWay();
+      });
+      E.pair('cleo>gate', async () => {
+        const c = E.state.chars.cleo;
+        await E.walkTo(c, 960, 950, 1.5);
+        GameAudio.play('barkBark');
+        await E.animOnce(c.el, 'hop-once', 700);
+      });
+      E.pair('will>fluff', async () => {
+        await E.walkTo(will, 880, 920);
+        freddieFollows();
+        await E.state.props.fluff.onTap(E.state.props.fluff);
+      });
+      E.pair('cleo>bushP', async () => {
+        const c = E.state.chars.cleo;
+        await E.walkTo(c, 260, 850, 1.4);
+        GameAudio.play('brush');
+        await E.animOnce(E.state.props.bushP.el, 'wiggle-once', 900);
+        GameAudio.play('bark');
+        // a clue flushed out: hoofprints appear
+        E.background(`<g transform="translate(330 880)">${A.hoofprints(3, 60, 6, 10)}</g>`);
+      });
+
+      E.setHints(['fluff', 'gate']);
+    },
+  });
+
+  /* =========================================================
+     SCENE 2: the creek
+     ========================================================= */
+
+  E.registerScene('creek', {
+    ambient: 'creek',
+    async build() {
+      E.background(
+        sky(C.sky, '#D9E6DE', C.paddock, 560) +
+        clouds() +
+        A.hill(300, 580, 520, 100, C.paddockDeep) +
+        // the creek: a soft teal band curving through
+        `<path d="M-50 700 Q 400 640 800 700 T 1650 690 L1650 850 Q 1200 900 800 850 T -50 860 Z" style="fill:${C.sea}"/>
+         <path d="M-50 730 Q 500 690 900 740 T 1650 730" style="fill:none;stroke:${C.paper};stroke-width:5;opacity:0.35"/>
+         <g transform="translate(180 680)">${A.grassTuft()}</g>
+         <g transform="translate(1430 970)">${A.grassTuft()}</g>
+         <g transform="translate(1240 660)">${A.flowers(3, 90)}</g>`
+      );
+
+      // muddy evidence: Rocky stopped for a drink and a magnificent roll
+      E.addProp('mud', {
+        x: 320, y: 660, label: 'A muddy patch where somebody had a lovely roll', tappable: true, hitR: 110,
+        svg: `<ellipse cx="0" cy="0" rx="105" ry="30" style="fill:${C.mud};opacity:0.85"/>
+              ${A.hoofprints(3, 54, -4, -8)}`,
+        onTap: async (rec) => {
+          GameAudio.play('splash');
+          await E.animOnce(rec.el, 'wiggle-once', 900);
+          await E.willSays('look');
+        },
+      });
+
+      // stepping stones
+      const stoneXs = [560, 730, 900, 1070];
+      stoneXs.forEach((sx, i) => {
+        E.addProp(`stone${i}`, {
+          x: sx, y: 790 - (i % 2) * 26, label: `Stepping stone ${i + 1}`, tappable: true, hitR: 85,
+          svg: A.steppingStone(46),
+          onTap: async (rec) => {
+            GameAudio.play('stone');
+            await E.animOnce(rec.el, 'hop-once', 700);
+            await hopAcross(i);
+          },
+        });
+      });
+
+      const will = E.addChar('will', {
+        svg: A.will(), x: 320, y: 940, scale: 1.05, label: 'Will', reactions: willReactions(),
+      });
+      E.addChar('cleo', {
+        svg: A.cleo(), x: 430, y: 950, scale: 0.95, label: 'Cleo the dog', reactions: cleoReactions(),
+      });
+      E.addChar('freddie', {
+        svg: A.cow('freddie'), x: 90, y: 960, scale: 0.85, label: 'Freddie the highland cow', reactions: freddieReactions(),
+      });
+
+      let hopped = -1, crossed = false;
+      async function hopAcross(uptoIx) {
+        if (crossed) return;
+        // Will hops stone to stone — any tapped stone carries him that far
+        for (let i = hopped + 1; i <= uptoIx; i++) {
+          const s = E.state.props[`stone${i}`];
+          GameAudio.play('stone');
+          await E.walkTo(will, s.x, s.y + 40, 1.0);
+          await E.animOnce(will.el.querySelector('.rocker'), 'hop-once', 700);
+          hopped = i;
+        }
+        if (hopped === stoneXs.length - 1) {
+          crossed = true;
+          GameAudio.play('splash');
+          await E.walkTo(will, 1260, 930, 1.4);
+          // Cleo splashes straight across, Freddie wades with dignity
+          const c = E.state.chars.cleo, f = E.state.chars.freddie;
+          E.walkTo(c, 1180, 950, 2.2).then(() => GameAudio.play('bark'));
+          setTimeout(() => { GameAudio.play('splash'); E.walkTo(f, 1050, 960, 3.2); }, 900);
+          await wait(1300);
+          await pearlArrives();
+        }
+      }
+
+      E.pair('will>stone0', () => hopAcross(0));
+      E.pair('will>stone1', () => hopAcross(1));
+      E.pair('will>stone2', () => hopAcross(2));
+      E.pair('will>stone3', () => hopAcross(3));
+      E.pair('will>mud', async () => {
+        await E.walkTo(will, 430, 700);
+        await E.willSays('look');
+        GameAudio.play('splash');
+      });
+      E.pair('cleo>mud', async () => {
+        const c = E.state.chars.cleo;
+        await E.walkTo(c, 400, 700, 1.4);
+        GameAudio.play('splash');
+        await E.animOnce(c.el.querySelector('.rocker'), 'spin-once', 1000);
+        GameAudio.play('barkBark');
+      });
+
+      async function pearlArrives() {
+        if (E.state.chars.pearl) return;
+        // Pearl glides in with her first bill-picture of news
+        const pearl = E.addChar('pearl', {
+          svg: A.pearl('fly'), x: 1900, y: 300, scale: 0.9, facing: -1,
+          label: 'Pearl the pelican', reactions: pearlReactions(),
+        });
+        GameAudio.play('wingbeat');
+        await E.walkTo(pearl, 1380, 820, 2.6);
+        E.setPose(pearl, A.pearl('stand'));
+        GameAudio.play('billClap');
+        await wait(400);
+        await E.pearlShows('tailOverDune');
+        // she leaves a soft feather behind
+        if (!E.hasSticker('feather')) {
+          E.addProp('featherDrop', {
+            x: 1330, y: 890, label: 'A soft pelican feather', tappable: true, hitR: 85,
+            svg: `<g class="sways"><path d="M0 0 q-14 -20 -4 -40 q8 -10 14 -2 q8 10 -2 28 q-4 8 -8 14Z"
+                    style="fill:${C.pearl};stroke:${C.slate};stroke-width:3"/></g>`,
+            onTap: async (rec) => {
+              await E.awardSticker('feather', 1330, 890);
+              rec.el.style.transition = 'opacity 1s ease'; rec.el.style.opacity = '0';
+              setTimeout(() => rec.el.remove(), 1100);
+            },
+          });
+        }
+        addWaymark(1500, 960, () => advanceFrom('creek'));
+      }
+
+      E.setHints(['stone0', 'mud']);
+    },
+  });
+
+  /* =========================================================
+     SCENE 3: the orchard
+     ========================================================= */
+
+  E.registerScene('orchard', {
+    ambient: 'farm',
+    async build() {
+      E.background(
+        sky(C.sky, '#DCE7D9', C.paddock, 620) +
+        clouds() +
+        A.hill(1400, 650, 540, 120, '#86AF82') +
+        // the trail leads toward the dunes: sand creeping in at right
+        `<path d="M1250 1000 Q1350 880 1650 850 L1650 1000Z" style="fill:${C.sandstone}"/>
+         <g transform="translate(1180 900)">${A.hoofprints(4, 62, 10, 18)}</g>
+         <g transform="translate(240 970)">${A.grassTuft()}</g>`
+      );
+
+      // evidence: nibbled low branches — apple cores on the grass
+      E.background(`
+        <g transform="translate(560 900)" style="opacity:0.8">
+          <path d="M-8 0 q-6 -18 8 -20 q12 2 8 20 q-4 8 -16 0Z" style="fill:${C.paper};stroke:${C.tanDark};stroke-width:2.5"/>
+        </g>
+        <g transform="translate(840 930)" style="opacity:0.8">
+          <path d="M-8 0 q-6 -18 8 -20 q12 2 8 20 q-4 8 -16 0Z" style="fill:${C.paper};stroke:${C.tanDark};stroke-width:2.5"/>
+        </g>`);
+
+      const treeXs = [430, 780, 1120];
+      let applesDropped = 0;
+      treeXs.forEach((tx, i) => {
+        E.addProp(`tree${i}`, {
+          x: tx, y: 840, scale: 1.15, label: 'An apple tree', tappable: true, hitR: 150,
+          svg: A.gumTree(1, true),
+          onTap: async (rec) => {
+            GameAudio.play('birds');
+            // birds scatter
+            rec.el.querySelectorAll('.bird').forEach((b, bi) => {
+              b.style.transition = 'transform 2.4s ease, opacity 2.4s ease';
+              b.style.transform = `translate(${(bi ? 1 : -1) * 260}px, -300px)`;
+              b.style.opacity = '0';
+              setTimeout(() => { b.style.transition = 'none'; b.style.transform = ''; b.style.opacity = ''; }, 6000);
+            });
+            await E.animOnce(rec.el.querySelector('.sways'), 'wiggle-once', 900);
+            // fruit drops
+            const apples = [...rec.el.querySelectorAll('.apple')].filter(a => !a.dataset.dropped);
+            if (apples.length) {
+              const a = apples[0];
+              a.dataset.dropped = '1';
+              a.style.transition = 'transform 1.2s cubic-bezier(0.3,0,0.7,1)';
+              a.style.transform = `translateY(${(940 - 840) / 1.15 + 208}px)`;
+              await wait(1200);
+              GameAudio.play('plop');
+              applesDropped++;
+              // Cleo attempts management
+              const c = E.state.chars.cleo;
+              if (c && applesDropped % 2 === 1) {
+                E.walkTo(c, tx + 90, 940, 1.6).then(() => GameAudio.play('barkBark'));
+              }
+              if (applesDropped >= 2 && !E.state.props.lostApple && !E.hasSticker('apple')) {
+                E.addProp('lostApple', {
+                  x: 660, y: 950, label: 'The one apple the birds missed', tappable: true, hitR: 80,
+                  svg: `<circle cx="0" cy="-12" r="15" style="fill:${C.appleRed}"/>
+                        <rect x="-2" y="-32" width="4" height="9" rx="2" style="fill:${C.woodDark}"/>`,
+                  onTap: async (rec2) => {
+                    await E.willSays('found');
+                    await E.awardSticker('apple', 660, 950);
+                    rec2.el.style.transition = 'opacity 1s ease'; rec2.el.style.opacity = '0';
+                    setTimeout(() => rec2.el.remove(), 1100);
+                    if (!E.state.props.waymark) addWaymark(1480, 940, () => advanceFrom('orchard'));
+                  },
+                });
+                E.setHints(['lostApple']);
+              }
+            }
+          },
+        });
+      });
+
+      const will = E.addChar('will', {
+        svg: A.will(), x: 310, y: 930, scale: 1.05, label: 'Will', reactions: willReactions(),
+      });
+      E.addChar('cleo', {
+        svg: A.cleo(), x: 380, y: 950, scale: 0.95, label: 'Cleo the dog', reactions: cleoReactions(),
+      });
+      E.addChar('freddie', {
+        svg: A.cow('freddie'), x: 60, y: 955, scale: 0.85, label: 'Freddie the highland cow', reactions: freddieReactions(),
+      });
+
+      treeXs.forEach((tx, i) => {
+        E.pair(`will>tree${i}`, async () => {
+          await E.walkTo(will, tx - 140, 935);
+          freddieFollows();
+          await E.state.props[`tree${i}`].onTap(E.state.props[`tree${i}`]);
+        });
+        E.pair(`cleo>tree${i}`, async () => {
+          const c = E.state.chars.cleo;
+          await E.walkTo(c, tx + 80, 945, 1.5);
+          GameAudio.play('barkBark');
+          await E.animOnce(c.el, 'hop-once', 700);
+          await E.state.props[`tree${i}`].onTap(E.state.props[`tree${i}`]);
+        });
+      });
+
+      // revisits: the way onward is already open if the apple was found before
+      if (E.hasSticker('apple') && !E.state.props.waymark) {
+        addWaymark(1480, 940, () => advanceFrom('orchard'));
+      }
+
+      E.setHints(['tree0', 'tree1', 'tree2']);
+    },
+  });
+
+  /* =========================================================
+     SCENE 4: the headland — wind, wildflowers, and Ella
+     ========================================================= */
+
+  E.registerScene('headland', {
+    ambient: 'headland',
+    async build() {
+      E.background(
+        sky('#B5D3DE', '#E4E9D8', C.paddock, 680) +
+        clouds() +
+        // the sea far below the cliff edge
+        `<rect x="1250" y="560" width="400" height="130" style="fill:${C.sea}"/>
+         <path d="M1250 560 L1650 560" style="stroke:${C.paper};stroke-width:4;opacity:0.4"/>
+         <path d="M1250 690 L1650 690 L1650 1000 L1380 1000 Q1300 840 1250 690Z" style="fill:${C.sandstone}"/>` +
+        `<g transform="translate(300 760)">${A.flowers(6, 260)}</g>
+         <g transform="translate(700 820)">${A.flowers(5, 200)}</g>
+         <g transform="translate(180 950)">${A.grassTuft()}</g>
+         <g transform="translate(1000 960)">${A.grassTuft()}</g>
+         <g transform="translate(1100 700)">${A.fence(180)}</g>`
+      );
+
+      // the fallen gum branch across the gate — the one thing two taps can't move
+      const branch = E.addProp('branch', {
+        x: 1180, y: 880, label: 'A big fallen gum branch across the track', tappable: true, hitR: 150,
+        svg: A.gumBranch(),
+        onTap: async () => { await branchAttempt('solo'); },
+      });
+
+      const will = E.addChar('will', {
+        svg: A.will(), x: 360, y: 930, scale: 1.05, label: 'Will', reactions: willReactions(),
+      });
+      const cleo = E.addChar('cleo', {
+        svg: A.cleo(), x: 470, y: 950, scale: 0.95, label: 'Cleo the dog', reactions: cleoReactions(),
+      });
+      const freddie = E.addChar('freddie', {
+        svg: A.cow('freddie'), x: 120, y: 955, scale: 0.85, label: 'Freddie the highland cow', reactions: freddieReactions(),
+      });
+
+      let attempts = 0, cameoDone = false, cameoRunning = false;
+
+      async function branchAttempt(who) {
+        if (cameoDone || cameoRunning) {
+          GameAudio.play('brush');
+          await E.animOnce(branch.el, 'wiggle-once', 900);
+          return;
+        }
+        attempts++;
+        if (attempts === 1) {
+          // Cleo barks at it, outraged
+          GameAudio.play('bark');
+          await E.walkTo(cleo, 1050, 950, 1.6);
+          GameAudio.play('barkBark');
+          await E.animOnce(cleo.el, 'hop-once', 700);
+          GameAudio.play('barkBark');
+        } else if (attempts === 2) {
+          // Freddie contemplates it
+          await E.walkTo(freddie, 960, 960, 2.2);
+          GameAudio.play('cowLow');
+          await E.animOnce(freddie.el.querySelector('.head'), 'wiggle-once', 1200);
+        } else {
+          await ellaCameo();
+        }
+      }
+
+      E.pair('will>branch', async () => {
+        await E.walkTo(will, 1000, 935);
+        await E.willSays('help');
+        await branchAttempt('will');
+      });
+      E.pair('cleo>branch', () => branchAttempt('cleo'));
+      E.pair('freddie>branch', () => branchAttempt('freddie'));
+
+      async function ellaCameo() {
+        if (cameoRunning || cameoDone) return;
+        cameoRunning = true;
+        E.setHints([]); // the branch stops being the gentle suggestion
+        const halo = branch.el.querySelector('.shimmer-halo');
+        if (halo) halo.remove();
+        branch.el.classList.remove('shimmering');
+        // Ella jogs into frame — she runs this track every morning
+        const ella = E.addChar('ella', {
+          svg: A.ella('jog'), x: -160, y: 940, scale: 1.02,
+          label: 'Ella', reactions: [
+            async (rec) => { GameAudio.play('bump'); await E.animOnce(rec.el, 'hop-once', 700); },
+          ],
+        });
+        await E.walkTo(ella, 1060, 935, 2.6);
+        E.setPose(ella, A.ella('lift'));
+        await wait(500);
+        // animate the branch's inner group — the outer group's transform
+        // attribute (its position) must not be overridden by a CSS transform
+        const wood = branch.el.firstElementChild;
+        // the branch goes up like a warm-up set…
+        wood.style.transition = 'transform 1.6s ease';
+        wood.style.transform = 'translate(0px, -190px)';
+        await wait(1700);
+        // …and is placed neatly off the path
+        wood.style.transition = 'transform 1.8s ease';
+        wood.style.transform = 'translate(240px, 60px) rotate(8deg)';
+        await wait(1850);
+        GameAudio.play('thump'); // her one sound: satisfying, unhurried
+        E.setPose(ella, A.ella('stand'));
+        // fist-bump with Will — no dialogue, one perfect character note
+        await E.walkTo(ella, will.x + 120, 935, 1.6);
+        GameAudio.play('bump');
+        await E.animOnce(ella.el, 'hop-once', 700);
+        await E.animOnce(will.el, 'hop-once', 700);
+        // Will's face afterwards is canon: "I knew it."
+        await E.animOnce(will.el.querySelector('.head'), 'wiggle-once', 900);
+        // and she jogs on
+        E.setPose(ella, A.ella('jog'));
+        await E.walkTo(ella, 1900, 930, 2.8);
+        ella.el.remove();
+        delete E.state.chars.ella;
+        cameoDone = true; cameoRunning = false;
+
+        // she leaves her spare hair tie where she stood
+        if (!E.hasSticker('hairtie')) {
+          E.addProp('hairtieDrop', {
+            x: 1060, y: 950, label: "Ella's spare hair tie", tappable: true, hitR: 80,
+            svg: `<circle cx="0" cy="-8" r="13" style="fill:none;stroke:${C.coral};stroke-width:7"/>`,
+            onTap: async (rec) => {
+              await E.awardSticker('hairtie', 1060, 950);
+              rec.el.style.transition = 'opacity 1s ease'; rec.el.style.opacity = '0';
+              setTimeout(() => rec.el.remove(), 1100);
+            },
+          });
+        }
+        await pearlNews();
+      }
+
+      async function pearlNews() {
+        // Pearl glides in and shows what she's seen on the beach below
+        const pearl = E.addChar('pearl', {
+          svg: A.pearl('fly'), x: 1900, y: 260, scale: 0.9, facing: -1,
+          label: 'Pearl the pelican', reactions: pearlReactions(),
+        });
+        GameAudio.play('wingbeat');
+        await E.walkTo(pearl, 800, 830, 2.6);
+        E.setPose(pearl, A.pearl('stand'));
+        GameAudio.play('billClap');
+        await wait(400);
+        await E.pearlShows('rockyOnBeach');
+        await E.willSays('go');
+        addWaymark(1330, 940, () => advanceFrom('headland'));
+      }
+
+      E.setHints(['branch']);
+    },
+  });
+
+  /* =========================================================
+     SCENE 5: the beach — the reunion
+     ========================================================= */
+
+  E.registerScene('beach', {
+    ambient: 'beach',
+    async build() {
+      E.background(
+        sky('#BFD9E2', '#E8D9BD', C.sandstone, 760) +
+        A.sunGlow(1290, 160, 66, '#F2DDA4') +
+        clouds() +
+        `<rect x="-50" y="560" width="1700" height="220" style="fill:${C.sea}"/>
+         <path d="M-50 560 L1650 560" style="stroke:${C.paper};stroke-width:5;opacity:0.4"/>
+         <path d="M-50 760 Q 400 738 800 760 T 1650 758 L1650 790 Q 1200 812 800 790 T -50 800 Z"
+               style="fill:${C.paper};opacity:0.5"/>`
+      );
+
+      // the water — tap it and Pearl dives for fish, forever, correctly
+      E.addProp('water', {
+        x: 500, y: 650, label: 'The sea. Tap it and Pearl dives for fish.', tappable: true, hitR: 160,
+        svg: `<g style="opacity:0.001"><rect x="-300" y="-90" width="600" height="180"/></g>`,
+        onTap: () => pearlDives(),
+      });
+
+      // shells on the sand
+      E.addProp('shell', {
+        x: 380, y: 900, label: 'A shell on the sand', tappable: true, hitR: 80,
+        svg: `<path d="M0 6 L-18 -18 q18 -20 36 0 Z" style="fill:${C.oat};stroke:${C.tanDark};stroke-width:3"/>`,
+        onTap: async (rec) => {
+          if (!E.hasSticker('shell')) {
+            await E.awardSticker('shell', 380, 900);
+          } else {
+            GameAudio.play('tinkle');
+            await E.animOnce(rec.el, 'wiggle-once', 900);
+          }
+        },
+      });
+
+      // Rocky: ankle-deep in the shallows, entirely unrepentant
+      const rocky = E.addChar('rocky', {
+        svg: A.cow('rocky'), x: 1150, y: 800, scale: 0.95, facing: -1,
+        label: 'Rocky the highland cow, found at last', reactions: rockyReactions(),
+      });
+
+      // curious pelicans in attendance
+      E.addChar('pearl', {
+        svg: A.pearl('stand'), x: 740, y: 845, scale: 0.9,
+        label: 'Pearl the pelican', reactions: pearlReactions(),
+      });
+      E.addProp('pelican2', {
+        x: 1380, y: 820, label: 'A curious pelican', tappable: true, hitR: 95,
+        svg: `<g transform="scale(-0.75 0.75)">${A.pearl('stand')}</g>`,
+        onTap: async (rec) => { GameAudio.play('billClap'); await E.animOnce(rec.el, 'wiggle-once', 900); },
+      });
+
+      const will = E.addChar('will', {
+        svg: A.will(), x: 300, y: 930, scale: 1.05, label: 'Will', reactions: willReactions(),
+      });
+      E.addChar('cleo', {
+        svg: A.cleo(), x: 420, y: 945, scale: 0.95, label: 'Cleo the dog', reactions: cleoReactions(),
+      });
+      E.addChar('freddie', {
+        svg: A.cow('freddie'), x: 70, y: 950, scale: 0.85, label: 'Freddie the highland cow', reactions: freddieReactions(),
+      });
+
+      let reunionDone = false;
+
+      async function pearlDives() {
+        const p = E.state.chars.pearl;
+        if (!p) return;
+        GameAudio.play('wingbeat');
+        E.setPose(p, A.pearl('fly'));
+        await E.walkTo(p, 620, 380, 1.6);
+        await E.walkTo(p, 540, 640, 0.9);
+        GameAudio.play('splash');
+        await wait(700);
+        E.setPose(p, A.pearl('stand'));
+        // up she comes, fish in bill
+        const fish = E.gEl('');
+        fish.innerHTML = `<ellipse cx="60" cy="-138" rx="14" ry="6" style="fill:${C.slate}"/>
+                          <path d="M72 -138 l10 -6 0 12Z" style="fill:${C.slate}"/>`;
+        p.flip.appendChild(fish);
+        await E.walkTo(p, 740, 845, 1.6);
+        GameAudio.play('billClap');
+        await wait(1400);
+        fish.remove();
+      }
+
+      // THE REUNION: tap Will, tap Rocky.
+      E.pair('will>rocky', async () => {
+        if (reunionDone) {
+          await E.walkTo(will, rocky.x - 170, 930);
+          GameAudio.play('cowLowBig');
+          return;
+        }
+        reunionDone = true;
+        await E.willSays('found');
+        await E.walkTo(will, rocky.x - 160, 920, 2.6);
+        // Will leans his head against Rocky's shaggy side — slowly
+        will.flip.style.transition = 'transform 1.4s ease';
+        will.flip.setAttribute('transform', `scale(${will.scale} ${will.scale}) rotate(8)`);
+        GameAudio.play('cowLowBig');
+        // Freddie arrives half a beat later and leans on the other side
+        const f = E.state.chars.freddie;
+        await wait(900);
+        GameAudio.play('step');
+        await E.walkTo(f, rocky.x + 210, 940, 3);
+        E.faceToward(f, -9999);
+        GameAudio.play('cowLow');
+        await wait(1200);
+        // the light turns apricot — slowly, softly
+        const fx = document.getElementById('fx-layer');
+        const glow = E.gEl('');
+        glow.innerHTML = `<rect x="-50" y="-50" width="1700" height="1100" style="fill:#EFA76B"/>`;
+        glow.style.opacity = '0';
+        glow.style.transition = 'opacity 4s ease';
+        glow.style.pointerEvents = 'none';
+        fx.appendChild(glow);
+        requestAnimationFrame(() => { glow.style.opacity = '0.22'; });
+        await wait(2000);
+        will.flip.setAttribute('transform', `scale(${will.scale} ${will.scale})`);
+        await wait(1450);
+        will.flip.style.transition = '';
+        // and everyone walks home together
+        addWaymark(120, 970, () => {
+          document.getElementById('fx-layer').innerHTML = '';
+          advanceFrom('beach');
+        });
+        const c = E.state.chars.cleo;
+        GameAudio.play('bark');
+        await E.walkTo(c, 240, 960, 1.8);
+        E.faceToward(c, 9999);
+      });
+
+      E.pair('cleo>rocky', async () => {
+        const c = E.state.chars.cleo;
+        await E.walkTo(c, rocky.x - 130, 950, 1.8);
+        GameAudio.play('barkBark'); // the manager expresses a view
+        await E.animOnce(c.el, 'hop-once', 700);
+        GameAudio.play('cowLowBig'); // Rocky remains unrepentant
+        await E.animOnce(rocky.el.querySelector('.fringe'), 'fringe-shake', 1000);
+      });
+      E.pair('freddie>rocky', async () => {
+        const f = E.state.chars.freddie;
+        await E.walkTo(f, rocky.x + 230, 945, 2.6);
+        E.faceToward(f, -9999);
+        GameAudio.play('cowLow');
+        await wait(400);
+        GameAudio.play('cowLowBig');
+      });
+      E.pair('pearl>water', () => pearlDives());
+      E.pair('pearl>rocky', async () => {
+        const p = E.state.chars.pearl;
+        await E.walkTo(p, rocky.x - 140, 850, 1.8);
+        GameAudio.play('billClap');
+        await E.animOnce(p.el.querySelector('.bill'), 'wiggle-once', 900);
+      });
+
+      E.setHints(['rocky', 'water']);
+    },
+  });
+
+  /* ---------------- map thumbnails for free play ---------------- */
+
+  const THUMBS = {
+    farm: `<svg viewBox="0 0 160 120"><rect width="160" height="120" fill="#BFD9E2"/><rect y="70" width="160" height="50" fill="#8FB98B"/><path d="M30 70 L60 46 L90 70Z" fill="#9A6B4F"/><rect x="38" y="70" width="44" height="28" fill="#E8D9BD"/><circle cx="122" cy="84" r="14" fill="#D9A441"/></svg>`,
+    paddock: `<svg viewBox="0 0 160 120"><rect width="160" height="120" fill="#BFD9E2"/><rect y="66" width="160" height="54" fill="#8FB98B"/><path d="M20 78 h120 M20 94 h120" stroke="#A9805A" stroke-width="6"/><rect x="24" y="70" width="6" height="34" fill="#8A6746"/><rect x="76" y="70" width="6" height="34" fill="#8A6746"/><rect x="128" y="70" width="6" height="34" fill="#8A6746"/></svg>`,
+    creek: `<svg viewBox="0 0 160 120"><rect width="160" height="120" fill="#BFD9E2"/><rect y="60" width="160" height="60" fill="#8FB98B"/><path d="M0 80 Q40 70 80 82 T160 80 L160 104 Q120 112 80 104 T0 106Z" fill="#7FB5AE"/><ellipse cx="60" cy="92" rx="12" ry="5" fill="#B9AF9C"/><ellipse cx="100" cy="88" rx="12" ry="5" fill="#B9AF9C"/></svg>`,
+    orchard: `<svg viewBox="0 0 160 120"><rect width="160" height="120" fill="#BFD9E2"/><rect y="76" width="160" height="44" fill="#8FB98B"/><rect x="46" y="52" width="8" height="30" fill="#A9805A"/><circle cx="50" cy="42" r="22" fill="#6E9668"/><circle cx="42" cy="38" r="4" fill="#C96F5B"/><rect x="106" y="52" width="8" height="30" fill="#A9805A"/><circle cx="110" cy="42" r="22" fill="#5B8156"/><circle cx="118" cy="46" r="4" fill="#C96F5B"/></svg>`,
+    headland: `<svg viewBox="0 0 160 120"><rect width="160" height="120" fill="#B5D3DE"/><rect x="100" y="56" width="60" height="18" fill="#7FB5AE"/><path d="M0 74 L160 74 L160 120 L0 120Z" fill="#8FB98B"/><circle cx="34" cy="88" r="5" fill="#E8896A"/><circle cx="58" cy="96" r="5" fill="#E0A93E"/><circle cx="82" cy="88" r="5" fill="#F2EDE2"/></svg>`,
+    beach: `<svg viewBox="0 0 160 120"><rect width="160" height="120" fill="#BFD9E2"/><rect y="52" width="160" height="34" fill="#7FB5AE"/><rect y="86" width="160" height="34" fill="#E3CBA4"/><ellipse cx="104" cy="82" rx="22" ry="12" fill="#D9A441"/><circle cx="120" cy="72" r="9" fill="#D9A441"/></svg>`,
+  };
+
+  return { ORDER, SCENE_NAMES, THUMBS };
+})();
+
+</script>
+<script>
+/* =========================================================================
+   Main — title screen, HUD, overlays, settings. No menus in play.
+   ========================================================================= */
+
+(() => {
+  const E = Engine;
+  const $ = (id) => document.getElementById(id);
+
+  /* ---------------- title ---------------- */
+
+  $('title-art').innerHTML = Art.titleArt();
+
+  $('btn-play').addEventListener('pointerdown', async () => {
+    GameAudio.resume();                       // audio may only start on a gesture
+    applySettings();
+    $('title-screen').classList.add('fading');
+    $('stage-wrap').hidden = false;
+    setTimeout(() => { $('title-screen').remove(); }, 1300);
+
+    if (E.save.stickers.length) $('btn-stickers').hidden = false;
+    if (E.save.storyDone) $('btn-map').hidden = false;
+
+    // resume where the story left off; a finished story opens the farm
+    const startId = E.save.storyDone
+      ? 'farm'
+      : Scenes.ORDER[Math.min(E.save.sceneIndex, Scenes.ORDER.length - 1)];
+    await E.loadScene(startId, E.save.storyDone ? { mode: 'freeplay' } : {});
+  }, { once: true });
+
+  /* ---------------- settings ---------------- */
+
+  function applySettings() {
+    const s = E.save.settings;
+    GameAudio.setAmbientLevel(s.ambient / 100);
+    GameAudio.setEffectsLevel(s.effects / 100);
+    document.body.classList.toggle('motion-minimal', s.motion <= 33);
+    document.body.classList.toggle('motion-gentle', s.motion > 33 && s.motion <= 66);
+    document.body.classList.toggle('big-shimmer', !!s.bigShimmer);
+    $('set-ambient').value = s.ambient;
+    $('set-effects').value = s.effects;
+    $('set-motion').value = s.motion;
+    $('set-shimmer').checked = !!s.bigShimmer;
+  }
+
+  $('set-ambient').addEventListener('input', (e) => {
+    E.save.settings.ambient = +e.target.value; E.persist();
+    GameAudio.setAmbientLevel(+e.target.value / 100);
+  });
+  $('set-effects').addEventListener('input', (e) => {
+    E.save.settings.effects = +e.target.value; E.persist();
+    GameAudio.setEffectsLevel(+e.target.value / 100);
+  });
+  $('set-motion').addEventListener('input', (e) => {
+    E.save.settings.motion = +e.target.value; E.persist();
+    applySettings();
+  });
+  $('set-shimmer').addEventListener('change', (e) => {
+    E.save.settings.bigShimmer = e.target.checked; E.persist();
+    applySettings();
+  });
+
+  $('btn-restart').addEventListener('click', async () => {
+    E.save.sceneIndex = 0;
+    E.save.storyDone = false;
+    E.persist();
+    closeOverlay('grownups-overlay');
+    $('btn-map').hidden = true;
+    await E.loadScene('farm', { mode: 'opening' });
+  });
+
+  /* ---------------- overlays ---------------- */
+
+  function openOverlay(id) {
+    GameAudio.play('page');
+    $(id).hidden = false;
+  }
+  function closeOverlay(id) { $(id).hidden = true; }
+
+  document.querySelectorAll('.close-btn').forEach(btn => {
+    btn.addEventListener('click', () => closeOverlay(btn.dataset.close));
+  });
+  document.querySelectorAll('.overlay').forEach(ov => {
+    ov.addEventListener('pointerdown', (e) => { if (e.target === ov) ov.hidden = true; });
+  });
+
+  /* ---------------- sticker book ---------------- */
+
+  const STICKER_ORDER = ['fluff', 'feather', 'apple', 'hairtie', 'shell'];
+
+  $('btn-stickers').addEventListener('click', () => {
+    const grid = $('sticker-grid');
+    grid.innerHTML = '';
+    STICKER_ORDER.forEach(key => {
+      const btn = document.createElement('button');
+      const have = E.hasSticker(key);
+      btn.className = 'sticker-slot' + (have ? '' : ' empty');
+      btn.setAttribute('aria-label', have ? Art.stickers[key].label : 'Not found yet');
+      btn.innerHTML = have ? Art.stickers[key].svg : '<span class="slot-dash"></span>';
+      if (have) {
+        btn.addEventListener('click', () => { GameAudio.play('found'); });
+      }
+      grid.appendChild(btn);
+    });
+    openOverlay('stickers-overlay');
+  });
+
+  /* ---------------- farm map (free play) ---------------- */
+
+  $('btn-map').addEventListener('click', () => {
+    const grid = $('map-grid');
+    grid.innerHTML = '';
+    Scenes.ORDER.forEach(id => {
+      const visited = E.save.visited.includes(id) || E.save.storyDone;
+      const tile = document.createElement('button');
+      tile.className = 'map-tile' + (visited ? '' : ' locked');
+      tile.setAttribute('aria-label', Scenes.SCENE_NAMES[id]);
+      tile.innerHTML = Scenes.THUMBS[id];
+      if (visited) {
+        tile.addEventListener('click', async () => {
+          closeOverlay('map-overlay');
+          await E.loadScene(id, id === 'farm' ? { mode: 'freeplay' } : {});
+        });
+      }
+      grid.appendChild(tile);
+    });
+    openOverlay('map-overlay');
+  });
+
+  /* ---------------- grown-ups gate: press and hold ---------------- */
+
+  let holdTimer = null;
+  const gu = $('btn-grownups');
+  gu.addEventListener('pointerdown', () => {
+    holdTimer = setTimeout(() => openOverlay('grownups-overlay'), 1400);
+  });
+  ['pointerup', 'pointerleave', 'pointercancel'].forEach(ev =>
+    gu.addEventListener(ev, () => clearTimeout(holdTimer)));
+  // keyboard users shouldn't be locked out of settings
+  gu.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') openOverlay('grownups-overlay');
+  });
+
+  /* ---------------- global activity for the idle shimmer ---------------- */
+
+  document.addEventListener('pointerdown', () => E.noteActivity(), { passive: true });
+})();
+
+</script>
+</body>
+</html>

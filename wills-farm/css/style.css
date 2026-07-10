@@ -1,0 +1,357 @@
+/* ==========================================================================
+   Will and the Missing Highland Cow — style
+   Hard rules (from the design doc, section 5):
+   - Nothing flashes. No animation approaches 3 pulses/second.
+   - Mid-saturation palette only. No neon, no pure white/black fields.
+   - Interactive elements: >= 4.5:1 contrast, big targets (>= 75pt).
+   ========================================================================== */
+
+:root {
+  --paper:      #FBF3E4;  /* warm cream paper */
+  --paddock:    #8FB98B;  /* soft eucalyptus green */
+  --oat:        #E8D9BD;  /* warm oat */
+  --sandstone:  #E3CBA4;  /* pale sandstone */
+  --sky:        #BFD9E2;  /* pale warm blue */
+  --apricot:    #F2C29B;  /* day's edges */
+  --sea:        #7FB5AE;  /* gentle teal */
+  --rocky:      #D9A441;  /* golden ginger */
+  --freddie:    #9A6B4F;  /* russet brown */
+  --cleo:       #DDB25E;  /* honey gold */
+  --cleo-blue:  #4A7BA6;  /* Cleo's collar */
+  --pearl:      #F2EDE2;  /* soft white */
+  --slate:      #6E7B86;  /* Pearl wings / Ella slate */
+  --banksia:    #E0A93E;  /* pelican bill yellow */
+  --charcoal:   #3D4248;  /* Ella / Will tee (never pure black) */
+  --olive:      #7A7D4E;  /* Will's shorts */
+  --tanboot:    #B98A5A;
+  --coral:      #E8896A;  /* single accent, used sparingly */
+  --night:      #39465C;  /* deep blue-grey */
+  --ink:        #4A3C2C;  /* warm dark for text, 4.5:1+ on paper */
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+html, body {
+  height: 100%;
+  overflow: hidden;
+  background: var(--paper);
+  font-family: -apple-system, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  color: var(--ink);
+  touch-action: manipulation;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+#app { position: fixed; inset: 0; }
+
+/* ---------- Title screen ---------- */
+
+#title-screen {
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  background: linear-gradient(180deg, var(--sky) 0%, var(--sky) 45%, var(--paddock) 45.2%, var(--paddock) 100%);
+  transition: opacity 1.2s ease;
+  z-index: 30;
+}
+#title-screen.fading { opacity: 0; pointer-events: none; }
+
+.title-card { text-align: center; padding: 24px; max-width: 640px; }
+#title-art { width: min(52vw, 420px); margin: 0 auto 8px; }
+#title-art svg { width: 100%; height: auto; display: block; }
+
+h1 {
+  font-size: clamp(26px, 4.5vw, 44px);
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  color: var(--ink);
+  text-shadow: 0 2px 0 rgba(251, 243, 228, 0.6);
+  margin-bottom: 20px;
+}
+
+.big-soft-btn {
+  width: 108px; height: 108px;
+  border: none; background: none; cursor: pointer;
+  border-radius: 50%;
+  transition: transform 0.4s ease;
+}
+.big-soft-btn:active { transform: scale(0.94); }
+.big-soft-btn svg { width: 100%; height: 100%; filter: drop-shadow(0 4px 6px rgba(74, 60, 44, 0.25)); }
+
+.title-sub {
+  margin-top: 18px;
+  font-size: clamp(13px, 1.8vw, 16px);
+  color: var(--ink);
+  opacity: 0.85;
+}
+
+/* ---------- Stage ---------- */
+
+#stage-wrap { position: absolute; inset: 0; }
+#stage { width: 100%; height: 100%; display: block; }
+
+#scene-old, #scene-current { transition: opacity 1.3s ease; }
+.scene-hidden { opacity: 0; }
+
+/* Every interactive thing in the world */
+.tappable { cursor: pointer; }
+#stage g { outline: none; }   /* focus is shown via .hitring, never a browser box */
+.tappable:focus-visible .hitring { opacity: 0.9; }
+
+/* selection glow under a chosen character — soft, steady, no pulsing */
+.select-ring {
+  fill: none;
+  stroke: var(--coral);
+  stroke-width: 7;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+.selected .select-ring { opacity: 0.85; }
+
+/* focus ring for switch/keyboard users */
+.hitring {
+  fill: none;
+  stroke: var(--coral);
+  stroke-width: 5;
+  stroke-dasharray: 14 10;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+/* Idle shimmer: one slow soft pulse, ~2.8s period (far below any flash threshold) */
+@keyframes shimmer-soft {
+  0%, 100% { opacity: 0; }
+  50%      { opacity: 0.55; }
+}
+.shimmering .shimmer-halo { animation: shimmer-soft 2.8s ease-in-out infinite; }
+.shimmer-halo { opacity: 0; pointer-events: none; }
+body.big-shimmer .shimmer-halo { stroke-width: 26; }
+
+/* ---------- Gentle ambient motion (all slow, all soft) ---------- */
+
+@keyframes sway {
+  0%, 100% { transform: rotate(-1.6deg); }
+  50%      { transform: rotate(1.6deg); }
+}
+.sways { animation: sway 5s ease-in-out infinite; transform-box: fill-box; transform-origin: 50% 100%; }
+
+@keyframes drift {
+  from { transform: translateX(0); }
+  to   { transform: translateX(70px); }
+}
+.drifts { animation: drift 26s ease-in-out infinite alternate; }
+
+@keyframes bob {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-7px); }
+}
+.bobs { animation: bob 3.6s ease-in-out infinite; transform-box: fill-box; }
+
+@keyframes breathe {
+  0%, 100% { transform: scale(1); }
+  50%      { transform: scale(1.015); }
+}
+.breathes { animation: breathe 4.5s ease-in-out infinite; transform-box: fill-box; transform-origin: 50% 90%; }
+
+@keyframes tailwag {
+  0%, 100% { transform: rotate(-14deg); }
+  50%      { transform: rotate(16deg); }
+}
+.wagging { animation: tailwag 0.9s ease-in-out infinite; transform-box: fill-box; transform-origin: 10% 50%; }
+
+@keyframes flutter {
+  0%   { transform: translate(0, 0) rotate(0deg); }
+  25%  { transform: translate(26px, -20px) rotate(7deg); }
+  50%  { transform: translate(54px, -6px) rotate(-6deg); }
+  75%  { transform: translate(30px, 12px) rotate(5deg); }
+  100% { transform: translate(0, 0) rotate(0deg); }
+}
+.flutters { animation: flutter 9s ease-in-out infinite; transform-box: fill-box; }
+
+/* one-shot reaction animations */
+@keyframes hop {
+  0%, 100% { transform: translateY(0); }
+  40%      { transform: translateY(-26px); }
+}
+.hop-once { animation: hop 0.7s ease-in-out 1; transform-box: fill-box; }
+
+@keyframes wiggle {
+  0%, 100% { transform: rotate(0deg); }
+  30%      { transform: rotate(-5deg); }
+  70%      { transform: rotate(5deg); }
+}
+.wiggle-once { animation: wiggle 0.9s ease-in-out 1; transform-box: fill-box; transform-origin: 50% 85%; }
+
+@keyframes spin-once {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+.spin-once { animation: spin-once 1s ease-in-out 1; transform-box: fill-box; transform-origin: 50% 60%; }
+
+@keyframes fringe-shake {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-8deg); }
+  50% { transform: rotate(7deg); }
+  75% { transform: rotate(-5deg); }
+}
+.fringe-shake { animation: fringe-shake 1s ease-in-out 1; transform-box: fill-box; transform-origin: 50% 20%; }
+
+/* walking characters get a gentle rock */
+@keyframes walk-rock {
+  0%, 100% { transform: rotate(-1.6deg); }
+  50%      { transform: rotate(1.6deg); }
+}
+.walking .rocker { animation: walk-rock 0.55s ease-in-out infinite; transform-box: fill-box; transform-origin: 50% 92%; }
+
+/* character group position transitions (walks) are driven from JS via
+   transform with transition */
+.char-move { transition: transform 2.4s cubic-bezier(0.45, 0.05, 0.4, 1); }
+
+/* ---------- Bubbles (Will's phone symbols, Pearl's bill pictures) ---------- */
+
+#bubble-layer { position: absolute; inset: 0; pointer-events: none; z-index: 10; }
+
+.bubble {
+  position: absolute;
+  width: 118px; height: 118px;
+  background: var(--paper);
+  border: 4px solid rgba(74, 60, 44, 0.55);
+  border-radius: 28px;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 2px;
+  box-shadow: 0 6px 14px rgba(74, 60, 44, 0.18);
+  opacity: 0;
+  transform: translateY(14px) scale(0.9);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.bubble.shown { opacity: 1; transform: translateY(0) scale(1); }
+.bubble.leaving { opacity: 0; transform: translateY(-26px) scale(0.96); }
+.bubble svg { width: 62px; height: 62px; }
+.bubble .bubble-word {
+  font-size: 17px; font-weight: 700; color: var(--ink); letter-spacing: 0.02em;
+}
+.bubble.picture { width: 190px; height: 140px; border-radius: 22px; }
+.bubble.picture svg { width: 160px; height: 108px; }
+
+/* ---------- HUD ---------- */
+
+#hud {
+  position: absolute; top: max(12px, env(safe-area-inset-top)); right: max(12px, env(safe-area-inset-right));
+  display: flex; flex-direction: column; gap: 14px;
+  z-index: 20;
+}
+.hud-btn {
+  width: 76px; height: 76px;               /* >= 75pt targets */
+  border: none; cursor: pointer;
+  background: var(--paper);
+  border-radius: 24px;
+  box-shadow: 0 3px 8px rgba(74, 60, 44, 0.22);
+  padding: 10px;
+  transition: transform 0.35s ease;
+}
+.hud-btn:active { transform: scale(0.93); }
+.hud-btn svg { width: 100%; height: 100%; }
+.hud-btn.subtle { opacity: 0.62; }
+
+/* ---------- Overlays ---------- */
+
+.overlay {
+  position: absolute; inset: 0;
+  background: rgba(74, 60, 44, 0.35);
+  display: flex; align-items: center; justify-content: center;
+  z-index: 25;
+  opacity: 1;
+  transition: opacity 0.6s ease;
+}
+.overlay[hidden] { display: none; }
+
+.overlay-card {
+  position: relative;
+  background: var(--paper);
+  border-radius: 34px;
+  padding: 34px 38px 30px;
+  max-width: min(860px, 92vw);
+  max-height: 86vh;
+  overflow-y: auto;
+  box-shadow: 0 14px 40px rgba(74, 60, 44, 0.3);
+}
+.overlay-card h2 { font-size: 26px; margin-bottom: 20px; color: var(--ink); }
+
+.close-btn {
+  position: absolute; top: 14px; right: 14px;
+  width: 76px; height: 76px;
+  border: none; background: none; cursor: pointer;
+  border-radius: 22px;
+}
+.close-btn:active { background: rgba(74, 60, 44, 0.08); }
+.close-btn svg { width: 40px; height: 40px; }
+
+/* sticker grid */
+#sticker-grid, #map-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 18px;
+  min-width: min(640px, 78vw);
+}
+.sticker-slot {
+  aspect-ratio: 1;
+  background: var(--oat);
+  border-radius: 26px;
+  border: none;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  padding: 14px;
+  transition: transform 0.35s ease;
+}
+.sticker-slot:active { transform: scale(0.95); }
+.sticker-slot svg { width: 100%; height: 100%; }
+.sticker-slot.empty { opacity: 0.4; cursor: default; }
+.sticker-slot .slot-dash {
+  width: 62%; height: 62%; border: 4px dashed rgba(74, 60, 44, 0.35); border-radius: 20px;
+}
+
+.map-tile {
+  aspect-ratio: 4 / 3;
+  border: none; border-radius: 24px; overflow: hidden;
+  cursor: pointer; padding: 0;
+  background: var(--oat);
+  box-shadow: 0 3px 8px rgba(74, 60, 44, 0.16);
+  transition: transform 0.35s ease;
+}
+.map-tile:active { transform: scale(0.95); }
+.map-tile svg { width: 100%; height: 100%; display: block; }
+.map-tile.locked { opacity: 0.35; cursor: default; }
+
+/* grown-ups settings */
+.setting-row {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 26px;
+  padding: 13px 0;
+  min-width: min(520px, 74vw);
+}
+.setting-row label { font-size: 18px; font-weight: 600; }
+.setting-row input[type="range"] { width: 220px; height: 44px; accent-color: var(--coral); }
+.setting-row input[type="checkbox"] { width: 30px; height: 30px; accent-color: var(--coral); }
+.text-btn {
+  border: 3px solid var(--ink); background: none; color: var(--ink);
+  font-size: 17px; font-weight: 600;
+  padding: 13px 22px; border-radius: 18px; cursor: pointer;
+}
+.text-btn:active { background: rgba(74, 60, 44, 0.08); }
+.grownups-note {
+  margin-top: 20px; font-size: 14px; line-height: 1.6; opacity: 0.8; max-width: 480px;
+}
+
+/* ---------- Reduce motion: honour the system setting and the slider ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .sways, .drifts, .bobs, .breathes, .flutters, .wagging,
+  .walking .rocker, .shimmering .shimmer-halo { animation: none !important; }
+  .char-move { transition-duration: 0.9s; }
+}
+body.motion-minimal .sways, body.motion-minimal .drifts, body.motion-minimal .bobs,
+body.motion-minimal .breathes, body.motion-minimal .flutters,
+body.motion-minimal .walking .rocker { animation: none !important; }
+body.motion-gentle .sways   { animation-duration: 8s; }
+body.motion-gentle .drifts  { animation-duration: 40s; }
+body.motion-gentle .bobs    { animation-duration: 5.5s; }
