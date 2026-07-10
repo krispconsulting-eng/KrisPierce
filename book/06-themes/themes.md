@@ -1,6 +1,6 @@
 # Themes
 
-Twelve threads. A theme earns its place by recurring in scenes, not by
+Thirteen threads. A theme earns its place by recurring in scenes, not by
 being announced. For each: what the book argues about it, and the questions
 that find its scenes.
 
@@ -55,6 +55,34 @@ The book's central subject: care as work, identity, economy, love.
 - Where do you belong most completely? (The answer might be surprising — a ward, a conference of strangers who understand, the kitchen at midnight.)
 - What communities did the family lose, and which unexpected ones did it find?
 
+## Women's health
+The arc-spanning theme: at every turn of this story, a woman's body or a
+woman's word met a system that hadn't done the research, didn't understand,
+and wasn't willing to go further. What the book might argue: the family's
+whole story happened inside — and in spite of — medicine's blind spot for
+women.
+
+Where it runs through the story (the arc):
+1. **The nurse** — seeing from inside the system how women patients were heard differently, before it ever happened to you.
+2. **IVF** — fertility medicine as women's-health frontier: the burden of intervention landing on your body, how little was (is) understood about why, and what the industry does and doesn't say to women.
+3. **The mother** — the gendered version of not being believed: "anxious first-time mum" as a clinical assessment. Would a father reporting the same signs have been heard sooner?
+4. **The carer** — women as the default carers; your own health perpetually deferred; the appointments never made, the symptoms carried standing up.
+5. **The advocate** — rooms full of mothers doing unpaid research coordination, registry-building and systems work that institutions wouldn't fund.
+6. **The daughter** — Alzheimer's: roughly two-thirds of patients are women, the majority of unpaid dementia carers are women, and the research investment never matched either fact.
+7. **Kris's own body** — midlife, menopause, the physiological cost of decades of caregiving stress: the least researched chapter of all.
+
+Shaping questions:
+- Before IVF: were there years of your own symptoms, questions or dismissals that never got answers? Where did your fertility story actually begin — and did anyone ever explain the "why," or just sell the "next cycle"?
+- What did IVF ask of your body specifically — and what did it ask of his? Name the asymmetry precisely; readers who've done IVF will know if you flinch.
+- The dismissals: list every time a clinician discounted what you knew — as patient, as mother, as daughter. Which stung most: being dismissed as a woman, or being dismissed as a woman *who was also a nurse*?
+- Flip it: as a nurse, did you ever dismiss a woman the way you were later dismissed? (If yes, that confession is one of the bravest and most valuable pages available to this book.)
+- Your own health during the caring decades: what did you postpone, minimise or never mention? Was there a moment your own body demanded attention at the worst possible time?
+- Menopause in the middle of caregiving — did it happen invisibly? What did anyone (doctor, workplace, family) offer you?
+- Mum: looking back, was her Alzheimer's journey shaped by being a woman — how she masked, how long she went uninvestigated, how her complaints were read as age or mood?
+- "The lack of willingness to go further": name the specific moments a system stopped short — a test not ordered, a referral not made, a question not asked — where going further would have changed something.
+- What would healthcare look like if it had been built by women who'd lived your years? One paragraph, from the heart — it may end up in the book's final chapters.
+
 ## Cross-cutting questions
-- Which TWO themes are the real spine? (Twelve threads, but a book argues one or two things. Candidates: **care** and **identity/becoming** — the title suggests both.)
+- Which TWO themes are the real spine? (Thirteen threads, but a book argues one or two things. Candidates: **care** and **identity/becoming** — the title suggests both — with **women's health** as the arc-spanning undercurrent.)
+- The ageing carer: what does a caring role do to a body and a life as you get older — superannuation never built, careers shaped around care, your own health deferred, the fear of who cares for Will when you can't lift him? This sits at the junction of Care + Women's health and is flagged as a standalone **newspaper article** (see `../10-publishing/publishing-plan.md`).
 - Which theme scares you most to write? That's usually the one the book is actually about.

@@ -16,7 +16,7 @@ body of work that can lead to speaking, advocacy and broader impact.
 | `03-characters/` | Every important person — biography, arcs, turning points |
 | `04-locations/` | Home, hospitals, farm, schools, holiday places, conferences, Parliament |
 | `05-scenes/` | The scene library. Target: **150–250 scenes**. Probably the biggest folder |
-| `06-themes/` | Hope, motherhood, care, loss, identity, resilience, leadership, grief, love, systems, purpose, belonging |
+| `06-themes/` | Hope, motherhood, care, loss, identity, resilience, leadership, grief, love, systems, purpose, belonging, women's health |
 | `07-research/` | Photos, records, medical timelines, emails, family history |
 | `08-chapters/` | Story architecture + current manuscript drafts |
 | `09-deleted-scenes/` | **Never delete.** Move here. Many become future talks |

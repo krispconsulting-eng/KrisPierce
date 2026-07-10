@@ -63,7 +63,12 @@ pamphlet, or an inspirational tract. (Guard rail: story before advocacy.)
 ## Core themes
 
 Hope · Motherhood · Care · Loss · Identity · Resilience · Leadership ·
-Grief · Love · Systems · Purpose · Belonging
+Grief · Love · Systems · Purpose · Belonging · **Women's health**
+
+(Women's health is the arc-spanning undercurrent: at every turn — IVF, the
+dismissed mother, the carer whose own health goes last, Alzheimer's — a
+woman's body or word met a system that hadn't done the research, didn't
+understand, and wasn't willing to go further.)
 
 (Working notes per theme in `../06-themes/themes.md`.)
 
