@@ -45,8 +45,8 @@ window.Scenes.s12 = () => {
     <path d="M930 708 q42 10 84 2 M1250 682 q42 9 84 1 M1030 734 q34 8 68 1 M1130 704 q30 8 60 1"
           stroke="${C.damEdge}" stroke-width="5" fill="none" stroke-linecap="round" opacity="0.8"/>
     <ellipse cx="965" cy="742" rx="90" ry="15" fill="${C.mudWet}" opacity="0.55"/>
-    <!-- one heavy hoof at a time: the front leg out of the water, onto the bank -->
-    <path d="M1010 734 q-8 -42 -26 -42 q-18 0 -18 38" stroke="${C.rockyDark}" stroke-width="22" fill="none" stroke-linecap="round"/>
+    <!-- one heavy hoof at a time: a hoof breaking the surface at the bank -->
+    <rect x="972" y="708" width="30" height="22" rx="9" fill="${C.rockyDark}"/>
     <path d="M946 728 q22 10 44 3 M990 738 q20 8 40 2" stroke="${C.damEdge}" stroke-width="4.5" fill="none" stroke-linecap="round" opacity="0.85"/>
     ${A.mudSplats([[1032, 706, 6], [1235, 672, 5], [1290, 690, 5]])}
 
@@ -111,7 +111,7 @@ window.Scenes.s14 = () => {
     ${A.moon(965, 115, 42)}
     ${A.hills([{ y: 450, color: '#3D5034', bulge: 70 }, { y: 515, color: '#455C3C', bulge: 90 }])}
     ${A.ground(585, '#506A42')}
-    <g opacity="0.5">${A.dirtTrack(500, 1200, 505, 300, 34)}</g>
+    <g opacity="0.28">${A.dirtTrack(500, 1200, 505, 300, 34)}</g>
 
     <!-- the farmhouse, warm windows -->
     ${A.put(1125, 470, 0.85, false, A.farmhouseNight(1))}
@@ -127,7 +127,7 @@ window.Scenes.s14 = () => {
     ${A.put(338, 714, 1, false, A.cleo('flop'))}
     ${A.put(436, 712, 1.05, false, A.will('type', 'calm'))}
     ${A.put(1045, 726, 0.92, true, A.cow('rocky', 'stand', { mood: 'smug', weed: true }))}
-    ${A.put(1445, 748, 0.9, true, A.cow('freddie', 'graze', { mood: 'calm' }))}
+    ${A.put(1445, 748, 0.9, true, A.cow('freddie', 'stand', { mood: 'calm' }))}
 
     <g opacity="0.55">
       ${A.put(150, 790, 1.15, false, A.grassTuft(1))}

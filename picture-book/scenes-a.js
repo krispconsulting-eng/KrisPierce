@@ -12,7 +12,7 @@ window.Scenes.cover = () => {
     ${A.sun(1360, 408, 46)}
     ${A.put(240, 352, 0.8, false, A.cloudPuff(1, 0.85))}
     ${A.put(1060, 336, 0.6, false, A.cloudPuff(1, 0.75))}
-    ${A.birds(640, 352)}
+    ${A.birds(230, 430)}
     ${A.hills([{ y: 445, color: C.paddockPale, bulge: 60 }, { y: 505, color: C.paddockLight, bulge: 95 }])}
     ${A.ground(600, C.paddock)}
     ${A.put(430, 715, 1, false, A.cow('freddie', 'stand'))}
@@ -74,7 +74,6 @@ window.Scenes.s02 = () => {
     ${A.put(330, 742, 1, false, A.flowers(4, 150))}
     ${A.put(1140, 728, 1.25, false, A.cow('rocky', 'stand', { mood: 'smug' }))}
     ${A.put(1250, 752, 1.5, false, A.gate(12))}
-    <rect x="1192" y="602" width="34" height="86" rx="15" fill="${C.rockyDark}" transform="rotate(-20 1209 606)"/>
     ${A.put(1490, 752, 1.5, false, A.fence(80))}
     ${A.put(640, 780, 1, false, A.cleo('bark'))}
     ${A.put(110, 790, 1.3, false, A.grassTuft(1))}

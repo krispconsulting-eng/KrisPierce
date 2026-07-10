@@ -499,6 +499,8 @@ const BookArt = (() => {
               <path d="M22 -144 q12 24 6 48" stroke="${C.nb2}" stroke-width="14" fill="none" stroke-linecap="round"/>`;
     }
     return `<g>
+      <rect x="-15" y="-52" width="12" height="38" rx="5" fill="${C.nb2}"/>
+      <rect x="7" y="-52" width="12" height="38" rx="5" fill="${C.nb2}"/>
       <path d="M-16 -20 l0 12 q0 8 9 8 l10 0 0 -20Z" fill="${C.bootDark}"/>
       <path d="M8 -20 l0 12 q0 8 9 8 l10 0 0 -20Z" fill="${C.bootDark}"/>
       <path d="M-26 -150 q26 -12 52 0 l10 96 q-36 14 -72 0Z" fill="${C.nb1}"/>
@@ -535,7 +537,7 @@ const BookArt = (() => {
   function gate(openAngle = 0) {
     return `<g>
       <rect x="-14" y="-104" width="18" height="106" rx="7" fill="${C.woodDark}"/>
-      <g transform="rotate(${openAngle} 6 -48)">
+      <g transform="rotate(${-Math.min(12, openAngle * 0.6)} 6 -48) translate(${Math.min(10, openAngle * 0.4)} 0)">
         <rect x="6" y="-86" width="132" height="11" rx="5" fill="${C.wood}"/>
         <rect x="6" y="-52" width="132" height="11" rx="5" fill="${C.wood}"/>
         <rect x="6" y="-92" width="12" height="92" rx="5" fill="${C.wood}"/>
