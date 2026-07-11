@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../fonts.css">
+<style>
+  body { margin: 0; background: #666; font-family: Literata, Georgia, serif; }
+  .f { width: 1000px; height: 1000px; margin: 12px auto; position: relative; overflow: hidden; }
+  .f svg { display: block; width: 100%; height: 100%; }
+</style>
+</head>
+<body>
+<script>
+/* Cover v3 — CONNECTED. The fence is the compositional spine linking all
+   three: Rocky leans over it (cheeky, chewing stolen greens, facing the
+   group), Will on the near side noticing him (phone in hand), Cleo at the
+   rail looking up at Rocky, on duty. Every eyeline converges on Rocky.
+   Story is implied (a loose rail, a stray lettuce) without the breakout.
+   Painted depth, one low-right sun, lower-left shadows. Title placeholder. */
+
+const WOOD = '#9C7350', WOODD = '#7C5A3E', RAIL = '#8A6746';
+
+// Continuous fence aligned to Will's own crop-fence rails (cover-y ~786/816/846).
+function fenceRun(x0, x1) {
+  let posts = '';
+  const n = Math.max(2, Math.round((x1 - x0) / 116));
+  for (let i = 0; i <= n; i++) {
+    const x = x0 + (x1 - x0) * i / n;
+    posts += `<rect x="${x - 7}" y="770" width="14" height="130" rx="5" fill="${WOOD}"/>`;
+  }
+  return `<g>
+    ${posts}
+    <rect x="${x0}" y="784" width="${x1 - x0}" height="10" rx="5" fill="${RAIL}"/>
+    <rect x="${x0}" y="814" width="${x1 - x0}" height="10" rx="5" fill="${RAIL}"/>
+    <rect x="${x0}" y="845" width="${x1 - x0}" height="11" rx="5" fill="${WOODD}"/>
+  </g>`;
+}
+
+function comp(id, sky, o) {
+  o = Object.assign({ sun: '#F7D9A0', far: '#B4BFA0', mid: '#7E9A5E', near: '#55703F', haze: '#EED9B4' }, o);
+  return `
+  <div class="f" id="${id}">
+  <svg viewBox="0 0 1000 1000" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <defs>
+      <linearGradient id="sky-${id}" x1="0" y1="0" x2="0" y2="1">
+        ${sky.map(([off, c]) => `<stop offset="${off}" stop-color="${c}"/>`).join('')}
+      </linearGradient>
+      <filter id="soft-${id}" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="8"/></filter>
+    </defs>
+    <rect width="1000" height="1000" fill="url(#sky-${id})"/>
+
+    <!-- sun low-right -->
+    <circle cx="852" cy="300" r="118" fill="${o.sun}" opacity="0.30"/>
+    <circle cx="852" cy="300" r="52" fill="${o.sun}" opacity="0.95"/>
+
+    <!-- far → mid → near hills -->
+    <path d="M0 560 Q 250 480 520 530 T 1000 520 L1000 1000 L0 1000 Z" fill="${o.far}"/>
+    ${o.haze ? `<rect x="0" y="440" width="1000" height="210" fill="${o.haze}" opacity="0.30"/>` : ''}
+    <path d="M0 650 Q 320 575 640 640 T 1000 705 L1000 1000 L0 1000 Z" fill="${o.mid}"/>
+    <path d="M0 840 Q 300 805 620 830 T 1000 865 L1000 1000 L0 1000 Z" fill="${o.near}"/>
+
+    <!-- convergence shadow beneath the whole group (lower-left) -->
+    <ellipse cx="430" cy="928" rx="360" ry="34" fill="#3E5530" opacity="0.26" filter="url(#soft-${id})"/>
+
+    <!-- ROCKY first, then the fence drawn OVER his legs so he reads BEHIND it,
+         head & chest above the rail, facing LEFT toward the group, chewing greens. -->
+    <image href="assets/rocky-14-cut.png" x="360" y="410" width="448" height="481.7" preserveAspectRatio="xMidYMid meet"/>
+
+    <!-- FENCE (spine) aligned to Will's own rails — one continuous line -->
+    ${fenceRun(300, 820)}
+    <!-- one loose rail near Rocky: quiet mischief cue, NOT the breakout -->
+    <rect x="628" y="806" width="150" height="11" rx="5" fill="${WOODD}" transform="rotate(-8 628 812)"/>
+
+    <!-- a stray nibbled lettuce at the fence base (the 'owes me lettuces' wink) -->
+    <g transform="translate(470 900)">
+      <ellipse cx="0" cy="8" rx="20" ry="7" fill="#61472F" opacity="0.4"/>
+      <circle cx="0" cy="-4" r="15" fill="#8FAE62"/>
+      <path d="M-11 -7 q6 -11 11 -2 q6 -11 11 -1" stroke="#6E9448" stroke-width="4" fill="none" stroke-linecap="round"/>
+    </g>
+    <g transform="translate(524 912) scale(0.8)">
+      <circle cx="0" cy="-4" r="14" fill="#8FAE62"/>
+      <path d="M-10 -7 q6 -10 10 -2" stroke="#6E9448" stroke-width="4" fill="none" stroke-linecap="round"/>
+    </g>
+
+    <!-- WILL on the near side, leaning on the fence, phone in hand, noticing Rocky -->
+    <image href="assets/will-15-cut.png" x="86" y="676" width="228" height="232.7" preserveAspectRatio="xMidYMid meet"/>
+
+    <!-- CLEO at the rail, looking UP toward Rocky, on duty (flipped to face right) -->
+    <g transform="translate(430 806) scale(-1,1)">
+      <image href="assets/cleo-05-cut.png" x="0" y="0" width="118" height="120" preserveAspectRatio="xMidYMid meet"/>
+    </g>
+
+    <!-- a little life: a butterfly, up in clear sky away from faces -->
+    <g transform="translate(232 452) scale(1.15)">
+      <ellipse cx="-8" cy="-2" rx="9" ry="12" fill="#D98B66" transform="rotate(-24 -8 -2)"/>
+      <ellipse cx="8" cy="-2" rx="9" ry="12" fill="#D98B66" opacity="0.82" transform="rotate(24 8 -2)"/>
+      <ellipse cx="-7" cy="8" rx="6" ry="8" fill="#E09E7B" transform="rotate(-18 -7 8)"/>
+      <ellipse cx="7" cy="8" rx="6" ry="8" fill="#E09E7B" opacity="0.82" transform="rotate(18 7 8)"/>
+      <rect x="-2" y="-10" width="4" height="22" rx="2" fill="#2B2520"/>
+      <path d="M-2 -10 q-5 -8 -10 -9 M2 -10 q5 -8 10 -9" stroke="#2B2520" stroke-width="2" fill="none" stroke-linecap="round"/>
+    </g>
+
+    <!-- foreground grass breaking the frame edge -->
+    <g fill="${o.near}">
+      <path d="M16 1000 q-6 -70 20 -110 q8 52 12 110 Z" opacity="0.9"/>
+      <path d="M54 1000 q12 -58 40 -80 q-8 42 -14 80 Z" opacity="0.85"/>
+      <path d="M910 1000 q-8 -76 22 -118 q10 54 14 118 Z" opacity="0.9"/>
+      <path d="M956 1000 q14 -60 42 -84 q-10 44 -16 84 Z" opacity="0.85"/>
+    </g>
+
+    <!-- title PLACEHOLDER (hand-lettering to follow) -->
+    <g font-family="Literata, Georgia, serif" fill="#2B2520">
+      <text x="72" y="150" font-size="86" font-weight="700" letter-spacing="-1">Will <tspan font-style="italic" font-weight="400" font-size="56">and the</tspan></text>
+      <text x="72" y="248" font-size="86" font-weight="700" letter-spacing="-1">Missing</text>
+      <text x="72" y="346" font-size="86" font-weight="700" letter-spacing="-1">Highland Cow</text>
+    </g>
+    <text x="72" y="962" font-family="Literata, Georgia, serif" font-style="italic" font-size="30" fill="#4A3F33">Kris Pierce &amp; Will Pierce</text>
+  </svg>
+  </div>`;
+}
+
+document.write(comp('duskA', [[0, '#C9DCE4'], [0.38, '#EED9B4'], [0.62, '#F2C29B']],
+  { far: '#B4BFA0', mid: '#7E9A5E', near: '#55703F' }));
+document.write(comp('coralC', [[0, '#E7B48C'], [0.45, '#EFC79C'], [0.7, '#F2D3A4']],
+  { sun: '#F7E3B2', haze: '#EFC79C', far: '#B9B694', mid: '#7E9A5E', near: '#4E6839' }));
+</script>
+</body>
+</html>
