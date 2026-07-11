@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../fonts.css">
+<style>
+  body { margin: 0; background: #666; font-family: Literata, Georgia, serif; }
+  .f { width: 1000px; height: 1000px; margin: 12px auto; position: relative; overflow: hidden; }
+  .f svg { display: block; width: 100%; height: 100%; }
+</style>
+</head>
+<body>
+<script>
+/* Developed comp from value study V1 "Downhill breakout" (= concept A,
+   "Already leaving"). Hand-drawn character crops composited over painted
+   depth: far hill (cooler, lighter) → mid hill → near ground. Single sun,
+   low RIGHT; all cast shadows fall lower-left. Foreground grass breaks the
+   frame edge. Title = Literata placeholder for the hand-lettering stage.
+   Rocky ≈ 60-70% visual mass incl. his fence wreckage; horns clear of trim. */
+
+function comp(id, sky, opts) {
+  const o = Object.assign({
+    sunX: 850, sunY: 285, sun: '#F7E3B2', sunOp: 0.95, glowOp: 0.30,
+    far: '#AFC1A0', mid: '#7E9A5E', near: '#5E7A46',
+    shadow: '#3E5530', shadowOp: 0.30,
+    ink: '#2B2520', titleTone: '#2B2520', authorTone: '#4A3F33',
+    haze: null,
+  }, opts);
+  return `
+  <div class="f" id="${id}">
+  <svg viewBox="0 0 1000 1000" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <defs>
+      <linearGradient id="sky-${id}" x1="0" y1="0" x2="0" y2="1">
+        ${sky.map(([off, c]) => `<stop offset="${off}" stop-color="${c}"/>`).join('')}
+      </linearGradient>
+      <filter id="soft-${id}" x="-40%" y="-40%" width="180%" height="180%">
+        <feGaussianBlur stdDeviation="7"/>
+      </filter>
+    </defs>
+
+    <rect width="1000" height="1000" fill="url(#sky-${id})"/>
+
+    <!-- sun, low right: one light source -->
+    <circle cx="${o.sunX}" cy="${o.sunY}" r="115" fill="${o.sun}" opacity="${o.glowOp}"/>
+    <circle cx="${o.sunX}" cy="${o.sunY}" r="52" fill="${o.sun}" opacity="${o.sunOp}"/>
+
+    <!-- FAR hill: cooler + lighter (atmospheric perspective) -->
+    <path d="M0 560 Q 250 480 520 530 T 1000 520 L1000 1000 L0 1000 Z" fill="${o.far}"/>
+    ${o.haze ? `<rect x="0" y="440" width="1000" height="220" fill="${o.haze}" opacity="0.35"/>` : ''}
+    <!-- MID hill: the diagonal Rocky travels down -->
+    <path d="M0 620 Q 320 540 640 610 T 1000 700 L1000 1000 L0 1000 Z" fill="${o.mid}"/>
+    <!-- NEAR ground -->
+    <path d="M0 810 Q 300 770 620 800 T 1000 840 L1000 1000 L0 1000 Z" fill="${o.near}"/>
+
+    <!-- cast shadows: sun low-right → shadows to lower-LEFT -->
+    <ellipse cx="480" cy="694" rx="215" ry="30" fill="${o.shadow}" opacity="${o.shadowOp}" filter="url(#soft-${id})"/>
+    <ellipse cx="180" cy="905" rx="105" ry="20" fill="${o.shadow}" opacity="${o.shadowOp}" filter="url(#soft-${id})"/>
+    <ellipse cx="332" cy="912" rx="66" ry="15" fill="${o.shadow}" opacity="${o.shadowOp}" filter="url(#soft-${id})"/>
+
+    <!-- ROCKY, mid-breakout, downhill: the hero. Crop includes his wreckage. -->
+    <image href="assets/rocky-12-cut.png" x="252" y="330" width="560" height="432.5" preserveAspectRatio="xMidYMid meet"/>
+
+    <!-- WILL leaning on his own fence, lower-left, watching -->
+    <image href="assets/will-15-cut.png" x="80" y="672" width="240" height="244.9" preserveAspectRatio="xMidYMid meet"/>
+    <!-- CLEO beside him, paw up, mid-commentary (flipped to face the action) -->
+    <g transform="translate(392 792) scale(-1,1)">
+      <image href="assets/cleo-05-cut.png" x="0" y="0" width="132" height="126.7" preserveAspectRatio="xMidYMid meet"/>
+    </g>
+
+    <!-- foreground grass breaking the frame edge -->
+    <g fill="${o.near}" stroke="${o.shadow}" stroke-width="0">
+      <path d="M18 1000 q-6 -70 20 -110 q8 52 12 110 Z" opacity="0.9"/>
+      <path d="M58 1000 q12 -58 40 -80 q-8 42 -14 80 Z" opacity="0.85"/>
+      <path d="M905 1000 q-8 -76 22 -118 q10 54 14 118 Z" opacity="0.9"/>
+      <path d="M952 1000 q14 -60 42 -84 q-10 44 -16 84 Z" opacity="0.85"/>
+      <path d="M472 1000 q-4 -44 14 -70 q6 34 8 70 Z" opacity="0.75"/>
+    </g>
+
+    <!-- title mass: Literata PLACEHOLDER for hand-lettering stage -->
+    <g font-family="Literata, Georgia, serif" fill="${o.titleTone}">
+      <text x="80" y="150" font-size="86" font-weight="700" letter-spacing="-1">Will <tspan font-style="italic" font-weight="400" font-size="56">and the</tspan></text>
+      <text x="80" y="248" font-size="86" font-weight="700" letter-spacing="-1">Missing</text>
+      <text x="80" y="346" font-size="86" font-weight="700" letter-spacing="-1">Highland Cow</text>
+    </g>
+    <text x="80" y="960" font-family="Literata, Georgia, serif" font-style="italic"
+          font-size="30" fill="${o.authorTone}">Kris Pierce &amp; Will Pierce</text>
+  </svg>
+  </div>`;
+}
+
+document.write(comp('duskA',
+  [[0, '#C9DCE4'], [0.38, '#EED9B4'], [0.62, '#F2C29B']],
+  { sun: '#F7D9A0', haze: '#EED9B4',
+    far: '#B4BFA0', mid: '#7E9A5E', near: '#55703F',
+    titleTone: '#2B2520' }));
+
+document.write(comp('goldB',
+  [[0, '#BCD3DC'], [0.5, '#DCE0C2'], [0.72, '#E8D9A8']],
+  { sun: '#F2DFA7', far: '#B0C4A4', mid: '#85A163', near: '#5E7A46' }));
+
+document.write(comp('emberC',
+  [[0, '#E8B48C'], [0.45, '#EFC79C'], [0.7, '#F2D3A4']],
+  { sun: '#F7E3B2', sunOp: 1, glowOp: 0.4, haze: '#EFC79C',
+    far: '#B9B694', mid: '#7E9A5E', near: '#4E6839',
+    titleTone: '#3A2A1C', authorTone: '#5A4632' }));
+</script>
+</body>
+</html>
