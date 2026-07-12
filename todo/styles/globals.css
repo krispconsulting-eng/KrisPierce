@@ -206,6 +206,88 @@ input, select, textarea { font-family: var(--font-body); }
 .s-item .when { font-weight: 700; font-size: 13.5px; color: var(--brand-600); white-space: nowrap; margin-top: 1px; }
 .s-empty { color: var(--brand-500); font-size: 14px; font-style: italic; }
 
+/* ————— Weekly triage ————— */
+.tri-head { display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+.tri-head h1 { font-size: 26px; margin-bottom: 4px; }
+.tri-sub { color: var(--brand-500); font-size: 14.5px; max-width: 560px; margin: 0; line-height: 1.5; }
+.tri-counts { display: flex; gap: 22px; }
+.tri-count { display: flex; flex-direction: column; align-items: center; min-width: 68px; }
+.tri-count .n { font-family: var(--font-heading); font-weight: 800; font-size: 30px; line-height: 1; }
+.tri-count .l { font-size: 11.5px; text-transform: uppercase; letter-spacing: 0.06em; font-weight: 600; color: var(--brand-400); margin-top: 4px; }
+
+.tri-filter { display: flex; gap: 8px; flex-wrap: wrap; margin: 20px 0 8px; }
+.pill {
+  padding: 6px 13px; border-radius: 999px; border: 1.5px solid var(--brand-200);
+  background: #fff; color: var(--brand-600); font-size: 13px; font-weight: 500;
+  transition: background 0.12s ease, color 0.12s ease, border-color 0.12s ease;
+}
+.pill:hover { border-color: var(--brand-300); }
+.pill.on { background: var(--brand-900); color: #fff; border-color: var(--brand-900); }
+
+.tri-band { margin-top: 24px; border-radius: var(--radius); padding: 4px 2px 8px; }
+.tri-band > h2 {
+  display: flex; align-items: center; gap: 10px; font-size: 15px;
+  text-transform: uppercase; letter-spacing: 0.05em; padding: 6px 4px 10px;
+}
+.tri-band.urgent > h2 { color: var(--red); }
+.tri-band.intermediate > h2 { color: var(--yellow); }
+.tri-band.soon > h2 { color: var(--green); }
+.tri-band .band-blurb { font-size: 12.5px; font-weight: 500; text-transform: none; letter-spacing: 0; color: var(--brand-400); }
+.tri-band .band-n { margin-left: auto; font-size: 13px; font-weight: 700; background: var(--brand-100); color: var(--brand-500); border-radius: 999px; padding: 1px 10px; }
+
+.tri-item {
+  display: flex; align-items: flex-start; gap: 11px;
+  background: #fff; border: 1px solid var(--brand-100); border-radius: 11px;
+  padding: 12px 14px; margin-bottom: 8px; box-shadow: 0 1px 2px rgba(9,9,11,0.04);
+  border-left: 3px solid var(--brand-200);
+  transition: transform 0.08s ease, box-shadow 0.08s ease;
+}
+.tri-band.urgent .tri-item { border-left-color: var(--red); }
+.tri-band.intermediate .tri-item { border-left-color: var(--yellow); }
+.tri-band.soon .tri-item { border-left-color: var(--green); }
+.tri-item:hover { transform: translateY(-1px); box-shadow: var(--shadow); }
+.tri-item .dot { margin-top: 6px; }
+
+.chip.mode { background: #fff; border: 1px solid var(--brand-200); color: var(--brand-600); font-weight: 600; }
+.chip.mode.slow { border-color: var(--brand-400); color: var(--brand-700); }
+.chip.model { color: #fff; font-weight: 600; }
+.chip.model.m-haiku { background: #0d9488; }
+.chip.model.m-sonnet { background: var(--accent); }
+.chip.model.m-opus { background: #7c3aed; }
+.chip.fable { background: #1e1b4b; color: #c7d2fe; font-weight: 700; letter-spacing: 0.02em; }
+.est { font-size: 12px; color: var(--brand-400); font-weight: 600; }
+
+/* ————— Fable morning batch ————— */
+.fable-batch { margin-top: 34px; }
+.fable-inner {
+  background: linear-gradient(135deg, #1e1b4b 0%, #312e81 55%, #4338ca 100%);
+  border-radius: 20px; color: #fff; padding: 30px 32px; box-shadow: var(--shadow-lift);
+}
+.fable-title { display: flex; gap: 16px; align-items: flex-start; margin-bottom: 18px; }
+.fable-mark { font-size: 30px; line-height: 1; color: #c7d2fe; }
+.fable-inner h2 { color: #fff; font-size: 21px; margin-bottom: 4px; }
+.fable-inner p { color: rgba(255,255,255,0.82); font-size: 14.5px; margin: 0; max-width: 620px; line-height: 1.5; }
+.fable-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.fable-list li {
+  display: flex; align-items: center; gap: 12px; background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.14); border-radius: 11px; padding: 11px 15px;
+}
+.fable-list .fb-title { font-weight: 600; font-size: 14.5px; flex: 1; min-width: 0; }
+.fable-list .fb-stream { font-size: 12px; color: #c7d2fe; font-weight: 600; white-space: nowrap; }
+.fable-list .fb-est { font-size: 12px; color: rgba(255,255,255,0.6); font-weight: 600; white-space: nowrap; }
+
+/* ————— Triage legend ————— */
+.tri-legend { margin-top: 28px; }
+.tri-legend h3 { font-size: 15px; margin-bottom: 14px; }
+.legend-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 22px; }
+.legend-grid h4 { font-size: 12.5px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--brand-400); margin-bottom: 8px; }
+.legend-grid p { font-size: 13.5px; color: var(--brand-600); margin: 0 0 5px; line-height: 1.45; }
+
+@media (max-width: 640px) {
+  .tri-head { flex-direction: column; align-items: flex-start; }
+  .tri-counts { gap: 16px; }
+}
+
 /* ————— Login ————— */
 .loginwrap { min-height: 100vh; display: flex; align-items: center; justify-content: center; background: var(--brand-900); }
 .logincard {
