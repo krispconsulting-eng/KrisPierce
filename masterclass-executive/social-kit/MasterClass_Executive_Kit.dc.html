@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; }
+  a, a:hover { color: #FFC61E; }
+  @keyframes blkCycle {
+    0% { opacity: 0; transform: translateY(22px) scale(.45); }
+    12% { opacity: 1; transform: none; }
+    64% { opacity: 1; transform: none; }
+    76% { opacity: 0; transform: translateY(-22px) scale(.45); }
+    100% { opacity: 0; }
+  }
+  @keyframes txtUp {
+    0%, 16% { opacity: 0; transform: translateY(28px); }
+    30% { opacity: 1; transform: none; }
+    62% { opacity: 1; transform: none; }
+    74% { opacity: 0; transform: translateY(-16px); }
+    100% { opacity: 0; }
+  }
+  @keyframes popIn {
+    0% { opacity: 0; transform: scale(.2) rotate(-20deg); }
+    18% { opacity: 1; transform: scale(1) rotate(0); }
+    70% { opacity: 1; transform: scale(1); }
+    82% { opacity: 0; transform: scale(.2) rotate(20deg); }
+    100% { opacity: 0; }
+  }
+</style>
+</helmet>
+
+<div style="background:#111214;min-height:100vh;padding:56px 64px 96px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;color:#fff;display:flex;flex-direction:column;gap:14px">
+
+  <div style="max-width:900px;margin-bottom:20px">
+    <div style="font:600 13px 'IBM Plex Mono',monospace;color:#FFC61E;letter-spacing:0.18em;margin-bottom:14px">SOCIAL TEMPLATE KIT</div>
+    <div style="font-size:40px;font-weight:800;letter-spacing:-0.02em;line-height:1.02">MasterClass Executive — post templates &amp; reels</div>
+    <div style="font-size:16px;color:#9a9b9f;margin-top:14px;line-height:1.5;max-width:640px">Every frame carries the logo, one defining MasterClass factor, and the signature block line. Snap any tile at 2× for full 1080 resolution. Reels loop the blocks in and out.</div>
+  </div>
+
+  <!-- ============ SQUARE 1:1 ============ -->
+  <div style="font:600 13px 'IBM Plex Mono',monospace;color:#6f7175;letter-spacing:0.14em;margin-top:24px">◆ SQUARE 1:1 — 1080×1080</div>
+  <div style="display:flex;flex-wrap:wrap;gap:40px">
+
+    <!-- 1 · HERO -->
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <sc-if value="{{showCaptions}}" hint-placeholder-val="{{ true }}"><div style="font:500 12px 'IBM Plex Mono',monospace;color:#7c7e82;letter-spacing:0.04em">01 · HERO</div></sc-if>
+      <div style="position:relative;width:540px;height:540px;background:#3538CC;overflow:hidden;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif">
+        <div style="position:absolute;top:34px;left:36px;line-height:1"><div style="font-size:15px;font-weight:500;letter-spacing:-0.01em">MasterClass</div><div style="font-size:23px;font-weight:800;letter-spacing:-0.03em;margin-top:1px">Executive</div></div>
+        <div style="position:absolute;left:36px;top:210px;font-size:42px;font-weight:800;letter-spacing:-0.03em;line-height:0.96;text-transform:uppercase">The future<br>of business<br>education<br>is here</div>
+        <div style="position:absolute;left:36px;bottom:64px;display:inline-flex;background:#FFC61E;color:#111;font-size:14px;font-weight:800;letter-spacing:0.03em;padding:12px 20px;text-transform:uppercase">Follow for more</div>
+        <div style="position:absolute;bottom:0;left:0;width:100%;display:flex;gap:5px;padding:16px 20px">
+          <sc-for list="{{ tA }}" as="c" hint-placeholder-count="12"><div style="width:22px;height:22px;background:{{ c }};border-radius:1px"></div></sc-for>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2 · LOGO / AI ERA -->
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <sc-if value="{{showCaptions}}" hint-placeholder-val="{{ true }}"><div style="font:500 12px 'IBM Plex Mono',monospace;color:#7c7e82;letter-spacing:0.04em">02 · THE AI ERA</div></sc-if>
+      <div style="position:relative;width:540px;height:540px;background:#0A0A0A;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center">
+        <div style="position:absolute;top:0;right:0;display:flex;gap:5px;padding:24px 24px 0 0">
+          <sc-for list="{{ tB }}" as="c" hint-placeholder-count="8"><div style="width:22px;height:22px;background:{{ c }};border-radius:1px"></div></sc-for>
+        </div>
+        <div style="line-height:1"><div style="font-size:26px;font-weight:500;letter-spacing:-0.01em">MasterClass</div><div style="font-size:40px;font-weight:800;letter-spacing:-0.03em">Executive</div></div>
+        <div style="width:34px;height:34px;background:#FFC61E;margin:30px 0;display:flex;align-items:center;justify-content:center"><div style="width:15px;height:15px;background:#F2681F"></div></div>
+        <div style="font-size:19px;color:#d9d9d9;font-weight:500;max-width:340px;line-height:1.35">The first business school experience for the AI Era</div>
+        <div style="position:absolute;bottom:0;left:0;width:100%;display:flex;gap:5px;padding:0 24px 24px;justify-content:flex-start">
+          <sc-for list="{{ tA }}" as="c" hint-placeholder-count="12"><div style="width:22px;height:22px;background:{{ c }};border-radius:1px"></div></sc-for>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3 · AI-NATIVE / PARTNERS -->
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <sc-if value="{{showCaptions}}" hint-placeholder-val="{{ true }}"><div style="font:500 12px 'IBM Plex Mono',monospace;color:#7c7e82;letter-spacing:0.04em">03 · PARTNERS</div></sc-if>
+      <div style="position:relative;width:540px;height:540px;background:#3538CC;overflow:hidden;padding:36px">
+        <div style="line-height:1"><div style="font-size:15px;font-weight:500;letter-spacing:-0.01em">MasterClass</div><div style="font-size:23px;font-weight:800;letter-spacing:-0.03em;margin-top:1px">Executive</div></div>
+        <div style="font:700 13px 'IBM Plex Mono',monospace;color:#FFC61E;letter-spacing:0.14em;margin-top:96px">AI-NATIVE</div>
+        <div style="font-size:40px;font-weight:800;letter-spacing:-0.03em;line-height:0.98;text-transform:uppercase;margin-top:10px">Business<br>school,<br>rebuilt</div>
+        <div style="font-size:15px;color:#c8caf5;margin-top:22px;max-width:360px;line-height:1.5">In partnership with The University of Chicago Booth School of Business, in collaboration with OpenAI.</div>
+        <div style="position:absolute;bottom:0;left:0;width:100%;display:flex;gap:5px;padding:16px 20px">
+          <sc-for list="{{ tC }}" as="c" hint-placeholder-count="8"><div style="width:22px;height:22px;background:{{ c }};border-radius:1px"></div></sc-for>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4 · COHORT STATS -->
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <sc-if value="{{showCaptions}}" hint-placeholder-val="{{ true }}"><div style="font:500 12px 'IBM Plex Mono',monospace;color:#7c7e82;letter-spacing:0.04em">04 · COHORT 1</div></sc-if>
+      <div style="position:relative;width:540px;height:540px;background:#0A0A0A;overflow:hidden;padding:36px">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start"><div style="line-height:1"><div style="font-size:15px;font-weight:500;letter-spacing:-0.01em">MasterClass</div><div style="font-size:23px;font-weight:800;letter-spacing:-0.03em;margin-top:1px">Executive</div></div><div style="font:600 12px 'IBM Plex Mono',monospace;color:#7c7e82;letter-spacing:0.1em">MEET COHORT 1</div></div>
+        <div style="display:flex;gap:14px;margin-top:52px">
+          <div style="flex:1;background:#F2681F;padding:18px"><div style="font:700 11px 'IBM Plex Mono',monospace;letter-spacing:0.1em;color:#ffe0cc">ENROLLED</div><div style="font-size:52px;font-weight:800;line-height:1;margin-top:6px">705</div></div>
+          <div style="flex:1;background:#1F8A44;padding:18px"><div style="font:700 11px 'IBM Plex Mono',monospace;letter-spacing:0.1em;color:#c7e7c2">COUNTRIES</div><div style="font-size:52px;font-weight:800;line-height:1;margin-top:6px">55</div></div>
+        </div>
+        <div style="display:flex;gap:14px;margin-top:14px">
+          <div style="flex:1;background:#3538CC;padding:18px"><div style="font:700 11px 'IBM Plex Mono',monospace;letter-spacing:0.1em;color:#c8caf5">AVG EXPERIENCE</div><div style="font-size:52px;font-weight:800;line-height:1;margin-top:6px">16+</div></div>
+          <div style="flex:1;background:#FFC61E;padding:18px"><div style="font:700 11px 'IBM Plex Mono',monospace;letter-spacing:0.1em;color:#7a5c00">ORGANIZATIONS</div><div style="font-size:52px;font-weight:800;line-height:1;margin-top:6px;color:#111">495</div></div>
+        </div>
+        <div style="font-size:14px;color:#9a9b9f;margin-top:22px">The founding class of MasterClass Executive.</div>
+        <div style="position:absolute;bottom:0;left:0;width:100%;display:flex;gap:5px;padding:0 20px 20px">
+          <sc-for list="{{ tA }}" as="c" hint-placeholder-count="12"><div style="width:22px;height:22px;background:{{ c }};border-radius:1px"></div></sc-for>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5 · MISSION TIE-IN -->
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <sc-if value="{{showCaptions}}" hint-placeholder-val="{{ true }}"><div style="font:500 12px 'IBM Plex Mono',monospace;color:#7c7e82;letter-spacing:0.04em">05 · MY ANGLE</div></sc-if>
+      <div style="position:relative;width:540px;height:540px;background:#3538CC;overflow:hidden;padding:36px;display:flex;flex-direction:column">
+        <div style="line-height:1"><div style="font-size:15px;font-weight:500;letter-spacing:-0.01em">MasterClass</div><div style="font-size:23px;font-weight:800;letter-spacing:-0.03em;margin-top:1px">Executive</div></div>
+        <div style="margin-top:auto;margin-bottom:auto">
+          <div style="font:700 13px 'IBM Plex Mono',monospace;color:#FFC61E;letter-spacing:0.12em">WHY I'M HERE</div>
+          <div style="font-size:32px;font-weight:800;letter-spacing:-0.02em;line-height:1.04;margin-top:14px;max-width:420px">Learning to lead in the AI era — and putting it to work for <span style="color:#FFC61E">every disease.</span></div>
+        </div>
+        <div style="position:absolute;bottom:0;left:0;width:100%;display:flex;gap:5px;padding:16px 20px">
+          <sc-for list="{{ tB }}" as="c" hint-placeholder-count="10"><div style="width:22px;height:22px;background:{{ c }};border-radius:1px"></div></sc-for>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ============ PORTRAIT 4:5 ============ -->
+  <div style="font:600 13px 'IBM Plex Mono',monospace;color:#6f7175;letter-spacing:0.14em;margin-top:40px">◆ PORTRAIT 4:5 — 1080×1350</div>
+  <div style="display:flex;flex-wrap:wrap;gap:40px">
+
+    <!-- 6 · WORK IS MOVING -->
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <sc-if value="{{showCaptions}}" hint-placeholder-val="{{ true }}"><div style="font:500 12px 'IBM Plex Mono',monospace;color:#7c7e82;letter-spacing:0.04em">06 · WORK VS EDUCATION</div></sc-if>
+      <div style="position:relative;width:540px;height:675px;background:#0A0A0A;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:40px">
+        <div style="position:absolute;top:34px;right:34px;display:flex;flex-direction:column;align-items:flex-end;gap:5px">
+          <div style="display:flex;gap:5px"><sc-for list="{{ tB }}" as="c" hint-placeholder-count="8"><div style="width:22px;height:22px;background:{{ c }};border-radius:1px"></div></sc-for></div>
+          <div style="display:flex;flex-direction:column;gap:5px;align-items:flex-end"><sc-for list="{{ drop }}" as="c" hint-placeholder-count="3"><div style="width:22px;height:22px;background:{{ c }};border-radius:1px"></div></sc-for></div>
+        </div>
+        <div style="font-size:46px;font-weight:800;letter-spacing:-0.03em;line-height:0.98;text-transform:uppercase">Work is<br>moving<br>faster than<br>education</div>
+        <div style="font-size:17px;color:#b6b7bb;margin-top:22px;max-width:360px;line-height:1.4">So we rebuilt it for the skills this world now demands.</div>
+        <div style="position:absolute;left:34px;bottom:34px;display:flex;flex-direction:column;gap:5px">
+          <div style="display:flex;flex-direction:column;gap:5px"><sc-for list="{{ drop }}" as="c" hint-placeholder-count="3"><div style="width:22px;height:22px;background:{{ c }};border-radius:1px"></div></sc-for></div>
+          <div style="display:flex;gap:5px"><sc-for list="{{ tA }}" as="c" hint-placeholder-count="12"><div style="width:22px;height:22px;background:{{ c }};border-radius:1px"></div></sc-for></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 7 · STAT CARD -->
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <sc-if value="{{showCaptions}}" hint-placeholder-val="{{ true }}"><div style="font:500 12px 'IBM Plex Mono',monospace;color:#7c7e82;letter-spacing:0.04em">07 · FOUNDING CLASS</div></sc-if>
+      <div style="position:relative;width:540px;height:675px;background:#3538CC;overflow:hidden;padding:36px">
+        <div style="line-height:1"><div style="font-size:15px;font-weight:500;letter-spacing:-0.01em">MasterClass</div><div style="font-size:23px;font-weight:800;letter-spacing:-0.03em;margin-top:1px">Executive</div></div>
+        <div style="font-size:38px;font-weight:800;letter-spacing:-0.03em;line-height:1;margin-top:40px">Meet Cohort&nbsp;1</div>
+        <div style="font-size:15px;color:#c8caf5;margin-top:8px">The founding class, beginning summer 2026.</div>
+        <div style="display:flex;flex-direction:column;gap:12px;margin-top:28px">
+          <div style="background:#F2681F;padding:16px 20px;display:flex;align-items:baseline;justify-content:space-between"><span style="font:700 12px 'IBM Plex Mono',monospace;letter-spacing:0.1em;color:#ffe0cc">ENROLLED</span><span style="font-size:44px;font-weight:800;line-height:1">705</span></div>
+          <div style="background:#1F8A44;padding:16px 20px;display:flex;align-items:baseline;justify-content:space-between"><span style="font:700 12px 'IBM Plex Mono',monospace;letter-spacing:0.1em;color:#c7e7c2">COUNTRIES</span><span style="font-size:44px;font-weight:800;line-height:1">55</span></div>
+          <div style="background:#FFC61E;padding:16px 20px;display:flex;align-items:baseline;justify-content:space-between"><span style="font:700 12px 'IBM Plex Mono',monospace;letter-spacing:0.1em;color:#7a5c00">AVG YEARS LEADING</span><span style="font-size:44px;font-weight:800;line-height:1;color:#111">16+</span></div>
+        </div>
+        <div style="position:absolute;bottom:0;left:0;width:100%;display:flex;gap:5px;padding:16px 20px">
+          <sc-for list="{{ tA }}" as="c" hint-placeholder-count="12"><div style="width:22px;height:22px;background:{{ c }};border-radius:1px"></div></sc-for>
+        </div>
+      </div>
+    </div>
+
+    <!-- 8 · WHAT I'M LEARNING -->
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <sc-if value="{{showCaptions}}" hint-placeholder-val="{{ true }}"><div style="font:500 12px 'IBM Plex Mono',monospace;color:#7c7e82;letter-spacing:0.04em">08 · WEEKLY LESSON</div></sc-if>
+      <div style="position:relative;width:540px;height:675px;background:#0A0A0A;overflow:hidden;padding:36px;display:flex;flex-direction:column">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start"><div style="line-height:1"><div style="font-size:15px;font-weight:500;letter-spacing:-0.01em">MasterClass</div><div style="font-size:23px;font-weight:800;letter-spacing:-0.03em;margin-top:1px">Executive</div></div><div style="width:26px;height:26px;background:#FFC61E;display:flex;align-items:center;justify-content:center"><div style="width:11px;height:11px;background:#F2681F"></div></div></div>
+        <div style="font:700 13px 'IBM Plex Mono',monospace;color:#FFC61E;letter-spacing:0.12em;margin-top:56px">WHAT I'M LEARNING</div>
+        <div style="font-size:36px;font-weight:800;letter-spacing:-0.02em;line-height:1.02;margin-top:18px">Week 03 —<br>your headline<br>lesson goes<br>here.</div>
+        <div style="font-size:16px;color:#9a9b9f;margin-top:auto;line-height:1.5;max-width:380px">One or two lines on how it applies to your work. Swap the copy each week; keep the frame.</div>
+        <div style="position:absolute;bottom:0;left:0;width:100%;display:flex;gap:5px;padding:16px 20px">
+          <sc-for list="{{ tC }}" as="c" hint-placeholder-count="8"><div style="width:22px;height:22px;background:{{ c }};border-radius:1px"></div></sc-for>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ============ LANDSCAPE ============ -->
+  <div style="font:600 13px 'IBM Plex Mono',monospace;color:#6f7175;letter-spacing:0.14em;margin-top:40px">◆ LANDSCAPE — 1350×1080 (LinkedIn / web)</div>
+  <div style="display:flex;flex-wrap:wrap;gap:40px">
+
+    <!-- 9 · SPLIT HERO -->
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <sc-if value="{{showCaptions}}" hint-placeholder-val="{{ true }}"><div style="font:500 12px 'IBM Plex Mono',monospace;color:#7c7e82;letter-spacing:0.04em">09 · SPLIT HERO</div></sc-if>
+      <div style="position:relative;width:675px;height:540px;background:#3538CC;overflow:hidden;display:flex">
+        <div style="flex:1.15;padding:36px;display:flex;flex-direction:column;position:relative">
+          <div style="line-height:1"><div style="font-size:15px;font-weight:500;letter-spacing:-0.01em">MasterClass</div><div style="font-size:23px;font-weight:800;letter-spacing:-0.03em;margin-top:1px">Executive</div></div>
+          <div style="font-size:40px;font-weight:800;letter-spacing:-0.03em;line-height:0.96;text-transform:uppercase;margin-top:auto">The future<br>of business<br>education<br>is here</div>
+          <div style="display:inline-flex;align-self:flex-start;background:#FFC61E;color:#111;font-size:13px;font-weight:800;letter-spacing:0.03em;padding:11px 18px;text-transform:uppercase;margin-top:24px">Apply for free</div>
+        </div>
+        <div style="flex:1;position:relative;background:#0A0A0A">
+          <x-import component-from-global-scope="image-slot" from="./image-slot.js" id="hero09" shape="rect" fit="cover" src="uploads/71010E4F-4142-4F0F-83FC-128600F2D501_1_102_o-046e44d4.jpeg" placeholder="Drop your photo" hint-size="100%,100%" style="position:absolute;inset:0"></x-import>
+        </div>
+        <div style="position:absolute;bottom:0;left:0;width:100%;display:flex;gap:5px;padding:16px 20px">
+          <sc-for list="{{ tA }}" as="c" hint-placeholder-count="12"><div style="width:22px;height:22px;background:{{ c }};border-radius:1px"></div></sc-for>
+        </div>
+      </div>
+    </div>
+
+    <!-- 10 · CREDENTIAL BAR -->
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <sc-if value="{{showCaptions}}" hint-placeholder-val="{{ true }}"><div style="font:500 12px 'IBM Plex Mono',monospace;color:#7c7e82;letter-spacing:0.04em">10 · CREDENTIAL</div></sc-if>
+      <div style="position:relative;width:675px;height:540px;background:#0A0A0A;overflow:hidden;padding:44px;display:flex;flex-direction:column;justify-content:center;text-align:center;align-items:center">
+        <div style="position:absolute;top:0;left:0;width:100%;display:flex;gap:5px;padding:24px 24px 0;justify-content:flex-end">
+          <sc-for list="{{ tB }}" as="c" hint-placeholder-count="10"><div style="width:22px;height:22px;background:{{ c }};border-radius:1px"></div></sc-for>
+        </div>
+        <div style="line-height:1"><div style="font-size:22px;font-weight:500;letter-spacing:-0.01em">MasterClass</div><div style="font-size:34px;font-weight:800;letter-spacing:-0.03em">Executive</div></div>
+        <div style="width:60px;height:2px;background:#FFC61E;margin:26px 0"></div>
+        <div style="font-size:22px;font-weight:600;line-height:1.35;max-width:480px">In partnership with The University of Chicago Booth School of Business</div>
+        <div style="font:600 13px 'IBM Plex Mono',monospace;color:#7c7e82;letter-spacing:0.1em;margin-top:16px">IN COLLABORATION WITH OpenAI</div>
+        <div style="position:absolute;bottom:0;left:0;width:100%;display:flex;gap:5px;padding:0 24px 24px">
+          <sc-for list="{{ tA }}" as="c" hint-placeholder-count="12"><div style="width:22px;height:22px;background:{{ c }};border-radius:1px"></div></sc-for>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ============ REELS 9:16 ============ -->
+  <div style="font:600 13px 'IBM Plex Mono',monospace;color:#6f7175;letter-spacing:0.14em;margin-top:40px">◆ REELS 9:16 — 1080×1920 · blocks animate in &amp; out (loops)</div>
+  <div style="display:flex;flex-wrap:wrap;gap:40px">
+
+    <!-- R1 -->
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <sc-if value="{{showCaptions}}" hint-placeholder-val="{{ true }}"><div style="font:500 12px 'IBM Plex Mono',monospace;color:#7c7e82;letter-spacing:0.04em">R1 · FUTURE IS HERE</div></sc-if>
+      <div style="position:relative;width:432px;height:768px;background:#3538CC;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:34px">
+        <div style="position:absolute;top:32px;left:0;width:100%;display:flex;gap:5px;padding:0 28px;justify-content:center">
+          <sc-for list="{{ reelTop }}" as="b" hint-placeholder-count="10"><div style="width:22px;height:22px;background:{{ b.c }};border-radius:1px;animation:blkCycle 5.5s ease-in-out infinite both;animation-delay:{{ b.d }}s;animation-play-state:{{ playState }}"></div></sc-for>
+        </div>
+        <div style="animation:txtUp 5.5s ease-in-out infinite both;animation-play-state:{{ playState }}">
+          <div style="font-size:44px;font-weight:800;letter-spacing:-0.03em;line-height:0.96;text-transform:uppercase">The future<br>of business<br>education<br>is here</div>
+        </div>
+        <div style="position:absolute;bottom:32px;left:0;width:100%;display:flex;gap:5px;padding:0 28px;justify-content:center">
+          <sc-for list="{{ reelBot }}" as="b" hint-placeholder-count="10"><div style="width:22px;height:22px;background:{{ b.c }};border-radius:1px;animation:blkCycle 5.5s ease-in-out infinite both;animation-delay:{{ b.d }}s;animation-play-state:{{ playState }}"></div></sc-for>
+        </div>
+        <div style="position:absolute;bottom:70px;left:0;width:100%;text-align:center;line-height:1"><div style="font-size:12px;font-weight:500">MasterClass</div><div style="font-size:16px;font-weight:800;letter-spacing:-0.02em">Executive</div></div>
+      </div>
+    </div>
+
+    <!-- R2 -->
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <sc-if value="{{showCaptions}}" hint-placeholder-val="{{ true }}"><div style="font:500 12px 'IBM Plex Mono',monospace;color:#7c7e82;letter-spacing:0.04em">R2 · WORK IS MOVING</div></sc-if>
+      <div style="position:relative;width:432px;height:768px;background:#0A0A0A;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:34px">
+        <div style="position:absolute;top:30px;right:30px;display:flex;gap:5px">
+          <sc-for list="{{ reelTop }}" as="b" hint-placeholder-count="10"><div style="width:22px;height:22px;background:{{ b.c }};border-radius:1px;animation:blkCycle 5.5s ease-in-out infinite both;animation-delay:{{ b.d }}s;animation-play-state:{{ playState }}"></div></sc-for>
+        </div>
+        <div style="animation:txtUp 5.5s ease-in-out infinite both;animation-play-state:{{ playState }}">
+          <div style="font-size:42px;font-weight:800;letter-spacing:-0.03em;line-height:0.96;text-transform:uppercase">Work is<br>moving<br>faster than<br>education</div>
+          <div style="font-size:16px;color:#b6b7bb;margin-top:20px;max-width:300px;line-height:1.4">So we rebuilt it for the skills this world now demands.</div>
+        </div>
+        <div style="position:absolute;bottom:30px;left:30px;display:flex;gap:5px">
+          <sc-for list="{{ reelBot }}" as="b" hint-placeholder-count="10"><div style="width:22px;height:22px;background:{{ b.c }};border-radius:1px;animation:blkCycle 5.5s ease-in-out infinite both;animation-delay:{{ b.d }}s;animation-play-state:{{ playState }}"></div></sc-for>
+        </div>
+      </div>
+    </div>
+
+    <!-- R3 · LOGO BUILD -->
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <sc-if value="{{showCaptions}}" hint-placeholder-val="{{ true }}"><div style="font:500 12px 'IBM Plex Mono',monospace;color:#7c7e82;letter-spacing:0.04em">R3 · LOGO BUILD</div></sc-if>
+      <div style="position:relative;width:432px;height:768px;background:#0A0A0A;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:34px">
+        <div style="position:absolute;top:32px;left:0;width:100%;display:flex;gap:5px;padding:0 28px;justify-content:center">
+          <sc-for list="{{ reelTop }}" as="b" hint-placeholder-count="10"><div style="width:22px;height:22px;background:{{ b.c }};border-radius:1px;animation:blkCycle 5.5s ease-in-out infinite both;animation-delay:{{ b.d }}s;animation-play-state:{{ playState }}"></div></sc-for>
+        </div>
+        <div style="width:44px;height:44px;background:#FFC61E;display:flex;align-items:center;justify-content:center;animation:popIn 5.5s ease-in-out infinite both;animation-play-state:{{ playState }}"><div style="width:19px;height:19px;background:#F2681F"></div></div>
+        <div style="margin-top:28px;animation:txtUp 5.5s ease-in-out infinite both;animation-play-state:{{ playState }}">
+          <div style="line-height:1"><div style="font-size:28px;font-weight:500;letter-spacing:-0.01em">MasterClass</div><div style="font-size:44px;font-weight:800;letter-spacing:-0.03em">Executive</div></div>
+          <div style="font-size:17px;color:#d9d9d9;margin-top:20px;max-width:280px;line-height:1.35">The first business school experience for the AI Era</div>
+        </div>
+        <div style="position:absolute;bottom:32px;left:0;width:100%;display:flex;gap:5px;padding:0 28px;justify-content:center">
+          <sc-for list="{{ reelBot }}" as="b" hint-placeholder-count="10"><div style="width:22px;height:22px;background:{{ b.c }};border-radius:1px;animation:blkCycle 5.5s ease-in-out infinite both;animation-delay:{{ b.d }}s;animation-play-state:{{ playState }}"></div></sc-for>
+        </div>
+      </div>
+    </div>
+
+    <!-- R4 · STATS -->
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <sc-if value="{{showCaptions}}" hint-placeholder-val="{{ true }}"><div style="font:500 12px 'IBM Plex Mono',monospace;color:#7c7e82;letter-spacing:0.04em">R4 · COHORT STATS</div></sc-if>
+      <div style="position:relative;width:432px;height:768px;background:#3538CC;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:34px">
+        <div style="position:absolute;top:32px;left:0;width:100%;display:flex;gap:5px;padding:0 28px;justify-content:center">
+          <sc-for list="{{ reelTop }}" as="b" hint-placeholder-count="10"><div style="width:22px;height:22px;background:{{ b.c }};border-radius:1px;animation:blkCycle 5.5s ease-in-out infinite both;animation-delay:{{ b.d }}s;animation-play-state:{{ playState }}"></div></sc-for>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:22px;animation:txtUp 5.5s ease-in-out infinite both;animation-play-state:{{ playState }}">
+          <div><div style="font-size:64px;font-weight:800;line-height:1">705</div><div style="font:600 12px 'IBM Plex Mono',monospace;color:#c8caf5;letter-spacing:0.12em;margin-top:4px">ENROLLED</div></div>
+          <div><div style="font-size:64px;font-weight:800;line-height:1;color:#FFC61E">55</div><div style="font:600 12px 'IBM Plex Mono',monospace;color:#c8caf5;letter-spacing:0.12em;margin-top:4px">COUNTRIES</div></div>
+          <div><div style="font-size:64px;font-weight:800;line-height:1">16+</div><div style="font:600 12px 'IBM Plex Mono',monospace;color:#c8caf5;letter-spacing:0.12em;margin-top:4px">AVG YEARS LEADING</div></div>
+        </div>
+        <div style="position:absolute;bottom:32px;left:0;width:100%;display:flex;gap:5px;padding:0 28px;justify-content:center">
+          <sc-for list="{{ reelBot }}" as="b" hint-placeholder-count="10"><div style="width:22px;height:22px;background:{{ b.c }};border-radius:1px;animation:blkCycle 5.5s ease-in-out infinite both;animation-delay:{{ b.d }}s;animation-play-state:{{ playState }}"></div></sc-for>
+        </div>
+      </div>
+    </div>
+
+    <!-- R5 · LESSON -->
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <sc-if value="{{showCaptions}}" hint-placeholder-val="{{ true }}"><div style="font:500 12px 'IBM Plex Mono',monospace;color:#7c7e82;letter-spacing:0.04em">R5 · WEEKLY LESSON</div></sc-if>
+      <div style="position:relative;width:432px;height:768px;background:#0A0A0A;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:34px">
+        <div style="position:absolute;top:32px;left:0;width:100%;display:flex;gap:5px;padding:0 28px;justify-content:center">
+          <sc-for list="{{ reelSide }}" as="b" hint-placeholder-count="8"><div style="width:22px;height:22px;background:{{ b.c }};border-radius:1px;animation:blkCycle 5.5s ease-in-out infinite both;animation-delay:{{ b.d }}s;animation-play-state:{{ playState }}"></div></sc-for>
+        </div>
+        <div style="animation:txtUp 5.5s ease-in-out infinite both;animation-play-state:{{ playState }}">
+          <div style="font:700 13px 'IBM Plex Mono',monospace;color:#FFC61E;letter-spacing:0.14em">WHAT I'M LEARNING</div>
+          <div style="font-size:38px;font-weight:800;letter-spacing:-0.02em;line-height:1.02;margin-top:16px">Your<br>headline<br>lesson,<br>this week.</div>
+          <div style="font-size:15px;color:#9a9b9f;margin-top:20px;max-width:290px;line-height:1.5">A line on how it applies to your work.</div>
+        </div>
+        <div style="position:absolute;bottom:32px;left:0;width:100%;display:flex;gap:5px;padding:0 28px;justify-content:center">
+          <sc-for list="{{ reelSide }}" as="b" hint-placeholder-count="8"><div style="width:22px;height:22px;background:{{ b.c }};border-radius:1px;animation:blkCycle 5.5s ease-in-out infinite both;animation-delay:{{ b.d }}s;animation-play-state:{{ playState }}"></div></sc-for>
+        </div>
+      </div>
+    </div>
+
+    <!-- R6 · MISSION -->
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <sc-if value="{{showCaptions}}" hint-placeholder-val="{{ true }}"><div style="font:500 12px 'IBM Plex Mono',monospace;color:#7c7e82;letter-spacing:0.04em">R6 · MY MISSION</div></sc-if>
+      <div style="position:relative;width:432px;height:768px;background:#3538CC;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:34px">
+        <div style="position:absolute;top:32px;left:0;width:100%;display:flex;gap:5px;padding:0 28px;justify-content:center">
+          <sc-for list="{{ reelTop }}" as="b" hint-placeholder-count="10"><div style="width:22px;height:22px;background:{{ b.c }};border-radius:1px;animation:blkCycle 5.5s ease-in-out infinite both;animation-delay:{{ b.d }}s;animation-play-state:{{ playState }}"></div></sc-for>
+        </div>
+        <div style="animation:txtUp 5.5s ease-in-out infinite both;animation-play-state:{{ playState }}">
+          <div style="font-size:36px;font-weight:800;letter-spacing:-0.02em;line-height:1.04;max-width:340px">Bringing AI to the fight against <span style="color:#FFC61E">every disease.</span></div>
+          <div style="display:inline-flex;background:#FFC61E;color:#111;font-size:13px;font-weight:800;letter-spacing:0.03em;padding:11px 18px;text-transform:uppercase;margin-top:26px">Follow for more</div>
+        </div>
+        <div style="position:absolute;bottom:32px;left:0;width:100%;display:flex;gap:5px;padding:0 28px;justify-content:center">
+          <sc-for list="{{ reelBot }}" as="b" hint-placeholder-count="10"><div style="width:22px;height:22px;background:{{ b.c }};border-radius:1px;animation:blkCycle 5.5s ease-in-out infinite both;animation-delay:{{ b.d }}s;animation-play-state:{{ playState }}"></div></sc-for>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<template id="__bundler_thumbnail"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="#3538CC"/><g transform="translate(20 24)"><rect x="0" y="0" width="12" height="12" fill="#FFC61E"/><rect x="16" y="0" width="12" height="12" fill="#35A3E8"/><rect x="32" y="0" width="12" height="12" fill="#C7E7C2"/><rect x="0" y="16" width="12" height="12" fill="#F2681F"/><rect x="16" y="16" width="12" height="12" fill="#F2F2F2"/><rect x="32" y="16" width="12" height="12" fill="#1F8A44"/></g><text x="50" y="74" fill="#fff" font-family="Helvetica,Arial,sans-serif" font-size="13" font-weight="800" text-anchor="middle">MCE</text></svg></template></x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:&quot;100%&quot;,&quot;height&quot;:&quot;100%&quot;},&quot;animate&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Reels&quot;},&quot;showCaptions&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Layout&quot;}}">
+class Component extends DCLogic {
+  renderVals() {
+    const P = { blue:'#3538CC', yellow:'#FFC61E', sky:'#35A3E8', mint:'#C7E7C2', green:'#1F8A44', navy:'#23277A', white:'#F2F2F2', orange:'#F2681F' };
+    const tA = [P.blue,P.yellow,P.sky,P.mint,P.green,P.navy,P.white,P.yellow,P.sky,P.blue,P.green,P.orange];
+    const tB = [P.yellow,P.sky,P.green,P.white,P.blue,P.yellow,P.navy,P.sky,P.mint,P.blue];
+    const tC = [P.yellow,P.orange,P.green,P.blue,P.navy,P.yellow,P.sky,P.orange];
+    const drop = [P.blue,P.yellow,P.sky];
+    const reel = (arr, base) => arr.map((c, i) => ({ c, d:(base + i * 0.07).toFixed(2) }));
+    return {
+      tA, tB, tC, drop,
+      reelTop: reel(tA.slice(0,10), 0),
+      reelBot: reel(tB, 0.28),
+      reelSide: reel(tC, 0.15),
+      playState: (this.props.animate === false) ? 'paused' : 'running',
+      showCaptions: this.props.showCaptions !== false,
+    };
+  }
+}
+</script>
+</body>
+</html>

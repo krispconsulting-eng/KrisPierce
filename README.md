@@ -19,3 +19,4 @@ Central hub linking all projects by Kris Pierce Consulting.
 | [NOTION-BUSINESS-PLAN.md](NOTION-BUSINESS-PLAN.md) | Notion-based business system for consulting, research, content, and money |
 | [CAREGIVER-WELLBEING-JOURNEY-ARCHITECTURE.md](CAREGIVER-WELLBEING-JOURNEY-ARCHITECTURE.md) | Architecture for The Caregiver Wellbeing Journey (business model, CRM, automation) |
 | [caregiver-wellness-course/](caregiver-wellness-course/) | The Caregiver Wellbeing Journey itself: content outline and the app |
+| [masterclass-executive/](masterclass-executive/) | Notes and social kit for the MasterClass Executive founding cohort (Chicago Booth x OpenAI) |
