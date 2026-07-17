@@ -107,7 +107,7 @@ If it would help, you might make a light note of where things sit for you today,
 
 That is Week 1. If all you did was read a little and notice a little, you did this week exactly as it was meant to be done.
 
-This week we named the invisible workload and took a first gentle look at where you are. Next week, in Week 2, we will stay close to this and look at something many caregivers feel but rarely say out loud: the guilt that seems to sit alongside caring, no matter how much you are already doing. We will look at where it comes from, why it is so common, and how to loosen its grip a little.
+This week we named the invisible workload and took a first gentle look at where you are. Next week, in Week 2, we will look at where a lot of that load lands: your body, and the spaces you live in. Physical health when there is no spare time, what rest can really look like in the life you have, and how even one small corner of your home can be made to give something back.
 
 There is nothing to prepare and nothing to bring. If your week is hard, and it may well be, you are welcome to come back whenever you have room. Week 2 will be here when you are ready, and every week is a fresh start.
 
