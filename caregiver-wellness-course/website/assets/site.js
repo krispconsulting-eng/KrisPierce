@@ -8,7 +8,7 @@
 // adds the temporary hidden state, so content never disappears if JS fails
 // to run (headless renderers, slow connections, disabled JS).
 
-const INTAKE_WEBHOOK_URL = 'https://scn2a-krispierce.app.n8n.cloud/webhook/caregiver-course-intake';
+const INTAKE_WEBHOOK_URL = 'https://flows.scn2aaustralia.org/webhook/caregiver-course-intake';
 
 document.addEventListener('DOMContentLoaded', () => {
   const toggle = document.querySelector('.nav-toggle');

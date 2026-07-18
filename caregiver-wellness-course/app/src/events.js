@@ -7,7 +7,7 @@
 // or breaks the app experience.
 
 const APP_EVENTS_URL =
-  "https://scn2a-krispierce.app.n8n.cloud/webhook/caregiver-course-app-events";
+  "https://flows.scn2aaustralia.org/webhook/caregiver-course-app-events";
 
 async function post(payload) {
   const res = await fetch(APP_EVENTS_URL, {
