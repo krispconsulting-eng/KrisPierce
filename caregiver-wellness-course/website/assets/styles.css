@@ -270,6 +270,50 @@ section { padding: 96px 0; }
 .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 30px; }
 .hero-note { font-size: .85rem; color: var(--stone); margin-top: 14px; display: flex; align-items: center; gap: 8px; }
 
+/* ---- Hero aurora backdrop (soft color + motion) ----
+No phone mockup here by design — the animated Wellbeing Wheel is the hero
+graphic. hero-illustration is an optional caregiving photo/illustration
+layer (see website/README or the image prompt in project notes); drop a
+file at assets/img/hero-caregiving.jpg and it will fade in automatically,
+the section still looks complete without it. */
+.hero { position: relative; overflow: hidden; }
+.hero .hero-grid { position: relative; z-index: 1; }
+.hero-illustration {
+   position: absolute;
+   inset: 0;
+   z-index: 0;
+   background-image: url('img/hero-caregiving.jpg');
+   background-size: cover;
+   background-position: center;
+   opacity: 0.28;
+   pointer-events: none;
+}
+.hero-aurora {
+   position: absolute;
+   inset: -20% -10%;
+   z-index: 0;
+   pointer-events: none;
+   filter: blur(60px);
+   background:
+   radial-gradient(circle at 18% 26%, rgba(91, 95, 166, 0.26), transparent 55%),
+      radial-gradient(circle at 82% 16%, rgba(69, 198, 198, 0.24), transparent 50%),
+      radial-gradient(circle at 55% 88%, rgba(43, 42, 85, 0.16), transparent 55%);
+   animation: aurora-drift 20s var(--ease) infinite alternate;
+}
+@keyframes aurora-drift {
+   0% { transform: translate3d(0, 0, 0) scale(1); }
+   100% { transform: translate3d(0, -18px, 0) scale(1.04); }
+}
+.hero-float { animation: hero-float 6.5s var(--ease) infinite alternate; }
+@keyframes hero-float {
+   0% { transform: translateY(0); }
+   100% { transform: translateY(-12px); }
+}
+@media (prefers-reduced-motion: reduce) {
+   .hero-aurora, .hero-float { animation: none; }
+}
+
+
 /* ---- Section head (used sparingly, not on every section) ---- */
 .section-head { max-width: var(--max-width-text); margin: 0 auto 48px; text-align: center; }
 .section-head.left { text-align: left; margin: 0 0 40px; }
