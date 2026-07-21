@@ -255,6 +255,11 @@
 
   <!-- HERO -->
   <section class="hero">
+    <div class="hero-aurora" aria-hidden="true">
+    </div>
+    <!-- Optional caregiving photo/illustration layer. Drop a file at assets/img/hero-caregiving.jpg (see the hero image prompt in project notes) and this fades in automatically; the hero still looks complete without it, since the animated Wellbeing Wheel is the main hero graphic by design (no phone mockup here, that's a separate social image). -->
+    <div class="hero-illustration" aria-hidden="true">
+    </div>
     <div class="container hero-grid">
       <div class="reveal">
         <h1>You've been holding it together for someone else. This is eight weeks for you.</h1>
@@ -267,7 +272,7 @@
         </div>
         <p class="hero-note"><svg class="icon icon-sm"><use href="#icon-clock"/></svg> Takes about 10 minutes. No payment, no account needed to see your results.</p>
       </div>
-      <div class="hero-graphic reveal">
+      <div class="hero-graphic reveal hero-float">
         <section class="ww-signature" aria-label="Caregiver Wellbeing Wheel">
           <div class="ww-stage" data-wellness-wheel>
             <div class="ww-orbit" aria-hidden="true"></div>
