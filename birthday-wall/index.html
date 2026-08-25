@@ -1,0 +1,1186 @@
+<title>Emma's Awesomeness Wall</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link data-fonts rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500&family=Inter:wght@400;500;600;700&display=swap">
+
+<script id="wall-data" type="application/json">{"v":1,"collectEmail":"","entries":[]}</script>
+<div id="root"></div>
+
+<script>
+function app(){
+"use strict";
+
+var TITLE = "Emma's Awesomeness Wall";
+var FONTS = "https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500&family=Inter:wght@400;500;600;700&display=swap";
+
+/* ------------------------------------------------------------------ CSS */
+var CSS = `
+:root{
+  --pink:#E8336D; --tang:#FF6B35; --gold:#F5B222; --teal:#12B3B0; --violet:#7B4FD3;
+
+  --ground:#FFF8F1; --card:#FFFFFF; --ink:#33203A; --muted:#7A6076;
+  --field:#FFFDFB; --line:#F0E4EC; --rule:rgba(51,32,58,.16); --veil:rgba(255,255,255,.6);
+  --track:rgba(51,32,58,.08); --ring:rgba(232,51,109,.16); --ring-v:rgba(123,79,211,.16);
+
+  --pink-t:#FFEDF3; --tang-t:#FFF0E8; --gold-t:#FFF6E0; --teal-t:#E4F8F7; --violet-t:#F2ECFD;
+  --t-pink:#C41E5C; --t-tang:#B8461A; --t-gold:#8A6104; --t-teal:#0A7D7B; --t-violet:#5B34A8;
+
+  --shadow:0 2px 4px rgba(51,32,58,.05), 0 14px 34px rgba(51,32,58,.09);
+  --shadow-lg:0 3px 6px rgba(51,32,58,.06), 0 24px 54px rgba(51,32,58,.13);
+  --bg-image:
+    radial-gradient(760px 520px at 8% -6%, rgba(232,51,109,.20), transparent 60%),
+    radial-gradient(680px 480px at 96% 4%, rgba(18,179,176,.20), transparent 58%),
+    radial-gradient(720px 560px at 88% 46%, rgba(245,178,34,.20), transparent 60%),
+    radial-gradient(680px 520px at 2% 62%, rgba(123,79,211,.16), transparent 60%),
+    radial-gradient(620px 460px at 50% 100%, rgba(255,107,53,.16), transparent 62%);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ground:#1C1222; --card:#2A1B33; --ink:#F7EDF4; --muted:#C0A8C0;
+    --field:#221630; --line:#43304E; --rule:rgba(247,237,244,.2); --veil:rgba(42,27,51,.55);
+    --track:rgba(247,237,244,.12); --ring:rgba(232,51,109,.34); --ring-v:rgba(123,79,211,.36);
+    --pink-t:#3B1526; --tang-t:#3A2015; --gold-t:#362810; --teal-t:#0F2E30; --violet-t:#251A3E;
+    --t-pink:#FF87AC; --t-tang:#FFA875; --t-gold:#F7CB5F; --t-teal:#56DAD7; --t-violet:#BFA6F5;
+    --shadow:0 2px 4px rgba(0,0,0,.3), 0 14px 34px rgba(0,0,0,.34);
+    --shadow-lg:0 3px 6px rgba(0,0,0,.34), 0 24px 54px rgba(0,0,0,.42);
+    --bg-image:
+      radial-gradient(760px 520px at 8% -6%, rgba(232,51,109,.30), transparent 62%),
+      radial-gradient(680px 480px at 96% 4%, rgba(18,179,176,.26), transparent 60%),
+      radial-gradient(720px 560px at 88% 46%, rgba(245,178,34,.20), transparent 62%),
+      radial-gradient(680px 520px at 2% 62%, rgba(123,79,211,.28), transparent 62%),
+      radial-gradient(620px 460px at 50% 100%, rgba(255,107,53,.22), transparent 64%);
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#1C1222; --card:#2A1B33; --ink:#F7EDF4; --muted:#C0A8C0;
+  --field:#221630; --line:#43304E; --rule:rgba(247,237,244,.2); --veil:rgba(42,27,51,.55);
+  --track:rgba(247,237,244,.12); --ring:rgba(232,51,109,.34); --ring-v:rgba(123,79,211,.36);
+  --pink-t:#3B1526; --tang-t:#3A2015; --gold-t:#362810; --teal-t:#0F2E30; --violet-t:#251A3E;
+  --t-pink:#FF87AC; --t-tang:#FFA875; --t-gold:#F7CB5F; --t-teal:#56DAD7; --t-violet:#BFA6F5;
+  --shadow:0 2px 4px rgba(0,0,0,.3), 0 14px 34px rgba(0,0,0,.34);
+  --shadow-lg:0 3px 6px rgba(0,0,0,.34), 0 24px 54px rgba(0,0,0,.42);
+  --bg-image:
+    radial-gradient(760px 520px at 8% -6%, rgba(232,51,109,.30), transparent 62%),
+    radial-gradient(680px 480px at 96% 4%, rgba(18,179,176,.26), transparent 60%),
+    radial-gradient(720px 560px at 88% 46%, rgba(245,178,34,.20), transparent 62%),
+    radial-gradient(680px 520px at 2% 62%, rgba(123,79,211,.28), transparent 62%),
+    radial-gradient(620px 460px at 50% 100%, rgba(255,107,53,.22), transparent 64%);
+}
+
+*{box-sizing:border-box}
+html,body{margin:0}
+body{
+  background:var(--ground);
+  background-image:var(--bg-image);
+  background-attachment:fixed;
+  color:var(--ink);
+  font-family:"Inter",system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+  font-size:16px;line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+:focus-visible{outline:3px solid var(--violet);outline-offset:2px;border-radius:6px}
+.wrap{max-width:960px;margin:0 auto;padding:clamp(26px,5vw,64px) clamp(16px,4vw,36px) 80px}
+.vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+.rise{opacity:0;transform:translateY(16px);animation:rise .8s cubic-bezier(.2,.75,.3,1) forwards}
+.rise.d1{animation-delay:.07s}.rise.d2{animation-delay:.16s}.rise.d3{animation-delay:.27s}
+.rise.d4{animation-delay:.4s}
+@keyframes rise{to{opacity:1;transform:none}}
+
+.eyebrow{
+  font-size:12px;letter-spacing:.2em;text-transform:uppercase;font-weight:700;
+  margin:0 0 20px;text-align:center;color:var(--t-pink);
+}
+.eyebrow .sep{color:var(--t-teal);margin:0 9px}
+.hero{text-align:center}
+.happy{
+  font-family:"Fraunces",Georgia,serif;font-weight:600;font-style:italic;
+  font-size:clamp(24px,4.6vw,40px);line-height:1.1;margin:0 0 2px;color:var(--t-violet);
+  transform:rotate(-1.6deg);
+}
+.fiftywrap{padding:2px 0 4px}
+.fifty{
+  font-family:"Fraunces",Georgia,"Times New Roman",serif;
+  font-weight:700;font-size:clamp(140px,28vw,270px);line-height:.84;
+  letter-spacing:-.03em;margin:0;
+  background:linear-gradient(96deg,#C9268F 0%,var(--pink) 26%,var(--tang) 62%,var(--gold) 100%);
+  background-size:150% 100%;
+  -webkit-background-clip:text;background-clip:text;
+  color:var(--pink);-webkit-text-fill-color:transparent;
+  animation:drift 12s ease-in-out infinite;
+}
+@supports not ((-webkit-background-clip:text) or (background-clip:text)){
+  .fifty{color:var(--pink);-webkit-text-fill-color:var(--pink);background:none}
+}
+@keyframes drift{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+h1{
+  font-family:"Fraunces",Georgia,serif;font-weight:600;
+  font-size:clamp(28px,5vw,48px);line-height:1.1;letter-spacing:-.015em;
+  margin:14px auto 0;max-width:17ch;color:var(--ink);text-wrap:balance;
+}
+h1 .mark{
+  background:linear-gradient(transparent 58%, rgba(245,178,34,.5) 58%, rgba(245,178,34,.5) 94%, transparent 94%);
+  padding:0 3px;
+}
+.lede{font-size:clamp(16px,2vw,18px);max-width:54ch;margin:22px auto 0;text-align:center;line-height:1.68;text-wrap:pretty}
+.lede.soft{color:var(--muted);font-size:16px;margin-top:12px}
+
+.orn{display:flex;justify-content:center;gap:9px;margin:clamp(32px,5vw,50px) 0}
+.orn span{width:9px;height:9px;border-radius:50%}
+.orn span:nth-child(1){background:var(--pink)}
+.orn span:nth-child(2){background:var(--tang);transform:translateY(-5px)}
+.orn span:nth-child(3){background:var(--gold)}
+.orn span:nth-child(4){background:var(--teal);transform:translateY(-5px)}
+.orn span:nth-child(5){background:var(--violet)}
+
+.panel{
+  background:var(--card);border-radius:22px;box-shadow:var(--shadow-lg);
+  padding:clamp(24px,4vw,42px);position:relative;overflow:hidden;
+}
+.panel::before{
+  content:"";position:absolute;left:0;right:0;top:0;height:7px;
+  background:linear-gradient(90deg,var(--pink),var(--tang),var(--gold),var(--teal),var(--violet));
+}
+.panel h2{
+  font-family:"Fraunces",Georgia,serif;font-weight:700;font-size:clamp(26px,3.6vw,34px);
+  margin:8px 0 4px;text-align:center;letter-spacing:-.01em;
+}
+.panel .hint{color:var(--muted);font-size:15px;margin:0 auto 26px;text-align:center;max-width:46ch}
+.lbl{display:block;font-size:11.5px;letter-spacing:.13em;text-transform:uppercase;font-weight:700;margin:0 0 7px;color:var(--t-pink)}
+.lbl .opt{text-transform:none;letter-spacing:0;font-weight:400;color:var(--muted)}
+.row .field:nth-child(2) .lbl{color:var(--t-teal)}
+.sub{
+  font-family:"Fraunces",Georgia,serif;font-style:italic;font-size:16px;
+  color:var(--muted);margin:-3px 0 12px;
+}
+.row{display:flex;gap:18px;flex-wrap:wrap;margin-bottom:22px}
+.row .field{flex:1 1 220px;min-width:0}
+input[type=text],input[type=email],textarea{
+  width:100%;font:inherit;color:var(--ink);background:var(--field);
+  border:2px solid var(--line);border-radius:12px;padding:12px 14px;
+  transition:border-color .16s ease, box-shadow .16s ease;
+}
+input::placeholder,textarea::placeholder{color:var(--muted);opacity:.75}
+input[type=text]:focus,input[type=email]:focus,textarea:focus{
+  outline:none;border-color:var(--pink);box-shadow:0 0 0 4px var(--ring);
+}
+input[aria-invalid="true"]{border-color:var(--pink)}
+textarea{resize:vertical;min-height:96px;font-size:16px}
+.lines{display:flex;flex-direction:column;gap:11px}
+.awesome-line{display:flex;gap:8px;align-items:center}
+.awesome-line input{flex:1 1 auto}
+.dropline{
+  flex:0 0 auto;border:2px solid var(--line);background:var(--card);color:var(--muted);
+  width:38px;height:38px;border-radius:50%;font:inherit;font-size:18px;line-height:1;cursor:pointer;
+}
+.dropline:hover{border-color:var(--pink);color:var(--t-pink)}
+.addline{
+  background:none;border:none;color:var(--t-violet);font:inherit;font-weight:700;font-size:14px;
+  cursor:pointer;padding:6px 0;margin-top:11px;display:inline-flex;align-items:center;gap:9px;
+}
+.addline:hover{text-decoration:underline}
+.addline .plus{
+  display:inline-grid;place-items:center;width:24px;height:24px;border-radius:50%;
+  background:var(--violet);color:#fff;font-size:16px;line-height:1;font-weight:600;
+}
+
+.prompts{display:flex;flex-wrap:wrap;gap:9px;margin:20px 0 2px}
+.prompts .plabel{
+  width:100%;font-size:16px;color:var(--muted);margin:0 0 4px;
+  font-family:"Fraunces",Georgia,serif;font-style:italic;
+}
+.chip{
+  font:inherit;font-size:14px;font-weight:500;cursor:pointer;
+  border:2px solid;border-radius:999px;padding:7px 15px;
+  transition:transform .1s ease, filter .16s ease;
+}
+.chip:hover{filter:brightness(.97);transform:translateY(-1px)}
+.chip:active{transform:translateY(1px)}
+.chip:nth-of-type(5n+1){background:var(--pink-t);border-color:var(--pink);color:var(--t-pink)}
+.chip:nth-of-type(5n+2){background:var(--tang-t);border-color:var(--tang);color:var(--t-tang)}
+.chip:nth-of-type(5n+3){background:var(--gold-t);border-color:var(--gold);color:var(--t-gold)}
+.chip:nth-of-type(5n+4){background:var(--teal-t);border-color:var(--teal);color:var(--t-teal)}
+.chip:nth-of-type(5n+5){background:var(--violet-t);border-color:var(--violet);color:var(--t-violet)}
+
+.share-note{
+  font-size:16px;color:var(--muted);margin:22px 0 0;display:flex;gap:10px;align-items:flex-start;
+  font-family:"Fraunces",Georgia,serif;font-style:italic;
+}
+.share-note .dot{color:var(--gold);font-style:normal;font-size:18px;line-height:1.35}
+.actions{display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin-top:26px;justify-content:center}
+.btn{
+  font:inherit;font-weight:700;cursor:pointer;border:none;border-radius:999px;
+  padding:16px 38px;font-size:16.5px;color:#fff;
+  background:linear-gradient(96deg,var(--pink),var(--tang) 62%,var(--gold));
+  box-shadow:0 5px 0 #B31F53, 0 14px 26px rgba(232,51,109,.3);
+  transition:transform .09s ease, box-shadow .09s ease, filter .16s ease;
+}
+.btn:hover{filter:brightness(1.04)}
+.btn:active{transform:translateY(4px);box-shadow:0 1px 0 #B31F53, 0 8px 16px rgba(232,51,109,.26)}
+.btn[disabled]{opacity:.62;cursor:default;transform:none}
+.btn-ghost{
+  background:none;border:none;color:var(--muted);padding:14px 8px;font-size:15px;
+  font-weight:500;box-shadow:none;cursor:pointer;font-family:inherit;
+}
+.btn-ghost:hover{color:var(--ink)}
+.err{color:var(--t-pink);font-size:15px;font-weight:600;margin-top:14px;text-align:center}
+.err:empty{margin:0}
+.saving{color:var(--muted);font-size:15px;margin-top:14px;text-align:center;font-style:italic}
+.saving:empty{margin:0}
+
+.thanks{
+  margin-top:18px;padding:18px 22px;border-radius:16px;text-align:center;
+  background:linear-gradient(96deg,var(--gold-t),var(--pink-t));
+  border:2px solid var(--gold);
+  font-family:"Fraunces",Georgia,serif;font-size:21px;font-style:italic;font-weight:500;
+}
+.thanks[hidden]{display:none}
+
+/* read-only handoff */
+.handoff{
+  margin-top:22px;padding:20px 22px;border-radius:16px;
+  background:var(--teal-t);border:2px solid var(--teal);
+}
+.handoff[hidden]{display:none}
+.handoff h3{
+  font-family:"Fraunces",Georgia,serif;font-size:21px;margin:0 0 6px;color:var(--ink);
+}
+.handoff p{margin:0 0 14px;font-size:15px;color:var(--muted)}
+.handoff textarea{min-height:150px;background:var(--card)}
+.handoff .orgactions{margin-top:14px}
+
+.wall-head{text-align:center;margin:clamp(46px,6vw,70px) 0 6px}
+.wall-head h2{
+  font-family:"Fraunces",Georgia,serif;font-weight:700;
+  font-size:clamp(28px,4.4vw,42px);margin:0;letter-spacing:-.015em;
+}
+.count{font-size:15px;color:var(--muted);margin:10px 0 0;text-align:center}
+.count b{color:var(--t-pink);font-weight:700;font-variant-numeric:tabular-nums}
+.wall-sub{
+  color:var(--muted);font-size:17px;margin:4px auto 20px;max-width:52ch;text-align:center;
+  font-family:"Fraunces",Georgia,serif;font-style:italic;
+}
+.meter{
+  height:10px;border-radius:999px;background:var(--track);overflow:hidden;
+  margin:0 auto 34px;max-width:400px;
+}
+.meter[hidden]{display:none}
+.meter i{
+  display:block;height:100%;width:0;border-radius:999px;
+  background:linear-gradient(90deg,var(--pink),var(--tang),var(--gold),var(--teal));
+  transition:width .9s cubic-bezier(.2,.75,.3,1);
+}
+
+.grid{columns:2;column-gap:22px}
+@media (max-width:680px){.grid{columns:1}}
+.note{
+  break-inside:avoid;background:var(--card);border-radius:18px;
+  box-shadow:var(--shadow);padding:24px 24px 20px;margin:0 0 22px;
+  border-top:8px solid var(--pink);
+}
+.note:nth-child(5n+2){border-top-color:var(--tang)}
+.note:nth-child(5n+3){border-top-color:var(--gold)}
+.note:nth-child(5n+4){border-top-color:var(--teal)}
+.note:nth-child(5n+5){border-top-color:var(--violet)}
+.note .rel{font-size:11px;letter-spacing:.15em;text-transform:uppercase;font-weight:700;margin:0 0 13px;color:var(--t-pink)}
+.note .sign{color:var(--t-pink)}
+.note:nth-child(5n+2) .rel,.note:nth-child(5n+2) .sign{color:var(--t-tang)}
+.note:nth-child(5n+3) .rel,.note:nth-child(5n+3) .sign{color:var(--t-gold)}
+.note:nth-child(5n+4) .rel,.note:nth-child(5n+4) .sign{color:var(--t-teal)}
+.note:nth-child(5n+5) .rel,.note:nth-child(5n+5) .sign{color:var(--t-violet)}
+.note ul{list-style:none;margin:0 0 4px;padding:0}
+.note li{position:relative;padding-left:24px;margin:0 0 11px;line-height:1.55;font-size:16px}
+.note li::before{content:"";position:absolute;left:2px;top:8px;width:9px;height:9px;border-radius:50%}
+.note li:nth-child(3n+1)::before{background:var(--pink)}
+.note li:nth-child(3n+2)::before{background:var(--teal)}
+.note li:nth-child(3n+3)::before{background:var(--gold)}
+.note .msg{
+  font-family:"Fraunces",Georgia,serif;font-style:italic;font-size:19px;line-height:1.48;
+  margin:14px 0 16px;
+}
+.note .sign{
+  font-family:"Fraunces",Georgia,serif;font-weight:700;font-size:19px;
+  margin:0;letter-spacing:-.01em;
+}
+.note .sign::before{content:"\\2014\\00a0"}
+.empty{
+  border:3px dashed color-mix(in srgb, var(--pink) 35%, transparent);
+  border-radius:18px;padding:40px 28px;text-align:center;
+  color:var(--muted);background:var(--veil);
+}
+.empty strong{
+  font-family:"Fraunces",Georgia,serif;font-weight:700;color:var(--ink);
+  display:block;font-size:24px;margin-bottom:10px;
+}
+
+.notice{
+  max-width:660px;margin:clamp(30px,4vw,46px) auto 0;padding:14px 20px;
+  background:var(--gold-t);border:2px solid var(--gold);border-radius:14px;
+  color:var(--t-gold);font-size:14.5px;line-height:1.6;text-align:center;
+}
+.notice[hidden]{display:none}
+
+footer{
+  margin-top:clamp(46px,6vw,70px);padding-top:28px;border-top:2px dotted var(--rule);
+  color:var(--muted);font-size:14px;line-height:1.75;text-align:center;
+}
+footer a{color:var(--t-pink)}
+footer .sendoff{
+  font-family:"Fraunces",Georgia,serif;font-style:italic;font-weight:500;font-size:22px;
+  color:var(--ink);margin:0 0 14px;
+}
+.orglink{
+  background:none;border:none;font:inherit;font-size:12.5px;font-weight:500;
+  color:var(--muted);cursor:pointer;padding:0;margin:18px auto 0;display:block;
+  text-decoration:underline;
+}
+.orglink:hover{color:var(--t-pink)}
+
+.organiser{
+  margin-top:32px;background:var(--card);border-radius:20px;
+  box-shadow:var(--shadow-lg);padding:clamp(22px,3.4vw,32px);
+  border-top:8px solid var(--violet);text-align:left;
+}
+.organiser[hidden]{display:none}
+.organiser h2{font-family:"Fraunces",Georgia,serif;font-weight:700;font-size:26px;margin:0 0 4px}
+.organiser h3{font-family:"Fraunces",Georgia,serif;font-weight:700;font-size:19px;margin:26px 0 6px}
+.organiser .hint{color:var(--muted);font-size:15px;margin:0 0 20px}
+.tabs{display:flex;gap:9px;margin:0 0 14px;flex-wrap:wrap}
+.tab{
+  font:inherit;font-size:14px;font-weight:600;cursor:pointer;border-radius:999px;padding:9px 18px;
+  background:var(--violet-t);color:var(--t-violet);border:2px solid var(--violet);
+}
+.tab[aria-selected="true"]{background:var(--violet);color:#fff}
+.exportbox{
+  width:100%;min-height:260px;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  font-size:13px;line-height:1.65;white-space:pre;overflow:auto;
+  background:var(--field);color:var(--ink);border:2px solid var(--line);border-radius:12px;padding:14px;
+}
+.exportbox:focus{outline:none;border-color:var(--violet);box-shadow:0 0 0 4px var(--ring-v)}
+.orgactions{display:flex;gap:12px;flex-wrap:wrap;margin-top:16px;align-items:center}
+.btn-sm{
+  font:inherit;font-size:14.5px;font-weight:700;cursor:pointer;border-radius:999px;padding:11px 22px;
+  background:var(--teal);color:#08201F;border:none;box-shadow:0 4px 0 #0A7D7B;
+}
+.btn-sm:active{transform:translateY(3px);box-shadow:0 1px 0 #0A7D7B}
+.btn-sm.alt{background:var(--card);color:var(--t-violet);border:2px solid var(--violet);box-shadow:0 4px 0 color-mix(in srgb, var(--violet) 45%, transparent)}
+.orgnote{font-size:13.5px;color:var(--muted);margin:14px 0 0;line-height:1.7}
+.orgrow{display:flex;gap:12px;flex-wrap:wrap;align-items:flex-end}
+.orgrow .field{flex:1 1 260px}
+
+@media print{
+  @page{margin:15mm}
+  body{background:#fff !important;background-image:none !important;color:#000}
+  .wrap{max-width:none;padding:0}
+  .panel,.meter,.organiser,.orglink,.confetti,.count,.wall-sub,.notice,.thanks{display:none !important}
+  .rise{opacity:1 !important;transform:none !important;animation:none !important}
+  .fifty{font-size:130px;color:#E8336D !important;-webkit-text-fill-color:#E8336D !important;background:none !important;animation:none}
+  .lede.soft{display:none}
+  .grid{columns:1}
+  .note{break-inside:avoid;page-break-inside:avoid;box-shadow:none;border:1px solid #E6DAE2;border-top-width:6px;background:#fff}
+  footer{border-top:1px solid #E6DAE2}
+}
+
+.confetti{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:50}
+.conf{position:absolute;width:10px;height:15px;border-radius:2px;will-change:transform,opacity}
+@media (prefers-reduced-motion:reduce){
+  .conf{display:none}
+  .btn:active{transform:none}
+  .rise{opacity:1;transform:none;animation:none}
+  .fifty{animation:none}
+  .happy{transform:none}
+  .meter i{transition:none}
+}
+`;
+
+/* --------------------------------------------------------------- markup */
+var MARKUP = `
+<div class="wrap">
+  <p class="eyebrow rise">A birthday wall <span class="sep">&#9679;</span> written by the people who know her</p>
+
+  <div class="hero">
+    <p class="happy rise d1">Happy birthday, Emma!</p>
+    <div class="fiftywrap rise d1"><p class="fifty">50</p></div>
+    <h1 class="rise d2">Fifty years of Emma Palmer. Tell her what makes her <span class="mark">brilliant</span>.</h1>
+  </div>
+
+  <p class="lede rise d3">
+    Emma turns fifty, and she is getting this page instead of another candle.
+    Add one thing you love about her: something she is great at, a moment you treasure,
+    a reason you are glad to know her.
+  </p>
+  <p class="lede soft rise d3">
+    There are no wrong answers, nobody is marking it, and it is not a competition.
+    Write what you would tell her to her face, then let her read it in her own time.
+  </p>
+
+  <div class="orn rise d4"><span></span><span></span><span></span><span></span><span></span></div>
+
+  <section class="panel rise d4" aria-labelledby="add-title">
+    <h2 id="add-title">Your turn</h2>
+    <p class="hint">Two minutes, tops. You do not have to fill in every line, and one good sentence beats five polite ones.</p>
+
+    <form id="entryform" novalidate>
+      <div class="row">
+        <div class="field">
+          <label class="lbl" for="name">Your name</label>
+          <input type="text" id="name" name="name" maxlength="60" placeholder="So Emma knows who to hug" autocomplete="name" enterkeyhint="next">
+        </div>
+        <div class="field">
+          <label class="lbl" for="rel">How you know Emma <span class="opt">(optional)</span></label>
+          <input type="text" id="rel" name="rel" maxlength="60" placeholder="friend, sister, colleague, partner in crime" autocomplete="off" enterkeyhint="next">
+        </div>
+      </div>
+
+      <span class="lbl" id="lines-label">What makes Emma, Emma</span>
+      <p class="sub" id="lines-help">The things you would want a stranger to know about her.</p>
+      <div class="lines" id="lines" role="group" aria-labelledby="lines-label" aria-describedby="lines-help"></div>
+
+      <button type="button" class="addline" id="addline"><span class="plus" aria-hidden="true">+</span> add another line</button>
+
+      <div class="prompts" id="prompts">
+        <p class="plabel">Stuck? Tap one to start a line.</p>
+        <button type="button" class="chip">She is the person you call when</button>
+        <button type="button" class="chip">Nobody does this better than Emma:</button>
+        <button type="button" class="chip">The room is different when she walks in because</button>
+        <button type="button" class="chip">She taught me</button>
+        <button type="button" class="chip">I still laugh about the time she</button>
+        <button type="button" class="chip">She would never say this about herself, but</button>
+      </div>
+
+      <div style="margin-top:24px">
+        <label class="lbl" for="msg" style="color:var(--t-violet)">Anything you would like to say to Emma <span class="opt">(optional)</span></label>
+        <textarea id="msg" name="msg" maxlength="600" placeholder="A memory, a thank you, a happy birthday in your own words"></textarea>
+      </div>
+
+      <p class="share-note"><span class="dot" aria-hidden="true">&#9679;</span> Everyone who opens this page sees what you write, Emma included. That is rather the point.</p>
+
+      <div class="actions">
+        <button type="submit" class="btn" id="submit">Add it to the wall</button>
+        <button type="button" class="btn-ghost" id="clear">Clear this form</button>
+      </div>
+      <p class="err" id="err" role="alert"></p>
+      <p class="saving" id="saving" role="status"></p>
+    </form>
+
+    <p class="thanks" id="thanks" role="status" hidden></p>
+
+    <div class="handoff" id="handoff" hidden>
+      <h3 id="handoff-title">This copy is read-only, so send yours instead</h3>
+      <p id="handoff-why">Your words are safe below. Copy them and send them to whoever is collecting these, and they will go on the wall.</p>
+      <label class="vh" for="handoffbox">Your entry, ready to copy</label>
+      <textarea class="exportbox" id="handoffbox" readonly spellcheck="false" style="min-height:150px"></textarea>
+      <div class="orgactions">
+        <button type="button" class="btn-sm" id="handoffcopy">Copy my entry</button>
+        <a class="btn-sm alt" id="handoffmail" href="#" hidden style="text-decoration:none">Email it in</a>
+        <span class="orgnote" id="handoffstate" role="status"></span>
+      </div>
+    </div>
+  </section>
+
+  <p class="notice" id="notice" hidden></p>
+
+  <div class="wall-head">
+    <h2>Fifty reasons, and counting</h2>
+    <p class="count" id="count"></p>
+  </div>
+  <p class="wall-sub" id="wallsub">Everything anyone has written about Emma, in one place.</p>
+  <div class="meter" id="meter" aria-hidden="true" hidden><i></i></div>
+  <div id="wall"></div>
+
+  <footer>
+    <p class="sendoff">Happy fiftieth, Emma. All of this is true, and there is more where it came from.</p>
+    <div class="orn" style="margin:0 0 16px"><span></span><span></span><span></span><span></span><span></span></div>
+    Built for Emma's 50th. The idea comes from Rachel Callander's Awesomeness Form,
+    a way of celebrating a person by naming what is great about them.<br>
+    See <a href="https://rachelcallander.com/awesomeness" target="_blank" rel="noopener">rachelcallander.com/awesomeness</a>.
+    <button type="button" class="orglink" id="orgtoggle" aria-expanded="false" aria-controls="organiser">For the organiser: collect everything</button>
+
+    <section class="organiser" id="organiser" aria-labelledby="org-title" hidden>
+      <h2 id="org-title">Collect everything</h2>
+      <p class="hint">For whoever is putting Emma's book together. Nothing here is secret, it is just the wall in a form you can paste somewhere else.</p>
+      <div class="tabs" role="tablist" aria-label="Export format">
+        <button type="button" class="tab" id="tab-text" role="tab" aria-selected="true" aria-controls="exportbox">Readable text</button>
+        <button type="button" class="tab" id="tab-json" role="tab" aria-selected="false" aria-controls="exportbox">Data (JSON)</button>
+      </div>
+      <label class="vh" for="exportbox">Everything on the wall</label>
+      <textarea class="exportbox" id="exportbox" readonly spellcheck="false"></textarea>
+      <div class="orgactions">
+        <button type="button" class="btn-sm" id="copyall">Copy all</button>
+        <button type="button" class="btn-sm alt" id="printwall">Print the wall</button>
+        <span class="orgnote" id="copystate" role="status"></span>
+      </div>
+      <p class="orgnote">
+        Copy pastes straight into a document. Print gives you a clean version with the form stripped out, and
+        "Save as PDF" in the print dialogue turns it into a keepsake. Do this again nearer the day, entries keep arriving.
+      </p>
+
+      <h3>If someone cannot post their own</h3>
+      <p class="orgnote" style="margin-top:0">
+        Anyone opening a read-only copy of this page can still write an entry, but they have to send it to you.
+        Add an address here and they get a one-tap email button instead of a copy-and-paste job.
+      </p>
+      <div class="orgrow" style="margin-top:12px">
+        <div class="field">
+          <label class="lbl" for="collectemail" style="color:var(--t-violet)">Where those entries should go</label>
+          <input type="email" id="collectemail" maxlength="120" placeholder="you@example.com" autocomplete="email">
+        </div>
+        <button type="button" class="btn-sm alt" id="savesettings">Save address</button>
+      </div>
+      <p class="orgnote" id="settingsstate" role="status"></p>
+    </section>
+  </footer>
+</div>
+
+<div class="confetti" id="confetti" aria-hidden="true"></div>
+`;
+
+/* ------------------------------------------------------------ utilities */
+var MAX_LINES = 6;
+var DRAFT_KEY = "emma50:draft";
+var PENDING_KEY = "emma50:pending";
+var CHEER_KEY = "emma50:cheer";
+var MAX_TRIES = 3;
+
+function $(id){ return document.getElementById(id); }
+
+function esc(s){
+  return String(s).replace(/[&<>"']/g, function(c){
+    return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];
+  });
+}
+
+function store(key, value){
+  try{
+    if(value === null){ localStorage.removeItem(key); }
+    else { localStorage.setItem(key, JSON.stringify(value)); }
+  }catch(e){ /* private browsing, full disk: the form still works */ }
+}
+function recall(key){
+  try{
+    var raw = localStorage.getItem(key);
+    return raw ? JSON.parse(raw) : null;
+  }catch(e){ return null; }
+}
+
+function readState(){
+  var node = $("wall-data");
+  var fallback = { v:1, collectEmail:"", entries:[] };
+  if(!node){ return fallback; }
+  try{
+    var parsed = JSON.parse(node.textContent || "{}");
+    if(Array.isArray(parsed)){ return { v:1, collectEmail:"", entries:parsed }; }
+    parsed.entries = Array.isArray(parsed.entries) ? parsed.entries : [];
+    parsed.collectEmail = typeof parsed.collectEmail === "string" ? parsed.collectEmail : "";
+    parsed.v = 1;
+    return parsed;
+  }catch(e){ return fallback; }
+}
+
+var STATE = readState();
+var WRITABLE = true;   // assumed until a publish tells us otherwise
+var busy = false;
+
+/* ------------------------------------------------- the page's own source */
+function buildDoc(state){
+  var json = JSON.stringify(state).replace(/</g, "\\u003c");
+  return "<!doctype html>\n<html lang=\"en\">\n<head>\n"
+    + "<meta charset=\"utf-8\">\n"
+    + "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n"
+    + "<title>" + esc(TITLE) + "</title>\n"
+    + "<link rel=\"preconnect\" href=\"https://fonts.googleapis.com\">\n"
+    + "<link rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin>\n"
+    + "<link data-fonts rel=\"stylesheet\" href=\"" + FONTS + "\">\n"
+    + "<style id=\"wall-css\">" + CSS + "</style>\n"
+    + "</head>\n<body>\n"
+    + "<script id=\"wall-data\" type=\"application/json\">" + json + "<\/script>\n"
+    + "<div id=\"root\"></div>\n"
+    + "<script>\n" + app.toString() + "\napp();\n<\/script>\n"
+    + "</body>\n</html>\n";
+}
+
+function ensureHead(){
+  document.title = TITLE;
+  if(!$("wall-css")){
+    var style = document.createElement("style");
+    style.id = "wall-css";
+    style.textContent = CSS;
+    document.head.appendChild(style);
+  }
+  if(!document.querySelector("link[data-fonts]")){
+    var link = document.createElement("link");
+    link.rel = "stylesheet";
+    link.href = FONTS;
+    link.setAttribute("data-fonts", "");
+    document.head.appendChild(link);
+  }
+}
+
+/* ------------------------------------------------------------ rendering */
+function countReasons(entries){
+  var reasons = 0;
+  for(var i=0;i<entries.length;i++){
+    var e = entries[i];
+    reasons += (e.awesome && e.awesome.length) ? e.awesome.length : 0;
+    if(e.message){ reasons += 1; }
+  }
+  return reasons;
+}
+
+function renderWall(){
+  var entries = STATE.entries.slice().sort(function(a,b){ return (b.ts||0) - (a.ts||0); });
+  var wall = $("wall"), countEl = $("count"), meterEl = $("meter"), subEl = $("wallsub");
+  var reasons = countReasons(entries);
+
+  if(entries.length === 0){
+    countEl.textContent = "";
+    meterEl.hidden = true;
+    subEl.textContent = "Nothing here yet, which is a temporary problem.";
+    wall.innerHTML = '<div class="empty"><strong>Be the first to say something nice.</strong>'
+      + 'Emma has at least fifty good qualities. Somebody has to get us started, and it may as well be you.</div>';
+    return;
+  }
+
+  meterEl.hidden = false;
+  meterEl.firstElementChild.style.width = Math.min(100, (reasons/50)*100) + "%";
+  var who = entries.length === 1 ? "person" : "people";
+  var tail = reasons >= 50
+    ? "We have passed fifty. Nobody who knows her is surprised."
+    : (50 - reasons) + " more to reach fifty.";
+  countEl.innerHTML = "<b>" + reasons + "</b> lovely things from <b>" + entries.length + "</b> " + who + ". " + tail;
+  subEl.textContent = "Everything anyone has written about Emma, newest first.";
+
+  var html = '<div class="grid">';
+  for(var i=0;i<entries.length;i++){
+    var e = entries[i];
+    html += '<article class="note">';
+    if(e.rel){ html += '<p class="rel">' + esc(e.rel) + '</p>'; }
+    if(e.awesome && e.awesome.length){
+      html += "<ul>";
+      for(var j=0;j<e.awesome.length;j++){ html += "<li>" + esc(e.awesome[j]) + "</li>"; }
+      html += "</ul>";
+    }
+    if(e.message){ html += '<p class="msg">&ldquo;' + esc(e.message) + '&rdquo;</p>'; }
+    html += '<p class="sign">' + esc(e.name) + "</p>";
+    html += "</article>";
+  }
+  html += "</div>";
+  wall.innerHTML = html;
+}
+
+/* ----------------------------------------------------------- form logic */
+var PLACEHOLDERS = [
+  "Emma is brilliant at...",
+  "Everyone should know that Emma...",
+  "Another thing that makes Emma brilliant..."
+];
+
+function lineCount(){ return $("lines").children.length; }
+
+function addLine(value, focus){
+  var box = $("lines");
+  if(lineCount() >= MAX_LINES){ return null; }
+  var index = lineCount();
+  var wrapEl = document.createElement("div");
+  wrapEl.className = "awesome-line";
+  var input = document.createElement("input");
+  input.type = "text";
+  input.maxLength = 140;
+  input.placeholder = PLACEHOLDERS[Math.min(index, PLACEHOLDERS.length - 1)];
+  input.setAttribute("aria-label", "Something that makes Emma brilliant, line " + (index + 1));
+  if(value){ input.value = value; }
+  input.addEventListener("input", saveDraft);
+  wrapEl.appendChild(input);
+
+  var drop = document.createElement("button");
+  drop.type = "button";
+  drop.className = "dropline";
+  drop.innerHTML = "&times;";
+  drop.setAttribute("aria-label", "Remove line " + (index + 1));
+  drop.addEventListener("click", function(){
+    if(lineCount() <= 1){ input.value = ""; input.focus(); saveDraft(); return; }
+    wrapEl.remove();
+    syncLineChrome();
+    saveDraft();
+  });
+  wrapEl.appendChild(drop);
+
+  box.appendChild(wrapEl);
+  syncLineChrome();
+  if(focus){ input.focus(); }
+  return input;
+}
+
+function syncLineChrome(){
+  var rows = $("lines").children;
+  for(var i=0;i<rows.length;i++){
+    var input = rows[i].querySelector("input");
+    var drop = rows[i].querySelector(".dropline");
+    input.setAttribute("aria-label", "Something that makes Emma brilliant, line " + (i + 1));
+    input.placeholder = PLACEHOLDERS[Math.min(i, PLACEHOLDERS.length - 1)];
+    drop.setAttribute("aria-label", "Remove line " + (i + 1));
+    drop.hidden = rows.length <= 2 && !input.value;
+  }
+  $("addline").hidden = rows.length >= MAX_LINES;
+}
+
+function collectLines(){
+  var out = [];
+  var inputs = $("lines").querySelectorAll("input");
+  for(var i=0;i<inputs.length;i++){
+    var v = inputs[i].value.trim();
+    if(v){ out.push(v); }
+  }
+  return out;
+}
+
+function currentEntry(){
+  return {
+    name: $("name").value.trim(),
+    rel: $("rel").value.trim(),
+    awesome: collectLines(),
+    message: $("msg").value.trim()
+  };
+}
+
+function saveDraft(){
+  var draft = currentEntry();
+  if(!draft.name && !draft.rel && !draft.message && draft.awesome.length === 0){
+    store(DRAFT_KEY, null);
+    return;
+  }
+  store(DRAFT_KEY, draft);
+}
+
+function fillForm(entry){
+  $("name").value = entry.name || "";
+  $("rel").value = entry.rel || "";
+  $("msg").value = entry.message || "";
+  $("lines").innerHTML = "";
+  var lines = (entry.awesome && entry.awesome.length) ? entry.awesome.slice(0, MAX_LINES) : [];
+  for(var i=0;i<lines.length;i++){ addLine(lines[i], false); }
+  while(lineCount() < 2){ addLine("", false); }
+  syncLineChrome();
+}
+
+function resetForm(){
+  fillForm({});
+  store(DRAFT_KEY, null);
+  $("err").textContent = "";
+  $("saving").textContent = "";
+}
+
+/* ------------------------------------------------------------- exports */
+function longDate(ts){
+  if(!ts){ return ""; }
+  try{
+    return new Date(ts).toLocaleDateString("en-GB", { day:"numeric", month:"long", year:"numeric" });
+  }catch(e){ return ""; }
+}
+
+function entryToText(e){
+  var out = [];
+  out.push(e.name + (e.rel ? "  (" + e.rel + ")" : ""));
+  out.push("");
+  if(e.awesome && e.awesome.length){
+    for(var j=0;j<e.awesome.length;j++){ out.push("  - " + e.awesome[j]); }
+    out.push("");
+  }
+  if(e.message){ out.push("  \"" + e.message + "\""); out.push(""); }
+  return out.join("\n");
+}
+
+function buildText(entries){
+  var list = entries.slice().sort(function(a,b){ return (a.ts||0) - (b.ts||0); });
+  var rule = "----------------------------------------";
+  var out = [];
+  out.push("EMMA PALMER, FIFTIETH BIRTHDAY WALL");
+  out.push(list.length + (list.length === 1 ? " entry" : " entries") + ", collected " + longDate(Date.now()));
+  out.push("");
+  if(list.length === 0){
+    out.push("Nothing on the wall yet.");
+    return out.join("\n");
+  }
+  for(var i=0;i<list.length;i++){
+    out.push(rule);
+    out.push(entryToText(list[i]));
+    if(list[i].ts){ out.push("  Added " + longDate(list[i].ts)); out.push(""); }
+  }
+  out.push(rule);
+  return out.join("\n");
+}
+
+var exportMode = "text";
+function renderExport(){
+  $("exportbox").value = exportMode === "json"
+    ? JSON.stringify(STATE.entries, null, 2)
+    : buildText(STATE.entries);
+}
+
+async function copyFrom(box, stateEl, okText){
+  box.focus();
+  box.select();
+  box.setSelectionRange(0, box.value.length);
+  var done = false;
+  try{
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      await navigator.clipboard.writeText(box.value);
+      done = true;
+    }
+  }catch(e){ /* fall through to the manual route */ }
+  if(!done){
+    try{ done = document.execCommand("copy"); }catch(e){ done = false; }
+  }
+  stateEl.textContent = done ? okText : "It is all selected, so press Ctrl+C (or Cmd+C) to copy.";
+}
+
+/* ---------------------------------------------------------- read-only path */
+function showHandoff(entry, reason){
+  WRITABLE = false;
+  var body = "Emma's 50th, one for the wall\n\n" + entryToText(entry);
+  $("handoffbox").value = body;
+  $("handoff-why").textContent = reason;
+  var mail = $("handoffmail");
+  if(STATE.collectEmail){
+    mail.href = "mailto:" + encodeURIComponent(STATE.collectEmail)
+      + "?subject=" + encodeURIComponent("One for Emma's 50th wall, from " + (entry.name || "a friend"))
+      + "&body=" + encodeURIComponent(body);
+    mail.hidden = false;
+  } else {
+    mail.hidden = true;
+  }
+  $("handoff").hidden = false;
+  $("submit").textContent = "Update my entry to send";
+  $("handoff").scrollIntoView({ behavior:"smooth", block:"center" });
+}
+
+/* ------------------------------------------------------------- publishing */
+async function getArtifact(){
+  try{
+    if(typeof window.claude === "undefined" || !window.claude || typeof window.claude.use !== "function"){ return null; }
+    return await window.claude.use("artifact");
+  }catch(e){ return null; }
+}
+
+var READ_ONLY_CODES = {
+  not_writer:1, not_granted:1, not_declared:1, consent_required:1,
+  capability_disabled:1, capability_removed:1
+};
+
+async function publishState(nextState){
+  var api = await getArtifact();
+  if(!api){ return { ok:false, code:"not_granted" }; }
+  try{
+    await api.publish(buildDoc(nextState));
+    return { ok:true };
+  }catch(err){
+    var code = (err && err.code) ? err.code : "upstream_error";
+    return { ok:false, code:code };
+  }
+}
+
+async function submitEntry(entry, tries){
+  busy = true;
+  var btn = $("submit");
+  btn.disabled = true;
+  btn.textContent = "Adding...";
+  $("saving").textContent = "Saving it to the wall...";
+
+  var next = {
+    v: 1,
+    collectEmail: STATE.collectEmail,
+    entries: STATE.entries.concat([entry])
+  };
+
+  store(PENDING_KEY, { entry:entry, tries:tries });
+  store(CHEER_KEY, entry.name);
+
+  var res = await publishState(next);
+
+  if(res.ok){
+    // every open view, this one included, reloads to the new version
+    $("saving").textContent = "Saved. Bringing the wall up to date...";
+    return;
+  }
+
+  busy = false;
+  btn.disabled = false;
+  btn.textContent = "Add it to the wall";
+  $("saving").textContent = "";
+  store(CHEER_KEY, null);
+
+  if(res.code === "conflict"){
+    // the shell is already reloading us to the winning version; the pending
+    // entry is picked up and retried on the way back in
+    $("saving").textContent = "Someone else was adding theirs at the same moment. Yours is next.";
+    return;
+  }
+
+  store(PENDING_KEY, null);
+
+  if(READ_ONLY_CODES[res.code]){
+    showHandoff(entry, "This copy of the page is read-only, so it cannot add your entry itself. "
+      + "Your words are safe below: copy them and send them to whoever is collecting these.");
+    return;
+  }
+  if(res.code === "too_large"){
+    $("err").textContent = "The wall is full to the brim. Tell the organiser, they will need to move some entries into the book.";
+    return;
+  }
+  if(res.code === "rate_limited"){
+    $("err").textContent = "The wall is busy right now. Wait a few seconds and press add again.";
+    return;
+  }
+  $("err").textContent = "That did not save. Press add again in a moment, your words are still here.";
+}
+
+function entryOnWall(id){
+  for(var i=0;i<STATE.entries.length;i++){
+    if(STATE.entries[i].id === id){ return true; }
+  }
+  return false;
+}
+
+/* --------------------------------------------------------------- confetti */
+function celebrate(){
+  if(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches){ return; }
+  var host = $("confetti");
+  var colors = ["#E8336D","#FF6B35","#F5B222","#12B3B0","#7B4FD3"];
+  for(var i=0;i<64;i++){
+    (function(i){
+      var p = document.createElement("div");
+      p.className = "conf";
+      p.style.background = colors[i % colors.length];
+      p.style.left = (4 + Math.random()*92) + "vw";
+      p.style.top = "-26px";
+      p.style.opacity = "0";
+      if(i % 3 === 0){ p.style.borderRadius = "50%"; p.style.width = "11px"; p.style.height = "11px"; }
+      var rot = Math.random()*360;
+      var xDrift = (Math.random()*2 - 1) * 52;
+      var dur = 1700 + Math.random()*1600;
+      var delay = Math.random()*380;
+      host.appendChild(p);
+      var start = null;
+      function frame(t){
+        if(start === null){ start = t; }
+        var el = t - start;
+        if(el < delay){ requestAnimationFrame(frame); return; }
+        var k = (el - delay) / dur;
+        if(k >= 1){ p.remove(); return; }
+        var y = k * (window.innerHeight + 80);
+        var x = Math.sin(k * 5 + i) * xDrift;
+        p.style.transform = "translate(" + x + "px," + y + "px) rotate(" + (rot + k*600) + "deg)";
+        p.style.opacity = String(Math.min(1, k*7) * (1 - k*0.8));
+        requestAnimationFrame(frame);
+      }
+      requestAnimationFrame(frame);
+    })(i);
+  }
+}
+
+var THANKS = [
+  "Thank you, NAME. That one is going to land.",
+  "Lovely, NAME. She will read that more than once.",
+  "That is now on the wall, NAME. Emma owes you a drink.",
+  "Added, NAME. Fifty looks good on her already."
+];
+
+/* ------------------------------------------------------------------ wiring */
+function wire(){
+  $("addline").addEventListener("click", function(){ addLine("", true); });
+
+  $("prompts").addEventListener("click", function(ev){
+    var chip = ev.target.closest(".chip");
+    if(!chip){ return; }
+    var starter = chip.textContent.trim() + " ";
+    var inputs = $("lines").querySelectorAll("input");
+    var target = null;
+    for(var i=0;i<inputs.length;i++){
+      if(!inputs[i].value.trim()){ target = inputs[i]; break; }
+    }
+    if(!target){ target = addLine("", false); }
+    if(!target){
+      $("err").textContent = "That is six lines already, which is plenty. Edit one of them instead.";
+      return;
+    }
+    target.value = starter;
+    target.focus();
+    target.setSelectionRange(target.value.length, target.value.length);
+    saveDraft();
+  });
+
+  $("name").addEventListener("input", function(){
+    this.removeAttribute("aria-invalid");
+    saveDraft();
+  });
+  $("rel").addEventListener("input", saveDraft);
+  $("msg").addEventListener("input", saveDraft);
+  $("lines").addEventListener("input", syncLineChrome);
+
+  $("clear").addEventListener("click", function(){
+    resetForm();
+    $("thanks").hidden = true;
+    $("handoff").hidden = true;
+    $("name").focus();
+  });
+
+  $("entryform").addEventListener("submit", function(ev){
+    ev.preventDefault();
+    if(busy){ return; }
+    var draft = currentEntry();
+
+    if(!draft.name){
+      $("err").textContent = "Pop your name in first, so Emma knows who this is from.";
+      $("name").setAttribute("aria-invalid", "true");
+      $("name").focus();
+      return;
+    }
+    if(draft.awesome.length === 0 && !draft.message){
+      $("err").textContent = "Add at least one line or a message. Anything at all.";
+      $("lines").querySelector("input").focus();
+      return;
+    }
+    $("err").textContent = "";
+
+    var entry = {
+      id: String(Date.now()) + "-" + Math.floor(Math.random()*100000),
+      name: draft.name, rel: draft.rel, awesome: draft.awesome, message: draft.message,
+      ts: Date.now()
+    };
+
+    if(!WRITABLE){
+      showHandoff(entry, "This copy of the page is read-only, so it cannot add your entry itself. "
+        + "Your words are safe below: copy them and send them to whoever is collecting these.");
+      return;
+    }
+    submitEntry(entry, 1);
+  });
+
+  $("handoffcopy").addEventListener("click", function(){
+    copyFrom($("handoffbox"), $("handoffstate"), "Copied. Send that to whoever is collecting these.");
+  });
+
+  $("orgtoggle").addEventListener("click", function(){
+    var panel = $("organiser");
+    var opening = panel.hidden;
+    panel.hidden = !opening;
+    this.setAttribute("aria-expanded", String(opening));
+    this.textContent = opening ? "Hide the organiser panel" : "For the organiser: collect everything";
+    if(opening){
+      renderExport();
+      $("collectemail").value = STATE.collectEmail || "";
+      panel.scrollIntoView({ behavior:"smooth", block:"start" });
+    }
+  });
+
+  function selectTab(mode){
+    exportMode = mode;
+    $("tab-text").setAttribute("aria-selected", String(mode === "text"));
+    $("tab-json").setAttribute("aria-selected", String(mode === "json"));
+    renderExport();
+  }
+  $("tab-text").addEventListener("click", function(){ selectTab("text"); });
+  $("tab-json").addEventListener("click", function(){ selectTab("json"); });
+
+  $("copyall").addEventListener("click", function(){
+    copyFrom($("exportbox"), $("copystate"), "Copied. Paste it wherever you like.");
+  });
+
+  $("printwall").addEventListener("click", function(){
+    $("organiser").hidden = true;
+    $("orgtoggle").setAttribute("aria-expanded", "false");
+    $("orgtoggle").textContent = "For the organiser: collect everything";
+    setTimeout(function(){ window.print(); }, 80);
+  });
+
+  $("savesettings").addEventListener("click", async function(){
+    var btn = this;
+    var value = $("collectemail").value.trim();
+    if(value && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(value)){
+      $("settingsstate").textContent = "That does not look like an email address. Check it and save again.";
+      return;
+    }
+    btn.disabled = true;
+    $("settingsstate").textContent = "Saving...";
+    var res = await publishState({ v:1, collectEmail:value, entries:STATE.entries });
+    if(res.ok){
+      $("settingsstate").textContent = "Saved. Reloading...";
+      return;
+    }
+    btn.disabled = false;
+    if(READ_ONLY_CODES[res.code]){
+      $("settingsstate").textContent = "This copy is read-only, so the address cannot be saved here. Open the page from your own link.";
+      WRITABLE = false;
+    } else if(res.code === "conflict"){
+      $("settingsstate").textContent = "Someone added an entry just then. The page is reloading, try saving again.";
+    } else {
+      $("settingsstate").textContent = "That did not save. Try again in a moment.";
+    }
+  });
+}
+
+/* ------------------------------------------------------------------- boot */
+function boot(){
+  ensureHead();
+  var root = document.getElementById("root");
+  if(!root){
+    root = document.createElement("div");
+    root.id = "root";
+    document.body.appendChild(root);
+  }
+  root.innerHTML = MARKUP;
+
+  fillForm({});
+  wire();
+  renderWall();
+
+  // a saved draft survives a reload, a closed tab, or a stolen phone battery
+  var pending = recall(PENDING_KEY);
+  var draft = recall(DRAFT_KEY);
+
+  if(pending && pending.entry && entryOnWall(pending.entry.id)){
+    store(PENDING_KEY, null);
+    store(DRAFT_KEY, null);
+    pending = null;
+    var cheer = recall(CHEER_KEY);
+    if(cheer){
+      store(CHEER_KEY, null);
+      var thanks = $("thanks");
+      thanks.textContent = THANKS[Math.floor(Math.random()*THANKS.length)].replace("NAME", cheer);
+      thanks.hidden = false;
+      celebrate();
+    }
+  } else if(pending && pending.entry){
+    // we published, something else won the race, and our entry never landed
+    fillForm(pending.entry);
+    if(pending.tries < MAX_TRIES){
+      $("saving").textContent = "Someone beat you to the wall by a second. Adding yours now...";
+      setTimeout(function(){ submitEntry(pending.entry, pending.tries + 1); }, 700);
+    } else {
+      store(PENDING_KEY, null);
+      $("err").textContent = "The wall was busy and your entry did not go on. It is back in the form, press add to try again.";
+    }
+  } else if(draft){
+    fillForm(draft);
+  }
+
+  // a viewer who cannot publish should find that out before they type, not after
+  getArtifact().then(function(api){
+    if(!api){
+      WRITABLE = false;
+      var notice = $("notice");
+      notice.textContent = "This copy is not connected to the live wall, so entries added here cannot be saved. "
+        + "Write yours anyway and the page will hand you a copy to send on.";
+      notice.hidden = false;
+    }
+  });
+}
+
+if(document.readyState === "loading"){
+  document.addEventListener("DOMContentLoaded", boot);
+} else {
+  boot();
+}
+}
+app();
+</script>
