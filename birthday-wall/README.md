@@ -10,7 +10,7 @@ The page is published as a Claude artifact with the `artifact` capability, so
 it can write to itself. The wall lives in the document as JSON:
 
 ```html
-<script id="wall-data" type="application/json">{"v":1,"collectEmail":"","entries":[]}</script>
+<script id="wall-data" type="application/json">{"v":1,"entries":[]}</script>
 ```
 
 When someone submits, the page rebuilds its own complete source from `CSS`,
@@ -23,19 +23,20 @@ one gets `conflict` and is reloaded to the winner's version; the losing entry
 is held in `localStorage` and resubmitted automatically on the way back in
 (up to three attempts, then it is put back in the form with a message).
 
-## Read-only viewers
+## Everyone writes into the document
 
-Anyone opening a copy they cannot write to still gets the whole form. On
-submit, the page hands them their entry as formatted text with a copy button,
-plus a one-tap email button if the organiser has set a collection address in
-the organiser panel. A viewer with no artifact capability at all is told so
-before they start typing, not after.
+Writing is granted by the share link, not by the page: share it with edit
+access and every viewer adds straight to the wall. There is no send-it-on
+route and nothing to collect by email.
+
+A view-only link cannot publish, so the page says exactly that and leaves
+every word typed sitting in the form (the draft is in `localStorage`). It does
+not offer to email the entry anywhere.
 
 ## Organiser panel
 
 At the foot of the page: the whole wall as readable text or JSON, a copy
-button, a print view (form stripped out, "Save as PDF" for a keepsake) and the
-collection address field.
+button, and a print view (form stripped out, "Save as PDF" for a keepsake).
 
 ## Editing it
 

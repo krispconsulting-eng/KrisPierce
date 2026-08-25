@@ -3,7 +3,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link data-fonts rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500&family=Inter:wght@400;500;600;700&display=swap">
 
-<script id="wall-data" type="application/json">{"v":1,"collectEmail":"","entries":[]}</script>
+<script id="wall-data" type="application/json">{"v":1,"entries":[]}</script>
 <div id="root"></div>
 
 <script>
@@ -236,18 +236,6 @@ textarea{resize:vertical;min-height:96px;font-size:16px}
 }
 .thanks[hidden]{display:none}
 
-/* read-only handoff */
-.handoff{
-  margin-top:22px;padding:20px 22px;border-radius:16px;
-  background:var(--teal-t);border:2px solid var(--teal);
-}
-.handoff[hidden]{display:none}
-.handoff h3{
-  font-family:"Fraunces",Georgia,serif;font-size:21px;margin:0 0 6px;color:var(--ink);
-}
-.handoff p{margin:0 0 14px;font-size:15px;color:var(--muted)}
-.handoff textarea{min-height:150px;background:var(--card)}
-.handoff .orgactions{margin-top:14px}
 
 .wall-head{text-align:center;margin:clamp(46px,6vw,70px) 0 6px}
 .wall-head h2{
@@ -465,17 +453,6 @@ var MARKUP = `
 
     <p class="thanks" id="thanks" role="status" hidden></p>
 
-    <div class="handoff" id="handoff" hidden>
-      <h3 id="handoff-title">This copy is read-only, so send yours instead</h3>
-      <p id="handoff-why">Your words are safe below. Copy them and send them to whoever is collecting these, and they will go on the wall.</p>
-      <label class="vh" for="handoffbox">Your entry, ready to copy</label>
-      <textarea class="exportbox" id="handoffbox" readonly spellcheck="false" style="min-height:150px"></textarea>
-      <div class="orgactions">
-        <button type="button" class="btn-sm" id="handoffcopy">Copy my entry</button>
-        <a class="btn-sm alt" id="handoffmail" href="#" hidden style="text-decoration:none">Email it in</a>
-        <span class="orgnote" id="handoffstate" role="status"></span>
-      </div>
-    </div>
   </section>
 
   <p class="notice" id="notice" hidden></p>
@@ -515,19 +492,6 @@ var MARKUP = `
         "Save as PDF" in the print dialogue turns it into a keepsake. Do this again nearer the day, entries keep arriving.
       </p>
 
-      <h3>If someone cannot post their own</h3>
-      <p class="orgnote" style="margin-top:0">
-        Anyone opening a read-only copy of this page can still write an entry, but they have to send it to you.
-        Add an address here and they get a one-tap email button instead of a copy-and-paste job.
-      </p>
-      <div class="orgrow" style="margin-top:12px">
-        <div class="field">
-          <label class="lbl" for="collectemail" style="color:var(--t-violet)">Where those entries should go</label>
-          <input type="email" id="collectemail" maxlength="120" placeholder="you@example.com" autocomplete="email">
-        </div>
-        <button type="button" class="btn-sm alt" id="savesettings">Save address</button>
-      </div>
-      <p class="orgnote" id="settingsstate" role="status"></p>
     </section>
   </footer>
 </div>
@@ -565,15 +529,12 @@ function recall(key){
 
 function readState(){
   var node = $("wall-data");
-  var fallback = { v:1, collectEmail:"", entries:[] };
+  var fallback = { v:1, entries:[] };
   if(!node){ return fallback; }
   try{
     var parsed = JSON.parse(node.textContent || "{}");
-    if(Array.isArray(parsed)){ return { v:1, collectEmail:"", entries:parsed }; }
-    parsed.entries = Array.isArray(parsed.entries) ? parsed.entries : [];
-    parsed.collectEmail = typeof parsed.collectEmail === "string" ? parsed.collectEmail : "";
-    parsed.v = 1;
-    return parsed;
+    if(Array.isArray(parsed)){ return { v:1, entries:parsed }; }
+    return { v:1, entries: Array.isArray(parsed.entries) ? parsed.entries : [] };
   }catch(e){ return fallback; }
 }
 
@@ -834,24 +795,18 @@ async function copyFrom(box, stateEl, okText){
   stateEl.textContent = done ? okText : "It is all selected, so press Ctrl+C (or Cmd+C) to copy.";
 }
 
-/* ---------------------------------------------------------- read-only path */
-function showHandoff(entry, reason){
+/* ---------------------------------------------------------- view-only link */
+// Writing is granted by the link, not by the page: a view-only link cannot add
+// to the wall. Say so plainly and leave every word they typed in the form.
+function showViewOnly(){
   WRITABLE = false;
-  var body = "Emma's 50th, one for the wall\n\n" + entryToText(entry);
-  $("handoffbox").value = body;
-  $("handoff-why").textContent = reason;
-  var mail = $("handoffmail");
-  if(STATE.collectEmail){
-    mail.href = "mailto:" + encodeURIComponent(STATE.collectEmail)
-      + "?subject=" + encodeURIComponent("One for Emma's 50th wall, from " + (entry.name || "a friend"))
-      + "&body=" + encodeURIComponent(body);
-    mail.hidden = false;
-  } else {
-    mail.hidden = true;
-  }
-  $("handoff").hidden = false;
-  $("submit").textContent = "Update my entry to send";
-  $("handoff").scrollIntoView({ behavior:"smooth", block:"center" });
+  $("saving").textContent = "";
+  $("err").textContent = "This link is view-only, so nothing can be added to the wall from here. "
+    + "Ask whoever sent it for the link you can write on. Everything you have typed will still be waiting.";
+  var notice = $("notice");
+  notice.textContent = "View-only link. On the link you can write on, everyone adds straight to the wall.";
+  notice.hidden = false;
+  $("err").scrollIntoView({ behavior:"smooth", block:"center" });
 }
 
 /* ------------------------------------------------------------- publishing */
@@ -886,11 +841,7 @@ async function submitEntry(entry, tries){
   btn.textContent = "Adding...";
   $("saving").textContent = "Saving it to the wall...";
 
-  var next = {
-    v: 1,
-    collectEmail: STATE.collectEmail,
-    entries: STATE.entries.concat([entry])
-  };
+  var next = { v:1, entries: STATE.entries.concat([entry]) };
 
   store(PENDING_KEY, { entry:entry, tries:tries });
   store(CHEER_KEY, entry.name);
@@ -919,8 +870,7 @@ async function submitEntry(entry, tries){
   store(PENDING_KEY, null);
 
   if(READ_ONLY_CODES[res.code]){
-    showHandoff(entry, "This copy of the page is read-only, so it cannot add your entry itself. "
-      + "Your words are safe below: copy them and send them to whoever is collecting these.");
+    showViewOnly();
     return;
   }
   if(res.code === "too_large"){
@@ -1020,7 +970,6 @@ function wire(){
   $("clear").addEventListener("click", function(){
     resetForm();
     $("thanks").hidden = true;
-    $("handoff").hidden = true;
     $("name").focus();
   });
 
@@ -1049,15 +998,10 @@ function wire(){
     };
 
     if(!WRITABLE){
-      showHandoff(entry, "This copy of the page is read-only, so it cannot add your entry itself. "
-        + "Your words are safe below: copy them and send them to whoever is collecting these.");
+      showViewOnly();
       return;
     }
     submitEntry(entry, 1);
-  });
-
-  $("handoffcopy").addEventListener("click", function(){
-    copyFrom($("handoffbox"), $("handoffstate"), "Copied. Send that to whoever is collecting these.");
   });
 
   $("orgtoggle").addEventListener("click", function(){
@@ -1068,7 +1012,6 @@ function wire(){
     this.textContent = opening ? "Hide the organiser panel" : "For the organiser: collect everything";
     if(opening){
       renderExport();
-      $("collectemail").value = STATE.collectEmail || "";
       panel.scrollIntoView({ behavior:"smooth", block:"start" });
     }
   });
@@ -1093,30 +1036,6 @@ function wire(){
     setTimeout(function(){ window.print(); }, 80);
   });
 
-  $("savesettings").addEventListener("click", async function(){
-    var btn = this;
-    var value = $("collectemail").value.trim();
-    if(value && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(value)){
-      $("settingsstate").textContent = "That does not look like an email address. Check it and save again.";
-      return;
-    }
-    btn.disabled = true;
-    $("settingsstate").textContent = "Saving...";
-    var res = await publishState({ v:1, collectEmail:value, entries:STATE.entries });
-    if(res.ok){
-      $("settingsstate").textContent = "Saved. Reloading...";
-      return;
-    }
-    btn.disabled = false;
-    if(READ_ONLY_CODES[res.code]){
-      $("settingsstate").textContent = "This copy is read-only, so the address cannot be saved here. Open the page from your own link.";
-      WRITABLE = false;
-    } else if(res.code === "conflict"){
-      $("settingsstate").textContent = "Someone added an entry just then. The page is reloading, try saving again.";
-    } else {
-      $("settingsstate").textContent = "That did not save. Try again in a moment.";
-    }
-  });
 }
 
 /* ------------------------------------------------------------------- boot */
@@ -1169,8 +1088,8 @@ function boot(){
     if(!api){
       WRITABLE = false;
       var notice = $("notice");
-      notice.textContent = "This copy is not connected to the live wall, so entries added here cannot be saved. "
-        + "Write yours anyway and the page will hand you a copy to send on.";
+      notice.textContent = "This link is view-only, so entries cannot be added from here. "
+        + "Ask whoever sent it for the link you can write on.";
       notice.hidden = false;
     }
   });
