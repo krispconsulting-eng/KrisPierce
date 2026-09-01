@@ -42,6 +42,20 @@ cedar = deep indigo/violet/cyan, clay = rose, brass = sand gold, linen = paper.
    --hairline: #E1DFF0;
    --paper: #FFFFFF;
 
+/* Brand mark — Petal Bloom v1.0. Eight petals, one per wellbeing dimension,
+   overlapping at the centre. Multiply at 92%. Never outlined, never recoloured,
+   never rotated. Petal order runs clockwise from the flat top petal. */
+--petal-1: #9CC8F0;
+   --petal-2: #B4B4E6;
+   --petal-3: #CDBBE4;
+   --petal-4: #F2B4BC;
+   --petal-5: #F7C69B;
+   --petal-6: #F5DE9A;
+   --petal-7: #C2DFAC;
+   --petal-8: #A5D8C6;
+--mark-ink: #0E3F4E; /* the one-colour cut */
+--mark-min: 24px; /* full colour floor, per the mark spec */
+
 /* Hero gradient — aurora duet/trio; glass elements only ever sit over this */
 --hero-gradient: linear-gradient(150deg, #2B2A55 0%, #5B5FA6 55%, #45C6C6 100%);
 
@@ -227,15 +241,14 @@ section { padding: 96px 0; }
    color: var(--bark-ink);
    font-size: 1.05rem;
 }
+/* The mark stands on the page, never inside a coloured tile: multiply against a
+   saturated ground drives every petal to black. Use the reversed cut on dark. */
 .brand-mark {
    width: 36px; height: 36px;
-   border-radius: var(--radius-sm);
-   background: var(--cedar-700);
-   color: var(--linen);
    display: flex; align-items: center; justify-content: center;
    flex-shrink: 0;
 }
-.brand-mark .icon { width: 20px; height: 20px; }
+.brand-mark .icon { width: 36px; height: 36px; }
 .nav-links { display: flex; align-items: center; gap: 28px; }
 .nav-links a { color: var(--bark-soft); font-weight: 500; font-size: .95rem; }
 .nav-links a.active { color: var(--cedar-700); font-weight: 600; }
