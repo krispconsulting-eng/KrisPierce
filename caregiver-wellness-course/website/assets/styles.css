@@ -1,45 +1,44 @@
 /* ==========================================================================
-Caregiver Wellness Course — Design tokens & base styles
-Design system: Aurora Glow (see caregiver-wellness-course/design/sky-and-tide/).
-Deep indigo + soft violet co-lead into a glowing cyan "tide" accent over airy
-paper, one reserved achievement accent (warm sand gold, the Earned Gold Rule
-carried over), Newsreader display serif + Hanken Grotesk body. Soft,
-ink-tinted, glow-tinted shadows, never pure black. Glassmorphism used
-sparingly on hero/drenched sections. Custom SVG iconography only, no emoji,
-no icon fonts.
+Caregiver Wellbeing Journey — Design tokens & base styles
+Design system: Petal Bloom (see caregiver-wellness-course/design/). The only
+system maintained. Eight soft petal colours, one per wellbeing dimension, over
+a cool near-white page; deep teal ink for reading, a single teal for links and
+primary actions; Newsreader display serif + Hanken Grotesk body. No glow, no
+gradient accents, no glass as a design language: the shadow, glow and glass
+tokens below are kept for rule compatibility and set to quiet ink-tinted values.
 
-NOTE: variable names below are legacy ("cedar"/"clay"/"brass") from the
-previous Steady Hand system — every rule in this file and the HTML
-references them, so only the VALUES were rebranded again here. Read them as:
-cedar = deep indigo/violet/cyan, clay = rose, brass = sand gold, linen = paper.
+NOTE: variable names are legacy ("cedar"/"clay"/"brass"/"linen") from earlier
+systems (Steady Hand, then Aurora Glow). Every rule and the HTML reference them,
+so only the VALUES carry Petal Bloom. Read them as: cedar = teal ink family,
+clay = secondary (ink), brass = quiet warm accent, linen = page.
 ========================================================================== */
 
 @import url('https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,300;1,6..72,400&family=Hanken+Grotesk:wght@400;500;600&display=swap');
 
 :root {
-   /* Primary — Deep indigo / violet / glowing cyan tide */
---cedar-900: #2B2A55; /* deep indigo ink */
---cedar-700: #5B5FA6; /* soft indigo-violet, main brand color */
---cedar-500: #45C6C6; /* glowing cyan tide, accent + glow color */
---cedar-100: #E7E6F8; /* soft lavender mist */
+   /* Primary — Petal Bloom teal ink family */
+--cedar-900: #0E3F4E; /* ink */
+--cedar-700: #16697F; /* link + primary action */
+--cedar-500: #16697F; /* same as 700: no gradient accent in Petal Bloom */
+--cedar-100: #DCE7EC; /* soft wash, the sheet’s hairline tint */
 
-/* Secondary — Rose (the sponsor/scholarship thread) */
---clay-700: #B3707A;
-   --clay-500: #C98F97;
-   --clay-100: #F0DEE0;
+/* Secondary — ink for secondary actions; rose tint from the Emotional petal */
+--clay-700: #0E3F4E;
+   --clay-500: #9A4C5D;
+   --clay-100: #F2B4BC;
 
-/* Tertiary — Warm sand gold (achievement only, see Earned Gold Rule) */
---brass-600: #A5813C;
-   --brass-300: #CDA66B;
-   --brass-100: #F0E6D2;
+/* Tertiary — quiet warm accent from the Financial petal family (achievement only) */
+--brass-600: #806116;
+   --brass-300: #F5DE9A;
+   --brass-100: #FBF1D3;
 
-/* Neutrals — cool lavender-tinted paper */
---linen: #F8F7FB; /* paper */
---linen-deep: #EFEEF7; /* page canvas */
---bark-ink: #262445; /* ink */
---bark-soft: #4E4B72;
-   --stone: #6E6B94;
-   --hairline: #E1DFF0;
+/* Neutrals — Petal Bloom sheet: cool near-white page, deep teal ink */
+--linen: #F7FAFB; /* paper */
+--linen-deep: #EFF5F8; /* page canvas */
+--bark-ink: #0E3F4E; /* ink */
+--bark-soft: #4B6771;
+   --stone: #516C76;
+   --hairline: #DCE7EC;
    --paper: #FFFFFF;
 
 /* Brand mark — Petal Bloom v1.0. Eight petals, one per wellbeing dimension,
@@ -56,14 +55,14 @@ cedar = deep indigo/violet/cyan, clay = rose, brass = sand gold, linen = paper.
 --mark-ink: #0E3F4E; /* the one-colour cut */
 --mark-min: 24px; /* full colour floor, per the mark spec */
 
-/* Hero gradient — aurora duet/trio; glass elements only ever sit over this */
---hero-gradient: linear-gradient(150deg, #2B2A55 0%, #5B5FA6 55%, #45C6C6 100%);
+/* Drenched ground — ink to teal; white text stays 6.2:1 or better across it */
+--hero-gradient: linear-gradient(150deg, #0E3F4E 0%, #16697F 100%);
 
 /* Soft glow + glass tokens (the "softness" layer) */
---glow-primary: 0 0 28px rgba(69, 198, 198, 0.45);
-   --glow-accent: 0 0 24px rgba(91, 95, 166, 0.4);
+--glow-primary: 0 0 24px rgba(22, 105, 127, 0.22);
+   --glow-accent: 0 0 20px rgba(14, 63, 78, 0.18);
    --glass-bg: rgba(255, 255, 255, 0.55);
-   --glass-bg-dark: rgba(43, 42, 85, 0.35);
+   --glass-bg-dark: rgba(14, 63, 78, 0.35);
    --glass-border: rgba(255, 255, 255, 0.4);
    --glass-blur: 16px;
 
@@ -80,8 +79,8 @@ cedar = deep indigo/violet/cyan, clay = rose, brass = sand gold, linen = paper.
 /* Elevation — soft, diffuse, ink-tinted, never pure black */
 --shadow-resting: 0 1px 3px rgba(32, 48, 58, 0.06);
    --shadow-hover: 0 12px 32px rgba(32, 48, 58, 0.14);
-   --shadow-hover-clay: 0 12px 32px rgba(179, 112, 122, 0.2);
-   --shadow-achievement: 0 0 0 1px rgba(205, 166, 107, 0.4), 0 8px 28px rgba(205, 166, 107, 0.3);
+   --shadow-hover-clay: 0 12px 32px rgba(14, 63, 78, 0.16);
+   --shadow-achievement: 0 0 0 1px rgba(128, 97, 22, 0.35), 0 8px 28px rgba(128, 97, 22, 0.22);
 
 /* Motion */
 --ease: cubic-bezier(0.165, 0.84, 0.44, 1);
@@ -99,14 +98,17 @@ cedar = deep indigo/violet/cyan, clay = rose, brass = sand gold, linen = paper.
 
 @media (prefers-color-scheme: dark) {
    :root {
-      --linen: #1B1934;
-      --linen-deep: #14132A;
-      --bark-ink: #EEEDFB;
-      --bark-soft: #C9C6E8;
-      --stone: #9C98C4;
-      --hairline: #322F55;
-      --paper: #211F3F;
-      --cedar-100: #2C2A52;
+      --linen: #0F2A33;
+      --linen-deep: #0B2129;
+      --bark-ink: #EAF3F6;
+      --bark-soft: #C5D9DF;
+      --stone: #93B0B9;
+      --hairline: #1E3E49;
+      --paper: #12333D;
+      --cedar-100: #1A3F4B;
+      --cedar-700: #5FB8C9; /* links and primary on the dark page; #16697F reaches only 2.4:1 there */
+      --cedar-500: #5FB8C9;
+      --clay-700: #DCE7EC; /* secondary action on the dark page; linen text on it */
    }
 }
 
@@ -308,9 +310,9 @@ the section still looks complete without it. */
    pointer-events: none;
    filter: blur(60px);
    background:
-   radial-gradient(circle at 18% 26%, rgba(91, 95, 166, 0.26), transparent 55%),
-      radial-gradient(circle at 82% 16%, rgba(69, 198, 198, 0.24), transparent 50%),
-      radial-gradient(circle at 55% 88%, rgba(43, 42, 85, 0.16), transparent 55%);
+   radial-gradient(circle at 18% 26%, rgba(156, 200, 240, 0.34), transparent 55%),
+      radial-gradient(circle at 82% 16%, rgba(165, 216, 198, 0.32), transparent 50%),
+      radial-gradient(circle at 55% 88%, rgba(242, 180, 188, 0.18), transparent 55%);
    animation: aurora-drift 20s var(--ease) infinite alternate;
 }
 @keyframes aurora-drift {
@@ -337,8 +339,7 @@ the section still looks complete without it. */
 }
 
 /* ---- Drenched section (one per page, the structural downbeat) ----
-Aurora Glow: the drenched beat is the indigo/violet/cyan hero gradient
-rather than a flat dark block. Glass elements may only sit over this. */
+Petal Bloom: the drenched beat is a quiet ink-to-teal ground. Glass elements may only sit over this. */
 .drenched {
    background: var(--hero-gradient);
    color: #FFFFFF;
@@ -347,19 +348,19 @@ rather than a flat dark block. Glass elements may only sit over this. */
 }
 .drenched h1, .drenched h2, .drenched h3 { color: #FFFFFF; }
 .drenched h1 em, .drenched h2 em { color: var(--cedar-100); }
-.drenched p { color: #EDEBFA; }
+.drenched p { color: #E6F0F3; }
 .drenched .glow {
    position: absolute;
    border-radius: 50%;
    filter: blur(60px);
-   background: radial-gradient(circle, rgba(69, 198, 198, 0.4), transparent 70%);
+   background: radial-gradient(circle, rgba(165, 216, 198, 0.32), transparent 70%);
    pointer-events: none;
 }
 
 /* ---- Soft glow pulse (breathing motion, for hero accents/mascots) ---- */
 @keyframes soft-glow-pulse {
    0%, 100% { box-shadow: var(--glow-primary); }
-   50% { box-shadow: 0 0 42px rgba(69, 198, 198, 0.65); }
+   50% { box-shadow: 0 0 34px rgba(22, 105, 127, 0.38); }
 }
 .glow-pulse { animation: soft-glow-pulse var(--dur-breathe) var(--ease) infinite; }
 @media (prefers-reduced-motion: reduce) {

@@ -126,8 +126,8 @@ source of truth for the automation layer, last live-tested 6 July 2026.
 Merged into the default branch 21 July 2026 (PR #21, commit `58bfc0c`), but
 **intentionally not wired into the live site**:
 
-- New, isolated files: `website/assets/wellness-wheel-aurora.css`,
-  `website/assets/wellness-wheel-aurora.js`, and `website/wheel-preview.html`
+- (Retired) The Aurora Glow wheel files `wellness-wheel-aurora.css`/`.js` and
+  `wheel-preview.html` were removed when Petal Bloom became the only maintained system
   (titled *"Wheel Redesign Preview (Aurora Glow) — not yet live"*, tagged
   `noindex, nofollow`, not linked from anywhere on the live site).
 - Recolours the 8 wedges to an indigo/violet/cyan sweep, adds glass-style

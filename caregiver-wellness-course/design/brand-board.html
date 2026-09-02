@@ -3,9 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<!-- Brand board for the Caregiver Wellbeing Journey. Self-contained: token values are a snapshot of
-     website/assets/styles.css, wellness-wheel.js and wellness-wheel-aurora.js at the commit that added this file.
-     If those files change, update the DATA block in the script below. Open directly in a browser. -->
+<!-- Brand board for the Caregiver Wellbeing Journey, Petal Bloom only. Self-contained: the DATA block
+     mirrors website/assets/styles.css and wellness-wheel.js; update it if they change. Open directly in a browser. -->
 <title>Caregiver Wellbeing Brand Board</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500&family=Hanken+Grotesk:wght@400;500;600&display=swap">
 <style>
@@ -141,7 +140,7 @@ textarea{width:100%;min-height:220px;font:12.5px/1.5 ui-monospace,monospace;colo
 <header class="mast">
   <div class="eyebrow">Caregiver Wellbeing Journey · brand board</div>
   <h1>Make the call by looking at it.</h1>
-  <p class="lede">Every control on the left changes every preview on the right, live. Defaults are what is deployed right now. Pick a combination, press <b>Copy tokens</b>, and send me the result — that becomes the change.</p>
+  <p class="lede">Petal Bloom is the system. The controls on the left are the decisions still open inside it; each changes every preview on the right, live. Defaults are what is deployed. Pick, press <b>Copy tokens</b>, send me the result.</p>
   <div class="status" id="status"></div>
 </header>
 
@@ -219,7 +218,7 @@ textarea{width:100%;min-height:220px;font:12.5px/1.5 ui-monospace,monospace;colo
  };
  var NEU={
   aurora:   {name:'Aurora Glow (live)',canvas:'#EFEEF7',surface:'#FFFFFF',paper:'#F8F7FB',ink:'#262445',muted:'#6E6B94',accent:'#5B5FA6',accent2:'#45C6C6',divider:'#E1DFF0',control:'#6E6B94',soft:'#E7E6F8'},
-  petal:    {name:'Petal Bloom sheet',canvas:'#EFF5F8',surface:'#FFFFFF',paper:'#F7FAFB',ink:'#0E3F4E',muted:'#5B7A85',accent:'#16697F',accent2:'#16697F',divider:'#DCE7EC',control:'#7B98A2',soft:'#EDF3F6'},
+  petal:    {name:'Petal Bloom',canvas:'#EFF5F8',surface:'#FFFFFF',paper:'#F7FAFB',ink:'#0E3F4E',muted:'#516C76',accent:'#16697F',accent2:'#16697F',divider:'#DCE7EC',control:'#7B98A2',soft:'#DCE7EC'},
   heldspace:{name:'Held Space v0.3',canvas:'#F9FBFC',surface:'#FFFFFF',paper:'#F9FBFC',ink:'#183B4A',muted:'#516C76',accent:'#1F5E80',accent2:'#1F5E80',divider:'#C7D8DE',control:'#687F8A',soft:'#EAF3F7'}
  };
  var PETAL=['#9CC8F0','#B4B4E6','#CDBBE4','#F2B4BC','#F7C69B','#F5DE9A','#C2DFAC','#A5D8C6'];
@@ -229,12 +228,12 @@ textarea{width:100%;min-height:220px;font:12.5px/1.5 ui-monospace,monospace;colo
 
  /* ================= DECISIONS ================= */
  var DEC=[
-  {id:'pal',title:'Wheel palette',why:'Six sets exist in the repo. Only one can be the programme’s colours.',
-   opts:[['live','Live',true],['aurora','Aurora'],['petal','Petal Bloom'],['heldspace','Held Space']]},
-  {id:'markpal',title:'Mark colours',why:'Whether the bloom uses its own sheet or the wheel palette above.',
-   opts:[['own','Own sheet',true],['wheel','Match wheel']]},
-  {id:'neu',title:'Neutrals & accent',why:'Ink, paper, links and buttons. The site runs Aurora today.',
-   opts:[['aurora','Aurora',true],['petal','Petal sheet'],['heldspace','Held Space']]},
+  {id:'pal',title:'Wheel palette',why:'Petal Bloom is the only maintained system. Each dimension keeps the hue it already had.',
+   opts:[['petal','Petal Bloom',true]]},
+  {id:'markpal',title:'Mark colours',why:'The bloom uses its own sheet; the wheel uses the same eight mapped to dimensions.',
+   opts:[['own','Own sheet',true]]},
+  {id:'neu',title:'Neutrals & accent',why:'Petal Bloom sheet, with muted deepened to #516C76 to clear 4.5:1 on the page.',
+   opts:[['petal','Petal Bloom',true]]},
   {id:'form',title:'Wheel form',why:'The live wheel autoplays and takes no input. These are the two things it could become.',
    opts:[['ring','Closed ring',true],['balance','Balance wheel']]},
   {id:'line',title:'Wedge outlines',why:'Pale wedges sit at 1.0–1.1:1 against each other. A hairline separates them; you said no. See both.',
@@ -290,16 +289,16 @@ textarea{width:100%;min-height:220px;font:12.5px/1.5 ui-monospace,monospace;colo
    return '<div class="dec"><h4>'+d.title+'</h4><p class="why">'+d.why+'</p><div class="opts" role="group" aria-label="'+d.title+'">'+
     d.opts.map(function(o){return '<button type="button" class="opt" data-dec="'+d.id+'" data-val="'+o[0]+'" aria-pressed="'+(state[d.id]===o[0])+'">'+o[1]+(o[2]?'<span class="live">live</span>':'')+'</button>'}).join('')+
    '</div></div>';
-  }).join('')+'<p class="railfoot">“Live” marks what is deployed at <a href="https://krispconsulting-eng.github.io/KrisPierce/">github.io/KrisPierce</a>. The Held Space and Petal Bloom sheets have never been deployed.</p>';
+  }).join('')+'<p class="railfoot">“Live” marks what is deployed at <a href="https://krispconsulting-eng.github.io/KrisPierce/">github.io/KrisPierce</a>. Petal Bloom is the only maintained system.</p>';
   rail.querySelectorAll('.opt').forEach(function(b){b.addEventListener('click',function(){state[b.dataset.dec]=b.dataset.val;try{localStorage.setItem('cwj-brand-board',JSON.stringify(state))}catch(e){}renderAll()})});
  }
 
  /* ================= STATUS ================= */
  document.getElementById('status').innerHTML=[
-  ['Deployed mark','Petal Bloom v1.0, merged in #25. Exactly as supplied.'],
-  ['Deployed wheel','Autoplay showcase, Sky & Tide era colours, no input.'],
-  ['Deployed neutrals','Aurora Glow values inside Steady Hand variable names.'],
-  ['Colour systems in repo','Six. Plus a design doc whose wheel names eight different dimensions.']
+  ['Mark','Petal Bloom v1.0, merged in #25. Centre as supplied.'],
+  ['Wheel','Petal Bloom colours. Still an autoplay showcase; its form is a separate decision.'],
+  ['Neutrals','Petal Bloom sheet in styles.css, muted deepened to #516C76.'],
+  ['Colour systems','One. Aurora replaced in place; Sky & Tide and Held Space retired.']
  ].map(function(r){return '<div><div class="eyebrow">'+r[0]+'</div><p>'+r[1]+'</p></div>'}).join('');
 
  /* ================= PREVIEWS ================= */
