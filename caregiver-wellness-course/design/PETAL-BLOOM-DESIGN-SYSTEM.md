@@ -77,3 +77,16 @@ so the dark block overrides `--cedar-700`/`--cedar-500` to `#5FB8C9`.
 - The Wellness Wheel is still an autoplay showcase. Its form (closed ring or balance
   wheel) is a separate decision; only its colours changed here.
 - The mark's centre is as supplied. See the mark spec.
+
+## Settled, and not to be reopened
+- **The palette is Petal Bloom.** An alternative family was explored after this
+  system landed (a mint through teal set taken from a wellness site the client
+  liked, plus a warm neutral set at level lightness). It was mocked up, tested and
+  declined. Petal Bloom stands as the only maintained palette, and the wheel keeps
+  the eight dimension colours in this document. Nothing from that exploration is in
+  the repository.
+- **A caution worth keeping from it.** Any future proposal that colours the eight
+  wedges as a ramp, pale through to deep round the ring, is a gauge: the eye reads
+  the pale wedges as the low scores before it reads a label, and on a balance wheel
+  the wedge length is already saying that. Eight distinct hues, as here, carry no
+  order and need no such care.
