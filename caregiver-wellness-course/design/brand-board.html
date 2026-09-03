@@ -1,0 +1,420 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Brand board for the Caregiver Wellbeing Journey, Petal Bloom only. Self-contained: the DATA block
+     mirrors website/assets/styles.css and wellness-wheel.js; update it if they change. Open directly in a browser. -->
+<title>Caregiver Wellbeing Brand Board</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500&family=Hanken+Grotesk:wght@400;500;600&display=swap">
+<style>
+/* Chrome uses the brand's own type and paper, so the board feels like the brand, not a tool bolted onto it. */
+:root{
+  --paper:#F8F7FB; --sheet:#FFFFFF; --ink:#262445; --soft:#4E4B72; --stone:#6E6B94; --rule:#E1DFF0;
+  --accent:#5B5FA6; --ok:#2F6B44; --warn:#8A5A12; --bad:#A8331F;
+  --ok-bg:#E4F0E7; --warn-bg:#F6EEDE; --bad-bg:#F7E4E0;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]){
+  --paper:#15141F; --sheet:#1E1D2B; --ink:#EAE8F4; --soft:#C3C0D8; --stone:#928FAF; --rule:#2E2C42;
+  --accent:#9A9DE0; --ok:#7CC493; --warn:#D9AE55; --bad:#E88574; --ok-bg:#17301E; --warn-bg:#2E2513; --bad-bg:#331B17;}}
+:root[data-theme=dark]{
+  --paper:#15141F; --sheet:#1E1D2B; --ink:#EAE8F4; --soft:#C3C0D8; --stone:#928FAF; --rule:#2E2C42;
+  --accent:#9A9DE0; --ok:#7CC493; --warn:#D9AE55; --bad:#E88574; --ok-bg:#17301E; --warn-bg:#2E2513; --bad-bg:#331B17;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--soft);font:400 16px/1.6 "Hanken Grotesk",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4{font-family:Newsreader,Georgia,serif;font-weight:400;color:var(--ink);margin:0;letter-spacing:-.01em;text-wrap:balance}
+p{margin:0 0 12px;max-width:66ch}
+button{font:inherit}
+:where(button,a,input,textarea,[tabindex]):focus-visible{outline:2.5px solid var(--accent);outline-offset:3px}
+.eyebrow{font:500 12px/1.4 "Hanken Grotesk",sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--stone)}
+
+.mast{max-width:1240px;margin:0 auto;padding:40px 24px 18px}
+.mast h1{font-size:clamp(34px,4.6vw,52px);line-height:1.04;margin:10px 0 12px;max-width:18ch}
+.mast .lede{font-size:17px;max-width:62ch}
+.status{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1px;background:var(--rule);border:1px solid var(--rule);border-radius:6px;overflow:hidden;margin:22px 0 0}
+.status>div{background:var(--sheet);padding:14px 16px}
+.status .eyebrow{margin-bottom:5px}
+.status p{margin:0;font-size:14.5px;line-height:1.45}
+
+.layout{max-width:1240px;margin:0 auto;padding:22px 24px 80px;display:grid;grid-template-columns:300px minmax(0,1fr);gap:26px;align-items:start}
+@media(max-width:900px){.layout{grid-template-columns:1fr}.rail{position:static!important}}
+
+/* ---- decision rail ---- */
+.rail{position:sticky;top:16px;display:grid;gap:12px}
+.dec{background:var(--sheet);border:1px solid var(--rule);border-radius:6px;padding:14px 14px 12px}
+.dec h4{font:500 15px/1.3 "Hanken Grotesk",sans-serif;color:var(--ink);margin:0 0 3px}
+.dec .why{font-size:13px;color:var(--stone);margin:0 0 10px;line-height:1.45}
+.opts{display:flex;flex-wrap:wrap;gap:6px}
+.opt{border:1px solid var(--rule);background:transparent;color:var(--soft);padding:8px 11px;border-radius:999px;font-size:13.5px;font-weight:500;cursor:pointer;min-height:36px;display:inline-flex;align-items:center;gap:7px}
+.opt[aria-pressed=true]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.opt .live{font-size:10px;letter-spacing:.08em;text-transform:uppercase;opacity:.75}
+.railfoot{font-size:12.5px;color:var(--stone);line-height:1.5;padding:4px 2px 0}
+.railfoot a{color:var(--accent)}
+
+/* ---- previews ---- */
+.stage{display:grid;gap:18px}
+.card{background:var(--sheet);border:1px solid var(--rule);border-radius:6px;overflow:hidden}
+.card>header{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 14px;padding:12px 18px;border-bottom:1px solid var(--rule)}
+.card>header h3{font-size:22px}
+.card>header .eyebrow{margin-left:auto}
+.card>.body{padding:18px}
+.note{font-size:13.5px;color:var(--stone);line-height:1.5;margin:12px 0 0;max-width:78ch}
+.note b{color:var(--ink);font-weight:500}
+
+/* the brand preview scope: every preview inherits these and they change with the rail */
+.hs{color-scheme:light;background:var(--p-canvas);color:var(--p-ink);font:400 17px/1.6 "Hanken Grotesk",sans-serif;border-radius:4px}
+.hs .sf{font-family:Newsreader,Georgia,serif;font-weight:400}
+
+.bench{display:flex;align-items:flex-end;gap:28px;flex-wrap:wrap;padding:22px 20px}
+.bench .i{text-align:center}.bench .i span{display:block;font-size:12px;color:var(--p-muted);margin-top:8px;font-variant-numeric:tabular-nums}
+.bench .dk{background:var(--p-ink);border-radius:4px;padding:14px 16px}.bench .dk span{color:var(--p-canvas);opacity:.8}
+
+.nav{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:16px 24px;background:var(--p-surface);border-bottom:1px solid var(--p-divider);flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:12px;font:600 17px/1.2 Newsreader,Georgia,serif;color:var(--p-ink)}
+.links{display:flex;gap:22px;font-size:15px;font-weight:500;color:var(--p-muted)}
+.links .on{color:var(--p-accent);font-weight:600}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:10px 20px;border-radius:999px;font:600 15px/1.3 "Hanken Grotesk",sans-serif;text-decoration:none;border:1px solid transparent;cursor:pointer}
+.btn-primary{background:var(--p-accent);color:#fff}
+.btn-secondary{background:var(--p-surface);color:var(--p-ink);border-color:var(--p-control)}
+.btn-ghost{background:transparent;color:var(--p-ink);border-color:var(--p-divider)}
+
+.wheelwrap{position:relative;width:var(--d);height:var(--d);margin:0 auto}
+.wheelwrap svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.sec{cursor:pointer;transition:d 480ms cubic-bezier(.22,1,.36,1),fill 300ms ease,transform 500ms cubic-bezier(.22,1,.36,1)}
+.sec.on{transform:translate(var(--lx),var(--ly))}
+.hub{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:42%;height:42%;border-radius:50%;background:var(--p-canvas);display:flex;align-items:center;justify-content:center;text-align:center;font:400 calc(var(--d)*.062)/1.15 Newsreader,Georgia,serif;color:var(--p-ink);pointer-events:none}
+.dl{position:absolute;transform:translate(-50%,-50%);border:0;background:transparent;color:var(--p-ink);font:500 calc(var(--d)*.038)/1.2 "Hanken Grotesk",sans-serif;cursor:pointer;padding:5px 2px;white-space:nowrap}
+.dl[aria-pressed=true]{font-weight:600;text-decoration:underline;text-underline-offset:4px}
+.wheelpad{padding:12px 70px 16px;display:flex;justify-content:center}
+@media(max-width:640px){.wheelpad{padding:8px 26px}}
+.rate{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 24px;max-width:600px;margin:14px auto 0;padding:0 18px}
+.rr{display:grid;grid-template-columns:118px 1fr 22px;gap:10px;align-items:center;font:500 14px/1.3 "Hanken Grotesk",sans-serif;color:var(--p-ink)}
+.rr label{white-space:nowrap}.rr .sw{display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--c);margin-right:7px;vertical-align:-1px}
+.rr input[type=range]{width:100%;accent-color:var(--p-accent);min-height:30px}
+.rr output{text-align:right;color:var(--p-muted);font-weight:400;font-variant-numeric:tabular-nums}
+.presets{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;padding:14px 0 6px}
+@media(max-width:600px){.rate{grid-template-columns:1fr}}
+
+.comp{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;padding:20px}
+.pcard{background:var(--p-surface);border:1px solid var(--p-divider);border-radius:6px;padding:18px}
+.pcard h4{font:400 22px/1.2 Newsreader,Georgia,serif;color:var(--p-ink);margin:0 0 6px}
+.pcard p{font-size:15px;color:var(--p-muted);margin:0 0 12px}
+.chip{display:inline-flex;align-items:center;gap:8px;font:500 13.5px/1 "Hanken Grotesk",sans-serif;background:var(--c);color:var(--p-ink);padding:8px 12px;border-radius:999px;margin:0 6px 8px 0;border:var(--chipline,0) solid var(--e,transparent)}
+.chip i{width:8px;height:8px;border-radius:50%;background:var(--e,var(--p-ink))}
+.notice{background:var(--p-soft);border-left:5px solid var(--p-accent);padding:12px 14px;font-size:15px;color:var(--p-ink)}
+
+.tile{padding:20px;display:flex;justify-content:center}
+.shot{position:relative;overflow:hidden;width:calc(var(--w)*var(--s)*1px);height:calc(var(--h)*var(--s)*1px);max-width:100%}
+.shot>.art{position:absolute;inset:0;width:calc(var(--w)*1px);height:calc(var(--h)*1px);transform:scale(var(--s));transform-origin:top left}
+
+/* swatches + contrast */
+.sw-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px;padding:18px}
+.swatch{border:1px solid var(--rule);border-radius:6px;overflow:hidden;background:var(--sheet)}
+.swatch .c{height:56px}
+.swatch .t{padding:8px 10px;font-size:12.5px;line-height:1.35}
+.swatch .t b{display:block;color:var(--ink);font-weight:500;font-size:13px}
+.swatch .t code{font-family:ui-monospace,monospace;color:var(--stone);font-size:12px}
+.tw{overflow-x:auto;padding:0 18px 18px}
+table{border-collapse:collapse;width:100%;min-width:560px;font-size:13.5px}
+th{text-align:left;font-weight:500;font-size:11.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--stone);padding:0 14px 8px 0;border-bottom:1px solid var(--rule);white-space:nowrap}
+td{padding:8px 14px 8px 0;border-bottom:1px solid var(--rule);color:var(--soft);font-variant-numeric:tabular-nums;vertical-align:middle}
+td:first-child{color:var(--ink)}
+.sq{display:inline-block;width:13px;height:13px;border-radius:2px;vertical-align:-2px;margin-right:8px;border:1px solid rgba(0,0,0,.15)}
+.pill{display:inline-block;font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:3px 7px;border-radius:3px}
+.pill.ok{background:var(--ok-bg);color:var(--ok)}.pill.warn{background:var(--warn-bg);color:var(--warn)}.pill.bad{background:var(--bad-bg);color:var(--bad)}
+
+/* output */
+.out{display:grid;gap:12px;padding:18px}
+textarea{width:100%;min-height:220px;font:12.5px/1.5 ui-monospace,monospace;color:var(--ink);background:var(--paper);border:1px solid var(--rule);border-radius:6px;padding:12px;resize:vertical}
+.rowb{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.action{background:var(--accent);color:#fff;border:0;border-radius:999px;padding:10px 18px;font-weight:600;cursor:pointer;min-height:42px}
+.action.quiet{background:transparent;color:var(--accent);border:1px solid var(--rule)}
+.copied{font-size:13px;color:var(--ok)}
+.summary{font-size:14px;line-height:1.55;color:var(--soft);background:var(--sheet);border:1px solid var(--rule);border-radius:6px;padding:12px 14px}
+.summary b{color:var(--ink);font-weight:500}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+
+<header class="mast">
+  <div class="eyebrow">Caregiver Wellbeing Journey · brand board</div>
+  <h1>Make the call by looking at it.</h1>
+  <p class="lede">Petal Bloom is the system. The controls on the left are the decisions still open inside it; each changes every preview on the right, live. Defaults are what is deployed. Pick, press <b>Copy tokens</b>, send me the result.</p>
+  <div class="status" id="status"></div>
+</header>
+
+<div class="layout">
+  <aside class="rail" id="rail" aria-label="Design decisions"></aside>
+
+  <main class="stage">
+    <section class="card">
+      <header><h3>The mark</h3><span class="eyebrow" id="markcap">Petal Bloom v1.0 · as merged</span></header>
+      <div class="hs"><div class="bench" id="bench"></div></div>
+      <p class="note" style="padding:0 18px 16px"><b>Read the row, not the big one.</b> The mark lives at 36px in the header and 16px in the browser tab. Below about 32px the full-colour version stops reading as eight petals; the ink cut is what carries the small sizes.</p>
+    </section>
+
+    <section class="card">
+      <header><h3>Wheel palette</h3><span class="eyebrow">eight dimensions · live contrast</span></header>
+      <div class="sw-grid" id="swatches"></div>
+      <div class="tw"><table id="contrast"></table></div>
+      <p class="note" style="padding:0 18px 16px" id="palnote"></p>
+    </section>
+
+    <section class="card">
+      <header><h3>Wellness Wheel</h3><span class="eyebrow" id="wheelcap"></span></header>
+      <div class="hs" id="wheelhost"></div>
+    </section>
+
+    <section class="card">
+      <header><h3>Site header</h3><span class="eyebrow">36px mark · wordmark · primary action</span></header>
+      <div class="hs"><div class="nav"><div class="brand"><span id="navmark"></span> The Caregiver Wellbeing Journey</div>
+        <div class="links"><span class="on">For Caregivers</span><span>For Sponsors</span><span>Apply</span></div>
+        <a class="btn btn-primary" href="#" onclick="return false">Start free assessment</a></div></div>
+    </section>
+
+    <section class="card">
+      <header><h3>Components</h3><span class="eyebrow">buttons · card · chips · notice</span></header>
+      <div class="hs"><div class="comp">
+        <div class="pcard"><h4>Buttons</h4><p>One primary per task.</p><div style="display:flex;gap:10px;flex-wrap:wrap">
+          <button class="btn btn-primary" type="button">Open Week 02</button><button class="btn btn-secondary" type="button">Save for later</button><button class="btn btn-ghost" type="button">Back</button></div></div>
+        <div class="pcard"><h4>Week 02</h4><p>A body that never clocks off.</p><div id="chips"></div></div>
+        <div class="pcard"><h4>Notice</h4><p>Errors stay until fixed.</p><div class="notice">Nothing here is saved, scored or sent anywhere.</div></div>
+      </div></div>
+    </section>
+
+    <section class="card">
+      <header><h3>Social tile</h3><span class="eyebrow">Instagram 1080² · one dimension per tile</span></header>
+      <div class="hs" style="background:var(--paper)"><div class="tile"><div class="shot" data-max=".34" style="--w:1080;--h:1080;--s:.34"><div class="art" id="ig"></div></div></div></div>
+    </section>
+
+    <section class="card">
+      <header><h3>Your call</h3><span class="eyebrow">tokens · decision summary</span></header>
+      <div class="out">
+        <div class="summary" id="summary"></div>
+        <textarea id="tokens" readonly aria-label="Generated CSS tokens"></textarea>
+        <div class="rowb"><button class="action" type="button" id="copy">Copy tokens</button><button class="action quiet" type="button" id="reset">Back to what is deployed</button><span class="copied" id="copied" hidden>Copied.</span></div>
+        <p class="note" style="margin:0">Paste the token block back to me with any notes and I will apply it to <code>styles.css</code>, the wheel and the mark in one PR. Your selections are remembered in this browser only.</p>
+      </div>
+    </section>
+  </main>
+</div>
+
+<script>
+(function(){
+ /* ================= DATA — real values from the repo, not approximations ================= */
+ var DIMS=['Social','Occupational','Environmental','Intellectual','Spiritual','Emotional','Physical','Financial'];
+ var PAL={
+  live:     {name:'Live wheel (Sky & Tide era)',src:'website/assets/wellness-wheel.js',
+             cores:['#8E9AC8','#4A7690','#6E8570','#7CA7C4','#8093A6','#C98F97','#5FA0A0','#CDA66B'],edges:null},
+  aurora:   {name:'Aurora Glow wheel',src:'website/assets/wellness-wheel-aurora.js (built, not wired in)',
+             cores:['#6A6FC0','#4F76C6','#3FA8B8','#45C6C6','#4B4E8F','#C98F97','#4FAE9E','#CDA66B'],edges:null},
+  petal:    {name:'Petal Bloom',src:'Petal Bloom Logo.dc.html, mapped to each dimension’s existing hue',
+             cores:['#A5D8C6','#B4B4E6','#C2DFAC','#F7C69B','#CDBBE4','#F2B4BC','#9CC8F0','#F5DE9A'],
+             edges:['#357C75','#596AAB','#4E7D43','#945733','#735B91','#9A4C5D','#3478A7','#806116']},
+  heldspace:{name:'Held Space v0.3',src:'design-system-v0.3/tokens.json (never deployed)',
+             cores:['#B5DCD5','#C6CFF2','#C7DEBD','#F1C9AE','#D8C9EC','#F3C5C9','#B8DDFC','#F2DDA2'],
+             edges:['#357C75','#596AAB','#4E7D43','#945733','#735B91','#9A4C5D','#3478A7','#806116']}
+ };
+ var NEU={
+  aurora:   {name:'Aurora Glow (live)',canvas:'#EFEEF7',surface:'#FFFFFF',paper:'#F8F7FB',ink:'#262445',muted:'#6E6B94',accent:'#5B5FA6',accent2:'#45C6C6',divider:'#E1DFF0',control:'#6E6B94',soft:'#E7E6F8'},
+  petal:    {name:'Petal Bloom',canvas:'#EFF5F8',surface:'#FFFFFF',paper:'#F7FAFB',ink:'#0E3F4E',muted:'#516C76',accent:'#16697F',accent2:'#16697F',divider:'#DCE7EC',control:'#7B98A2',soft:'#DCE7EC'},
+  heldspace:{name:'Held Space v0.3',canvas:'#F9FBFC',surface:'#FFFFFF',paper:'#F9FBFC',ink:'#183B4A',muted:'#516C76',accent:'#1F5E80',accent2:'#1F5E80',divider:'#C7D8DE',control:'#687F8A',soft:'#EAF3F7'}
+ };
+ var PETAL=['#9CC8F0','#B4B4E6','#CDBBE4','#F2B4BC','#F7C69B','#F5DE9A','#C2DFAC','#A5D8C6'];
+ var P64="M60,12 C72,12 78,26 78,38 C78,52 70,64 60,64 C50,64 42,52 42,38 C42,26 48,12 60,12 Z";
+ var P56="M60,12 C72,12 78,26 78,38 C78,50 70,56 60,56 C50,56 42,50 42,38 C42,26 48,12 60,12 Z";
+ var PS ="M60,13 C68,13 71,26 71,38 C71,49 66.5,55 60,55 C53.5,55 49,49 49,38 C49,26 52,13 60,13 Z";
+
+ /* ================= DECISIONS ================= */
+ var DEC=[
+  {id:'pal',title:'Wheel palette',why:'Petal Bloom is the only maintained system. Each dimension keeps the hue it already had.',
+   opts:[['petal','Petal Bloom',true]]},
+  {id:'markpal',title:'Mark colours',why:'The bloom uses its own sheet; the wheel uses the same eight mapped to dimensions.',
+   opts:[['own','Own sheet',true]]},
+  {id:'neu',title:'Neutrals & accent',why:'Petal Bloom sheet, with muted deepened to #516C76 to clear 4.5:1 on the page.',
+   opts:[['petal','Petal Bloom',true]]},
+  {id:'form',title:'Wheel form',why:'The live wheel autoplays and takes no input. These are the two things it could become.',
+   opts:[['ring','Closed ring',true],['balance','Balance wheel']]},
+  {id:'line',title:'Wedge outlines',why:'Pale wedges sit at 1.0–1.1:1 against each other. A hairline separates them; you said no. See both.',
+   opts:[['none','None',true],['hair','Hairline']]},
+  {id:'centre',title:'Mark centre',why:'Eight petals multiplied at 92% compound to #2E2C22, darker than the ink. Shortening the petal opens it.',
+   opts:[['closed','As supplied',true],['open','Open']]},
+  {id:'headmark',title:'Header mark',why:'Full colour at 36px, or the ink cut.',
+   opts:[['colour','Full colour',true],['ink','Ink cut']]}
+ ];
+ var state={}; DEC.forEach(function(d){state[d.id]=d.opts.filter(function(o){return o[2]})[0][0]});
+ var DEPLOYED=JSON.parse(JSON.stringify(state));
+ try{var saved=JSON.parse(localStorage.getItem('cwj-brand-board')||'null'); if(saved) DEC.forEach(function(d){ if(saved[d.id]) state[d.id]=saved[d.id]; });}catch(e){}
+
+ /* ================= HELPERS ================= */
+ function rgb(h){h=h.replace('#','');return [0,2,4].map(function(i){return parseInt(h.substr(i,2),16)})}
+ function lum(h){var c=rgb(h).map(function(v){v/=255;return v<=.03928?v/12.92:Math.pow((v+.055)/1.055,2.4)});return .2126*c[0]+.7152*c[1]+.0722*c[2]}
+ function cr(a,b){var x=lum(a),y=lum(b);return ((Math.max(x,y)+.05)/(Math.min(x,y)+.05))}
+ function mult(cols,op,n){var acc=[255,255,255];cols.slice(0,n).forEach(function(c){var r=rgb(c);acc=acc.map(function(a,i){return a*((r[i]/255)*op+(1-op))})});return '#'+acc.map(function(v){return ('0'+Math.round(v).toString(16)).slice(-2)}).join('').toUpperCase()}
+ function pill(v,t){var k=v>=t?'ok':(v>=t*.85?'warn':'bad');return '<span class="pill '+k+'">'+v.toFixed(2)+':1</span>'}
+ var NS='http://www.w3.org/2000/svg';
+ function pol(cx,r,a){return [cx+r*Math.sin(a*Math.PI/180),cx-r*Math.cos(a*Math.PI/180)]}
+ function key(n){return n.toLowerCase()}
+
+ /* current resolved sets */
+ function cur(){
+  var p=PAL[state.pal], n=NEU[state.neu];
+  var markCols = state.markpal==='own' ? PETAL : p.cores;
+  return {p:p,n:n,markCols:markCols};
+ }
+ function applyVars(el){
+  var c=cur(), n=c.n;
+  el.style.setProperty('--p-canvas',n.canvas); el.style.setProperty('--p-surface',n.surface);
+  el.style.setProperty('--p-ink',n.ink); el.style.setProperty('--p-muted',n.muted);
+  el.style.setProperty('--p-accent',n.accent); el.style.setProperty('--p-divider',n.divider);
+  el.style.setProperty('--p-control',n.control); el.style.setProperty('--p-soft',n.soft);
+  DIMS.forEach(function(d,i){el.style.setProperty('--'+key(d),c.p.cores[i]); el.style.setProperty('--'+key(d)+'-e',(c.p.edges||c.p.cores)[i]);});
+ }
+
+ /* ================= MARK ================= */
+ function bloom(px,o){
+  o=o||{}; var c=cur(); var d=o.simple?PS:(state.centre==='open'?P56:P64); var cols=o.cols||c.markCols; var g='';
+  for(var i=0;i<8;i++){
+   var f=o.mono||cols[i];
+   g+='<path d="'+d+'" fill="'+f+'" transform="rotate('+(i*45)+' 60 60)" style="'+(o.mono?'':'mix-blend-mode:multiply;')+'opacity:'+(o.mono?1:.92)+'"/>';
+  }
+  return '<svg width="'+px+'" height="'+px+'" viewBox="0 0 120 120" role="img" aria-label="Brand mark">'+g+'</svg>';
+ }
+
+ /* ================= RAIL ================= */
+ var rail=document.getElementById('rail');
+ function renderRail(){
+  rail.innerHTML=DEC.map(function(d){
+   return '<div class="dec"><h4>'+d.title+'</h4><p class="why">'+d.why+'</p><div class="opts" role="group" aria-label="'+d.title+'">'+
+    d.opts.map(function(o){return '<button type="button" class="opt" data-dec="'+d.id+'" data-val="'+o[0]+'" aria-pressed="'+(state[d.id]===o[0])+'">'+o[1]+(o[2]?'<span class="live">live</span>':'')+'</button>'}).join('')+
+   '</div></div>';
+  }).join('')+'<p class="railfoot">“Live” marks what is deployed at <a href="https://krispconsulting-eng.github.io/KrisPierce/">github.io/KrisPierce</a>. Petal Bloom is the only maintained system.</p>';
+  rail.querySelectorAll('.opt').forEach(function(b){b.addEventListener('click',function(){state[b.dataset.dec]=b.dataset.val;try{localStorage.setItem('cwj-brand-board',JSON.stringify(state))}catch(e){}renderAll()})});
+ }
+
+ /* ================= STATUS ================= */
+ document.getElementById('status').innerHTML=[
+  ['Mark','Petal Bloom v1.0, merged in #25. Centre as supplied.'],
+  ['Wheel','Petal Bloom colours. Still an autoplay showcase; its form is a separate decision.'],
+  ['Neutrals','Petal Bloom sheet in styles.css, muted deepened to #516C76.'],
+  ['Colour systems','One. Aurora replaced in place; Sky & Tide and Held Space retired.']
+ ].map(function(r){return '<div><div class="eyebrow">'+r[0]+'</div><p>'+r[1]+'</p></div>'}).join('');
+
+ /* ================= PREVIEWS ================= */
+ function renderMark(){
+  var c=cur(); var b=document.getElementById('bench'); applyVars(b.parentElement);
+  var sizes=[96,64,48,36,32,24,16];
+  b.innerHTML=sizes.map(function(s){return '<div class="i">'+bloom(s)+'<span>'+s+'</span></div>'}).join('')+
+   '<div class="i">'+bloom(48,{mono:c.n.ink,simple:true})+'<span>ink · 48</span></div>'+
+   '<div class="i">'+bloom(24,{mono:c.n.ink,simple:true})+'<span>ink · 24</span></div>'+
+   '<div class="i">'+bloom(16,{mono:c.n.ink,simple:true})+'<span>16 · favicon</span></div>'+
+   '<div class="i dk">'+bloom(48,{mono:c.n.canvas,simple:true})+'<span>reversed</span></div>';
+  var centre=mult(c.markCols,.92,state.centre==='open'?3:8);
+  document.getElementById('markcap').textContent='centre resolves to '+centre+' · '+cr(centre,c.n.paper).toFixed(1)+':1 vs paper'+(state.centre==='open'?' · open':' · as supplied');
+  document.getElementById('navmark').innerHTML = state.headmark==='ink' ? bloom(36,{mono:c.n.ink,simple:true}) : bloom(36);
+ }
+
+ function renderPalette(){
+  var c=cur(); var p=c.p, n=c.n;
+  document.getElementById('swatches').innerHTML=DIMS.map(function(d,i){
+   var e=p.edges?p.edges[i]:null;
+   return '<div class="swatch"><div class="c" style="background:'+p.cores[i]+(e?';border-bottom:6px solid '+e:'')+'"></div><div class="t"><b>'+d+'</b><code>'+p.cores[i]+(e?' · '+e:'')+'</code></div></div>';
+  }).join('');
+  var rows=DIMS.map(function(d,i){
+   var core=p.cores[i]; var e=p.edges?p.edges[i]:null;
+   var onCore=cr(n.ink,core), vsCanvas=cr(core,n.canvas), vsNext=cr(core,p.cores[(i+1)%8]);
+   return '<tr><td><span class="sq" style="background:'+core+'"></span>'+d+'</td><td>'+pill(onCore,4.5)+'</td><td>'+pill(vsCanvas,3)+'</td><td>'+pill(vsNext,3)+'</td><td>'+(e?pill(cr(e,core),3):'<span style="color:var(--stone)">—</span>')+'</td></tr>';
+  }).join('');
+  document.getElementById('contrast').innerHTML='<thead><tr><th>Dimension</th><th>Ink on fill · 4.5</th><th>Fill vs canvas · 3</th><th>Fill vs next wedge · 3</th><th>Edge vs fill · 3</th></tr></thead><tbody>'+rows+'</tbody>';
+  var minAdj=Math.min.apply(null,DIMS.map(function(d,i){return cr(p.cores[i],p.cores[(i+1)%8])}));
+  var minInk=Math.min.apply(null,p.cores.map(function(x){return cr(n.ink,x)}));
+  document.getElementById('palnote').innerHTML='<b>'+p.name+'</b> — '+p.src+'. Ink on fill bottoms out at '+minInk.toFixed(2)+':1'+(minInk>=4.5?' (every wedge can carry a label).':' (some wedges cannot carry a label at this ink).')+' Adjacent wedges bottom out at '+minAdj.toFixed(2)+':1 — '+(minAdj>=3?'they separate on their own.':'the gap or a hairline has to do the separating; colour alone will not.');
+ }
+
+ /* ---- wheel ---- */
+ var vals=[5,5,5,5,5,5,5,5], selected=null;
+ function renderWheel(){
+  var host=document.getElementById('wheelhost'); applyVars(host); host.innerHTML='';
+  var c=cur(); var balance=state.form==='balance';
+  var pad=document.createElement('div'); pad.className='wheelpad'; host.appendChild(pad);
+  var d=360, w=document.createElement('div'); w.className='wheelwrap'; w.style.setProperty('--d',d+'px');
+  var C=200,RMAX=160,RMIN=balance?72:84,PAD=state.line==='hair'?0.7:1.2;
+  var svg=document.createElementNS(NS,'svg'); svg.setAttribute('viewBox','0 0 400 400'); svg.setAttribute('aria-hidden','true');
+  var g=document.createElementNS(NS,'g'); svg.appendChild(g); w.appendChild(svg);
+  var hub=document.createElement('div'); hub.className='hub'; hub.innerHTML='<span class="sf">Your<br>wellbeing</span>'; w.appendChild(hub);
+  function wedge(i,val){var s=i*45+PAD,e=(i+1)*45-PAD; var R=balance?RMIN+(val/10)*(RMAX-RMIN):RMAX;
+   var p=pol(C,R,s),q=pol(C,R,e),u=pol(C,RMIN,e),v=pol(C,RMIN,s); return 'M'+p+' A'+R+' '+R+' 0 0 1 '+q+' L'+u+' A'+RMIN+' '+RMIN+' 0 0 0 '+v+' Z';}
+  DIMS.forEach(function(name,i){
+   var path=document.createElementNS(NS,'path'); path.setAttribute('d',wedge(i,vals[i])); path.setAttribute('class','sec');
+   path.setAttribute('fill',c.p.cores[i]);
+   if(state.line==='hair'){path.setAttribute('stroke',(c.p.edges||[]) [i]||c.n.ink); path.setAttribute('stroke-width','1'); path.setAttribute('stroke-opacity',c.p.edges?'1':'.35');}
+   var rad=(i*45+22.5)*Math.PI/180; path.style.setProperty('--lx',(6*Math.sin(rad)).toFixed(2)+'px'); path.style.setProperty('--ly',(-6*Math.cos(rad)).toFixed(2)+'px');
+   path.dataset.i=i; g.appendChild(path);
+   var lp=pol(C,RMAX+20,i*45+22.5); var lab=document.createElement(balance?'div':'button'); lab.className='dl';
+   if(!balance){lab.type='button';lab.setAttribute('aria-pressed',String(selected===i));}
+   lab.style.left=(lp[0]/400*100)+'%'; lab.style.top=(lp[1]/400*100)+'%'; lab.textContent=name; w.appendChild(lab);
+   if(!balance){ var sel=function(){selected=(selected===i?null:i);renderWheel()}; path.addEventListener('click',sel); lab.addEventListener('click',sel);
+     if(selected===i) path.classList.add('on'); }
+  });
+  pad.appendChild(w);
+  if(balance){
+   svg.style.pointerEvents='all'; svg.style.cursor='crosshair';
+   svg.addEventListener('click',function(ev){var r=svg.getBoundingClientRect();var x=(ev.clientX-r.left)/r.width*400-C,y=(ev.clientY-r.top)/r.height*400-C;var dist=Math.sqrt(x*x+y*y);if(dist<RMIN*.5)return;var ang=(Math.atan2(x,-y)*180/Math.PI+360)%360;var i=Math.floor(ang/45);vals[i]=Math.max(1,Math.min(10,Math.round((dist-RMIN)/(RMAX-RMIN)*10)));renderWheel()});
+   var rate=document.createElement('div'); rate.className='rate';
+   DIMS.forEach(function(name,i){var row=document.createElement('div');row.className='rr';row.innerHTML='<label for="r'+i+'"><span class="sw" style="--c:'+c.p.cores[i]+'"></span>'+name+'</label><input type="range" id="r'+i+'" min="1" max="10" step="1" value="'+vals[i]+'"><output>'+vals[i]+'</output>';rate.appendChild(row);row.querySelector('input').addEventListener('input',function(e){vals[i]=+e.target.value;row.querySelector('output').textContent=vals[i];g.querySelectorAll('.sec')[i].setAttribute('d',wedge(i,vals[i]))});});
+   host.appendChild(rate);
+   var pr=document.createElement('div'); pr.className='presets';
+   [['Even',[5,5,5,5,5,5,5,5]],['Uneven',[8,3,7,4,6,2,9,3]],['Low',[3,2,2,3,2,1,2,2]]].forEach(function(x){var b=document.createElement('button');b.type='button';b.className='btn btn-secondary';b.textContent=x[0];b.addEventListener('click',function(){vals=x[1].slice();renderWheel()});pr.appendChild(b)});
+   host.appendChild(pr);
+   var spread=Math.max.apply(null,vals)-Math.min.apply(null,vals);
+   document.getElementById('wheelcap').textContent='balance wheel · '+(spread<=1?'even, rolls smoothly':'spread of '+spread+', uneven')+(state.line==='hair'?' · hairline':' · no outline');
+  } else {
+   document.getElementById('wheelcap').textContent='closed ring · click a wedge · '+(state.line==='hair'?'hairline':'no outline, 1.2° gap');
+  }
+ }
+
+ function renderComponents(){
+  var c=cur(); var host=document.querySelector('.comp').parentElement; applyVars(host); applyVars(document.querySelector('.nav').parentElement);
+  var ch=document.getElementById('chips');
+  ch.innerHTML=['Physical','Environmental'].map(function(d){var i=DIMS.indexOf(d);var e=c.p.edges?c.p.edges[i]:c.n.ink;return '<span class="chip" style="--c:'+c.p.cores[i]+';--e:'+e+';--chipline:'+(state.line==='hair'?'1px':'0')+'"><i></i>'+d+'</span>'}).join('');
+ }
+
+ function renderTile(){
+  var c=cur(); var host=document.getElementById('ig').closest('.hs'); applyVars(host);
+  var i=DIMS.indexOf('Physical'); var fill=c.p.cores[i]; var edge=c.p.edges?c.p.edges[i]:c.n.accent;
+  var inkOn = cr(c.n.ink,fill)>=4.5 ? c.n.ink : '#FFFFFF';
+  document.getElementById('ig').innerHTML='<div style="width:1080px;height:1080px;background:'+fill+';border-top:24px solid '+edge+';padding:96px;display:flex;flex-direction:column;justify-content:space-between;color:'+inkOn+';font-family:\'Hanken Grotesk\',sans-serif">'+
+   '<div><div style="font:500 34px/1.4 \'Hanken Grotesk\',sans-serif;letter-spacing:.1em;text-transform:uppercase">Physical</div>'+
+   '<div style="font:400 88px/1.08 Newsreader,Georgia,serif;letter-spacing:-1.5px;margin-top:44px;max-width:14ch">A body that never clocks off</div></div>'+
+   '<div style="display:flex;align-items:flex-end;justify-content:space-between;gap:32px"><div style="font:400 38px/1.5 \'Hanken Grotesk\',sans-serif;max-width:20ch">Week 02 of the Guided Journey. Read it in any order.</div><div style="flex:none">'+bloom(96,{mono:inkOn,simple:true})+'</div></div></div>';
+ }
+
+ /* ---- output ---- */
+ function renderOut(){
+  var c=cur(); var p=c.p,n=c.n;
+  var lines=[':root {','  /* Neutrals & accent — '+n.name+' */',
+   '  --paper: '+n.paper+';','  --canvas: '+n.canvas+';','  --surface: '+n.surface+';','  --ink: '+n.ink+';','  --muted: '+n.muted+';','  --accent: '+n.accent+';','  --divider: '+n.divider+';','  --control: '+n.control+';','',
+   '  /* Wheel palette — '+p.name+' */'];
+  DIMS.forEach(function(d,i){lines.push('  --dim-'+key(d)+': '+p.cores[i]+';'+(p.edges?'  --dim-'+key(d)+'-edge: '+p.edges[i]+';':''))});
+  lines.push('','  /* Mark — Petal Bloom, '+(state.markpal==='own'?'own sheet':'wheel palette')+', centre '+state.centre+' */');
+  c.markCols.forEach(function(x,i){lines.push('  --petal-'+(i+1)+': '+x+';')});
+  lines.push('  --mark-ink: '+n.ink+';','}','',
+   '/* Wheel: '+(state.form==='balance'?'balance wheel (1–10 per dimension, sliders primary)':'closed ring, click to reveal')+' · outlines: '+state.line+' · header mark: '+state.headmark+' */');
+  document.getElementById('tokens').value=lines.join('\n');
+  var changed=DEC.filter(function(d){return state[d.id]!==DEPLOYED[d.id]}).map(function(d){var o=d.opts.filter(function(x){return x[0]===state[d.id]})[0];return '<b>'+d.title+'</b> → '+o[1]});
+  document.getElementById('summary').innerHTML = changed.length ? 'Changed from deployed: '+changed.join(' · ') : 'Everything is set to what is deployed. Change something on the left.';
+ }
+
+ function fit(){document.querySelectorAll('.shot').forEach(function(s){var w=parseFloat(getComputedStyle(s).getPropertyValue('--w'));var max=parseFloat(s.dataset.max||'1'),avail=s.parentElement.clientWidth-40;if(w&&avail>20)s.style.setProperty('--s',Math.min(max,avail/w).toFixed(4))})}
+
+ function renderAll(){renderRail();renderMark();renderPalette();renderWheel();renderComponents();renderTile();renderOut();fit();}
+ document.getElementById('copy').addEventListener('click',function(){var t=document.getElementById('tokens');t.select();try{navigator.clipboard.writeText(t.value)}catch(e){document.execCommand('copy')}var c=document.getElementById('copied');c.hidden=false;setTimeout(function(){c.hidden=true},1800)});
+ document.getElementById('reset').addEventListener('click',function(){state=JSON.parse(JSON.stringify(DEPLOYED));try{localStorage.removeItem('cwj-brand-board')}catch(e){}renderAll()});
+ window.addEventListener('resize',fit); if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fit);
+ renderAll();
+})();
+</script>
+
+</body>
+</html>

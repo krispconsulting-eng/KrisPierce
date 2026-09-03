@@ -9,10 +9,10 @@
 }
 
 .ww-signature {
-  --ww-ink: #20303A;
-  --ww-muted: #5C6B72;
+  --ww-ink: #0E3F4E;
+  --ww-muted: #516C76;
   --ww-paper: #FFFFFF;
-  --ww-line: #DDE7E5;
+  --ww-line: #DCE7EC;
   --ww-shadow: rgba(32, 48, 58, 0.16);
   width: min(100%, 460px);
   margin-inline: auto;

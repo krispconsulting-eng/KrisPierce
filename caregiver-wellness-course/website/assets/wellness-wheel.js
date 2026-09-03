@@ -29,14 +29,14 @@
   var GAP_MS = 420;
 
   var DIMS = [
-    { name: 'Social',        color: '#8E9AC8', tag: 'People who know you, not just who you care for.' },
-    { name: 'Occupational',  color: '#4A7690', tag: 'Your work, your role, and who you still are.' },
-    { name: 'Environmental', color: '#6E8570', tag: 'Surroundings that steady you, not just function.' },
-    { name: 'Intellectual',  color: '#7CA7C4', tag: 'A mind that gets to stay curious, not just vigilant.' },
-    { name: 'Spiritual',     color: '#8093A6', tag: "Meaning that holds steady when things don't." },
-    { name: 'Emotional',     color: '#C98F97', tag: 'Naming what you feel, not just managing it.' },
-    { name: 'Physical',      color: '#5FA0A0', tag: "Tending your own body, not only everyone else's." },
-    { name: 'Financial',     color: '#CDA66B', tag: 'Some real control over what caring costs.' }
+    { name: 'Social',        color: '#A5D8C6', tag: 'People who know you, not just who you care for.' },
+    { name: 'Occupational',  color: '#B4B4E6', tag: 'Your work, your role, and who you still are.' },
+    { name: 'Environmental', color: '#C2DFAC', tag: 'Surroundings that steady you, not just function.' },
+    { name: 'Intellectual',  color: '#F7C69B', tag: 'A mind that gets to stay curious, not just vigilant.' },
+    { name: 'Spiritual',     color: '#CDBBE4', tag: "Meaning that holds steady when things don't." },
+    { name: 'Emotional',     color: '#F2B4BC', tag: 'Naming what you feel, not just managing it.' },
+    { name: 'Physical',      color: '#9CC8F0', tag: "Tending your own body, not only everyone else's." },
+    { name: 'Financial',     color: '#F5DE9A', tag: 'Some real control over what caring costs.' }
   ];
 
   var ARRIVAL = [7, 0, 1, 2, 3, 4, 5, 6];
@@ -121,19 +121,13 @@
     // Placement lives on a wrapper group: the CSS transform set by
     // .ww-mark.is-awake would otherwise replace this transform entirely
     // and throw the mark to the SVG origin.
-    var markWrap = el('g', { transform: 'translate(180 180) scale(2.18) translate(-12 -12)' });
-    mark = el('g', {
-      class: 'ww-mark',
-      stroke: '#4A7690',
-      'stroke-width': '1.42',
-      fill: 'none',
-      'stroke-linecap': 'round',
-      'stroke-linejoin': 'round'
-    });
-    mark.appendChild(el('path', { d: 'M12 12c0-3.6 1.6-6.6 4.6-8.2 1 3.8-.2 7.2-2.6 9.4' }));
-    mark.appendChild(el('path', { d: 'M12 12c3.1-1.9 6.4-2.1 9.4-.4-1.8 3.3-5 4.9-8.6 4.6' }));
-    mark.appendChild(el('path', { d: 'M12 12c-1.1 3.5-3.6 5.9-7.2 6.8-1-3.8.4-7.1 3.1-9.1' }));
-    mark.appendChild(el('circle', { cx: 12, cy: 12, r: 1.6, fill: '#4A7690', stroke: 'none' }));
+    // Petal Bloom ink cut on the 120 grid, scaled to sit inside the 54px hub.
+    var markWrap = el('g', { transform: 'translate(180 180) scale(0.62) translate(-60 -60)' });
+    mark = el('g', { class: 'ww-mark', fill: '#0E3F4E', stroke: 'none' });
+    var PETAL = 'M60,13 C68,13 71,26 71,38 C71,49 66.5,55 60,55 C53.5,55 49,49 49,38 C49,26 52,13 60,13 Z';
+    for (var p = 0; p < 8; p++) {
+      mark.appendChild(el('path', { d: PETAL, transform: 'rotate(' + (p * 45) + ' 60 60)' }));
+    }
     markWrap.appendChild(mark);
     // Attach to the breathing group, not the rotating wheel group, so the
     // mark stays upright while the wheel turns around it.
