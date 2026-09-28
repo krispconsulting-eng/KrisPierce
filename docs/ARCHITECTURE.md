@@ -1,81 +1,99 @@
-# Workflow architecture
+# Content & client-ops automation — architecture (no-subscription version)
+
+This stack deliberately avoids recurring SaaS subscriptions (Fathom, Tella,
+Gamma, Blotato, Windsor AI, Flodesk). Everything is either **free**, a
+**free tier**, or **pay-per-use API billing** (OpenAI). The tradeoff: more
+setup work per social platform (each has its own developer app + approval
+process) instead of one abstraction layer doing it for you.
 
 ## Roles
 
-| Tool | Role |
-|---|---|
-| Claude Code | Hub: turns transcripts into scripts/captions, writes automations, generates images via OpenAI API |
-| Fathom | Records/transcribes client calls, produces summaries + action items |
-| n8n | Scheduling/triggering glue between every other tool |
-| Tella | Records screen+webcam, auto-edits |
-| Gamma | Text → slide decks / one-page sites |
-| Notion | System of record: Clients, Content Calendar, SOPs |
-| Blotato | One post/video → many social platforms |
-| Windsor AI | Aggregated social analytics |
-| Flodesk | Email marketing |
-| Apify | Competitor content/comment scraping |
-| OpenAI API | Image generation only (thumbnails, graphics, mockups) |
+| Tool | Role | Cost |
+|---|---|---|
+| Claude Code | Hub: drafts scripts/captions/summaries in your voice, writes automations, builds decks directly (pptx/docx skill) | Included in your Claude usage |
+| OpenAI API | Whisper transcription + image generation | Pay-per-use, pennies per call |
+| n8n (self-hosted) | Scheduling/triggering glue between everything | Free (your own server/Docker) |
+| Notion | System of record: Clients, Content Calendar, SOPs | Free tier |
+| Apify | Competitor content/comment scraping | Free tier to start |
+| Meta Graph API | Direct publish + insights for Instagram/Facebook | Free (developer app + review) |
+| YouTube Data API v3 | Direct upload + YouTube Analytics API for stats | Free (Google Cloud project) |
+| TikTok Content Posting API / Display API | Direct publish + metrics | Free (developer app + review) |
+| LinkedIn Marketing/Share API | Direct publish + analytics | Free (developer app + review) |
+| Recording | OBS Studio or your OS's built-in screen recorder | Free |
+| Call recording | Zoom/Google Meet's built-in recorder | Free (already part of those tools) |
+| Email marketing | Deferred — pick a free-tier ESP (e.g. Brevo, MailerLite) when needed | Free tier, TBD |
 
 ## Flow 1 — Content pipeline
 
 ```
-Tella recording finished
-   -> n8n: Tella webhook trigger
-   -> n8n: fetch transcript, create "Content Calendar" row in Notion (status: New)
-   -> Claude Code: read transcript, draft scripts/captions in the user's voice,
-      write drafts back into the Notion row (status: Drafted)
-   -> user approves in Notion (status: Approved)
-   -> n8n: on status change to Approved, send video + captions to Blotato
-   -> Blotato publishes across platforms
-   -> n8n: update Notion row (status: Published, published_at)
+Record locally (OBS/native recorder)
+   -> upload the file wherever you keep source video (Drive, local, etc.)
+   -> n8n: on new file, create a Content Calendar row in Notion (status: New)
+   -> OpenAI Whisper API transcribes the video/audio
+   -> Claude Code: draft scripts + per-platform captions in your voice,
+      write into the Notion row (status: Drafted)
+   -> you approve in Notion (status: Approved)
+   -> n8n: on Approved, publish directly per platform:
+        - Meta Graph API (Instagram/Facebook)
+        - YouTube Data API (upload)
+        - TikTok Content Posting API
+        - LinkedIn Share API
+   -> n8n: update Notion row (status: Published, per-platform post IDs)
 ```
 
 ## Flow 2 — Analytics feedback loop
 
 ```
-n8n: scheduled (e.g. daily/weekly)
-   -> pull Windsor AI aggregated analytics
-   -> write/append to a Notion "Performance" view or database
-   -> Claude Code: summarize what's performing, suggest what to make more of
-      (posted back into Notion or delivered as a digest)
+n8n: scheduled (e.g. daily/weekly), one pull per platform:
+   - Meta Graph API insights
+   - YouTube Analytics API
+   - TikTok Display API metrics
+   - LinkedIn analytics API
+-> normalize + write to a Notion Performance view
+-> Claude Code summarizes what's performing and what to make more of
 ```
 
-## Flow 3 — Competitor research
+## Flow 3 — Competitor research (unchanged)
 
 ```
 n8n: scheduled (e.g. weekly)
-   -> run Apify actor(s) against tracked competitor accounts/posts
-   -> store results in Notion (or a staging DB)
-   -> Claude Code: flag trends worth reacting to, propose content ideas
+   -> Apify actor(s) scrape tracked competitor accounts/posts
+   -> store results in Notion
+   -> Claude Code flags trends worth reacting to
 ```
 
-## Flow 4 — Email strategy
+## Flow 4 — Email strategy (deferred)
 
-```
-n8n: scheduled
-   -> pull Flodesk campaign performance
-   -> Claude Code: analyze open/click data, suggest next campaign angle/segment
-   -> (optional) Claude Code drafts the next email, human sends via Flodesk
-```
+Flodesk has no free tier, so this flow is on hold until you pick a
+free-tier ESP with API access (Brevo and MailerLite both qualify). Once
+chosen, the pattern is identical to Flow 2: scheduled pull of campaign
+stats -> Notion -> Claude Code suggests the next angle/segment.
 
 ## Flow 5 — Slide decks / one-pagers
 
+Claude Code builds the deck directly using the pptx/docx skill instead of
+calling Gamma's API — no separate subscription or API credits needed.
+
+## Flow 6 — Images on demand (unchanged)
+
+Claude Code calls the OpenAI Images API directly
+(`scripts/generate_image.py`) for thumbnails/graphics/mockups.
+
+## Flow 7 — Client call summaries
+
 ```
-User or Claude Code has a text brief (e.g. client proposal, lead magnet)
-   -> Gamma API generates a deck or one-page site
-   -> link stored on the relevant Notion page (client or content record)
+Record the call with Zoom/Google Meet's built-in recorder (free)
+   -> OpenAI Whisper API transcribes it
+   -> Claude Code drafts a summary + action items
+   -> written into the relevant Notion Clients row
 ```
 
-## Flow 6 — Images on demand
+## Why this costs more setup time
 
-```
-Claude Code needs a thumbnail/graphic/mockup
-   -> calls OpenAI Images API directly (scripts/generate_image.py or inline)
-   -> saves output, attaches to the relevant Notion record
-```
-
-## Notion as system of record
-
-Every flow above reads or writes to Notion so state never lives only inside
-n8n or a chat transcript. See `notion/DATABASE_SCHEMA.md` for the three
-databases and the exact fields each workflow expects.
+Each social platform's own API requires you to register a developer app
+and, for posting permissions specifically, often go through an app review
+(Meta and TikTok are the strictest; LinkedIn and YouTube are more
+straightforward). This replaces the single Blotato/Windsor AI integration
+with 3-4 separate integrations. It's more work up front but has no
+recurring cost and no dependency on a third party's uptime or pricing
+changes.

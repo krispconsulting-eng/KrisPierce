@@ -1,0 +1,68 @@
+{
+  "name": "New Recording -> Whisper -> Notion",
+  "nodes": [
+    {
+      "parameters": { "httpMethod": "POST", "path": "new-recording", "options": {} },
+      "id": "webhook-trigger",
+      "name": "Recording Uploaded",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [240, 300]
+    },
+    {
+      "parameters": {
+        "url": "https://api.openai.com/v1/audio/transcriptions",
+        "method": "POST",
+        "sendBinaryData": true,
+        "binaryPropertyName": "={{$json[\"file_field\"]}}",
+        "options": {
+          "bodyContentType": "multipart-form-data",
+          "queryParameters": {
+            "parameters": [{ "name": "model", "value": "whisper-1" }]
+          }
+        }
+      },
+      "id": "whisper-transcribe",
+      "name": "Transcribe via Whisper",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [460, 300],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "REPLACE_WITH_OPENAI_CREDENTIAL_ID",
+          "name": "OpenAI API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "databasePage",
+        "operation": "create",
+        "databaseId": "={{$env[\"NOTION_CONTENT_CALENDAR_DB_ID\"]}}",
+        "title": "={{$('Recording Uploaded').item.json[\"title\"]}}",
+        "propertiesUi": {
+          "propertyValues": [
+            { "key": "Status|select", "selectValue": "New" },
+            { "key": "Source Recording|rich_text", "textValue": "={{$('Recording Uploaded').item.json[\"file_url\"]}}" },
+            { "key": "Transcript|rich_text", "textValue": "={{$json[\"text\"]}}" }
+          ]
+        }
+      },
+      "id": "create-notion-row",
+      "name": "Create Content Calendar Row",
+      "type": "n8n-nodes-base.notion",
+      "typeVersion": 2.2,
+      "position": [680, 300],
+      "credentials": {
+        "notionApi": { "id": "REPLACE_WITH_NOTION_CREDENTIAL_ID", "name": "Notion" }
+      }
+    }
+  ],
+  "connections": {
+    "Recording Uploaded": { "main": [[{ "node": "Transcribe via Whisper", "type": "main", "index": 0 }]] },
+    "Transcribe via Whisper": { "main": [[{ "node": "Create Content Calendar Row", "type": "main", "index": 0 }]] }
+  },
+  "active": false,
+  "settings": {},
+  "pinData": {}
+}

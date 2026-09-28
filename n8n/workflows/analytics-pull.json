@@ -1,0 +1,97 @@
+{
+  "name": "Analytics Pull (direct platform APIs, daily)",
+  "nodes": [
+    {
+      "parameters": { "rule": { "interval": [{ "field": "days", "daysInterval": 1 }] } },
+      "id": "schedule",
+      "name": "Daily Schedule",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [240, 300]
+    },
+    {
+      "parameters": {
+        "url": "=https://graph.facebook.com/v19.0/{{$env[\"IG_BUSINESS_ACCOUNT_ID\"]}}/insights",
+        "options": {
+          "queryParameters": {
+            "parameters": [{ "name": "metric", "value": "impressions,reach,profile_views" }]
+          }
+        }
+      },
+      "id": "fetch-ig",
+      "name": "Fetch Instagram Insights",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [460, 200],
+      "credentials": { "httpHeaderAuth": { "id": "REPLACE_WITH_META_CREDENTIAL_ID", "name": "Meta Graph API" } }
+    },
+    {
+      "parameters": {
+        "url": "https://youtubeanalytics.googleapis.com/v2/reports",
+        "options": {
+          "queryParameters": {
+            "parameters": [
+              { "name": "ids", "value": "channel==MINE" },
+              { "name": "metrics", "value": "views,likes,estimatedMinutesWatched" },
+              { "name": "startDate", "value": "={{$today.minus({days:1}).toISODate()}}" },
+              { "name": "endDate", "value": "={{$today.toISODate()}}" }
+            ]
+          }
+        }
+      },
+      "id": "fetch-youtube",
+      "name": "Fetch YouTube Analytics",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [460, 300],
+      "credentials": { "googleApi": { "id": "REPLACE_WITH_YOUTUBE_CREDENTIAL_ID", "name": "YouTube OAuth2" } }
+    },
+    {
+      "parameters": {
+        "url": "https://open.tiktokapis.com/v2/research/video/query/",
+        "method": "POST"
+      },
+      "id": "fetch-tiktok",
+      "name": "Fetch TikTok Metrics",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [460, 400],
+      "credentials": { "httpHeaderAuth": { "id": "REPLACE_WITH_TIKTOK_CREDENTIAL_ID", "name": "TikTok API" } }
+    },
+    {
+      "parameters": {
+        "resource": "databasePage",
+        "operation": "create",
+        "databaseId": "={{$env[\"NOTION_PERFORMANCE_DB_ID\"]}}",
+        "propertiesUi": {
+          "propertyValues": [
+            { "key": "Platform|rich_text", "textValue": "={{$json[\"platform\"] || \"unknown\"}}" },
+            { "key": "Metric Snapshot|rich_text", "textValue": "={{JSON.stringify($json)}}" },
+            { "key": "Pulled At|date", "date": "={{$now.toISO()}}" }
+          ]
+        }
+      },
+      "id": "write-notion",
+      "name": "Write to Notion Performance",
+      "type": "n8n-nodes-base.notion",
+      "typeVersion": 2.2,
+      "position": [680, 300],
+      "credentials": { "notionApi": { "id": "REPLACE_WITH_NOTION_CREDENTIAL_ID", "name": "Notion" } }
+    }
+  ],
+  "connections": {
+    "Daily Schedule": {
+      "main": [[
+        { "node": "Fetch Instagram Insights", "type": "main", "index": 0 },
+        { "node": "Fetch YouTube Analytics", "type": "main", "index": 0 },
+        { "node": "Fetch TikTok Metrics", "type": "main", "index": 0 }
+      ]]
+    },
+    "Fetch Instagram Insights": { "main": [[{ "node": "Write to Notion Performance", "type": "main", "index": 0 }]] },
+    "Fetch YouTube Analytics": { "main": [[{ "node": "Write to Notion Performance", "type": "main", "index": 0 }]] },
+    "Fetch TikTok Metrics": { "main": [[{ "node": "Write to Notion Performance", "type": "main", "index": 0 }]] }
+  },
+  "active": false,
+  "settings": {},
+  "pinData": {}
+}

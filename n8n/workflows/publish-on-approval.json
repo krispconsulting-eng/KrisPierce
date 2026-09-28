@@ -1,5 +1,5 @@
 {
-  "name": "Publish on Approval (Notion -> Blotato)",
+  "name": "Publish on Approval (direct platform APIs)",
   "nodes": [
     {
       "parameters": {
@@ -21,36 +21,78 @@
       "typeVersion": 1,
       "position": [240, 300],
       "credentials": {
-        "notionApi": {
-          "id": "REPLACE_WITH_NOTION_CREDENTIAL_ID",
-          "name": "Notion"
-        }
+        "notionApi": { "id": "REPLACE_WITH_NOTION_CREDENTIAL_ID", "name": "Notion" }
       }
     },
     {
       "parameters": {
-        "url": "https://backend.blotato.com/v2/posts",
+        "url": "=https://graph.facebook.com/v19.0/{{$env[\"IG_BUSINESS_ACCOUNT_ID\"]}}/media",
         "method": "POST",
         "sendBody": true,
         "bodyParameters": {
           "parameters": [
             { "name": "caption", "value": "={{$json[\"properties\"][\"Captions\"][\"rich_text\"][0][\"plain_text\"]}}" },
-            { "name": "mediaUrl", "value": "={{$json[\"properties\"][\"Source Recording\"][\"url\"]}}" },
-            { "name": "platforms", "value": "={{$json[\"properties\"][\"Platforms\"][\"multi_select\"]}}" }
+            { "name": "video_url", "value": "={{$json[\"properties\"][\"Source Recording\"][\"rich_text\"][0][\"plain_text\"]}}" }
           ]
-        },
-        "options": {}
+        }
       },
-      "id": "blotato-publish",
-      "name": "Publish via Blotato",
+      "id": "post-instagram",
+      "name": "Post to Instagram (Graph API)",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
+      "position": [460, 200],
+      "credentials": {
+        "httpHeaderAuth": { "id": "REPLACE_WITH_META_CREDENTIAL_ID", "name": "Meta Graph API" }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "video",
+        "operation": "upload",
+        "title": "={{$json[\"properties\"][\"Title\"][\"title\"][0][\"plain_text\"]}}",
+        "regionCode": "AU",
+        "categoryId": "22",
+        "options": {}
+      },
+      "id": "post-youtube",
+      "name": "Upload to YouTube",
+      "type": "n8n-nodes-base.youTube",
+      "typeVersion": 1,
       "position": [460, 300],
       "credentials": {
-        "httpHeaderAuth": {
-          "id": "REPLACE_WITH_BLOTATO_CREDENTIAL_ID",
-          "name": "Blotato API"
-        }
+        "youTubeOAuth2Api": { "id": "REPLACE_WITH_YOUTUBE_CREDENTIAL_ID", "name": "YouTube OAuth2" }
+      }
+    },
+    {
+      "parameters": {
+        "url": "https://open.tiktokapis.com/v2/post/publish/video/init/",
+        "method": "POST",
+        "sendBody": true,
+        "jsonBody": "={\"post_info\": {\"caption\": \"{{$json[\\\"properties\\\"][\\\"Captions\\\"][\\\"rich_text\\\"][0][\\\"plain_text\\\"]}}\"}}"
+      },
+      "id": "post-tiktok",
+      "name": "Post to TikTok (Content Posting API)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [460, 400],
+      "credentials": {
+        "httpHeaderAuth": { "id": "REPLACE_WITH_TIKTOK_CREDENTIAL_ID", "name": "TikTok API" }
+      }
+    },
+    {
+      "parameters": {
+        "url": "https://api.linkedin.com/v2/ugcPosts",
+        "method": "POST",
+        "sendBody": true,
+        "jsonBody": "={\"commentary\": \"{{$json[\\\"properties\\\"][\\\"Captions\\\"][\\\"rich_text\\\"][0][\\\"plain_text\\\"]}}\"}"
+      },
+      "id": "post-linkedin",
+      "name": "Post to LinkedIn (Share API)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [460, 500],
+      "credentials": {
+        "httpHeaderAuth": { "id": "REPLACE_WITH_LINKEDIN_CREDENTIAL_ID", "name": "LinkedIn API" }
       }
     },
     {
@@ -60,8 +102,7 @@
         "pageId": "={{$('Approved Rows (poll)').item.json[\"id\"]}}",
         "propertiesUi": {
           "propertyValues": [
-            { "key": "Status|select", "selectValue": "Published" },
-            { "key": "Blotato Post ID|rich_text", "textValue": "={{$json[\"id\"]}}" }
+            { "key": "Status|select", "selectValue": "Published" }
           ]
         }
       },
@@ -71,16 +112,23 @@
       "typeVersion": 2.2,
       "position": [680, 300],
       "credentials": {
-        "notionApi": {
-          "id": "REPLACE_WITH_NOTION_CREDENTIAL_ID",
-          "name": "Notion"
-        }
+        "notionApi": { "id": "REPLACE_WITH_NOTION_CREDENTIAL_ID", "name": "Notion" }
       }
     }
   ],
   "connections": {
-    "Approved Rows (poll)": { "main": [[{ "node": "Publish via Blotato", "type": "main", "index": 0 }]] },
-    "Publish via Blotato": { "main": [[{ "node": "Mark Published in Notion", "type": "main", "index": 0 }]] }
+    "Approved Rows (poll)": {
+      "main": [[
+        { "node": "Post to Instagram (Graph API)", "type": "main", "index": 0 },
+        { "node": "Upload to YouTube", "type": "main", "index": 0 },
+        { "node": "Post to TikTok (Content Posting API)", "type": "main", "index": 0 },
+        { "node": "Post to LinkedIn (Share API)", "type": "main", "index": 0 }
+      ]]
+    },
+    "Post to Instagram (Graph API)": { "main": [[{ "node": "Mark Published in Notion", "type": "main", "index": 0 }]] },
+    "Upload to YouTube": { "main": [[{ "node": "Mark Published in Notion", "type": "main", "index": 0 }]] },
+    "Post to TikTok (Content Posting API)": { "main": [[{ "node": "Mark Published in Notion", "type": "main", "index": 0 }]] },
+    "Post to LinkedIn (Share API)": { "main": [[{ "node": "Mark Published in Notion", "type": "main", "index": 0 }]] }
   },
   "active": false,
   "settings": {},
