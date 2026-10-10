@@ -45,20 +45,25 @@ Eight equally weighted domains, always paired with an equivalent list. No outer 
 
 Domain colours are for domain marks only, never text or borders. Old names (Physical, Emotional, Social, Occupational, Financial, Environmental, Intellectual, Spiritual) are retired. Internal data keys may still use them; renaming keys needs a migration decision from Kris first.
 
-## Brand (Natural Coastal v1.2, brand folder v2.1)
+## Brand and voice
 
-- Colours: Deep ocean #14384A, Deep natural #4D7765, Coastal mist #A8C9D0, Soft sand #EADBC8, Warm paper #F8F7F2, White #FFFFFF. Accents (artwork only, never text): Coastal blue #A7C4D4, Sage #B7C8B1, Sunrise #E9B88B, Lilac #C9B7D6 (not in social graphics).
-- Links use Deep natural. No black. No gradients or glows. No emoji.
-- Type: Newsreader for headings, Hanken Grotesk for everything else.
-- Logo: use the supplied files untouched (suite v1.1, locked). Never redraw or retype.
-- Brand Library (formerly Media Catalogue) is the locked look.
-- Relaxed on 10 October: text on photographs, uppercase labels, the approved watercolour strokes and the leaf sprig are permitted. Older blanket bans on these are superseded.
-- Photography order: real photographs, then stock, then AI as a backup. Never present an AI image as a real caregiver.
-- The Master brand-brief.md and its copies still carry the old bans and the old tagline. Do not treat them as current where they conflict with this file.
+All visual, voice and writing rules are in BRAND-BRIEF.md in this folder. It is the single authority for colours, type, voice, imagery and accessibility; do not rely on any other copy of the brand brief (older copies in Drive per-app folders, ChatGPT or Claude Design may still carry superseded rules). The Wheel colours above are confirmed.
 
-## Voice
+## Program content status
 
-Calm, plain, practical. UK English with Australian conventions. Sentence case. No em dashes, no exclamation marks. Speak to "you". Permission-giving, not instructive. No guilt, urgency, countdowns or scores. Health content states its limits and points to a GP.
+- The eight lessons and the framework in framework/ are source material only. They are not approved. They still use the old Tiny Steps name and the old Wheel domain names, and the stories in them are invented placeholders. Do not publish, quote or build from them without Kris's approval.
+- The eight Wheel domains are fixed (see above). One-line definitions for each domain have not been written. Do not invent them; list the gap and ask.
+
+## Open decisions (do not decide these; ask Kris)
+
+- Assessment depth for the rebuilt Wheel: 64 questions or 24.
+- Composite stories: Kris is writing them.
+- Sponsor and Medicines Australia Code position beyond "coming soon".
+- Photo source, licence and consent for each Brand Library photo.
+- How Caregiver Wellbeing appears beside Kris Pierce Consulting in public.
+- Launch channels and the exact go-live day (hoped 12 or 13 October 2026).
+- Framework v2 approval criteria.
+- Where the registration form sends sign-ups, and the consent wording.
 
 ## Rules for tools working in this repository
 
