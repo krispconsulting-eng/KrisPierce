@@ -1,0 +1,4 @@
+organisation,segment,contact role,source,stage,offer,value_aud,conflict_check_done,next_action,next_action_date
+"EXAMPLE ROW 1 (delete before use): Rare disease patient organisation A",patient organisation,Chief executive,warm outreach email,diagnostic,CEOF Diagnostic,0,not yet needed,"Send day 8 debrief email if no booking",2026-12-08
+"EXAMPLE ROW 2 (delete before use): University research team B",research,Chief investigator,LinkedIn post,debrief,Diagnostic Debrief,1500,yes,"Deliver six-page action plan within five working days",2026-12-15
+"EXAMPLE ROW 3 (delete before use): Biotech company C",biopharma and biotech,Patient engagement lead,referral from past client,proposal,Strategic Advisory Sprint,12000,yes,"Follow up on proposal sent; confirm January start",2027-01-12

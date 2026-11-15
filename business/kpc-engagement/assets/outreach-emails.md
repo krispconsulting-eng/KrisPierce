@@ -95,7 +95,7 @@ I hope [project or team] is going well. [One line on something you know has happ
 
 I have changed how I offer my work. There is now a free engagement diagnostic, a fixed-price debrief, and a "How I work" page with starting prices: [page link].
 
-My request: is there one person in your network who is working out how to show consumer involvement in their decisions, and who you would be comfortable introducing me to? A two-line email copying both of us is all it takes.
+My request: is there one person in your network who is working out how to show consumer involvement in their decisions, and who you would be comfortable introducing me to? A two-line email copying me in is all it takes.
 
 If nobody comes to mind, that is fine, and thank you for reading.
 

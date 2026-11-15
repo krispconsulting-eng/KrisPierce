@@ -143,7 +143,7 @@ If your circumstances change during the work in a way that could create a confli
 - **Deliverables:** you own the deliverables listed in section 4 once the fee is paid in full.
 - **Methods:** I keep ownership of my methods, frameworks, templates and tools, including the CEOF Diagnostic. You have a licence to use them inside your organisation as they appear in the deliverables.
 - **Your material:** anything you give me stays yours and is used only for this work.
-- **Confidentiality:** each of us keeps the other's confidential information confidential, during the work and afterwards.
+- **Confidentiality:** each party keeps the other's confidential information confidential, during the work and afterwards.
 - **Naming:** I will not name you as a client, or describe this work publicly, without your written consent.
 - **Diagnostic data:** [confirm against the privacy policy: CEOF Diagnostic responses are used in benchmark reporting only in de-identified form and with consent].
 
