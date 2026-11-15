@@ -1,0 +1,302 @@
+<title>CEOF Diagnostic</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600&family=Outfit:wght@300;500;600&display=swap">
+<style>
+/* Layout: forest header band, then one working column. One domain per step, four statements each, a five-point maturity scale. Kris Pierce Consulting v3.0 tokens. */
+:root{
+  --bg:#FBF9F5; --surface:#FFFFFF; --band:#F4F1EB; --line:#DDE2DF;
+  --fg:#1C2530; --muted:#4A5C55; --link:#305670; --btn:#3E6F8E; --btn-fg:#FBF9F5;
+  --forest:#1E3D34; --forest2:#234A52; --on-forest:#F4F1EB; --on-forest-muted:#CFE0DA;
+  --teal:#3D7A6B; --wash:#E7F0EC; --err:#9E4B3B;
+  --display:"Outfit","Archivo","Helvetica Neue",Arial,sans-serif;
+  --body:"Archivo","Helvetica Neue",Arial,sans-serif;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --bg:#141B1A; --surface:#1C2625; --band:#19211F; --line:#2E3B38;
+  --fg:#ECE7DD; --muted:#A0ADA7; --link:#9CC0D6; --btn:#7FA8C2; --btn-fg:#141B1A;
+  --teal:#7FA295; --wash:#22302D; --err:#D68C7C; color-scheme:dark } }
+:root[data-theme="dark"]{
+  --bg:#141B1A; --surface:#1C2625; --band:#19211F; --line:#2E3B38;
+  --fg:#ECE7DD; --muted:#A0ADA7; --link:#9CC0D6; --btn:#7FA8C2; --btn-fg:#141B1A;
+  --teal:#7FA295; --wash:#22302D; --err:#D68C7C; color-scheme:dark }
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:400 17px/1.6 var(--body)}
+.gut{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.hero{background:linear-gradient(135deg,var(--forest),var(--forest2));color:var(--on-forest)}
+.hero .in,.main{max-width:760px;margin:0 auto}
+.hero .in{padding-block:40px 36px;display:flex;flex-direction:column;gap:12px}
+.eyebrow{font:600 12px/1 var(--body);letter-spacing:.12em;text-transform:uppercase;color:var(--on-forest-muted)}
+h1{font:300 clamp(2rem,6vw,3.2rem)/1.05 var(--display);letter-spacing:-.03em;margin:0;text-wrap:balance}
+h1 b{font-weight:600;color:#D2E1EA}
+.hero p{margin:0;color:var(--on-forest-muted);max-width:60ch}
+.main{padding-block:32px 72px;display:flex;flex-direction:column;gap:24px}
+h2{font:500 clamp(1.4rem,3.5vw,1.8rem)/1.2 var(--display);margin:0;text-wrap:balance}
+h3{font:600 1.05rem/1.3 var(--body);margin:0}
+p{margin:0;max-width:64ch}
+.muted{color:var(--muted)} .small{font-size:14.5px}
+.card{background:var(--surface);border-radius:22px;padding:24px;display:flex;flex-direction:column;gap:16px}
+label{font-weight:500;font-size:15px;display:flex;flex-direction:column;gap:6px}
+input[type=text],input[type=email],select{font:400 16px var(--body);padding:11px 12px;border:1px solid var(--muted);border-radius:10px;background:var(--surface);color:var(--fg);min-height:44px;width:100%}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.check{flex-direction:row;align-items:flex-start;gap:10px;font-weight:400}
+.check input{width:20px;height:20px;margin-top:3px;flex:none}
+button{font:600 16px var(--body);border:0;border-radius:999px;padding:12px 24px;min-height:44px;cursor:pointer}
+.primary,.btnlink{background:var(--btn);color:var(--btn-fg)}
+.btnlink{font:600 16px var(--body);border-radius:999px;padding:12px 24px;text-decoration:none;display:inline-flex;align-items:center;min-height:44px}
+.ghost{background:transparent;color:var(--fg);border:1px solid var(--muted)}
+button:focus-visible,input:focus-visible,select:focus-visible,.opt input:focus-visible+span{outline:2px solid var(--link);outline-offset:2px}
+.actions{display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;align-items:center}
+.progress{height:6px;background:var(--line);border-radius:3px;overflow:hidden}
+.progress i{display:block;height:100%;background:var(--teal);width:0}
+fieldset{border:0;padding:0;margin:0;display:flex;flex-direction:column;gap:10px;min-width:0}
+legend{font-weight:500;padding:0;margin-bottom:4px}
+.opts{display:grid;grid-template-columns:repeat(5,1fr);gap:6px}
+.opt{position:relative;display:block}
+.opt input{position:absolute;opacity:0;inset:0;width:100%;height:100%;margin:0;cursor:pointer}
+.opt span{display:flex;align-items:center;justify-content:center;text-align:center;min-height:52px;padding:6px;border:1px solid var(--line);border-radius:10px;font-size:13px;line-height:1.2;background:var(--band)}
+.opt input:checked+span{background:var(--forest);color:var(--on-forest);border-color:var(--forest)}
+.q{padding-top:16px;border-top:1px solid var(--line)}
+.q:first-of-type{border-top:0;padding-top:0}
+.scale{display:flex;flex-direction:column;gap:4px;font-size:14px;color:var(--muted);margin:0;padding:0;list-style:none}
+.scale b{color:var(--fg)}
+.err{color:var(--err);font-weight:500}
+.level{display:flex;flex-wrap:wrap;align-items:baseline;gap:8px 16px}
+.level .big{font:300 clamp(2.4rem,8vw,4rem)/1 var(--display);letter-spacing:-.03em}
+.rows{display:flex;flex-direction:column}
+.r{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr) 150px;gap:12px;align-items:center;padding:10px 0;border-top:1px solid var(--line);font-size:15px}
+.track{height:10px;background:var(--line);border-radius:5px;overflow:hidden}
+.track i{display:block;height:100%;background:var(--teal)}
+.r .v{text-align:right;font-variant-numeric:tabular-nums;font-size:13.5px;color:var(--muted)}
+.r.pri .track i{background:var(--btn)}
+.pri-tag{font:600 11px/1 var(--body);letter-spacing:.08em;text-transform:uppercase;color:var(--link);margin-left:6px}
+ol.moves{margin:0;padding-left:1.2em;display:flex;flex-direction:column;gap:12px}
+.cta{background:var(--wash);border-radius:22px;padding:24px;display:flex;flex-direction:column;gap:12px}
+textarea{width:100%;min-height:150px;font:13px/1.5 ui-monospace,Menlo,monospace;padding:12px;border:1px solid var(--line);border-radius:10px;background:var(--band);color:var(--fg)}
+@media (max-width:560px){.opts{grid-template-columns:1fr}.opt span{justify-content:flex-start;text-align:left;padding:10px 12px;min-height:44px;font-size:14.5px}.r{grid-template-columns:1fr 140px}.r .track{grid-column:1/-1;order:3}}
+@media (prefers-reduced-motion:no-preference){.progress i,.track i{transition:width .3s ease}}
+</style>
+
+<div class="hero gut"><div class="in">
+  <span class="eyebrow">Kris Pierce Consulting · Community Engagement Operating Framework</span>
+  <h1>Where does your community engagement <b>stand?</b></h1>
+  <p>Twenty-eight statements across seven domains. About ten minutes. You see your result straight away: a maturity level, your three priorities and a first move for each.</p>
+</div></div>
+
+<main class="main gut" id="app" aria-live="polite"></main>
+
+<script>
+/* ---------- Configuration ---------- */
+// Set to the production webhook once the report workflow is live on Kris Pierce Consulting infrastructure.
+// While empty, nothing leaves the page.
+const WEBHOOK_URL = '';
+const DEBRIEF_URL = '';   // booking link for the Diagnostic Debrief
+
+/* ---------- Content (source: CEOF-REFERENCE.md; question set drafted for Kris's approval) ---------- */
+const SCALE = [
+  {v:1, short:'Not in place', long:'It does not happen, or only when someone thinks of it.'},
+  {v:2, short:'Starting', long:'It happens sometimes and depends on individuals.'},
+  {v:3, short:'In place', long:'A reliable process exists.'},
+  {v:4, short:'Shapes decisions', long:'It is part of how decisions get made.'},
+  {v:5, short:'Shared', long:'Community members hold real say over it.'}
+];
+const LEVELS = [
+  {n:'Ad hoc', d:'Engagement happens when someone thinks of it.'},
+  {n:'Emerging', d:'There is real activity, but it is disconnected from decisions.'},
+  {n:'Structured', d:'Reliable mechanisms exist, but involvement does not yet shape plans.'},
+  {n:'Embedded', d:'Community involvement is part of how decisions get made.'},
+  {n:'Community-led', d:'Your community shares power over direction, priorities and resources.'}
+];
+const DOMAINS = [
+  {name:'Purpose and Governance',
+   move:'Take a one-page proposal to the next board meeting: why the organisation involves its community, who is accountable, and what it needs.',
+   q:['We have a written statement of why we involve our community and what we want it to change.',
+      'A named person at leadership level is accountable for community engagement.',
+      'The board or executive discusses community engagement as a standing item, not only when something goes wrong.',
+      'Community engagement has its own budget line.']},
+  {name:'Voice and Representation',
+   move:'Stand up one small advisory group with clear terms of reference and one real decision on its agenda.',
+   q:['Community members have a standing way to advise us, such as an advisory group or panel, with clear terms of reference.',
+      'The people we hear from reflect the range of our community, including those who are harder to reach.',
+      'Community members sit where decisions are made, with a vote or an equivalent say.',
+      'We renew who is at the table, so the same few people are not carrying it.']},
+  {name:'Capability and Culture',
+   move:'Build a simple induction for community members and a one-session briefing for staff.',
+   q:['Community members get an induction and support for the roles we ask them to take.',
+      'Staff have been trained or briefed to work well with community members.',
+      'Leaders ask who from the community has been involved before they approve a plan.',
+      'Engagement is written into roles and workloads, not added on top.']},
+  {name:'Engagement Practice',
+   move:'Add one question to project planning: what decision is this, and what involvement does it warrant?',
+   q:['For each project we decide what level of involvement the decision warrants before we start.',
+      'Community members are involved early enough to change the plan.',
+      'We choose the method (survey, interviews, workshop, co-design) to fit the question.',
+      'Timing, format, language and technology are designed around the people taking part.']},
+  {name:'Safety, Ethics and Recognition',
+   move:'Adopt and publish a recognition and payment policy for community members, even a modest one.',
+   q:['We pay or otherwise recognise community members for their time, under a written policy.',
+      'People give informed consent and know how their stories and information will be used.',
+      'We have a plan for when engagement is distressing, and people know who to contact.',
+      'We manage conflicts of interest and funder influence openly, including with industry partners.']},
+  {name:'Feedback and Learning',
+   move:'Close one loop this month: go back to the last group consulted and tell them what happened to their input.',
+   q:['We tell people what happened to their input, including what we did not act on and why.',
+      'We ask community members how the engagement itself went, and change our practice in response.',
+      'We keep a record of what we have heard, so new staff and projects start from it.',
+      'We review our engagement approach at least once a year.']},
+  {name:'Outcomes and Impact',
+   move:'Ask the community one question: what outcome would tell you we are doing our job? Start measuring it.',
+   q:['We can point to decisions that changed because of community input.',
+      'We measure outcomes that our community told us matter.',
+      'We report on engagement and its results to our board, funders and community.',
+      'Community members help decide what success looks like and judge whether we reached it.']}
+];
+
+/* ---------- Scoring (pure) ---------- */
+function score(answers){
+  const domains = DOMAINS.map((d,i)=>{
+    const a = answers[i]; const s = a.reduce((t,v)=>t+v,0)/a.length;
+    return {i, name:d.name, score:Math.round(s*10)/10, move:d.move};
+  });
+  const overall = Math.round(domains.reduce((t,d)=>t+d.score,0)/domains.length*10)/10;
+  const levelIndex = Math.min(4, Math.max(0, Math.round(overall)-1));
+  const priorities = domains.slice().sort((a,b)=>a.score-b.score || a.i-b.i).slice(0,3);
+  return {domains, overall, levelIndex, level:LEVELS[levelIndex], priorities};
+}
+
+/* ---------- State and rendering ---------- */
+const state = {step:-1, who:{organisation:'',contact:'',email:'',orgType:'',consent:false}, answers:DOMAINS.map(d=>d.q.map(()=>0))};
+const app = document.getElementById('app');
+const esc = s => String(s).replace(/[&<>"]/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+function render(){
+  if(state.step===-1) return renderIntro();
+  if(state.step>=DOMAINS.length) return renderResult();
+  renderDomain(state.step);
+}
+
+function renderIntro(){
+  const w = state.who;
+  app.innerHTML = `
+  <section class="card">
+    <h2>Before you start</h2>
+    <p>Answer for your organisation as it is today, not as you hope it will be. If you are unsure, choose the lower option: not knowing is a finding in itself.</p>
+    <ul class="scale">${SCALE.map(s=>`<li><b>${s.short}.</b> ${s.long}</li>`).join('')}</ul>
+  </section>
+  <form class="card" id="intro" novalidate>
+    <h2>About you</h2>
+    <div class="grid2">
+      <label for="org">Organisation<input type="text" id="org" value="${esc(w.organisation)}" autocomplete="organization"></label>
+      <label for="orgType">Type of organisation
+        <select id="orgType">
+          ${['','Patient or community organisation','Research institute or team','Biopharma, biotech or healthtech','Government or health service','Other'].map(o=>`<option ${w.orgType===o?'selected':''}>${o}</option>`).join('')}
+        </select></label>
+      <label for="contact">Your name<input type="text" id="contact" value="${esc(w.contact)}" autocomplete="name"></label>
+      <label for="email">Email, for your written report<input type="email" id="email" value="${esc(w.email)}" autocomplete="email"></label>
+    </div>
+    <label class="check" for="consent"><input type="checkbox" id="consent" ${w.consent?'checked':''}><span>You may include my answers, with my organisation's name removed, in a sector benchmark. This is optional.</span></label>
+    <p class="small muted">${WEBHOOK_URL ? 'Your answers are stored to produce your report. They are never sold.' : 'This is a preview. Nothing you enter is sent or stored, so the fields above are optional.'}</p>
+    <p class="err" id="imsg" hidden>Please enter an email address so your report can reach you.</p>
+    <div class="actions"><span></span><button class="primary" type="submit">Start the diagnostic</button></div>
+  </form>`;
+  document.getElementById('intro').addEventListener('submit', e=>{
+    e.preventDefault();
+    const g = id => document.getElementById(id);
+    w.organisation = g('org').value.trim(); w.contact = g('contact').value.trim(); w.email = g('email').value.trim();
+    w.orgType = g('orgType').value; w.consent = g('consent').checked;
+    if(WEBHOOK_URL && !/^\S+@\S+\.\S+$/.test(w.email)){ g('imsg').hidden = false; g('email').focus(); return; }
+    state.step = 0; render(); window.scrollTo(0,0);
+  });
+}
+
+function renderDomain(i){
+  const d = DOMAINS[i];
+  app.innerHTML = `
+  <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="7" aria-valuenow="${i}" aria-label="Progress"><i style="width:${i/7*100}%"></i></div>
+  <form class="card" id="dom" novalidate>
+    <p class="small muted">Domain ${i+1} of 7</p>
+    <h2>${d.name}</h2>
+    ${d.q.map((q,j)=>`
+      <fieldset class="q"><legend>${q}</legend>
+        <div class="opts">${SCALE.map(s=>`
+          <label class="opt"><input type="radio" name="q${j}" id="d${i}q${j}v${s.v}" value="${s.v}" ${state.answers[i][j]===s.v?'checked':''}><span>${s.short}</span></label>`).join('')}
+        </div>
+      </fieldset>`).join('')}
+    <p class="err" id="msg" hidden>Please answer all four statements to continue.</p>
+    <div class="actions">
+      <button class="ghost" type="button" id="back">Back</button>
+      <button class="primary" type="submit">${i===6?'See my result':'Next domain'}</button>
+    </div>
+  </form>`;
+  const form = document.getElementById('dom');
+  form.addEventListener('change', e=>{ if(e.target.name){ state.answers[i][+e.target.name.slice(1)] = +e.target.value; }});
+  document.getElementById('back').addEventListener('click', ()=>{ state.step--; render(); window.scrollTo(0,0); });
+  form.addEventListener('submit', e=>{
+    e.preventDefault();
+    if(state.answers[i].some(v=>!v)){ document.getElementById('msg').hidden = false; return; }
+    state.step++; render(); window.scrollTo(0,0);
+    if(state.step===DOMAINS.length) send();
+  });
+}
+
+function summaryText(r){
+  const w = state.who;
+  return [
+    'CEOF Diagnostic result' + (w.organisation ? ': ' + w.organisation : ''),
+    'Overall: ' + r.overall.toFixed(1) + ' / 5. Level ' + (r.levelIndex+1) + ', ' + r.level.n + '.',
+    '',
+    ...r.domains.map(d=>d.name + ': ' + d.score.toFixed(1) + ' / 5'),
+    '',
+    'Three priorities:',
+    ...r.priorities.map((p,k)=>(k+1) + '. ' + p.name + ' (' + p.score.toFixed(1) + '). First move: ' + p.move)
+  ].join('\n');
+}
+
+function renderResult(){
+  const r = score(state.answers);
+  const pri = new Set(r.priorities.map(p=>p.i));
+  app.innerHTML = `
+  <section class="card">
+    <p class="small muted">${state.who.organisation ? esc(state.who.organisation) + ' · ' : ''}Your result</p>
+    <div class="level"><span class="big">${r.level.n}</span><span class="muted">Level ${r.levelIndex+1} of 5 · ${r.overall.toFixed(1)} out of 5 overall</span></div>
+    <p>${r.level.d} ${r.levelIndex<2 ? 'Treat this as a starting line, not a verdict: most organisations begin here.' : r.levelIndex<4 ? 'The next step up is about connecting what you already do to the decisions that matter.' : 'Few organisations reach this. The work now is keeping it honest as people and funding change.'}</p>
+  </section>
+  <section class="card">
+    <h2>Your seven domains</h2>
+    <div class="rows">${r.domains.map(d=>`
+      <div class="r ${pri.has(d.i)?'pri':''}"><span>${d.name}${pri.has(d.i)?'<span class="pri-tag">Priority</span>':''}</span>
+        <div class="track" aria-hidden="true"><i style="width:${d.score/5*100}%"></i></div>
+        <span class="v">${d.score.toFixed(1)} · ${LEVELS[Math.min(4,Math.max(0,Math.round(d.score)-1))].n}</span></div>`).join('')}
+    </div>
+  </section>
+  <section class="card">
+    <h2>Your three priorities, and a first move for each</h2>
+    <ol class="moves">${r.priorities.map(p=>`<li><h3>${p.name}</h3><p>${p.move}</p></li>`).join('')}</ol>
+    <p class="small muted">These are your three lowest domains. Take the diagnostic again in 12 months to see what moved.</p>
+  </section>
+  <section class="cta">
+    <h2>Want to work through this with me?</h2>
+    <p>The Diagnostic Debrief is a 90-minute working session on these results, followed by a written action plan of up to six pages within five working days: three priorities, what to stop, and what to do in the next 90 days. $1,500 plus GST, credited against an Advisory Sprint booked within 60 days.</p>
+    <div class="actions"><span class="small muted">${DEBRIEF_URL ? '' : 'Booking link to be added. Contact: info@krispierce.com.au'}</span>${DEBRIEF_URL ? `<a class="btnlink" href="${DEBRIEF_URL}">Book a debrief</a>` : ''}</div>
+  </section>
+  <section class="card">
+    <h3>Keep a copy</h3>
+    <textarea id="sum" readonly aria-label="Your result as text">${esc(summaryText(r))}</textarea>
+    <div class="actions"><button class="ghost" type="button" id="again">Start again</button><button class="primary" type="button" id="copy">Copy result</button></div>
+  </section>
+  <p class="small muted">The CEOF Diagnostic is a self-assessment. It reflects your own answers and is a guide to where to look, not an audit.</p>`;
+  document.getElementById('copy').addEventListener('click', e=>{
+    const t = document.getElementById('sum');
+    (navigator.clipboard ? navigator.clipboard.writeText(t.value) : Promise.reject()).then(()=>{e.target.textContent='Copied';}).catch(()=>{t.focus();t.select();});
+  });
+  document.getElementById('again').addEventListener('click', ()=>{ state.step=-1; state.answers=DOMAINS.map(d=>d.q.map(()=>0)); render(); window.scrollTo(0,0); });
+}
+
+function send(){
+  if(!WEBHOOK_URL) return;
+  const r = score(state.answers), w = state.who, body = {organisation:w.organisation, contact:w.contact, email:w.email, orgType:w.orgType, benchmarkConsent:w.consent};
+  r.domains.forEach((d,i)=>{ body['d'+(i+1)] = d.score; });
+  fetch(WEBHOOK_URL, {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(body)}).catch(()=>{});
+}
+
+render();
+</script>
