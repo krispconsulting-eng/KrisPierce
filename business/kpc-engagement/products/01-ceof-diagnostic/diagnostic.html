@@ -1,4 +1,4 @@
-<title>CEOF Diagnostic</title>
+<title>Engagement Review</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600&family=Outfit:wght@300;500;600&display=swap">
 <style>
@@ -70,6 +70,9 @@ legend{font-weight:500;padding:0;margin-bottom:4px}
 .r.pri .track i{background:var(--btn)}
 .pri-tag{font:600 11px/1 var(--body);letter-spacing:.08em;text-transform:uppercase;color:var(--link);margin-left:6px}
 ol.moves{margin:0;padding-left:1.2em;display:flex;flex-direction:column;gap:12px}
+.choose{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.choose .card{align-items:flex-start}
+.note{border-left:3px solid var(--teal);padding-left:14px}
 .cta{background:var(--wash);border-radius:22px;padding:24px;display:flex;flex-direction:column;gap:12px}
 textarea{width:100%;min-height:150px;font:13px/1.5 ui-monospace,Menlo,monospace;padding:12px;border:1px solid var(--line);border-radius:10px;background:var(--band);color:var(--fg)}
 @media (max-width:560px){.opts{grid-template-columns:1fr}.opt span{justify-content:flex-start;text-align:left;padding:10px 12px;min-height:44px;font-size:14.5px}.r{grid-template-columns:1fr 140px}.r .track{grid-column:1/-1;order:3}}
@@ -77,101 +80,186 @@ textarea{width:100%;min-height:150px;font:13px/1.5 ui-monospace,Menlo,monospace;
 </style>
 
 <div class="hero gut"><div class="in">
-  <span class="eyebrow">Kris Pierce Consulting · Community Engagement Operating Framework</span>
-  <h1>Where does your community engagement <b>stand?</b></h1>
-  <p>Twenty-eight statements across seven domains. About ten minutes. You see your result straight away: a maturity level, your three priorities and a first move for each.</p>
+  <span class="eyebrow" id="h-eyebrow">Kris Pierce Consulting · Engagement Review</span>
+  <h1 id="h-title">Where does your engagement <b>stand?</b></h1>
+  <p id="h-sub">Twenty-eight statements across seven domains. About ten minutes. You see your result straight away: a maturity level, your three priorities and a first move for each.</p>
 </div></div>
 
 <main class="main gut" id="app" aria-live="polite"></main>
 
 <script>
 /* ---------- Configuration ---------- */
-// Set to the production webhook once the report workflow is live on Kris Pierce Consulting infrastructure.
-// While empty, nothing leaves the page.
+// Set once the report workflow is live on Kris Pierce Consulting infrastructure. While empty, nothing leaves the page.
 const WEBHOOK_URL = '';
 const DEBRIEF_URL = '';   // booking link for the Diagnostic Debrief
+const INDEPENDENCE = 'My government advisory appointments are held independently of this practice. Clients receive no access to those bodies or their deliberations.';
 
-/* ---------- Content (source: CEOF-REFERENCE.md; question set drafted for Kris's approval) ---------- */
-const SCALE = [
+/* ---------- Shared framework (source: CEOF-REFERENCE.md) ---------- */
+const DOMAIN_NAMES = ['Purpose and Governance','Voice and Representation','Capability and Culture','Engagement Practice','Safety, Ethics and Recognition','Feedback and Learning','Outcomes and Impact'];
+const LEVEL_NAMES = ['Ad hoc','Emerging','Structured','Embedded','Community-led'];
+
+/* ---------- Two audiences. Statements and pharma first moves are drafts for Kris's approval. ---------- */
+const AUDIENCES = {
+  charity: {
+    hash:'charities', label:'Charities and community organisations',
+    name:'Community Engagement Review',
+    blurb:'How your organisation works with the community it exists for: members, families, carers and the people you have not reached yet.',
+    heroTitle:'How well do you work with your <b>community?</b>',
+    who:'community members',
+    scale5:'Community members hold real say over it.',
+    levels:['Engagement happens when someone thinks of it.','There is real activity, but it is disconnected from decisions.','Reliable mechanisms exist, but involvement does not yet shape plans.','Community involvement is part of how decisions get made.','Your community shares power over direction, priorities and resources.'],
+    note:'',
+    q:[
+     ['We have a written statement of why we involve our community and what we want it to change.',
+      'A named person on the board or leadership team is accountable for community engagement.',
+      'The board discusses community engagement as a standing item, not only when something goes wrong.',
+      'Time and money are set aside for engagement, even a small amount.'],
+     ['Community members have a standing way to advise us, such as an advisory group or panel, with clear terms of reference.',
+      'The people we hear from reflect the range of our community, including those who are harder to reach.',
+      'Community members sit where decisions are made, with a vote or an equivalent say.',
+      'We renew who is at the table, so the same few people are not carrying it.'],
+     ['Community members get an induction and support for the roles we ask them to take.',
+      'Staff and volunteers have been briefed to work well with community members.',
+      'Leaders ask who from the community has been involved before they approve a plan.',
+      'Engagement is written into roles and workloads, not added on top.'],
+     ['For each project we decide what level of involvement the decision warrants before we start.',
+      'Community members are involved early enough to change the plan.',
+      'We choose the method (survey, interviews, workshop, co-design) to fit the question.',
+      'Timing, format, language and technology are designed around the people taking part.'],
+     ['We pay or otherwise recognise community members for their time, under a written policy.',
+      'People give informed consent and know how their stories and information will be used.',
+      'We have a plan for when engagement is distressing, and people know who to contact.',
+      'We manage conflicts of interest and funder influence openly, including with industry partners.'],
+     ['We tell people what happened to their input, including what we did not act on and why.',
+      'We ask community members how the engagement itself went, and change our practice in response.',
+      'We keep a record of what we have heard, so new staff and projects start from it.',
+      'We review our engagement approach at least once a year.'],
+     ['We can point to decisions that changed because of community input.',
+      'We measure outcomes that our community told us matter.',
+      'We report on engagement and its results to our board, funders and community.',
+      'Community members help decide what success looks like and judge whether we reached it.']],
+    moves:[
+     'Take a one-page proposal to the next board meeting: why the organisation involves its community, who is accountable, and what it needs.',
+     'Stand up one small advisory group with clear terms of reference and one real decision on its agenda.',
+     'Build a simple induction for community members and a one-session briefing for staff.',
+     'Add one question to project planning: what decision is this, and what involvement does it warrant?',
+     'Adopt and publish a recognition and payment policy for community members, even a modest one.',
+     'Close one loop this month: go back to the last group consulted and tell them what happened to their input.',
+     'Ask the community one question: what outcome would tell you we are doing our job? Start measuring it.']
+  },
+  pharma: {
+    hash:'pharma', label:'Pharmaceutical, biotech and medtech companies',
+    name:'Patient Engagement Review',
+    blurb:'How your company works with patients, carers and patient organisations, from early development to life after launch, inside the Medicines Australia Code of Conduct.',
+    heroTitle:'How well does your company work with <b>patients?</b>',
+    who:'patients and patient organisations',
+    scale5:'Patients and patient organisations hold real say over it.',
+    levels:['Patient engagement happens when a project needs it.','There is real activity, but it sits in pockets and rarely reaches decisions.','Reliable mechanisms exist, but patient input does not yet shape plans.','Patient input is part of how development, evidence and support decisions get made.','Patients and patient organisations share in setting priorities and judging results.'],
+    note:'This review looks at how your company engages, as a capability. It does not assess any product, and I do not work on product-specific submissions or advise on how a committee is likely to respond.',
+    q:[
+     ['We have a written patient engagement strategy that says what engagement is for and which decisions it must inform.',
+      'One senior leader is accountable for patient engagement across the affiliate, not only within one function.',
+      'The leadership team reviews patient engagement on a set schedule, and it has its own budget.',
+      'Medical, market access, commercial and corporate affairs have agreed who does what, so a patient organisation is not approached four ways.'],
+     ['We have a standing way to hear from patients and carers, such as a panel or council, not only one-off advisory boards.',
+      'We hear from the range of people affected, including carers and people outside the best-resourced patient organisations.',
+      'Patient insight is in the room when trial design, evidence plans and support programs are decided.',
+      'Local patient input reaches global teams early enough to change something, and we can show when it did.'],
+     ['Staff who work with patients and patient organisations are trained in engagement practice, not only in compliance.',
+      'We brief and support patients and carers properly for the roles we ask them to take.',
+      'Leaders ask what patients said before they approve a plan.',
+      'Engagement is planned and resourced in medical, access and brand plans from the start.'],
+     ['We involve patients from early development and trial design, not only near launch or reimbursement.',
+      'For each activity we decide what decision it serves and what level of involvement that decision warrants.',
+      'We choose the method to fit the question, and use independent facilitation where our presence would shape the answers.',
+      'Participation is designed around people: timing, format, plain language and caring responsibilities.'],
+     ['We pay patients and carers fair market value under one written policy, applied the same way across functions, and reimburse costs promptly.',
+      'All engagement is non-promotional and within the Medicines Australia Code of Conduct, and staff know where the lines are.',
+      'Patient organisations we fund keep their independence: support is transparent, never tied to a position, and unrestricted where possible.',
+      'Consent, privacy and adverse event reporting are built into every activity, and participants know how their input will be used.'],
+     ['We tell patients and patient organisations what we did with their input, including what we did not act on and why.',
+      'We ask patient organisations what we are like to work with, and change in response.',
+      'Insight is recorded and shared across functions, so the same people are not asked the same questions twice.',
+      'We review our engagement approach at least once a year.'],
+     ['We can point to decisions (a protocol, an endpoint, a support program, an evidence plan) that changed because of patient input.',
+      'We measure outcomes that patients told us matter, alongside clinical and commercial measures.',
+      'We report on our engagement to the patient organisations involved, beyond the transparency reporting the Code requires.',
+      'Patient organisations help define what good partnership looks like and judge whether we met it.']],
+    moves:[
+     'Write one page for the leadership team: what patient engagement is for here, who is accountable, and the three decisions this year it must inform.',
+     'Set up one standing patient and carer panel with terms of reference, and put one real decision in front of it this quarter.',
+     'Run one session for every team that meets patients: engagement practice first, compliance second.',
+     'Add one line to every plan template: what decision is this, and when did patients inform it?',
+     'Write down your payment and independence principles for patients and patient organisations, publish them, and apply them the same way in every function.',
+     'Close one loop this month: go back to the last advisory board and tell its members what changed because of them.',
+     'Ask three patient organisations one question: what would tell you we are a good partner? Start measuring it.']
+  }
+};
+
+const SCALE_BASE = [
   {v:1, short:'Not in place', long:'It does not happen, or only when someone thinks of it.'},
   {v:2, short:'Starting', long:'It happens sometimes and depends on individuals.'},
   {v:3, short:'In place', long:'A reliable process exists.'},
   {v:4, short:'Shapes decisions', long:'It is part of how decisions get made.'},
-  {v:5, short:'Shared', long:'Community members hold real say over it.'}
-];
-const LEVELS = [
-  {n:'Ad hoc', d:'Engagement happens when someone thinks of it.'},
-  {n:'Emerging', d:'There is real activity, but it is disconnected from decisions.'},
-  {n:'Structured', d:'Reliable mechanisms exist, but involvement does not yet shape plans.'},
-  {n:'Embedded', d:'Community involvement is part of how decisions get made.'},
-  {n:'Community-led', d:'Your community shares power over direction, priorities and resources.'}
-];
-const DOMAINS = [
-  {name:'Purpose and Governance',
-   move:'Take a one-page proposal to the next board meeting: why the organisation involves its community, who is accountable, and what it needs.',
-   q:['We have a written statement of why we involve our community and what we want it to change.',
-      'A named person at leadership level is accountable for community engagement.',
-      'The board or executive discusses community engagement as a standing item, not only when something goes wrong.',
-      'Community engagement has its own budget line.']},
-  {name:'Voice and Representation',
-   move:'Stand up one small advisory group with clear terms of reference and one real decision on its agenda.',
-   q:['Community members have a standing way to advise us, such as an advisory group or panel, with clear terms of reference.',
-      'The people we hear from reflect the range of our community, including those who are harder to reach.',
-      'Community members sit where decisions are made, with a vote or an equivalent say.',
-      'We renew who is at the table, so the same few people are not carrying it.']},
-  {name:'Capability and Culture',
-   move:'Build a simple induction for community members and a one-session briefing for staff.',
-   q:['Community members get an induction and support for the roles we ask them to take.',
-      'Staff have been trained or briefed to work well with community members.',
-      'Leaders ask who from the community has been involved before they approve a plan.',
-      'Engagement is written into roles and workloads, not added on top.']},
-  {name:'Engagement Practice',
-   move:'Add one question to project planning: what decision is this, and what involvement does it warrant?',
-   q:['For each project we decide what level of involvement the decision warrants before we start.',
-      'Community members are involved early enough to change the plan.',
-      'We choose the method (survey, interviews, workshop, co-design) to fit the question.',
-      'Timing, format, language and technology are designed around the people taking part.']},
-  {name:'Safety, Ethics and Recognition',
-   move:'Adopt and publish a recognition and payment policy for community members, even a modest one.',
-   q:['We pay or otherwise recognise community members for their time, under a written policy.',
-      'People give informed consent and know how their stories and information will be used.',
-      'We have a plan for when engagement is distressing, and people know who to contact.',
-      'We manage conflicts of interest and funder influence openly, including with industry partners.']},
-  {name:'Feedback and Learning',
-   move:'Close one loop this month: go back to the last group consulted and tell them what happened to their input.',
-   q:['We tell people what happened to their input, including what we did not act on and why.',
-      'We ask community members how the engagement itself went, and change our practice in response.',
-      'We keep a record of what we have heard, so new staff and projects start from it.',
-      'We review our engagement approach at least once a year.']},
-  {name:'Outcomes and Impact',
-   move:'Ask the community one question: what outcome would tell you we are doing our job? Start measuring it.',
-   q:['We can point to decisions that changed because of community input.',
-      'We measure outcomes that our community told us matter.',
-      'We report on engagement and its results to our board, funders and community.',
-      'Community members help decide what success looks like and judge whether we reached it.']}
+  {v:5, short:'Shared', long:''}
 ];
 
 /* ---------- Scoring (pure) ---------- */
-function score(answers){
-  const domains = DOMAINS.map((d,i)=>{
+function score(answers, moves){
+  const domains = DOMAIN_NAMES.map((name,i)=>{
     const a = answers[i]; const s = a.reduce((t,v)=>t+v,0)/a.length;
-    return {i, name:d.name, score:Math.round(s*10)/10, move:d.move};
+    return {i, name, score:Math.round(s*10)/10, move:moves[i]};
   });
   const overall = Math.round(domains.reduce((t,d)=>t+d.score,0)/domains.length*10)/10;
   const levelIndex = Math.min(4, Math.max(0, Math.round(overall)-1));
   const priorities = domains.slice().sort((a,b)=>a.score-b.score || a.i-b.i).slice(0,3);
-  return {domains, overall, levelIndex, level:LEVELS[levelIndex], priorities};
+  return {domains, overall, levelIndex, priorities};
 }
+const lvl = s => Math.min(4, Math.max(0, Math.round(s)-1));
 
 /* ---------- State and rendering ---------- */
-const state = {step:-1, who:{organisation:'',contact:'',email:'',orgType:'',consent:false}, answers:DOMAINS.map(d=>d.q.map(()=>0))};
+const blank = () => DOMAIN_NAMES.map(()=>[0,0,0,0]);
+const state = {aud:null, step:-1, who:{organisation:'',contact:'',email:'',consent:false}, answers:blank()};
 const app = document.getElementById('app');
+const $ = id => document.getElementById(id);
 const esc = s => String(s).replace(/[&<>"]/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const A = () => AUDIENCES[state.aud];
+const scale = () => SCALE_BASE.map(s=> s.v===5 ? {...s, long:A().scale5} : s);
+const goTop = () => window.scrollTo(0,0);
+
+function setAudience(key, keepHash){
+  state.aud = key; state.step = -1; state.answers = blank();
+  if(!keepHash){ try{ location.hash = key ? AUDIENCES[key].hash : ''; }catch(e){} }
+  render(); goTop();
+}
+function fromHash(){
+  const h = (location.hash||'').replace('#','');
+  const key = Object.keys(AUDIENCES).find(k=>AUDIENCES[k].hash===h) || null;
+  if(key !== state.aud) setAudience(key, true);
+}
 
 function render(){
+  $('h-eyebrow').textContent = 'Kris Pierce Consulting · ' + (state.aud ? A().name : 'Engagement Review');
+  $('h-title').innerHTML = state.aud ? A().heroTitle : 'Where does your engagement <b>stand?</b>';
+  if(!state.aud) return renderChooser();
   if(state.step===-1) return renderIntro();
-  if(state.step>=DOMAINS.length) return renderResult();
+  if(state.step>=7) return renderResult();
   renderDomain(state.step);
+}
+
+function renderChooser(){
+  app.innerHTML = `
+  <h2>Choose the review that fits your organisation</h2>
+  <div class="choose">${['pharma','charity'].map(k=>`
+    <section class="card">
+      <h3>${AUDIENCES[k].name}</h3>
+      <p class="small muted">${AUDIENCES[k].label}</p>
+      <p>${AUDIENCES[k].blurb}</p>
+      <button class="primary" type="button" data-aud="${k}">Start this review</button>
+    </section>`).join('')}
+  </div>
+  <p class="small muted">Both reviews use the same seven domains and five maturity levels from the Community Engagement Operating Framework. The statements are written for each setting.</p>`;
+  app.querySelectorAll('[data-aud]').forEach(b=>b.addEventListener('click', ()=>setAudience(b.dataset.aud)));
 }
 
 function renderIntro(){
@@ -179,45 +267,41 @@ function renderIntro(){
   app.innerHTML = `
   <section class="card">
     <h2>Before you start</h2>
+    <p>${A().blurb}</p>
     <p>Answer for your organisation as it is today, not as you hope it will be. If you are unsure, choose the lower option: not knowing is a finding in itself.</p>
-    <ul class="scale">${SCALE.map(s=>`<li><b>${s.short}.</b> ${s.long}</li>`).join('')}</ul>
+    <ul class="scale">${scale().map(s=>`<li><b>${s.short}.</b> ${s.long}</li>`).join('')}</ul>
+    ${A().note ? `<p class="small note">${A().note}</p>` : ''}
   </section>
   <form class="card" id="intro" novalidate>
     <h2>About you</h2>
     <div class="grid2">
       <label for="org">Organisation<input type="text" id="org" value="${esc(w.organisation)}" autocomplete="organization"></label>
-      <label for="orgType">Type of organisation
-        <select id="orgType">
-          ${['','Patient or community organisation','Research institute or team','Biopharma, biotech or healthtech','Government or health service','Other'].map(o=>`<option ${w.orgType===o?'selected':''}>${o}</option>`).join('')}
-        </select></label>
       <label for="contact">Your name<input type="text" id="contact" value="${esc(w.contact)}" autocomplete="name"></label>
       <label for="email">Email, for your written report<input type="email" id="email" value="${esc(w.email)}" autocomplete="email"></label>
     </div>
     <label class="check" for="consent"><input type="checkbox" id="consent" ${w.consent?'checked':''}><span>You may include my answers, with my organisation's name removed, in a sector benchmark. This is optional.</span></label>
     <p class="small muted">${WEBHOOK_URL ? 'Your answers are stored to produce your report. They are never sold.' : 'This is a preview. Nothing you enter is sent or stored, so the fields above are optional.'}</p>
     <p class="err" id="imsg" hidden>Please enter an email address so your report can reach you.</p>
-    <div class="actions"><span></span><button class="primary" type="submit">Start the diagnostic</button></div>
+    <div class="actions"><button class="ghost" type="button" id="switch">Choose a different review</button><button class="primary" type="submit">Start the review</button></div>
   </form>`;
-  document.getElementById('intro').addEventListener('submit', e=>{
+  $('switch').addEventListener('click', ()=>setAudience(null));
+  $('intro').addEventListener('submit', e=>{
     e.preventDefault();
-    const g = id => document.getElementById(id);
-    w.organisation = g('org').value.trim(); w.contact = g('contact').value.trim(); w.email = g('email').value.trim();
-    w.orgType = g('orgType').value; w.consent = g('consent').checked;
-    if(WEBHOOK_URL && !/^\S+@\S+\.\S+$/.test(w.email)){ g('imsg').hidden = false; g('email').focus(); return; }
-    state.step = 0; render(); window.scrollTo(0,0);
+    w.organisation = $('org').value.trim(); w.contact = $('contact').value.trim(); w.email = $('email').value.trim(); w.consent = $('consent').checked;
+    if(WEBHOOK_URL && !/^\S+@\S+\.\S+$/.test(w.email)){ $('imsg').hidden = false; $('email').focus(); return; }
+    state.step = 0; render(); goTop();
   });
 }
 
 function renderDomain(i){
-  const d = DOMAINS[i];
   app.innerHTML = `
   <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="7" aria-valuenow="${i}" aria-label="Progress"><i style="width:${i/7*100}%"></i></div>
   <form class="card" id="dom" novalidate>
     <p class="small muted">Domain ${i+1} of 7</p>
-    <h2>${d.name}</h2>
-    ${d.q.map((q,j)=>`
+    <h2>${DOMAIN_NAMES[i]}</h2>
+    ${A().q[i].map((q,j)=>`
       <fieldset class="q"><legend>${q}</legend>
-        <div class="opts">${SCALE.map(s=>`
+        <div class="opts">${scale().map(s=>`
           <label class="opt"><input type="radio" name="q${j}" id="d${i}q${j}v${s.v}" value="${s.v}" ${state.answers[i][j]===s.v?'checked':''}><span>${s.short}</span></label>`).join('')}
         </div>
       </fieldset>`).join('')}
@@ -227,22 +311,22 @@ function renderDomain(i){
       <button class="primary" type="submit">${i===6?'See my result':'Next domain'}</button>
     </div>
   </form>`;
-  const form = document.getElementById('dom');
+  const form = $('dom');
   form.addEventListener('change', e=>{ if(e.target.name){ state.answers[i][+e.target.name.slice(1)] = +e.target.value; }});
-  document.getElementById('back').addEventListener('click', ()=>{ state.step--; render(); window.scrollTo(0,0); });
+  $('back').addEventListener('click', ()=>{ state.step--; render(); goTop(); });
   form.addEventListener('submit', e=>{
     e.preventDefault();
-    if(state.answers[i].some(v=>!v)){ document.getElementById('msg').hidden = false; return; }
-    state.step++; render(); window.scrollTo(0,0);
-    if(state.step===DOMAINS.length) send();
+    if(state.answers[i].some(v=>!v)){ $('msg').hidden = false; return; }
+    state.step++; render(); goTop();
+    if(state.step===7) send();
   });
 }
 
 function summaryText(r){
   const w = state.who;
   return [
-    'CEOF Diagnostic result' + (w.organisation ? ': ' + w.organisation : ''),
-    'Overall: ' + r.overall.toFixed(1) + ' / 5. Level ' + (r.levelIndex+1) + ', ' + r.level.n + '.',
+    A().name + ' result' + (w.organisation ? ': ' + w.organisation : ''),
+    'Overall: ' + r.overall.toFixed(1) + ' / 5. Level ' + (r.levelIndex+1) + ', ' + LEVEL_NAMES[r.levelIndex] + '.',
     '',
     ...r.domains.map(d=>d.name + ': ' + d.score.toFixed(1) + ' / 5'),
     '',
@@ -252,30 +336,32 @@ function summaryText(r){
 }
 
 function renderResult(){
-  const r = score(state.answers);
+  const r = score(state.answers, A().moves);
   const pri = new Set(r.priorities.map(p=>p.i));
+  const tail = r.levelIndex<2 ? 'Treat this as a starting line, not a verdict: most organisations begin here.' : r.levelIndex<4 ? 'The next step up is about connecting what you already do to the decisions that matter.' : 'Few organisations reach this. The work now is keeping it honest as people and funding change.';
   app.innerHTML = `
   <section class="card">
-    <p class="small muted">${state.who.organisation ? esc(state.who.organisation) + ' · ' : ''}Your result</p>
-    <div class="level"><span class="big">${r.level.n}</span><span class="muted">Level ${r.levelIndex+1} of 5 · ${r.overall.toFixed(1)} out of 5 overall</span></div>
-    <p>${r.level.d} ${r.levelIndex<2 ? 'Treat this as a starting line, not a verdict: most organisations begin here.' : r.levelIndex<4 ? 'The next step up is about connecting what you already do to the decisions that matter.' : 'Few organisations reach this. The work now is keeping it honest as people and funding change.'}</p>
+    <p class="small muted">${state.who.organisation ? esc(state.who.organisation) + ' · ' : ''}${A().name} · Your result</p>
+    <div class="level"><span class="big">${LEVEL_NAMES[r.levelIndex]}</span><span class="muted">Level ${r.levelIndex+1} of 5 · ${r.overall.toFixed(1)} out of 5 overall</span></div>
+    <p>${A().levels[r.levelIndex]} ${tail}</p>
   </section>
   <section class="card">
     <h2>Your seven domains</h2>
     <div class="rows">${r.domains.map(d=>`
       <div class="r ${pri.has(d.i)?'pri':''}"><span>${d.name}${pri.has(d.i)?'<span class="pri-tag">Priority</span>':''}</span>
         <div class="track" aria-hidden="true"><i style="width:${d.score/5*100}%"></i></div>
-        <span class="v">${d.score.toFixed(1)} · ${LEVELS[Math.min(4,Math.max(0,Math.round(d.score)-1))].n}</span></div>`).join('')}
+        <span class="v">${d.score.toFixed(1)} · ${LEVEL_NAMES[lvl(d.score)]}</span></div>`).join('')}
     </div>
   </section>
   <section class="card">
     <h2>Your three priorities, and a first move for each</h2>
     <ol class="moves">${r.priorities.map(p=>`<li><h3>${p.name}</h3><p>${p.move}</p></li>`).join('')}</ol>
-    <p class="small muted">These are your three lowest domains. Take the diagnostic again in 12 months to see what moved.</p>
+    <p class="small muted">These are your three lowest domains. Take the review again in 12 months to see what moved.</p>
   </section>
   <section class="cta">
     <h2>Want to work through this with me?</h2>
     <p>The Diagnostic Debrief is a 90-minute working session on these results, followed by a written action plan of up to six pages within five working days: three priorities, what to stop, and what to do in the next 90 days. $1,500 plus GST, credited against an Advisory Sprint booked within 60 days.</p>
+    ${A().note ? `<p class="small">${A().note}</p><p class="small muted">${INDEPENDENCE}</p>` : ''}
     <div class="actions"><span class="small muted">${DEBRIEF_URL ? '' : 'Booking link to be added. Contact: info@krispierce.com.au'}</span>${DEBRIEF_URL ? `<a class="btnlink" href="${DEBRIEF_URL}">Book a debrief</a>` : ''}</div>
   </section>
   <section class="card">
@@ -283,20 +369,22 @@ function renderResult(){
     <textarea id="sum" readonly aria-label="Your result as text">${esc(summaryText(r))}</textarea>
     <div class="actions"><button class="ghost" type="button" id="again">Start again</button><button class="primary" type="button" id="copy">Copy result</button></div>
   </section>
-  <p class="small muted">The CEOF Diagnostic is a self-assessment. It reflects your own answers and is a guide to where to look, not an audit.</p>`;
-  document.getElementById('copy').addEventListener('click', e=>{
-    const t = document.getElementById('sum');
+  <p class="small muted">This is a self-assessment. It reflects your own answers and is a guide to where to look, not an audit.</p>`;
+  $('copy').addEventListener('click', e=>{
+    const t = $('sum');
     (navigator.clipboard ? navigator.clipboard.writeText(t.value) : Promise.reject()).then(()=>{e.target.textContent='Copied';}).catch(()=>{t.focus();t.select();});
   });
-  document.getElementById('again').addEventListener('click', ()=>{ state.step=-1; state.answers=DOMAINS.map(d=>d.q.map(()=>0)); render(); window.scrollTo(0,0); });
+  $('again').addEventListener('click', ()=>setAudience(state.aud));
 }
 
 function send(){
   if(!WEBHOOK_URL) return;
-  const r = score(state.answers), w = state.who, body = {organisation:w.organisation, contact:w.contact, email:w.email, orgType:w.orgType, benchmarkConsent:w.consent};
+  const r = score(state.answers, A().moves), w = state.who;
+  const body = {audience:state.aud, organisation:w.organisation, contact:w.contact, email:w.email, benchmarkConsent:w.consent};
   r.domains.forEach((d,i)=>{ body['d'+(i+1)] = d.score; });
   fetch(WEBHOOK_URL, {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(body)}).catch(()=>{});
 }
 
-render();
+window.addEventListener('hashchange', fromHash);
+fromHash(); render();
 </script>

@@ -69,6 +69,7 @@ Raised while the six products and their website copy were built. See `kpc-engage
 | 42 | Recording of debriefs, interviews and sessions, and where notes are kept. | No recording by default; notes kept 24 months. |
 | 43 | Tools: booking, video, questionnaire, online whiteboard. | Whatever Kris already uses; the kits name none. |
 | 44 | Replace the three live program entries (sprint, engagement design, ongoing adviser) with the new copy, and add three new pages (diagnostic, debrief, training)? The live sprint lede uses "unlock", a banned word. | Yes. |
+| 45 | **Two versions of the review.** The diagnostic now offers a Patient Engagement Review for pharmaceutical companies and a Community Engagement Review for charities. The 28 pharmaceutical statements and seven first moves are new. | Edit and approve the pharmaceutical set first; see `kpc-engagement/products/01-ceof-diagnostic/AUDIENCE-VERSIONS.md` for five follow-on questions (names, level 5 wording, a research version, benchmarking). |
 
 ## Parked, with what would unpark them
 

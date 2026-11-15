@@ -15,7 +15,8 @@ Chief executives, research leads, patient engagement leads and program directors
 | File | What it is |
 |---|---|
 | `diagnostic.html` | The working diagnostic: intro, seven steps, instant result. Self-contained; Kris Pierce Consulting v3.0 colours and type. |
-| `PRODUCT.md` | This file: the question set, scoring, the path to go live. |
+| `PRODUCT.md` | This file: the charity question set, scoring, the path to go live. |
+| `AUDIENCE-VERSIONS.md` | The two versions: the Patient Engagement Review for pharmaceutical companies (statements, first moves, landing copy) and the Community Engagement Review for charities. |
 
 The seven domains, five levels and first moves come from Kris's existing n8n workflows (see `../CEOF-REFERENCE.md`). The 28 statements and the answer scale are new and need Kris's approval, because no question set was found anywhere.
 
@@ -31,13 +32,15 @@ The seven domains, five levels and first moves come from Kris's existing n8n wor
 
 The five values line up with the five maturity levels, so a domain score reads directly as a level.
 
-## The 28 statements
+## The 28 statements (charity version)
+
+The pharmaceutical version has its own 28 statements in `AUDIENCE-VERSIONS.md`.
 
 **1. Purpose and Governance**
 1. We have a written statement of why we involve our community and what we want it to change.
-2. A named person at leadership level is accountable for community engagement.
-3. The board or executive discusses community engagement as a standing item, not only when something goes wrong.
-4. Community engagement has its own budget line.
+2. A named person on the board or leadership team is accountable for community engagement.
+3. The board discusses community engagement as a standing item, not only when something goes wrong.
+4. Time and money are set aside for engagement, even a small amount.
 
 **2. Voice and Representation**
 1. Community members have a standing way to advise us, such as an advisory group or panel, with clear terms of reference.
@@ -47,7 +50,7 @@ The five values line up with the five maturity levels, so a domain score reads d
 
 **3. Capability and Culture**
 1. Community members get an induction and support for the roles we ask them to take.
-2. Staff have been trained or briefed to work well with community members.
+2. Staff and volunteers have been briefed to work well with community members.
 3. Leaders ask who from the community has been involved before they approve a plan.
 4. Engagement is written into roles and workloads, not added on top.
 
@@ -81,7 +84,7 @@ The five values line up with the five maturity levels, so a domain score reads d
 - Overall: the mean of the seven domain scores.
 - Level: the overall score rounded to the nearest whole number.
 - Priorities: the three lowest domains; ties go to the earlier domain.
-- The page posts `organisation`, `contact`, `email`, `orgType`, `benchmarkConsent` and `d1` to `d7`, which is what the existing report workflow expects (the two extra fields are ignored until the workflow is updated).
+- The page posts `audience`, `organisation`, `contact`, `email`, `benchmarkConsent` and `d1` to `d7`, which is what the existing report workflow expects (the two extra fields are ignored until the workflow is updated).
 
 Tested end to end in a browser on 15 November 2026: validation blocks an unanswered step, the scores and priorities compute correctly, and the page fits a phone screen. Not tested: posting to the webhook, because the workflow is inactive.
 
@@ -93,8 +96,8 @@ The result page offers the Diagnostic Debrief ($1,500). The follow-up emails are
 
 1. Kris approves or edits the 28 statements and the scale.
 2. Move the two CEOF workflows off `flows.scn2aaustralia.org` to an automation account owned by Kris Pierce Consulting. A commercial product should not run on the charity's server.
-3. In the report workflow: add the API credential and SMTP, enable the two disabled nodes, change the sign-off to Kris Pierce Consulting, and replace "small not-for-profit organisations" with wording driven by `orgType`. Remove or write the "implementation toolkit" it refers to.
-4. Add `orgType` and `benchmarkConsent` to the Notion results database.
+3. In the report workflow: add the API credential and SMTP, enable the two disabled nodes, change the sign-off to Kris Pierce Consulting, and replace "small not-for-profit organisations" with wording driven by `audience`. Remove or write the "implementation toolkit" it refers to.
+4. Add `audience` and `benchmarkConsent` to the Notion results database, and a second report prompt and set of first moves for companies.
 5. Set `WEBHOOK_URL` and `DEBRIEF_URL` at the top of the script in `diagnostic.html`. Once the webhook is set, the page requires an email address.
 6. Place the page at `/diagnostic` on krispierce.com.au, with the landing copy in `../../website/diagnostic-landing-copy.md` and the privacy wording.
 7. Run one real submission through and read the emailed report before announcing it.
