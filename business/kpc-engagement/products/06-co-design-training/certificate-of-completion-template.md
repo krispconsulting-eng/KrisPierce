@@ -20,7 +20,7 @@ of [client: organisation]
 
 attended **Co-design in practice**, a one-day in-house training in involving community members in decisions, on [date] [at venue, city / online on date and date].
 
-**Duration:** [6 hours of training, 9:00 to 4:30 with breaks / two sessions of 3.5 hours].
+**Duration:** [one day, 9:00 to 4:30, including breaks / two half days, 9:30 to 1:00 each, including breaks].
 
 **What the day covered.** Each participant worked on a real project of their own and practised how to:
 
@@ -58,7 +58,7 @@ Kris Pierce Consulting
 - [ ] The client asked for certificates. They are not issued by default.
 - [ ] Name spelt as the participant wrote it on the workbook.
 - [ ] Attendance confirmed against the room on the day, or both online sessions.
-- [ ] The eight outcomes match `PRODUCT.md`, section 3, word for word in meaning.
+- [ ] The eight outcomes match `PRODUCT.md`, section 3.
 - [ ] The disclaimer line is present and legible, not reduced to fine print.
 - [ ] Sent as a PDF to the participant, with the summary note or within the week after.
 - [ ] No certificate is issued for the 30-day call.
