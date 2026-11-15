@@ -1,0 +1,477 @@
+<title>Kris Pierce Decision Trees</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600&family=Outfit:wght@300;500;600&display=swap">
+<style>
+/* Layout: one column, grouped by offer, each tree in its own scrollable panel. Kris Pierce Consulting v3.0 tokens. */
+:root{--bg:#FBF9F5;--surface:#FFFFFF;--line:#DDE2DF;--fg:#1C2530;--muted:#4A5C55;--link:#305670;--forest:#1E3D34;--forest2:#234A52;--on-forest:#F4F1EB;--on-forest-muted:#CFE0DA;
+--display:"Outfit","Archivo","Helvetica Neue",Arial,sans-serif;--body:"Archivo","Helvetica Neue",Arial,sans-serif}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#141B1A;--surface:#1C2625;--line:#2E3B38;--fg:#ECE7DD;--muted:#A0ADA7;--link:#9CC0D6;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#141B1A;--surface:#1C2625;--line:#2E3B38;--fg:#ECE7DD;--muted:#A0ADA7;--link:#9CC0D6;color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:400 16px/1.6 var(--body)}
+.gut{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.hero{background:linear-gradient(135deg,var(--forest),var(--forest2));color:var(--on-forest)}
+.hero .in,.main{max-width:1040px;margin:0 auto}
+.hero .in{padding-block:40px 32px;display:flex;flex-direction:column;gap:12px}
+.eyebrow{font:600 12px/1 var(--body);letter-spacing:.12em;text-transform:uppercase;color:var(--on-forest-muted)}
+h1{font:300 clamp(2rem,6vw,3rem)/1.05 var(--display);letter-spacing:-.03em;margin:0;text-wrap:balance}
+.hero p{margin:0;color:var(--on-forest-muted);max-width:62ch}
+.main{padding-block:28px 72px;display:flex;flex-direction:column;gap:40px}
+nav{display:flex;flex-wrap:wrap;gap:8px}
+nav a{font:500 14px var(--body);color:var(--link);border:1px solid var(--line);border-radius:999px;padding:6px 14px;text-decoration:none;background:var(--surface)}
+section{display:flex;flex-direction:column;gap:16px}
+h2{font:500 1.6rem/1.2 var(--display);margin:0;padding-top:12px;border-top:2px solid var(--fg)}
+h3{font:600 1.05rem/1.3 var(--body);margin:0}
+.tree{background:var(--surface);border-radius:22px;padding:20px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.src{font-size:13px;color:var(--muted)}
+.scroll{overflow-x:auto}
+pre.mermaid{margin:0;min-width:640px;font-size:13px;white-space:pre-wrap}
+.note{font-size:14px;color:var(--muted);max-width:66ch}
+</style>
+<div class="hero gut"><div class="in">
+<span class="eyebrow">Kris Pierce Consulting · working documents</span>
+<h1>Decision trees for the six offers</h1>
+<p>Start with the four that apply to every enquiry: conflict check, which offer, company work under the Code, and price. Then the trees inside each offer. Each one also exists as numbered steps in its source file.</p>
+</div></div>
+<main class="main gut">
+<nav aria-label="Offers">
+<a href="#g00">Every enquiry</a>
+<a href="#g01">Engagement Review</a>
+<a href="#g02">Diagnostic Debrief</a>
+<a href="#g03">Advisory Sprint</a>
+<a href="#g04">Engagement Design</a>
+<a href="#g05">Ongoing Strategic Advisor</a>
+<a href="#g06">Co-design training</a>
+</nav>
+<section id="g00"><h2>Every enquiry</h2>
+<div class="tree"><h3>Conflict check: can I take this at all?</h3><span class="src">00-decision-trees/DECISION-TREES.md</span><div class="scroll"><pre class="mermaid">flowchart TD
+  A[&quot;New enquiry&quot;] --&gt; B{&quot;Is the work about a specific product or technology?&quot;}
+  B --&gt;|&quot;Yes&quot;| C{&quot;Is it before, or likely to come before, a committee I sit on or advise?&quot;}
+  C --&gt;|&quot;Yes&quot;| D[&quot;DECLINE. Use the decline script&quot;]
+  C --&gt;|&quot;Not sure&quot;| E[&quot;PAUSE. Ask the secretariat before replying on scope&quot;]
+  C --&gt;|&quot;No&quot;| F{&quot;Does it involve drafting, reviewing or coaching on a submission?&quot;}
+  F --&gt;|&quot;Yes&quot;| D
+  F --&gt;|&quot;No&quot;| G
+  B --&gt;|&quot;No&quot;| G{&quot;Does the client expect insight into committee thinking or access to a public body?&quot;}
+  G --&gt;|&quot;Yes&quot;| D
+  G --&gt;|&quot;No&quot;| H{&quot;Am I dealing with this organisation for UNSW or SCN2A Australia right now?&quot;}
+  H --&gt;|&quot;Yes&quot;| I[&quot;DECLARE to both sides in writing, then decide&quot;]
+  H --&gt;|&quot;No&quot;| J{&quot;Does my employment or a current client restrict this work?&quot;}
+  I --&gt; J
+  J --&gt;|&quot;Yes&quot;| K[&quot;RESHAPE the scope or decline&quot;]
+  J --&gt;|&quot;No&quot;| L{&quot;Would I be comfortable seeing this on the front page?&quot;}
+  L --&gt;|&quot;No&quot;| K
+  L --&gt;|&quot;Yes&quot;| M[&quot;PROCEED. Record the check and lodge any declaration&quot;]</pre></div></div>
+<div class="tree"><h3>Which offer fits?</h3><span class="src">00-decision-trees/DECISION-TREES.md</span><div class="scroll"><pre class="mermaid">flowchart TD
+  A[&quot;Enquiry has passed the conflict check&quot;] --&gt; B{&quot;Have they taken the Engagement Review?&quot;}
+  B --&gt;|&quot;No&quot;| C{&quot;Do they have a decision with a date on it?&quot;}
+  C --&gt;|&quot;No&quot;| D[&quot;Send the right review link. Pharma or charity version&quot;]
+  C --&gt;|&quot;Yes&quot;| E[&quot;Ask them to take the review first. Book a discovery call&quot;]
+  B --&gt;|&quot;Yes&quot;| F{&quot;Do they know which problem to fix first?&quot;}
+  E --&gt; F
+  F --&gt;|&quot;No&quot;| G[&quot;DIAGNOSTIC DEBRIEF. 1,500 dollars&quot;]
+  F --&gt;|&quot;Yes&quot;| H{&quot;Is it one decision that leadership must make?&quot;}
+  H --&gt;|&quot;Yes&quot;| I[&quot;ADVISORY SPRINT. 12,000 dollars&quot;]
+  H --&gt;|&quot;No&quot;| J{&quot;Do consumers need to be in the room to do the work?&quot;}
+  J --&gt;|&quot;Yes&quot;| K[&quot;ENGAGEMENT DESIGN. Use the size tree&quot;]
+  J --&gt;|&quot;No&quot;| L{&quot;Is the need to build their own team&#x27;s skill?&quot;}
+  L --&gt;|&quot;Yes&quot;| M[&quot;CO-DESIGN TRAINING. 9,500 dollars&quot;]
+  L --&gt;|&quot;No&quot;| N{&quot;Do they need judgement on call over months?&quot;}
+  N --&gt;|&quot;Yes&quot;| O{&quot;Have we worked together before?&quot;}
+  O --&gt;|&quot;Yes&quot;| P[&quot;ONGOING ADVISOR. Use the fit tree&quot;]
+  O --&gt;|&quot;No&quot;| I
+  N --&gt;|&quot;No&quot;| Q[&quot;Not a fit yet. Stay in touch through the newsletter&quot;]</pre></div></div>
+<div class="tree"><h3>Company work and the Medicines Australia Code</h3><span class="src">00-decision-trees/DECISION-TREES.md</span><div class="scroll"><pre class="mermaid">flowchart TD
+  A[&quot;Company-funded work&quot;] --&gt; B{&quot;Is any part promotional or tied to a product message?&quot;}
+  B --&gt;|&quot;Yes&quot;| C[&quot;DECLINE or remove that part&quot;]
+  B --&gt;|&quot;No&quot;| D{&quot;Will I be in contact with patients or carers?&quot;}
+  D --&gt;|&quot;No&quot;| E{&quot;Does the work involve a patient organisation?&quot;}
+  D --&gt;|&quot;Yes&quot;| F{&quot;Is the company kept at arm&#x27;s length from participants?&quot;}
+  F --&gt;|&quot;No&quot;| G[&quot;RESHAPE. I run the contact. Company gets findings only&quot;]
+  F --&gt;|&quot;Yes&quot;| H{&quot;Are participants paid fairly under a written policy?&quot;}
+  G --&gt; H
+  H --&gt;|&quot;No&quot;| I[&quot;ADD a payment line at published rates before quoting&quot;]
+  H --&gt;|&quot;Yes&quot;| J{&quot;Will the company receive anything that identifies a person?&quot;}
+  I --&gt; J
+  J --&gt;|&quot;Yes&quot;| K[&quot;CHANGE to grouped findings. Minimum group of ten&quot;]
+  J --&gt;|&quot;No&quot;| L{&quot;Are adverse event reporting duties agreed in writing?&quot;}
+  K --&gt; L
+  L --&gt;|&quot;No&quot;| M[&quot;AGREE the process with the company before any session&quot;]
+  L --&gt;|&quot;Yes&quot;| E
+  M --&gt; E
+  E --&gt;|&quot;Yes&quot;| N{&quot;Does the organisation keep full say over its own position?&quot;}
+  N --&gt;|&quot;No&quot;| C
+  N --&gt;|&quot;Yes&quot;| O[&quot;PROCEED. Disclose the funding wherever the work appears&quot;]
+  E --&gt;|&quot;No&quot;| O</pre></div></div>
+<div class="tree"><h3>Price: what do I quote?</h3><span class="src">00-decision-trees/DECISION-TREES.md</span><div class="scroll"><pre class="mermaid">flowchart TD
+  A[&quot;Offer chosen&quot;] --&gt; B{&quot;Is it a fixed-price offer?&quot;}
+  B --&gt;|&quot;Yes&quot;| C[&quot;Quote the published price. No bespoke discount&quot;]
+  B --&gt;|&quot;No, it is outside the six offers&quot;| D[&quot;Quote days at 2,400 dollars. Round up to whole days&quot;]
+  C --&gt; E{&quot;Charity with revenue under one million dollars?&quot;}
+  D --&gt; E
+  E --&gt;|&quot;Yes&quot;| F{&quot;Is it a sprint or training, and are fewer than two charity places used this quarter?&quot;}
+  F --&gt;|&quot;Yes&quot;| G[&quot;Apply 25 percent off&quot;]
+  F --&gt;|&quot;No&quot;| H[&quot;Full price, or offer the next quarter&#x27;s place&quot;]
+  E --&gt;|&quot;No&quot;| I{&quot;Did they pay for a debrief in the last 60 days?&quot;}
+  G --&gt; I
+  H --&gt; I
+  I --&gt;|&quot;Yes, and this is a sprint&quot;| J[&quot;Credit the 1,500 dollar debrief fee&quot;]
+  I --&gt;|&quot;No&quot;| K{&quot;Do consumers take part?&quot;}
+  J --&gt; K
+  K --&gt;|&quot;Yes&quot;| L[&quot;Add consumer payments as a separate line at published rates&quot;]
+  K --&gt;|&quot;No&quot;| M{&quot;Is travel needed?&quot;}
+  L --&gt; M
+  M --&gt;|&quot;Yes&quot;| N[&quot;Add travel at cost&quot;]
+  M --&gt;|&quot;No&quot;| O[&quot;Add GST. Send the one-page quote&quot;]
+  N --&gt; O</pre></div></div>
+</section>
+<section id="g01"><h2>Engagement Review</h2>
+<div class="tree"><h3>Engagement Review: result routing decision tree</h3><span class="src">01-ceof-diagnostic/result-routing-decision-tree.md</span><div class="scroll"><pre class="mermaid">flowchart TD
+    A[&quot;Review completed&quot;] --&gt; B{&quot;Did they reply or ask for help&quot;}
+    B --&gt;|&quot;No&quot;| C{&quot;Second person from same organisation completed&quot;}
+    C --&gt;|&quot;Yes&quot;| O3[&quot;OUTCOME 3 Suggest two-respondent comparison&quot;]
+    C --&gt;|&quot;No&quot;| D{&quot;Overall level 4 or 5&quot;}
+    D --&gt;|&quot;No&quot;| O1[&quot;OUTCOME 1 Nurture sequence only&quot;]
+    D --&gt;|&quot;Yes&quot;| O6[&quot;OUTCOME 6 Short nurture and 12-month retake&quot;]
+    B --&gt;|&quot;Yes&quot;| E{&quot;Is the ask about a product or a submission&quot;}
+    E --&gt;|&quot;Yes&quot;| O5[&quot;OUTCOME 5 Decline or reshape&quot;]
+    E --&gt;|&quot;No&quot;| F{&quot;Audience is a company&quot;}
+    F --&gt;|&quot;Yes&quot;| G{&quot;Conflict check clear&quot;}
+    G --&gt;|&quot;No&quot;| O5
+    G --&gt;|&quot;Yes&quot;| H{&quot;One decision named with owner and date&quot;}
+    F --&gt;|&quot;No&quot;| H
+    H --&gt;|&quot;No&quot;| J{&quot;One respondent only and result in doubt&quot;}
+    J --&gt;|&quot;Yes&quot;| O3
+    J --&gt;|&quot;No&quot;| O2[&quot;OUTCOME 2 Offer debrief&quot;]
+    H --&gt;|&quot;Yes&quot;| K{&quot;Purpose and Governance in three lowest&quot;}
+    K --&gt;|&quot;Yes&quot;| O2
+    K --&gt;|&quot;No&quot;| O4[&quot;OUTCOME 4 Sprint conversation&quot;]</pre></div></div>
+</section>
+<section id="g02"><h2>Diagnostic Debrief</h2>
+<div class="tree"><h3>Diagnostic Debrief: from the debrief to the next step</h3><span class="src">02-diagnostic-debrief/debrief-to-next-step-decision-tree.md</span><div class="scroll"><pre class="mermaid">flowchart TD
+    A[&quot;Debrief held and page 6 to decide&quot;] --&gt; B{&quot;Is the need product specific or a submission&quot;}
+    B --&gt;|&quot;Yes&quot;| X1[&quot;OUTCOME Decline that part and say why&quot;]
+    B --&gt;|&quot;No&quot;| C{&quot;Is the need medical, legal or regulatory&quot;}
+    C --&gt;|&quot;Yes&quot;| X2[&quot;OUTCOME 7 Refer elsewhere&quot;]
+    C --&gt;|&quot;No&quot;| D{&quot;Can the team carry all three priorities alone&quot;}
+    D --&gt;|&quot;Yes&quot;| O1[&quot;OUTCOME 1 No further work&quot;]
+    D --&gt;|&quot;No&quot;| E{&quot;Is the gap skills in running engagement&quot;}
+    E --&gt;|&quot;Yes&quot;| O6[&quot;OUTCOME 6 Training&quot;]
+    E --&gt;|&quot;No&quot;| F{&quot;Does one priority hinge on one unmade decision&quot;}
+    F --&gt;|&quot;No&quot;| G{&quot;Is a build with consumers needed&quot;}
+    G --&gt;|&quot;Yes&quot;| O4[&quot;OUTCOME 4 Engagement design&quot;]
+    G --&gt;|&quot;No&quot;| H{&quot;Is month to month judgement needed&quot;}
+    H --&gt;|&quot;Yes&quot;| O5[&quot;OUTCOME 5 Retainer&quot;]
+    H --&gt;|&quot;No&quot;| O2[&quot;OUTCOME 2 Check-in only&quot;]
+    F --&gt;|&quot;Yes&quot;| J{&quot;Does the decision have an owner and a date&quot;}
+    J --&gt;|&quot;No&quot;| O2
+    J --&gt;|&quot;Yes&quot;| K{&quot;Client is a company&quot;}
+    K --&gt;|&quot;Yes&quot;| L{&quot;Conflict check still clear for this scope&quot;}
+    L --&gt;|&quot;No&quot;| X1
+    L --&gt;|&quot;Yes&quot;| O3[&quot;OUTCOME 3 Sprint, then choose the type&quot;]
+    K --&gt;|&quot;No&quot;| O3</pre></div></div>
+<div class="tree"><h3>Tree 1. Choosing the three priorities</h3><span class="src">02-diagnostic-debrief/priority-decision-tree.md</span><div class="scroll"><pre class="mermaid">flowchart TD
+    A[&quot;Start with the three lowest domains&quot;] --&gt; B{&quot;Room agrees a low score was misread&quot;}
+    B --&gt;|&quot;Yes&quot;| C{&quot;Can they say what evidence shows it&quot;}
+    C --&gt;|&quot;Yes&quot;| D[&quot;Wrong-score rule. Take it out, next lowest in&quot;]
+    C --&gt;|&quot;No&quot;| E{&quot;Does another domain decide the deadline&quot;}
+    B --&gt;|&quot;No&quot;| E
+    D --&gt; E
+    E --&gt;|&quot;Yes&quot;| F[&quot;Deadline rule. That domain comes in&quot;]
+    E --&gt;|&quot;No&quot;| G{&quot;Is a candidate blocked by another domain&quot;}
+    F --&gt; G
+    G --&gt;|&quot;Yes&quot;| H[&quot;Foundation rule. The foundation comes in&quot;]
+    G --&gt;|&quot;No&quot;| J{&quot;More than three on the list&quot;}
+    H --&gt; J
+    J --&gt;|&quot;Yes&quot;| K[&quot;Ask which of the three it replaces&quot;]
+    J --&gt;|&quot;No&quot;| L{&quot;Does each have an owner who says yes&quot;}
+    K --&gt; L
+    L --&gt;|&quot;No&quot;| M[&quot;Not a priority. Choose again from the list&quot;]
+    M --&gt; L
+    L --&gt;|&quot;Yes&quot;| N[&quot;OUTCOME Lock three, ordered by decision date&quot;]</pre></div></div>
+<div class="tree"><h3>Tree 2. Choosing what to stop</h3><span class="src">02-diagnostic-debrief/priority-decision-tree.md</span><div class="scroll"><pre class="mermaid">flowchart TD
+    A[&quot;List activities from questionnaire question 6&quot;] --&gt; B{&quot;Any activity with no decision changed in 12 months&quot;}
+    B --&gt;|&quot;Yes&quot;| C{&quot;Will the room say stop&quot;}
+    B --&gt;|&quot;No&quot;| D{&quot;Any activity costly to community for little return&quot;}
+    D --&gt;|&quot;Yes&quot;| C
+    D --&gt;|&quot;No&quot;| E[&quot;Offer a stop on new activity until priority one is done&quot;]
+    E --&gt; F{&quot;Do they agree&quot;}
+    F --&gt;|&quot;Yes&quot;| G[&quot;OUTCOME Record no new activity as the stop&quot;]
+    F --&gt;|&quot;No&quot;| H[&quot;OUTCOME Leave open and ask once in writing&quot;]
+    C --&gt;|&quot;Yes&quot;| J[&quot;OUTCOME Stop it&quot;]
+    C --&gt;|&quot;No&quot;| K[&quot;OUTCOME Pause for 90 days and review&quot;]
+    J --&gt; L{&quot;Does it involve community members&quot;}
+    K --&gt; L
+    L --&gt;|&quot;Yes&quot;| M[&quot;OUTCOME Record who tells them and what they hear&quot;]
+    L --&gt;|&quot;No&quot;| N[&quot;OUTCOME Record who is told and by when&quot;]</pre></div></div>
+</section>
+<section id="g03"><h2>Advisory Sprint</h2>
+<div class="tree"><h3>Strategic Advisory Sprint: sprint type decision tree</h3><span class="src">03-advisory-sprint/sprint-type-decision-tree.md</span><div class="scroll"><pre class="mermaid">flowchart TD
+    A[&quot;A client asks for help with a decision&quot;] --&gt; B{&quot;Tied to a product, submission or committee&quot;}
+    B --&gt;|&quot;Yes&quot;| X1[&quot;EXIT Decline, product specific&quot;]
+    B --&gt;|&quot;No&quot;| C{&quot;Conflict check clear&quot;}
+    C --&gt;|&quot;No&quot;| X2[&quot;EXIT Decline or reshape, conflict&quot;]
+    C --&gt;|&quot;Yes&quot;| D{&quot;One decision that can be written as a question&quot;}
+    D --&gt;|&quot;No&quot;| X3[&quot;EXIT Not a sprint, too big&quot;]
+    D --&gt;|&quot;Yes&quot;| E{&quot;Named decision owner and a date&quot;}
+    E --&gt;|&quot;No&quot;| X4[&quot;EXIT Not a sprint, no decision owner&quot;]
+    E --&gt;|&quot;Yes&quot;| F{&quot;Fits six interviews and no workshops or delivery&quot;}
+    F --&gt;|&quot;No&quot;| X3
+    F --&gt;|&quot;Yes&quot;| G{&quot;About what consumer evidence to gather&quot;}
+    G --&gt;|&quot;Yes&quot;| H{&quot;Purpose is a specific submission&quot;}
+    H --&gt;|&quot;Yes&quot;| X1
+    H --&gt;|&quot;No&quot;| T1[&quot;TYPE Consumer evidence plan&quot;]
+    G --&gt;|&quot;No&quot;| J{&quot;About readiness of a trial or research program&quot;}
+    J --&gt;|&quot;Yes&quot;| T3[&quot;TYPE Trial-readiness review&quot;]
+    J --&gt;|&quot;No&quot;| K{&quot;About entering or shaping a partnership&quot;}
+    K --&gt;|&quot;Yes&quot;| T4[&quot;TYPE Partnership approach&quot;]
+    K --&gt;|&quot;No&quot;| L{&quot;About how to involve community over two to three years&quot;}
+    L --&gt;|&quot;Yes&quot;| T2[&quot;TYPE Engagement strategy&quot;]
+    L --&gt;|&quot;No&quot;| X5[&quot;EXIT Not a sprint, fits no type&quot;]</pre></div></div>
+</section>
+<section id="g04"><h2>Engagement Design</h2>
+<div class="tree"><h3>Consumer payment decision tree and payment record</h3><span class="src">04-engagement-design/consumer-payment-decision-tree.md</span><div class="scroll"><pre class="mermaid">flowchart TD
+  A[&quot;Start with one person and one piece of work&quot;] --&gt; B{&quot;Taking part as a consumer, carer or community member?&quot;}
+  B --&gt;|&quot;No&quot;| P0[&quot;NO SITTING PAYMENT, staff in paid time&quot;]
+  B --&gt;|&quot;Yes&quot;| C{&quot;Does the client publish a schedule no lower than default?&quot;}
+  C --&gt;|&quot;Yes&quot;| R1[&quot;USE THE CLIENT SCHEDULE&quot;]
+  C --&gt;|&quot;No&quot;| R2[&quot;USE THE DEFAULT SCHEDULE&quot;]
+  R1 --&gt; D{&quot;What is the role?&quot;}
+  R2 --&gt; D
+  D --&gt;|&quot;Session or meeting&quot;| E{&quot;Longer than four hours?&quot;}
+  E --&gt;|&quot;No&quot;| T1[&quot;PAY THE UP TO FOUR HOURS RATE&quot;]
+  E --&gt;|&quot;Yes&quot;| T2[&quot;PAY THE OVER FOUR HOURS RATE&quot;]
+  D --&gt;|&quot;Review or one-off work&quot;| T3[&quot;PAY THE HOURLY RATE&quot;]
+  D --&gt;|&quot;Chair or co-presenter&quot;| T4[&quot;PAY SESSION RATE PLUS PAID PREPARATION&quot;]
+  T1 --&gt; F{&quot;Is the work funded by a company?&quot;}
+  T2 --&gt; F
+  T3 --&gt; F
+  T4 --&gt; F
+  F --&gt;|&quot;Yes&quot;| W1[&quot;PAID THROUGH ME OR A PATIENT ORGANISATION&quot;]
+  F --&gt;|&quot;No&quot;| G{&quot;Can the client pay within 14 days?&quot;}
+  G --&gt;|&quot;Yes&quot;| W2[&quot;CLIENT PAYS DIRECTLY&quot;]
+  G --&gt;|&quot;No&quot;| W3[&quot;I PAY AT COST AND INVOICE&quot;]
+  W1 --&gt; H{&quot;Has the person asked about tax or benefits?&quot;}
+  W2 --&gt; H
+  W3 --&gt; H
+  H --&gt;|&quot;Yes&quot;| S1[&quot;SAY THE SCRIPT, GIVE NO ADVICE&quot;]
+  H --&gt;|&quot;No&quot;| I{&quot;Does the person decline or want another form?&quot;}
+  S1 --&gt; I
+  I --&gt;|&quot;Yes&quot;| V1[&quot;RECORD THE CHOICE, PAY EXPENSES&quot;]
+  I --&gt;|&quot;No&quot;| V2[&quot;PAY AND RECORD&quot;]</pre></div></div>
+<div class="tree"><h3>Level of involvement decision tree</h3><span class="src">04-engagement-design/level-of-involvement-decision-tree.md</span><div class="scroll"><pre class="mermaid">flowchart TD
+  A[&quot;Start with one decision, its owner and its date&quot;] --&gt; B{&quot;Is anything about it still open?&quot;}
+  B --&gt;|&quot;No&quot;| L1[&quot;INFORM&quot;]
+  B --&gt;|&quot;Yes&quot;| C{&quot;Are the options still to be developed?&quot;}
+  C --&gt;|&quot;No&quot;| D{&quot;Will the organisation report back how input was used?&quot;}
+  D --&gt;|&quot;Yes&quot;| L2[&quot;CONSULT&quot;]
+  D --&gt;|&quot;No&quot;| F1[&quot;FIX THE PROMISE or INFORM&quot;]
+  C --&gt;|&quot;Yes&quot;| E{&quot;High effect on people, or they know what staff do not?&quot;}
+  E --&gt;|&quot;No&quot;| L2
+  E --&gt;|&quot;Yes&quot;| G{&quot;Can people be worked with more than once in time?&quot;}
+  G --&gt;|&quot;No&quot;| F2[&quot;CONSULT NOW and MOVE THE DATE if possible&quot;]
+  G --&gt;|&quot;Yes&quot;| H{&quot;Will options be made together and advice built in?&quot;}
+  H --&gt;|&quot;No&quot;| L3[&quot;INVOLVE&quot;]
+  H --&gt;|&quot;Yes&quot;| I{&quot;Can the final decision be handed over and carried out?&quot;}
+  I --&gt;|&quot;No&quot;| L4[&quot;COLLABORATE&quot;]
+  I --&gt;|&quot;Yes&quot;| L5[&quot;EMPOWER&quot;]
+  L2 --&gt; M{&quot;Do time and budget cover pay and safety at this level?&quot;}
+  L3 --&gt; M
+  L4 --&gt; M
+  L5 --&gt; M
+  M --&gt;|&quot;Yes&quot;| Z1[&quot;RECORD THE LEVEL AND THE PROMISE&quot;]
+  M --&gt;|&quot;No&quot;| Z2[&quot;DROP ONE LEVEL OR MOVE THE DATE&quot;]</pre></div></div>
+<div class="tree"><h3>Method selection decision tree</h3><span class="src">04-engagement-design/method-selection-decision-tree.md</span><div class="scroll"><pre class="mermaid">flowchart TD
+  A[&quot;Start with one decision and its agreed level&quot;] --&gt; B{&quot;Is the client a company?&quot;}
+  B --&gt;|&quot;Yes&quot;| B1[&quot;Independent facilitation, company not in the room&quot;]
+  B --&gt;|&quot;No&quot;| C{&quot;Would staff in the room stop people speaking freely?&quot;}
+  C --&gt;|&quot;Yes&quot;| B2[&quot;Independent facilitation, staff not in the room&quot;]
+  C --&gt;|&quot;No&quot;| B3[&quot;A few briefed staff may attend&quot;]
+  B1 --&gt; D{&quot;Is it a run of decisions over a year or more?&quot;}
+  B2 --&gt; D
+  B3 --&gt; D
+  D --&gt;|&quot;Yes&quot;| M5[&quot;ADVISORY GROUP&quot;]
+  D --&gt;|&quot;No&quot;| E{&quot;Does the decision rest on more than one question type?&quot;}
+  E --&gt;|&quot;Yes&quot;| M6[&quot;A MIX IN SEQUENCE&quot;]
+  E --&gt;|&quot;No&quot;| F{&quot;Is the question how many or how widespread?&quot;}
+  F --&gt;|&quot;Yes&quot;| G{&quot;Can 30 or more people respond?&quot;}
+  G --&gt;|&quot;Yes&quot;| M1[&quot;SURVEY&quot;]
+  G --&gt;|&quot;No&quot;| M2[&quot;INTERVIEWS&quot;]
+  F --&gt;|&quot;No&quot;| H{&quot;Is the question what should be built or chosen?&quot;}
+  H --&gt;|&quot;Yes&quot;| I{&quot;Options still open and time for two sessions or more?&quot;}
+  I --&gt;|&quot;Yes&quot;| M4[&quot;CO-DESIGN WORKSHOP&quot;]
+  I --&gt;|&quot;No&quot;| M3[&quot;FOCUS GROUP&quot;]
+  H --&gt;|&quot;No&quot;| J{&quot;Sensitive topic or people unlikely to speak in a group?&quot;}
+  J --&gt;|&quot;Yes&quot;| M2
+  J --&gt;|&quot;No&quot;| M3</pre></div></div>
+<div class="tree"><h3>Consumer Engagement Design: size decision tree</h3><span class="src">04-engagement-design/size-decision-tree.md</span><div class="scroll"><pre class="mermaid">flowchart TD
+  A[&quot;Start with the facts table filled in&quot;] --&gt; B{&quot;Conflict check clear and no product application work?&quot;}
+  B --&gt;|&quot;No&quot;| X1[&quot;DECLINE&quot;]
+  B --&gt;|&quot;Yes&quot;| C{&quot;Named decision owner and a decision still open?&quot;}
+  C --&gt;|&quot;No&quot;| X2[&quot;DECLINE FOR NOW&quot;]
+  C --&gt;|&quot;Yes&quot;| D{&quot;Is the need one decision, with no framework to run?&quot;}
+  D --&gt;|&quot;Yes&quot;| X3[&quot;THIS IS A SPRINT&quot;]
+  D --&gt;|&quot;No&quot;| E{&quot;At least 6 weeks before the first decision date?&quot;}
+  E --&gt;|&quot;No&quot;| X4[&quot;TWO PHASES&quot;]
+  E --&gt;|&quot;Yes&quot;| F{&quot;Over 10 decision types or over 2 consumer groups?&quot;}
+  F --&gt;|&quot;Yes&quot;| X4
+  F --&gt;|&quot;No&quot;| G{&quot;7 to 10 decision types, 2 groups, or many sites?&quot;}
+  G --&gt;|&quot;Yes&quot;| H{&quot;At least 12 weeks available?&quot;}
+  H --&gt;|&quot;Yes&quot;| S3[&quot;QUOTE FULL at $45,000&quot;]
+  H --&gt;|&quot;No&quot;| X4
+  G --&gt;|&quot;No&quot;| I{&quot;4 to 6 decision types?&quot;}
+  I --&gt;|&quot;Yes&quot;| J{&quot;At least 8 weeks available?&quot;}
+  J --&gt;|&quot;Yes&quot;| S2[&quot;QUOTE STANDARD at $30,000&quot;]
+  J --&gt;|&quot;No&quot;| X4
+  I --&gt;|&quot;No&quot;| S1[&quot;QUOTE FOCUSED at $18,000&quot;]
+  S1 --&gt; K{&quot;Is a project place free now?&quot;}
+  S2 --&gt; K
+  S3 --&gt; K
+  K --&gt;|&quot;Yes&quot;| Q1[&quot;SEND THE QUOTE&quot;]
+  K --&gt;|&quot;No&quot;| Q2[&quot;OFFER A START DATE&quot;]</pre></div></div>
+</section>
+<section id="g05"><h2>Ongoing Strategic Advisor</h2>
+<div class="tree"><h3>Ongoing Strategic Advisor: conflict check decision tree</h3><span class="src">05-retained-adviser/conflict-check-decision-tree.md</span><div class="scroll"><pre class="mermaid">flowchart TD
+  A[&quot;Start, onboarding or quarterly or on a change&quot;] --&gt; A1{&quot;Product or service before a committee within 12 months?&quot;}
+  A1 --&gt;|&quot;Yes&quot;| A2{&quot;Can the retainer be kept clearly separate from it?&quot;}
+  A2 --&gt;|&quot;No&quot;| X1[&quot;DECLINE OR STOP&quot;]
+  A2 --&gt;|&quot;Yes&quot;| S1[&quot;WRITE THE SEPARATION INTO THE BRIEF AND DECLARE&quot;]
+  A1 --&gt;|&quot;No&quot;| A3{&quot;Does a brief decision concern a submission or committee?&quot;}
+  S1 --&gt; A3
+  A3 --&gt;|&quot;Yes&quot;| A3a{&quot;Can that decision be removed from the brief?&quot;}
+  A3a --&gt;|&quot;No&quot;| X1
+  A3a --&gt;|&quot;Yes&quot;| A4{&quot;Does the client expect access or inside insight?&quot;}
+  A3 --&gt;|&quot;No&quot;| A4
+  A4 --&gt;|&quot;Yes&quot;| A4a{&quot;Does the expectation remain after written correction?&quot;}
+  A4a --&gt;|&quot;Yes&quot;| X1
+  A4a --&gt;|&quot;No&quot;| A5{&quot;Is the client party to a matter where I hold a role?&quot;}
+  A4 --&gt;|&quot;No&quot;| A5
+  A5 --&gt;|&quot;Yes&quot;| A5a{&quot;After declaring, does any doubt remain?&quot;}
+  A5a --&gt;|&quot;Yes&quot;| X1
+  A5a --&gt;|&quot;No&quot;| B1{&quot;Am I negotiating with them for UNSW, now or this term?&quot;}
+  A5 --&gt;|&quot;No&quot;| B1
+  B1 --&gt;|&quot;Yes&quot;| B1a{&quot;Declared to both sides and neither objects?&quot;}
+  B1a --&gt;|&quot;No&quot;| X1
+  B1a --&gt;|&quot;Yes&quot;| B2{&quot;Is UNSW outside work approval current and covering this?&quot;}
+  B1 --&gt;|&quot;No&quot;| B2
+  B2 --&gt;|&quot;No&quot;| H1[&quot;HOLD UNTIL APPROVAL IS IN PLACE&quot;]
+  B2 --&gt;|&quot;Yes&quot;| C1{&quot;Direct competitor of a current client, same condition?&quot;}
+  C1 --&gt;|&quot;Yes&quot;| X2[&quot;DECLINE OR DEFER&quot;]
+  C1 --&gt;|&quot;No&quot;| C2{&quot;Opposite a current client in a negotiation or dispute?&quot;}
+  C2 --&gt;|&quot;Yes&quot;| C2a{&quot;Unrelated matters and both consent in writing?&quot;}
+  C2a --&gt;|&quot;No&quot;| X1
+  C2a --&gt;|&quot;Yes&quot;| C3{&quot;Can I advise well without knowledge from another client?&quot;}
+  C2 --&gt;|&quot;No&quot;| C3
+  C3 --&gt;|&quot;No&quot;| X1
+  C3 --&gt;|&quot;Yes&quot;| C4{&quot;Would this put me over two retainers and one project?&quot;}
+  C4 --&gt;|&quot;Yes&quot;| X3[&quot;OFFER A START DATE&quot;]
+  C4 --&gt;|&quot;No&quot;| D0{&quot;Is the client a company?&quot;}
+  D0 --&gt;|&quot;No&quot;| Z1[&quot;PROCEED AND RECORD&quot;]
+  D0 --&gt;|&quot;Yes&quot;| D1{&quot;Fair fee, written agreement and Code clause in place?&quot;}
+  D1 --&gt;|&quot;No&quot;| F1[&quot;FIX BEFORE SIGNING&quot;]
+  D1 --&gt;|&quot;Yes&quot;| D2{&quot;Scope free of promotion and application work?&quot;}
+  D2 --&gt;|&quot;No&quot;| F2[&quot;RESHAPE OR DECLINE&quot;]
+  D2 --&gt;|&quot;Yes&quot;| D3{&quot;Consumer contact at arms length, no individual data?&quot;}
+  D3 --&gt;|&quot;No&quot;| F3[&quot;RESHAPE&quot;]
+  D3 --&gt;|&quot;Yes&quot;| Z1</pre></div></div>
+<div class="tree"><h3>Ongoing Strategic Advisor: fit decision tree</h3><span class="src">05-retained-adviser/fit-decision-tree.md</span><div class="scroll"><pre class="mermaid">flowchart TD
+  A[&quot;Start with the fit call facts&quot;] --&gt; B{&quot;Do they want me for who I know or where I sit?&quot;}
+  B --&gt;|&quot;Yes&quot;| X1[&quot;DECLINE AND SAY WHY&quot;]
+  B --&gt;|&quot;No&quot;| C{&quot;Product near a committee, or a rival of a current client?&quot;}
+  C --&gt;|&quot;Yes&quot;| D{&quot;Can the retainer be kept clearly separate from it?&quot;}
+  D --&gt;|&quot;No&quot;| X2[&quot;DECLINE FOR CONFLICT&quot;]
+  D --&gt;|&quot;Yes&quot;| E{&quot;Do they need something built or delivered?&quot;}
+  C --&gt;|&quot;No&quot;| E
+  E --&gt;|&quot;Yes&quot;| X3[&quot;PROJECT NOT RETAINER&quot;]
+  E --&gt;|&quot;No&quot;| F{&quot;Do they want urgent cover or an extra pair of hands?&quot;}
+  F --&gt;|&quot;Yes&quot;| X4[&quot;DECLINE, WRONG SERVICE&quot;]
+  F --&gt;|&quot;No&quot;| G{&quot;Will someone who can act on advice attend each month?&quot;}
+  G --&gt;|&quot;No&quot;| X5[&quot;DECLINE FOR NOW&quot;]
+  G --&gt;|&quot;Yes&quot;| H{&quot;Can they name three decisions for the next six months?&quot;}
+  H --&gt;|&quot;None&quot;| X6[&quot;DEBRIEF FIRST&quot;]
+  H --&gt;|&quot;One or two&quot;| X7[&quot;START WITH A SPRINT FIRST&quot;]
+  H --&gt;|&quot;Three&quot;| I{&quot;New client with a decision paper due within 8 weeks?&quot;}
+  I --&gt;|&quot;Yes&quot;| X7
+  I --&gt;|&quot;No&quot;| J{&quot;Are two retainers already running?&quot;}
+  J --&gt;|&quot;Yes&quot;| X8[&quot;WAITLIST WITH A START DATE&quot;]
+  J --&gt;|&quot;No&quot;| K{&quot;Any sign that 12 hours a month will not be enough?&quot;}
+  K --&gt;|&quot;Yes&quot;| T2[&quot;OFFER 3 DAYS at $6,500 a month&quot;]
+  K --&gt;|&quot;No&quot;| T1[&quot;OFFER 1.5 DAYS at $3,500 a month&quot;]</pre></div></div>
+<div class="tree"><h3>Ongoing Strategic Advisor: renewal decision tree</h3><span class="src">05-retained-adviser/renewal-decision-tree.md</span><div class="scroll"><pre class="mermaid">flowchart TD
+  A[&quot;Month five, facts table filled in&quot;] --&gt; B{&quot;Is the conflict check still clear or managed?&quot;}
+  B --&gt;|&quot;No&quot;| X1[&quot;END FOR CONFLICT&quot;]
+  B --&gt;|&quot;Yes&quot;| C{&quot;Has the advice changed any decision this term?&quot;}
+  C --&gt;|&quot;No&quot;| X2[&quot;END WELL&quot;]
+  C --&gt;|&quot;Yes&quot;| D{&quot;Is what they need next something built or delivered?&quot;}
+  D --&gt;|&quot;Yes&quot;| X3[&quot;CONVERT TO A PROJECT&quot;]
+  D --&gt;|&quot;No&quot;| E{&quot;Three decisions ahead and an owner who will attend?&quot;}
+  E --&gt;|&quot;No&quot;| F{&quot;Is there one decision ahead with a date?&quot;}
+  F --&gt;|&quot;Yes&quot;| X3
+  F --&gt;|&quot;No&quot;| X2
+  E --&gt;|&quot;Yes&quot;| G{&quot;Do those decisions start within one month of term end?&quot;}
+  G --&gt;|&quot;No&quot;| X4[&quot;PAUSE OR END WITH A RESTART DATE&quot;]
+  G --&gt;|&quot;Yes&quot;| H{&quot;Under half the time used in two of the last three months?&quot;}
+  H --&gt;|&quot;Yes&quot;| R1[&quot;RESIZE DOWN OR END WELL&quot;]
+  H --&gt;|&quot;No&quot;| I{&quot;Extra days bought in two of the last three months?&quot;}
+  I --&gt;|&quot;Yes&quot;| R2[&quot;RESIZE UP&quot;]
+  I --&gt;|&quot;No&quot;| R3[&quot;RENEW AT THE SAME TIER&quot;]</pre></div></div>
+<div class="tree"><h3>Ongoing Strategic Advisor: request triage decision tree</h3><span class="src">05-retained-adviser/request-triage-decision-tree.md</span><div class="scroll"><pre class="mermaid">flowchart TD
+  A[&quot;A request arrives by email, call or in a session&quot;] --&gt; B{&quot;Product application, committee matter or access sought?&quot;}
+  B --&gt;|&quot;Yes&quot;| X1[&quot;OUT OF SCOPE, DECLINE WITH THE SCRIPT&quot;]
+  B --&gt;|&quot;No&quot;| C{&quot;Promotional material or individual consumer data?&quot;}
+  C --&gt;|&quot;Yes&quot;| X1
+  C --&gt;|&quot;No&quot;| D{&quot;Changed circumstances, another client or my other roles?&quot;}
+  D --&gt;|&quot;Yes&quot;| X2[&quot;CONFLICT TO RAISE&quot;]
+  D --&gt;|&quot;No&quot;| E{&quot;Am I being asked to produce or deliver something?&quot;}
+  E --&gt;|&quot;Yes&quot;| X3[&quot;PROJECT WORK, QUOTE SEPARATELY&quot;]
+  E --&gt;|&quot;No&quot;| F{&quot;Is it a document to review?&quot;}
+  F --&gt;|&quot;Yes&quot;| G{&quot;Request form complete with all three confirmations?&quot;}
+  G --&gt;|&quot;No&quot;| R0[&quot;RETURN THE FORM, DO NOT OPEN THE DOCUMENT&quot;]
+  G --&gt;|&quot;Yes&quot;| H{&quot;Is a review slot left this month?&quot;}
+  H --&gt;|&quot;Yes&quot;| R1[&quot;DOCUMENT REVIEW SLOT&quot;]
+  H --&gt;|&quot;No&quot;| R2[&quot;HOLD FOR NEXT MONTH OR BUY EXTRA TIME&quot;]
+  F --&gt;|&quot;No&quot;| I{&quot;Is it one of the decisions in the advisory brief?&quot;}
+  I --&gt;|&quot;No&quot;| O2[&quot;ON-CALL ONCE, THEN RAISE THE BRIEF&quot;]
+  I --&gt;|&quot;Yes&quot;| J{&quot;Can it wait for the monthly session?&quot;}
+  J --&gt;|&quot;Yes&quot;| S1[&quot;INSIDE THE RETAINER, ON THE AGENDA&quot;]
+  J --&gt;|&quot;No&quot;| K{&quot;Is time left this month?&quot;}
+  K --&gt;|&quot;Yes&quot;| O1[&quot;ON-CALL TIME&quot;]
+  K --&gt;|&quot;No&quot;| R2</pre></div></div>
+</section>
+<section id="g06"><h2>Co-design training</h2>
+<div class="tree"><h3>Tree 1: the format</h3><span class="src">06-co-design-training/format-decision-tree.md</span><div class="scroll"><pre class="mermaid">flowchart TD
+  A[&quot;Start with the scoping call facts&quot;] --&gt; B{&quot;Do they want something built or sessions run for them?&quot;}
+  B --&gt;|&quot;Yes&quot;| N1[&quot;NOT TRAINING, ENGAGEMENT DESIGN&quot;]
+  B --&gt;|&quot;No&quot;| C{&quot;Is the real need one hard decision with a date?&quot;}
+  C --&gt;|&quot;Yes&quot;| N2[&quot;NOT TRAINING, A SPRINT&quot;]
+  C --&gt;|&quot;No&quot;| D{&quot;Are there real upcoming projects to work on?&quot;}
+  D --&gt;|&quot;No&quot;| N3[&quot;POSTPONE UNTIL THERE IS A PROJECT&quot;]
+  D --&gt;|&quot;Yes&quot;| E{&quot;Is every project clear of committee applications?&quot;}
+  E --&gt;|&quot;No&quot;| F{&quot;Can another project be chosen in its place?&quot;}
+  F --&gt;|&quot;No&quot;| N3
+  F --&gt;|&quot;Yes&quot;| G{&quot;Between 6 and 12 people who will run engagement?&quot;}
+  E --&gt;|&quot;Yes&quot;| G
+  G --&gt;|&quot;More than 12&quot;| N4[&quot;TWO DAYS OR CHOOSE TWELVE&quot;]
+  G --&gt;|&quot;Fewer than 6&quot;| N5[&quot;RUN SMALL OR WAIT FOR MORE PEOPLE&quot;]
+  G --&gt;|&quot;Yes&quot;| H{&quot;Can everyone be in one room without long travel?&quot;}
+  N5 --&gt; H
+  H --&gt;|&quot;Yes&quot;| T1[&quot;IN PERSON, ONE DAY&quot;]
+  H --&gt;|&quot;No&quot;| I{&quot;Can the group hold two half days in one week?&quot;}
+  I --&gt;|&quot;Yes&quot;| T2[&quot;ONLINE, TWO HALF DAYS&quot;]
+  I --&gt;|&quot;No&quot;| J{&quot;Nine people or fewer and a client co-host?&quot;}
+  J --&gt;|&quot;Yes&quot;| T3[&quot;ONLINE, ONE DAY&quot;]
+  J --&gt;|&quot;No&quot;| T4[&quot;MOVE THE DATE&quot;]</pre></div></div>
+<div class="tree"><h3>Tree 2: whether to add a paid community co-presenter</h3><span class="src">06-co-design-training/format-decision-tree.md</span><div class="scroll"><pre class="mermaid">flowchart TD
+  A[&quot;Start, the sponsor is asked at scoping&quot;] --&gt; B{&quot;Will community members attend as paid participants anyway?&quot;}
+  B --&gt;|&quot;Yes&quot;| C{&quot;Does the sponsor still want a co-presenter as well?&quot;}
+  C --&gt;|&quot;No&quot;| P0[&quot;NO CO-PRESENTER NEEDED&quot;]
+  C --&gt;|&quot;Yes&quot;| D{&quot;Is the separate payment line approved in writing?&quot;}
+  B --&gt;|&quot;No&quot;| D
+  D --&gt;|&quot;No&quot;| P1[&quot;DO NOT ADD, NEVER UNPAID&quot;]
+  D --&gt;|&quot;Yes&quot;| E{&quot;Is a suitable person available, briefed and willing?&quot;}
+  E --&gt;|&quot;No&quot;| P2[&quot;OFFER A PANEL OR RUN WITHOUT&quot;]
+  E --&gt;|&quot;Yes&quot;| F{&quot;Is the client a company?&quot;}
+  F --&gt;|&quot;Yes&quot;| P3[&quot;ADD, ENGAGED AT ARMS LENGTH&quot;]
+  F --&gt;|&quot;No&quot;| P4[&quot;ADD A PAID CO-PRESENTER&quot;]</pre></div></div>
+</section>
+<p class="note">Drafts for Kris's approval. The conflict and Code trees are working guides, not legal advice.</p></main>
