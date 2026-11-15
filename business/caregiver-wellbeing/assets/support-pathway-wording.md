@@ -65,7 +65,7 @@ Use on a "Support" page linked from every screen, and in the first email after e
 >
 > What you read and reflect on here describes common experiences. It is not a diagnosis. If you're worried, talk to your GP.
 >
-> Questions about the programme: info@krispierce.com.au. We read email on weekdays and cannot respond to urgent needs.
+> Questions about the program: info@krispierce.com.au. We read email on weekdays and cannot respond to urgent needs.
 
 ---
 

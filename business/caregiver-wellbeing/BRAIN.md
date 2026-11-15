@@ -1,6 +1,6 @@
 # Business brain: Caregiver Wellbeing
 
-Line 3 of 3. Tagline: "Space for YOU". Operated by Kris Pierce Consulting. Not an SCN2A Australia programme. Brand: Natural Coastal v1.2 (locked).
+Line 3 of 3. Tagline: "Space for YOU". Operated by Kris Pierce Consulting. Not an SCN2A Australia program. Brand: Natural Coastal v1.2 (locked).
 
 Decisions this file works from (per `caregiver-wellness-course/DECISIONS.md`, 10 October 2026): the name, tagline and term "caregiver"; any unpaid caregiver as the audience; the eight-week Guided Journey; "One small thing"; the eight Wheel domains; no gamification; no invented people or stories; brand and voice per BRAND-BRIEF.md. Sponsor pricing, assessment depth, consent wording and the framework's approval are open decisions there. Everything commercial in this file is therefore a proposal for Kris, not a decision.
 
@@ -12,7 +12,7 @@ Three million Australians care for someone without pay, and six in ten of them r
 
 - The need is measured: 61.1% of carers had low wellbeing in the 2025 Carer Wellbeing Survey, against 33.6% of Australian adults, and the gap grew.
 - Caregivers will not and should not pay. Carer Gateway coaching and counselling are free, so a paid consumer course competes with free. The July plan's $97 self-pay price is better dropped.
-- Organisations do pay for carer support. UK councils commission digital carer support at about £36,000 for a pilot to £73,500 a year. Employer programmes cost £1,200 to £2,500 a year.
+- Organisations do pay for carer support. UK councils commission digital carer support at about £36,000 for a pilot to £73,500 a year. Employer programs cost £1,200 to £2,500 a year.
 - 2027 has four buying moments: Carer Gateway providers re-tender for 1 July 2027; Victoria's Support for Carers round covers 2027 to 2031; the first National Carer Strategy action plan ends in December 2027; Carers Week falls in October.
 
 Sources in `../research/02-caregiver-wellbeing-market.md`.
@@ -28,7 +28,7 @@ The user is any unpaid caregiver. The customer is one of these:
 | Disability and aged care providers, hospitals | Support for the families of the people they serve | Sponsored cohort |
 | Patient organisations, with a funder behind them | A wellbeing offer for their caregiver members | Sponsored cohort |
 | Companies and foundations supporting carers | Unrestricted, reportable community support | Sponsored cohort |
-| State governments | Carer wellbeing programmes (South Australia and Western Australia funded these in 2026-27) | Grant-funded delivery with a partner |
+| State governments | Carer wellbeing programs (South Australia and Western Australia funded these in 2026-27) | Grant-funded delivery with a partner |
 
 First approach: two or three Carer Gateway bidders and two patient organisations Kris already knows. They move fastest and give the pilot data that everyone else will ask for.
 
@@ -44,7 +44,7 @@ AUD, excluding GST. All proposed.
 | **Organisation licence** | Twelve months of access for an organisation's caregivers, a private enrolment link, two aggregate reports a year, a launch session for staff | $9,000 (up to 100 caregivers); $18,000 (up to 500); regional or provider-wide by quote, $40,000 to $75,000 |
 | **Community places** | Any amount funds places in an open pool that caregivers apply to | $200 a place (the July figure) |
 
-How this relates to the July model: the $200 seat survives as the community place. Tiers by seat count are replaced by cohorts and licences, because buyers budget for programmes, not seats.
+How this relates to the July model: the $200 seat survives as the community place. Tiers by seat count are replaced by cohorts and licences, because buyers budget for programs, not seats.
 
 What sponsors get, and do not get: an aggregate report (minimum group size ten), acknowledgement in plain words, and nothing else. No names, no individual results, no say over content, no product presence. This is written into the agreement.
 
@@ -63,11 +63,11 @@ Until then, the only public activity is what is already approved: the Wellbeing 
 
 ## 6. Strategy
 
-**Position.** The low-burden option. Everything else asks caregivers to do more; this asks for one small thing. For payers: a structured programme with a report, at a fraction of a commissioned service.
+**Position.** The low-burden option. Everything else asks caregivers to do more; this asks for one small thing. For payers: a structured program with a report, at a fraction of a commissioned service.
 
 **How it wins.** Kris's 20 years as a carer, a method that respects the caregiver's time, and a report payers can use. The discipline of the brand (no guilt, no streaks, no scores) is the product.
 
-**Evidence stance.** Say "informed by evidence". Digital programmes for caregivers show short-term reductions in stress and burden in meta-analyses; no trial has tested this exact format. The pilots are how the evidence gets built, with honest reporting including drop-out.
+**Evidence stance.** Say "informed by evidence". Digital programs for caregivers show short-term reductions in stress and burden in meta-analyses; no trial has tested this exact format. The pilots are how the evidence gets built, with honest reporting including drop-out.
 
 **Path to scale.** Pilots in 2027 produce data. Data supports licences in 2028. A licence held by a Carer Gateway provider or a large employer is repeat revenue with little of Kris's time. Later options, only with evidence in hand: a facilitator licence for organisations to run groups, and versions for other audiences (the gamified code is held in reserve for those).
 

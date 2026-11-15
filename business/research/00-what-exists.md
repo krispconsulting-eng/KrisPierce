@@ -30,15 +30,15 @@ Sources: `caregiver-wellness-course/` in this repo (DECISIONS.md, BRAND-BRIEF.md
 
 ## Kris Pierce Consulting
 
-Sources: `krispconsulting-eng/krispierce1` (live site source, brand guidelines v3.0, design direction v3.0, service and programme pages), Drive (brand voice v2.0, Clarity and Visibility Diagnostic of 21 June 2026, one-page offer for rare disease sponsors of 5 November 2026, kpc-experience-entry).
+Sources: `krispconsulting-eng/krispierce1` (live site source, brand guidelines v3.0, design direction v3.0, service and program pages), Drive (brand voice v2.0, Clarity and Visibility Diagnostic of 21 June 2026, one-page offer for rare disease sponsors of 5 November 2026, kpc-experience-entry).
 
 - Positioning: independent strategic advice on rare disease, consumer engagement, evidence and access for biopharma, biotech, healthtech, research and not-for-profit organisations. Standard: "If the work doesn't change a decision, it isn't done."
-- Live service pages: Policy and HTA engagement; Clinical trial readiness; Rare disease strategy; Consumer engagement frameworks. Live programme pages: Strategic Advisory Sprint; Consumer Engagement Design; Stakeholder Alignment Program; Ongoing Strategic Advisor.
+- Live service pages: Policy and HTA engagement; Clinical trial readiness; Rare disease strategy; Consumer engagement frameworks. Live program pages: Strategic Advisory Sprint; Consumer Engagement Design; Stakeholder Alignment Program; Ongoing Strategic Advisor.
 - Sponsor one-pager, "from 2027": consumer engagement from ideation to translation, five stages.
 - No prices anywhere.
 - Independence line already in use: "My government advisory appointments are held independently of this practice."
 - Gaps named in the June diagnostic: eight insight titles with no pages, anonymised proof only, no "how we work" page, a single "Let's talk" call to action.
-- Voice v2.0 bans "stakeholder", yet a live programme is named Stakeholder Alignment Program.
+- Voice v2.0 bans "stakeholder", yet a live program is named Stakeholder Alignment Program.
 
 ## Consumer engagement IP
 
@@ -50,7 +50,7 @@ Sources: `krispconsulting-eng/krispierce1` (live site source, brand guidelines v
 
 | Item | Owner | Evidence |
 |---|---|---|
-| Rare Power programme and Lived Experience Group | Rare Diseases NSW, UNSW | Architecture states it is "owned outright by Rare Diseases NSW" with no licensing arrangement |
+| Rare Power program and Lived Experience Group | Rare Diseases NSW, UNSW | Architecture states it is "owned outright by Rare Diseases NSW" with no licensing arrangement |
 | Online Codesign Program v0.1 | Rare Diseases NSW, UNSW | "Prepared for Kris Pierce, Rare Diseases NSW / UNSW Sydney" |
 | RDD 2027 partnership pitch and industry partnership pitch | Rare Diseases NSW, UNSW | RDNSW documents |
 | N=1 Convening 2027 proposal | SCN2A Australia | "Prepared by: Kris Pierce, Founder and Director, SCN2A Australia" |

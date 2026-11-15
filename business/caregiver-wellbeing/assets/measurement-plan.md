@@ -27,7 +27,7 @@ Anything that serves neither purpose is not collected.
 
 ### 2.1 The Wheel
 
-The Wheel is the heart of the programme and is the caregiver's own. It is completed at week one and again at week eight. For measurement, the answers are used only as group patterns for each of the eight areas. See section 6.
+The Wheel is the heart of the program and is the caregiver's own. It is completed at week one and again at week eight. For measurement, the answers are used only as group patterns for each of the eight areas. See section 6.
 
 The answer format depends on the rebuilt Wheel, which is an open decision. Recommendation already in BRAIN.md: 24 questions for launch.
 
@@ -96,12 +96,12 @@ The proposal keeps these apart:
 - The number is used only inside a group average.
 - The consent wording tells the caregiver plainly that these few questions are for the group report.
 
-If Kris judges that any per-person number is out of keeping with the programme, the alternative is to report the Wheel and the two experience questions only. The cost is that sponsors receive no validated measure, and the results cannot be read beside national data.
+If Kris judges that any per-person number is out of keeping with the program, the alternative is to report the Wheel and the two experience questions only. The cost is that sponsors receive no validated measure, and the results cannot be read beside national data.
 
 ## 4. What not to measure
 
 - No diagnosis, condition or medication, for the caregiver or the person they care for.
-- No depression, anxiety or distress screening tools. This is a non-clinical programme and must not screen.
+- No depression, anxiety or distress screening tools. This is a non-clinical program and must not screen.
 - No name or details of the person being cared for.
 - No date of birth, address or full postcode.
 - No employer, team, site or job title, even in an employer cohort.
@@ -161,7 +161,7 @@ A pilot of up to 50 caregivers can show:
 
 It cannot show:
 
-- That the programme caused any change. There is no comparison group.
+- That the program caused any change. There is no comparison group.
 - That the change lasts. There is no follow-up.
 - That results would be the same for other caregivers. People chose to take part.
 - Anything about any single person.

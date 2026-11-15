@@ -39,7 +39,7 @@ Most support asks a caregiver to do more: attend, book, read, complete. People w
 
 ## What Caregiver Wellbeing is
 
-Caregiver Wellbeing is a non-clinical wellbeing programme for any unpaid caregiver, whether they care for a child, a young person, an adult or an ageing parent. It is online, private and self-paced. It was created by Kris Pierce, who has been a caregiver for 20 years.
+Caregiver Wellbeing is a non-clinical wellbeing program for any unpaid caregiver, whether they care for a child, a young person, an adult or an ageing parent. It is online, private and self-paced. It was created by Kris Pierce, who has been a caregiver for 20 years.
 
 It is not a health service, counselling or a crisis service. It does not diagnose, treat, prevent or screen for any condition. It sits beside free services such as Carer Gateway and points to them.
 
@@ -63,7 +63,7 @@ It is not a health service, counselling or a crisis service. It does not diagnos
 
 ## What it is built on
 
-The programme is informed by evidence. Published meta-analyses of internet-based and digital programmes for caregivers report short-term reductions in stress and burden (Sherifali and colleagues, Journal of Medical Internet Research, 2018; a 2025 meta-analysis in Frontiers in Digital Health). Many of the studies in those reviews carry a high risk of bias, and no trial has tested this exact format. The pilot cohorts are how the evidence for this programme is built, and the results are reported honestly, including who dropped out.
+The program is informed by evidence. Published meta-analyses of internet-based and digital programs for caregivers report short-term reductions in stress and burden (Sherifali and colleagues, Journal of Medical Internet Research, 2018; a 2025 meta-analysis in Frontiers in Digital Health). Many of the studies in those reviews carry a high risk of bias, and no trial has tested this exact format. The pilot cohorts are how the evidence for this program is built, and the results are reported honestly, including who dropped out.
 
 ---
 
@@ -131,7 +131,7 @@ You receive one report about four weeks after your cohort's window closes [timin
 5. Who did not finish, and what that means for reading the results.
 6. Limits and caveats, in plain words.
 
-A pilot cohort has no comparison group. The report can describe what changed for the people who took part. It cannot show that the programme caused the change. We say so in the report.
+A pilot cohort has no comparison group. The report can describe what changed for the people who took part. It cannot show that the program caused the change. We say so in the report.
 
 [Pilot result goes here once a pilot has run. Until then this page carries no results.]
 
@@ -140,7 +140,7 @@ A pilot cohort has no comparison group. The report can describe what changed for
 - Support is unrestricted and at arm's length.
 - Kris Pierce Consulting is a business. It is not a patient organisation or a health consumer organisation. The agreement says so plainly, so that support is reported correctly.
 - Your support is disclosed in plain words wherever the cohort is described.
-- The programme is never used to promote a product or to prompt anyone to ask for a medicine.
+- The program is never used to promote a product or to prompt anyone to ask for a medicine.
 
 ## Privacy
 
@@ -177,4 +177,4 @@ A 30-minute conversation with Kris. No commitment.
 
 info@krispierce.com.au
 
-Caregiver Wellbeing is operated by Kris Pierce Consulting. It is a non-clinical wellbeing programme and does not provide medical advice.
+Caregiver Wellbeing is operated by Kris Pierce Consulting. It is a non-clinical wellbeing program and does not provide medical advice.

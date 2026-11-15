@@ -12,7 +12,7 @@ Compiled 15 November 2026 from web search summaries. Page fetches to several sit
 - Budget 2026-27: Carer-Inclusive Workplace Initiative extended, $3.2 million over four years. https://www.carersaustralia.com.au/wp-content/uploads/2026/05/Budget-2026-27-What-it-means-for-carers_Final.pdf
 - National Carers Week 2027: likely 10 to 16 October (unverified; 2026 was 11 to 17 October).
 
-## Comparable programmes and prices
+## Comparable programs and prices
 
 | Comparator | Published price | Source |
 |---|---|---|
@@ -28,7 +28,7 @@ Carer Gateway coaching and counselling are free to carers, so the paid product h
 ## Who buys
 
 - Employers with a stated carer commitment: Carers + Employers accredited organisations include Medibank and the NSW Department of Communities and Justice. https://www.medibank.com.au/about/sustainability/sustainability-stories/carers-and-employers-accreditation/
-- South Australia 2026-27: $500,000 for an education and wellbeing programme for unpaid carers of people with dementia. https://explore.fundingcentre.com.au/articles/whats-in-the-2026-27-south-australian-state-budget-for-your-organisation
+- South Australia 2026-27: $500,000 for an education and wellbeing program for unpaid carers of people with dementia. https://explore.fundingcentre.com.au/articles/whats-in-the-2026-27-south-australian-state-budget-for-your-organisation
 - Western Australia: $6.9 million to expand family carer support services. https://www.wa.gov.au/government/media-statements/Cook%20Labor%20Government/Budget-delivers-cost-of-living-relief-to-Western-Australian-families-20260507
 - Victoria: Support for Carers Program funding round 2027 to 2031. https://www.vic.gov.au/support-carers-program-funding-application-2027-2031
 - Carer Gateway providers are writing bids for the July 2027 re-tender and may want a distinct digital component. https://carersqld.com.au/carers-queenslands-response-to-the-regional-delivery-partners-announcement/
@@ -54,7 +54,7 @@ Carer Gateway coaching and counselling are free to carers, so the paid product h
 - Privacy Act: the small business exemption does not apply to an organisation that provides a health service and holds health information, and "health service" includes assessing or improving psychological health. Plan for full Australian Privacy Principles compliance. https://www.oaic.gov.au/privacy/the-privacy-act/rights-and-responsibilities
 - TGA: general health or wellness software can be excluded from medical device regulation, depending on the intended purpose shown in marketing. https://www.tga.gov.au/resources/guidance/understanding-general-health-or-wellness-software-exclusion
 - Avoid any claim to diagnose, treat, prevent or screen for a condition.
-- National Safety and Quality Digital Mental Health Standards are voluntary and aimed at mental health services; a general wellbeing programme appears out of scope, though government buyers may ask about alignment. https://www.safetyandquality.gov.au/standards/national-safety-and-quality-digital-mental-health-standards
+- National Safety and Quality Digital Mental Health Standards are voluntary and aimed at mental health services; a general wellbeing program appears out of scope, though government buyers may ask about alignment. https://www.safetyandquality.gov.au/standards/national-safety-and-quality-digital-mental-health-standards
 
 ## What this means
 

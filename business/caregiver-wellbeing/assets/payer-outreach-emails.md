@@ -50,7 +50,7 @@ Caregiver Wellbeing is an eight-week online Guided Journey. A caregiver reflects
 
 You would share an enrolment link. You would never learn who enrolled. Twice a year you would receive an aggregate report, with no figure for any group under ten people.
 
-It does not replace your employee assistance programme. It is informed by evidence, and we report results with their limits.
+It does not replace your employee assistance program. It is informed by evidence, and we report results with their limits.
 
 Would you be open to a 30-minute conversation?
 
@@ -92,7 +92,7 @@ Subject: Unrestricted support for unpaid caregivers
 
 Hello [first name],
 
-I am writing to ask whether [organisation] would consider funding places for unpaid caregivers in an eight-week wellbeing programme.
+I am writing to ask whether [organisation] would consider funding places for unpaid caregivers in an eight-week wellbeing program.
 
 Caregiver Wellbeing is free for caregivers. A caregiver reflects on eight areas of their own life, then does one small thing a week. It is non-clinical.
 

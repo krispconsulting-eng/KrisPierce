@@ -61,7 +61,7 @@ What the automation never does: count streaks, show progress percentages, send m
 |---|---|
 | Create the private enrolment link for this cohort, capped at 50 | Kris |
 | Write the invitation wording for the sponsor to share | Kris |
-| Sponsor approves where and when the invitation goes out, not what the programme says | Sponsor contact |
+| Sponsor approves where and when the invitation goes out, not what the program says | Sponsor contact |
 | Load the approved eight weekly messages into the workflow | Kris |
 | Test every workflow end to end with test addresses, on a phone and a computer | Kris |
 | Test unsubscribe and the deletion request route | Kris |

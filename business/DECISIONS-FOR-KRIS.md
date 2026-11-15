@@ -36,6 +36,23 @@ Everything else in this folder is drafted and waiting. These are the calls only 
 | 23 | How Caregiver Wellbeing sits beside Kris Pierce Consulting in public. | Its own name and brand, with "Operated by Kris Pierce Consulting" in the footer and on agreements. |
 | 24 | Trade marks to file. | Rare Intelligence, Signal Circle, Rare and Raw (already planned), and the Caregiver Wellbeing logo with "Space for YOU". About $250 a class. |
 
+## Raised while the launch assets were written
+
+The asset files carry marked slots for these. None blocks the first fortnight, but each needs an answer before the relevant file is used.
+
+| # | Decision | Recommendation |
+|---|---|---|
+| 25 | **Scores and the Wheel.** A validated wellbeing measure gives each person a number, which sits awkwardly beside "reflections, never scores". | Collect the measure for group reporting only, never show a person their number, and say so in the consent wording. If that still feels wrong, report Wheel patterns and completion alone and accept a weaker sponsor report. |
+| 26 | Payment terms for consulting. | 50% on acceptance, 50% on delivery, 14 days; retainers monthly in advance. |
+| 27 | Which published consumer payment schedule to cost against. | The schedule of the state the work is in; NSW Health rates as the default. |
+| 28 | Membership terms: cancellation, refunds, and whether the founding rate survives a cancel and rejoin. | Cancel any time, no refunds on months used, founding rate lost on cancellation. |
+| 29 | The month-three promise ("one working AI workflow in your organisation"). Is anything offered if it is not met? | A free 1:1 session, not a refund. |
+| 30 | Sponsored places: can a sponsor choose the organisations? | No. A sponsor may suggest; Rare Intelligence decides. The assets are written this way. |
+| 31 | Caregiver data: storage location, retention period, deletion turnaround, who can see it, minimum age. | Australian storage, 24 months, deletion within 30 days, Kris and one named administrator, 18 and over. |
+| 32 | Whether the pilot needs ethics review or an independent check of the analysis. | An independent check of the numbers before any report is published; ethics review only if results will be published as research. |
+| 33 | Facts to confirm before any bio is used: years as a carer, organisations founded or led, the line "I have run a rare disease organisation", and which roles may be named commercially. | Kris to supply once; reused everywhere. |
+| 34 | Practical details: ABN, booking link, diagnostic link, Rare Intelligence contact email, session days and time zone. | Fill once in a shared details file. |
+
 ## Parked, with what would unpark them
 
 | Idea | Why parked | What unparks it |

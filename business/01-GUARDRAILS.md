@@ -19,7 +19,7 @@ Finding to resolve (Kris decides): the live consulting site's "Policy and HTA en
 
 ## 2. Employment at UNSW (Rare Diseases NSW)
 
-- Anything created in the Strategic Lead role (Rare Power Lived Experience Group, RDNSW consumer programme, industry partnership pitch, RDD 2027 planning) is treated as UNSW's unless Kris confirms otherwise. None of it is reused in a commercial product here.
+- Anything created in the Strategic Lead role (Rare Power Lived Experience Group, RDNSW consumer program, industry partnership pitch, RDD 2027 planning) is treated as UNSW's unless Kris confirms otherwise. None of it is reused in a commercial product here.
 - The Lived Experience Network licence idea draws on the same expertise. It is parked in horizon 2 until Kris has checked the UNSW contract's intellectual property and outside-work clauses (Kris decides).
 - No commercial approach is made to an organisation where Kris is negotiating for UNSW at the same time, without a declaration to both sides.
 
@@ -27,7 +27,7 @@ Finding to resolve (Kris decides): the live consulting site's "Policy and HTA en
 
 - Sparky, the newsletters, the walk campaign, Will's materials and the SCN2A Care Navigation Pathway belong to the charity or the family. None is used in a commercial product in this folder.
 - A templated navigation product is recorded as an option only. It needs a board decision and a written licence from SCN2A Australia to Kris Pierce Consulting, with Kris absent from the vote (Kris and the board decide).
-- The SCN2A Australia email address and branding never appear on commercial material. Caregiver Wellbeing is not an SCN2A Australia programme.
+- The SCN2A Australia email address and branding never appear on commercial material. Caregiver Wellbeing is not an SCN2A Australia program.
 
 ## 4. Medicines Australia Code of Conduct
 
@@ -44,7 +44,7 @@ Applied to anything pharma-adjacent:
 ## 5. Health claims and privacy
 
 - Nothing here is medical advice, and every public page says so once, plainly.
-- Caregiver Wellbeing is a non-clinical wellbeing programme. It does not diagnose, treat or screen. Results are reflections, never scores. Copy states its limits: "Common experiences, not a diagnosis. If you're worried, talk to your GP."
+- Caregiver Wellbeing is a non-clinical wellbeing program. It does not diagnose, treat or screen. Results are reflections, never scores. Copy states its limits: "Common experiences, not a diagnosis. If you're worried, talk to your GP."
 - Wellbeing answers are sensitive information under the Privacy Act. Collect the minimum, get explicit consent, store in Australia where practical, and never pass identifiable answers to a sponsor or employer.
 - Rare Intelligence teaches AI use. It tells clients not to put identifiable patient or family information into general AI tools, and its own tools hold none.
 - No invented people, testimonials, statistics or case studies anywhere. Where a real one is missing, the slot says what is needed and stays empty.

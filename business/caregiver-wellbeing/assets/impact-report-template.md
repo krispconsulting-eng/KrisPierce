@@ -85,7 +85,7 @@ Measure used: [name of measure, version, and licence acknowledgement].
 | Range the true change is likely to sit in (95% interval) | | [low] to [high] |
 | Published Australian reference range, if one exists | [value and source] | |
 
-In plain words: [one or two sentences. For example: "The group average was higher at week eight than at week one. With this many people and no comparison group, we cannot say the programme caused the change."]
+In plain words: [one or two sentences. For example: "The group average was higher at week eight than at week one. With this many people and no comparison group, we cannot say the program caused the change."]
 
 Common experiences, not a diagnosis. If you're worried, talk to your GP.
 
@@ -152,7 +152,7 @@ Minimum group size rule:
 - Eight weeks is short. We do not know whether any change lasts.
 - All answers are self-reported.
 - Other things were happening in people's lives during these weeks.
-- Caregiver Wellbeing is a non-clinical programme. Nothing here is a clinical finding about any person or group.
+- Caregiver Wellbeing is a non-clinical program. Nothing here is a clinical finding about any person or group.
 
 ## 9. What we will change
 

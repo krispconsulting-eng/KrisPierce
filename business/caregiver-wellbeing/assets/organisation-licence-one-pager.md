@@ -50,7 +50,7 @@ You do not receive names, individual results, or anything that could identify a 
 
 ## What it is not
 
-Caregiver Wellbeing is a non-clinical wellbeing programme. It does not diagnose, treat, prevent or screen for any condition. It does not replace an employee assistance programme, counselling or Carer Gateway. It is informed by evidence, and each report states its limits.
+Caregiver Wellbeing is a non-clinical wellbeing program. It does not diagnose, treat, prevent or screen for any condition. It does not replace an employee assistance program, counselling or Carer Gateway. It is informed by evidence, and each report states its limits.
 
 ## Next step
 

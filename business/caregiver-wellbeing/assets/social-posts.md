@@ -108,7 +108,7 @@ Alt text: Warm paper tile with the text "61.1% of caregivers have low wellbeing.
 
 Caption:
 
-Our programme is not open yet. Support for you already is.
+Our program is not open yet. Support for you already is.
 
 Carer Gateway is free for caregivers: 1800 422 737. You can ask about counselling, coaching and practical help.
 
@@ -206,7 +206,7 @@ That means:
 - No product presence.
 - Support disclosed in plain words.
 
-This protects caregivers. It also protects the funder, because a programme that people trust is a programme people use.
+This protects caregivers. It also protects the funder, because a program that people trust is a program people use.
 
 It asks something of funders too: accepting an honest report, including how many people did not finish, and what a small pilot cannot show.
 
@@ -222,6 +222,6 @@ I would be glad to hear how other organisations handle this.
 
 Organisations writing plans and bids this year are deciding what caregivers will be offered for years to come.
 
-Digital programmes for caregivers have shown short-term reductions in stress and burden in published meta-analyses (Sherifali and colleagues, JMIR, 2018), though many of those studies carry a high risk of bias. Informed by evidence, and honest about its limits, is the right standard.
+Digital programs for caregivers have shown short-term reductions in stress and burden in published meta-analyses (Sherifali and colleagues, JMIR, 2018), though many of those studies carry a high risk of bias. Informed by evidence, and honest about its limits, is the right standard.
 
 If you are working on this, I would like to compare notes.

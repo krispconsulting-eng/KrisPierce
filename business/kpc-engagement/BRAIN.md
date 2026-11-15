@@ -36,7 +36,7 @@ All prices AUD, excluding GST, recommended by Claude for Kris to confirm. Day-ra
 | **Diagnostic Debrief** | 90-minute working session on the results, plus a written action plan of up to six pages within five working days: three priorities, what to stop, what to do in the next 90 days | $1,500 | 0.6 day |
 | **Strategic Advisory Sprint** | Four weeks on one decision: a consumer evidence plan, an engagement strategy, a trial-readiness review or a partnership approach. Ends with a decision paper and a briefing to the leadership team | $12,000 | 5 days |
 | **Consumer Engagement Design** | A full engagement design and delivery: discovery, co-design sessions with consumers (paid at published rates, costed separately), synthesis, a framework the organisation can run | $18,000 to $45,000 | 8 to 18 days |
-| **Alignment Program** (live name: Stakeholder Alignment Program) | Bringing sponsor, clinicians and community organisations to a shared position before a programme or launch | $15,000 to $30,000 | 6 to 12 days |
+| **Alignment Program** (live name: Stakeholder Alignment Program) | Bringing sponsor, clinicians and community organisations to a shared position before a program or launch | $15,000 to $30,000 | 6 to 12 days |
 | **Ongoing Strategic Advisor** | A retained adviser: monthly working session, document review, on-call advice | $3,500 a month (1.5 days) or $6,500 a month (3 days); six-month minimum | 1.5 or 3 days a month |
 | **In-house co-design training** | One day, up to 12 people, with a workbook and a 30-day follow-up call | $9,500 | 2 days |
 | **Speaking** | Keynote or panel, with a tailored brief | $3,500; charities by arrangement | 1 day |
@@ -49,7 +49,7 @@ Out of scope, always: product-specific work on any application before a committe
 
 ## 5. Strategy
 
-**Position.** The independent specialist in consumer engagement for rare disease evidence and access, who has done the work as a carer, as a founder, as a programme lead and from inside the advisory system. Not a facilitator and not an agency. The existing line holds: "If the work doesn't change a decision, it isn't done."
+**Position.** The independent specialist in consumer engagement for rare disease evidence and access, who has done the work as a carer, as a founder, as a program lead and from inside the advisory system. Not a facilitator and not an agency. The existing line holds: "If the work doesn't change a decision, it isn't done."
 
 **How it wins.** Large firms sell teams and methodology. Kris sells judgement, speed and a fixed scope. The diagnostic gives prospects a result before they speak to anyone, which is rare in this market.
 

@@ -39,7 +39,7 @@ A few things to know first.
 
 - This is free for you. Your place is funded by [organisation name].
 - [Organisation name] will never be told that you enrolled. They do not see your name, your answers or anything about you.
-- This is a wellbeing programme. It is not health care, counselling or a crisis service.
+- This is a wellbeing program. It is not health care, counselling or a crisis service.
 - You can stop at any time. You do not need to give a reason.
 
 ## Tick boxes
@@ -101,7 +101,7 @@ We do not collect details about the person you care for, your health conditions,
 
 ## Why we collect it
 
-- To send you the programme.
+- To send you the program.
 - To show you your own reflection.
 - To report, for groups only, what changed.
 
@@ -149,7 +149,7 @@ They do not get:
 - your answers or your reflection
 - any hint of whether you enrolled
 - any figure for a group smaller than ten people
-- any say over what is in the programme
+- any say over what is in the program
 - any way to advertise to you
 
 This is written into our agreement with every organisation.
@@ -160,7 +160,7 @@ This is written into our agreement with every organisation.
 2. No figure is reported for a group of fewer than ten people.
 3. The sponsor receives no names, contact details, individual responses or enrolment status for any person.
 4. Where the sponsor is an employer, the sponsor receives nothing that could identify a staff member, including by team, site or role.
-5. The sponsor has no control over programme content, participants or findings.
+5. The sponsor has no control over program content, participants or findings.
 6. No product name, promotion or sponsor message is shown or sent to caregivers.
 7. The sponsor's support is disclosed in plain words wherever the cohort is described.
 8. Kris Pierce Consulting is a business. It is not a patient organisation or a health consumer organisation.
@@ -180,7 +180,7 @@ You can stop at any time. Unsubscribe here: [link]. To have your information del
 You can stop whenever you like. You do not need to tell us why, and nothing bad happens.
 
 - To stop the emails, use the unsubscribe link in any email.
-- To leave the programme and keep your information for now, do nothing more.
+- To leave the program and keep your information for now, do nothing more.
 - To leave and have your information deleted, write to info@krispierce.com.au with the words "delete my information".
 
 ## Reply sent when someone asks for deletion

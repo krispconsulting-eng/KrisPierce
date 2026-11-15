@@ -11,11 +11,11 @@
 
 If you run a rare disease organisation, you are doing the work of a much larger team. You are also, probably, already using AI: a quick draft here, a summary there, with no agreed rules.
 
-You are not alone in that. In Infoxchange's 2025 survey of not-for-profits in Australia and New Zealand, as cited by PwC Australia in May 2026, 67% were using generative AI and 14% had a policy or guideline for it.
+In Infoxchange's 2025 survey of not-for-profits in Australia and New Zealand, as cited by PwC Australia in May 2026, 67% were using generative AI and 14% had a policy or guideline for it.
 
-This guide gives you five workflows you can build this week with a general AI assistant such as Claude or ChatGPT. Each one names when to use it, what you need, the steps, a prompt to copy, what to check, and the catch. There is always a catch.
+This guide gives you five workflows you can build this week with a general AI assistant such as Claude or ChatGPT. Each has a prompt to copy, a checklist and the catch. There is always a catch.
 
-Two honest notes. First, I will not tell you how many hours you will save, because I do not know your organisation. Time each task before and after, and judge for yourself. Second, AI gives you a first draft. A person in your organisation still owns every word that goes out.
+Two honest notes. I will not tell you how many hours you will save: time it yourself the first time. And AI gives you a first draft; a person in your organisation still owns every word that goes out.
 
 This guide is educational. It is not medical, legal or privacy advice.
 
@@ -45,10 +45,10 @@ This guide is educational. It is not medical, legal or privacy advice.
 
 **The steps.**
 
-1. Read the abstract yourself first, so you know roughly what to expect.
+1. Read the abstract yourself first.
 2. Paste the text into your AI assistant with the prompt below.
 3. Read the draft against the paper, line by line.
-4. Send it to your checker with one question: "Is anything here wrong or overstated?"
+4. Ask your checker one question: "Is anything here wrong or overstated?"
 5. Publish with the paper's full reference and the date.
 
 **Copy-and-paste prompt.**
@@ -81,7 +81,7 @@ Paper text:
 - No sentence could be read as treatment advice.
 - Your checker has signed off.
 
-**The catch.** AI tends to make results sound more certain and more relevant than they are. Families read these summaries with a great deal of hope. Overstating a finding does real harm, so the limitations section matters as much as the findings.
+**The catch.** AI tends to make results sound more certain and more relevant than they are. Families read these summaries with a great deal of hope, so the limitations section matters as much as the findings.
 
 ---
 
@@ -96,7 +96,7 @@ Paper text:
 1. Remove anything confidential or personal from the past applications: named individuals, salaries, identifiable stories.
 2. Paste the funder's question, the word limit and your past text with the prompt below.
 3. Replace every placeholder the AI leaves with a current, real figure.
-4. Rewrite the opening paragraph yourself. Assessors read hundreds of these, and your own voice is the part they remember.
+4. Rewrite the opening paragraph yourself, in your own voice.
 5. Have a second person check it against the funder's guidelines.
 
 **Copy-and-paste prompt.**
@@ -126,10 +126,10 @@ Our past material:
 - Every figure is current and you can point to its source.
 - The draft answers this funder's question, not last year's.
 - No [FIGURE NEEDED] placeholders remain.
-- Names of programmes, partners and people are right.
+- Names of programs, partners and people are right.
 - Nothing claims an outcome you cannot evidence.
 
-**The catch.** Old figures travel. The AI will reuse a membership number from 2023 as readily as one from last month, and it cannot tell which is which. A grant application is a statement your board stands behind, so treat every number as unverified until you have checked it.
+**The catch.** Old figures travel. The AI will reuse a membership number from 2023 as readily as one from last month, and it cannot tell which is which. Treat every number as unverified until you have checked it.
 
 ---
 
@@ -170,7 +170,7 @@ Notes:
 - "Not agreed" items are followed up, not quietly assigned.
 - Nothing sensitive has slipped into the summary.
 
-**The catch.** A tidy action list looks more authoritative than the messy conversation it came from. If the meeting did not really decide something, the list should say so. Do not record meetings without telling people, and do not use this for board discussions held in confidence unless your board has agreed how.
+**The catch.** A tidy action list looks more authoritative than the messy conversation it came from. If the meeting did not decide something, the list should say so. Do not record meetings without telling people, and keep confidential board discussions out unless your board has agreed how.
 
 ---
 
@@ -217,7 +217,7 @@ Member input:
 - The draft reflects the range of what members said, including views that complicate the argument.
 - A named person in your organisation has approved it.
 
-**The catch.** This is the workflow with the most at stake. An invented study or a polished quote nobody said can discredit a submission and your organisation with it. The human check for invented evidence is the workflow; the AI draft is only the starting material. If you do not have time for the check, do not use AI for the submission.
+**The catch.** This is the workflow with the most at stake. An invented study or a polished quote nobody said can discredit a submission and your organisation with it. The human check for invented evidence is the workflow. If you do not have time for it, do not use AI for the submission.
 
 ---
 
@@ -266,17 +266,17 @@ Newsletter:
 
 ## What to do next
 
-1. **Pick one workflow.** The one attached to the task you least want to do this week.
-2. **Time it.** Note how long the task takes the usual way, then how long it takes with the workflow, including the checking.
-3. **Write it down.** One page: the prompt, the checks, who signs off. A workflow only one person can run does not last.
-4. **Agree your rules.** Take the safety box above to your next team meeting.
+1. **Pick one workflow.** The task you least want to do this week.
+2. **Time it,** the usual way and then with the workflow, checking included.
+3. **Write it down.** One page: the prompt, the checks, who signs off.
+4. **Agree your rules.** Take the safety box to your next team meeting.
 
 If you want company while you build:
 
-- **The Signal.** A free fortnightly newsletter: one development, one workflow, one thing to do.
-- **The AI readiness quiz.** Ten questions and an instant result: [link].
-- **The free monthly session.** "AI for rare disease organisations: where to start and what to avoid", 45 minutes online: [link].
-- **The Signal Circle.** The membership for people who run rare disease organisations. One working AI workflow in your organisation by month three: [link].
+- **The Signal.** A free fortnightly newsletter.
+- **The AI readiness quiz.** Ten questions, instant result: [link].
+- **The free monthly session.** "AI for rare disease organisations: where to start and what to avoid": [link].
+- **The Signal Circle.** The membership for people who run rare disease organisations. One working AI workflow by month three: [link].
 
 [Kris: add a real example of one of these workflows in use, with the organisation's consent. Leave this line out until one exists.]
 

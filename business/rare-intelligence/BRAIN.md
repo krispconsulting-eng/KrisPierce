@@ -28,7 +28,7 @@ Everything below assumes this recommendation. If Kris chooses Model A, sections 
 - 67% of Australian not-for-profits use generative AI; 14% have a policy or guideline for it (Infoxchange 2025, via PwC, May 2026).
 - In a 2026 survey of rare disease patients and caregivers, 54.8% had used generative AI for their condition and 78.3% had not discussed what it told them with a clinician. Patient organisations are being asked about AI by their communities and have no position.
 - General AI training for not-for-profits is free or cheap (Gradient Institute, government-funded Infoxchange). Nobody found offers it for rare disease organisations, with their privacy, evidence and industry-relationship questions.
-- No AI programme was found from Rare Voices Australia, EURORDIS, Global Genes or NORD.
+- No AI program was found from Rare Voices Australia, EURORDIS, Global Genes or NORD.
 
 Sources in `../research/01-ai-and-consulting-market.md`.
 
@@ -38,7 +38,7 @@ Sources in `../research/01-ai-and-consulting-market.md`.
 |---|---|---|---|
 | Rare disease patient organisations (Australia first, then UK, NZ, Canada, US) | Chief executive, founder, operations or communications lead, often a parent carer | Operating budget, capacity-building grants, sponsor support | Membership or readiness consult |
 | Health charities and consumer bodies just outside rare disease | Manager | Operating budget | Policy sprint |
-| Funders and companies that support patient organisations | Patient advocacy lead, foundation programme officer | Unrestricted grants and sponsorship | Sponsored places for 5 to 10 organisations |
+| Funders and companies that support patient organisations | Patient advocacy lead, foundation program officer | Unrestricted grants and sponsorship | Sponsored places for 5 to 10 organisations |
 | Conference and network organisers | Programme chair | Event budget | Workshop |
 
 Not a customer: individual families (served free), and companies seeking help to market products.
@@ -58,7 +58,7 @@ AUD, excluding GST. Prices marked "existing" come from Kris's own business model
 | Service | **AI Safe-Use Policy Sprint** | Two weeks: an AI use policy adapted to the organisation, a data-handling rule sheet, a risk register, a two-hour staff session. Template in `assets/` | $3,500 |
 | Service | **Organisational Intensive** | Four to six weeks: map the work, build two or three workflows with the team, hand over with documentation | From $8,000 (existing) |
 | Event | **Workshop** | Half-day, in person or online, up to 15 people | $520 a person public; $4,800 flat for an in-house group |
-| Sponsored | **Sponsored Circle places** | A funder or company pays a year's membership for patient organisations it names or that apply: unrestricted, disclosed, no say over content | $9,700 for 10 places for 12 months |
+| Sponsored | **Sponsored Circle places** | A funder or company pays a year's membership for patient organisations that apply (a sponsor may suggest organisations; Rare Intelligence decides): unrestricted, disclosed, no say over content or selection | $9,700 for 10 places for 12 months |
 | Later | **Courses** | The 13-course catalogue already written: free intro, $145 a course, pathways $590 and $790, whole pack $1,190, organisation licence $2,400 | From mid-2027 |
 | Pro bono | **Impact Project** | Free builds for the smallest communities, capped at two a year | Free |
 

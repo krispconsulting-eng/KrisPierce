@@ -10,7 +10,7 @@ Compiled 15 November 2026 from web search summaries. Page fetches were blocked i
 - Infoxchange received Commonwealth funding through the National AI Centre (December 2025) to build safe AI capability in the sector: a demand signal and a subsidised competitor. https://www.infoxchange.org/news/2025/12/new-national-ai-initiative-strengthen-ai-safety-and-capability-across-sector
 - Journal of Participatory Medicine 2026, 115 rare disease patients and caregivers (US recruitment): 54.8% had used generative AI in a rare disease context; 78.3% had not discussed AI-generated information with a clinician. https://jopm.jmir.org/2026/1/e93720
 - European Patients' Forum AI Survey Report 2026 (874 responses): 82% want to be told when a clinician uses AI; identifies an AI literacy need. https://www.eu-patient.eu/news/latest-epf-news/2026/ai-survey-report-2026/
-- Not found: any AI programme from EURORDIS, Global Genes, NORD or Rare Voices Australia; budget data.
+- Not found: any AI program from EURORDIS, Global Genes, NORD or Rare Voices Australia; budget data.
 
 ## Comparable AI offers and prices
 
