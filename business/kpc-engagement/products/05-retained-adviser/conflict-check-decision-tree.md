@@ -35,7 +35,7 @@ flowchart TD
   A5 -->|"No"| B1
   B1 -->|"Yes"| B1a{"Declared to both sides and neither objects?"}
   B1a -->|"No"| X1
-  B1a -->|"Yes"| B2{"Is UNSW outside work approval current and does it cover this?"}
+  B1a -->|"Yes"| B2{"Is UNSW outside work approval current and covering this?"}
   B1 -->|"No"| B2
   B2 -->|"No"| H1["HOLD UNTIL APPROVAL IS IN PLACE"]
   B2 -->|"Yes"| C1{"Direct competitor of a current client, same condition?"}
@@ -43,7 +43,7 @@ flowchart TD
   C1 -->|"No"| C2{"Opposite a current client in a negotiation or dispute?"}
   C2 -->|"Yes"| C2a{"Unrelated matters and both consent in writing?"}
   C2a -->|"No"| X1
-  C2a -->|"Yes"| C3{"Can I advise well without another client's knowledge?"}
+  C2a -->|"Yes"| C3{"Can I advise well without knowledge from another client?"}
   C2 -->|"No"| C3
   C3 -->|"No"| X1
   C3 -->|"Yes"| C4{"Would this put me over two retainers and one project?"}

@@ -30,3 +30,56 @@ Diagnostic (free) → Debrief ($1,500, credited against a sprint within 60 days)
 ## What still needs Kris
 
 See "Product and website decisions" in `../../DECISIONS-FOR-KRIS.md`.
+
+## Working documents by offer
+
+Every file below is a draft for Kris's approval. Decision trees are drawn as flowcharts and also written as numbered steps; all 19 were checked to parse. One page shows them all: `00-decision-trees/decision-trees.html`.
+
+
+### Every enquiry
+
+- **Decision trees:** `DECISION-TREES.md`, `decision-trees.html`
+
+### 1. Engagement Review (CEOF Diagnostic)
+
+- **Product definition:** `AUDIENCE-VERSIONS.md`, `PRODUCT.md`
+- **The working review:** `diagnostic.html`
+- **Decision trees:** `result-routing-decision-tree.md`
+- **Templates, guides and forms:** `report-prompt-charity.md`, `report-prompt-pharma.md`, `report-template-charity.md`, `report-template-pharma.md`, `two-respondent-comparison-worksheet.md`
+
+### 2. Diagnostic Debrief
+
+- **Product definition:** `PRODUCT.md`
+- **Decision trees:** `debrief-to-next-step-decision-tree.md`, `priority-decision-tree.md`
+- **Templates, guides and forms:** `action-plan-template.md`, `intake-and-conflict-check-form.md`, `pre-session-questionnaire.md`, `session-guide.md`, `session-questions-pharma.md`
+- **Worked examples (illustrative, not real clients):** `action-plan-example-charity.md`, `action-plan-example-pharma.md`
+- **Emails:** `emails.md`
+
+### 3. Strategic Advisory Sprint
+
+- **Product definition:** `PRODUCT.md`
+- **Decision trees:** `sprint-type-decision-tree.md`
+- **Templates, guides and forms:** `change-request-template.md`, `close-out-checklist.md`, `decision-paper-template.md`, `interview-guide.md`, `interview-synthesis-grid.md`, `kickoff-agenda.md`, `leadership-briefing-outline.md`, `one-page-quote-template.md`, `options-appraisal-template.md`, `scoping-checklist-and-go-no-go.md`, `sprint-plan.md`
+- **Emails:** `emails.md`
+
+### 4. Consumer Engagement Design
+
+- **Product definition:** `PRODUCT.md`
+- **Decision trees:** `consumer-payment-decision-tree.md`, `level-of-involvement-decision-tree.md`, `method-selection-decision-tree.md`, `size-decision-tree.md`
+- **Templates, guides and forms:** `change-request-template.md`, `close-out-checklist.md`, `co-design-session-plans.md`, `consumer-recruitment-and-payment-kit.md`, `engagement-framework-template.md`, `one-page-quote-template.md`, `phase-plan.md`, `risk-and-safeguarding-log.md`, `session-record-template.md`, `synthesis-method.md`
+- **Emails:** `emails.md`
+- **Trackers and logs:** `project-tracker.csv`
+
+### 5. Ongoing Strategic Advisor
+
+- **Product definition:** `PRODUCT.md`
+- **Decision trees:** `conflict-check-decision-tree.md`, `fit-decision-tree.md`, `renewal-decision-tree.md`, `request-triage-decision-tree.md`
+- **Templates, guides and forms:** `conflict-and-boundaries.md`, `decision-log-template.md`, `monthly-rhythm.md`, `onboarding-kit.md`, `one-page-agreement-summary.md`, `quarterly-review-template.md`
+- **Emails:** `emails.md`
+- **Trackers and logs:** `time-and-advice-log.csv`
+
+### 6. In-house co-design training
+
+- **Product definition:** `PRODUCT.md`
+- **Decision trees:** `format-decision-tree.md`
+- **Templates, guides and forms:** `booking-form.md`, `certificate-of-completion-template.md`, `facilitator-checklist.md`, `follow-up.md`, `one-page-quote-template.md`, `participant-evaluation-form.md`, `pre-work.md`, `run-sheet.md`, `slide-outline.md`, `workbook.md`

@@ -1,8 +1,8 @@
 # In-house co-design training: slide outline
 
 > **What this is:** the slide-by-slide outline for the day: 36 slides, each with a title and the one point it makes. It is matched to `run-sheet.md` by time and to `workbook.md` by section. Internal. Build the deck in the Kris Pierce Consulting system (Outfit and Archivo on cream; no serifs; no stock photographs of patients).
-> **How the slides are used:** the day is participants working, not a presentation. Only the slides marked **Talk** carry my input, and there are 12 of them, each inside the 15-minute cap on my talking in any session. The rest are **Instruction** slides (what to do, for how long, which workbook page) and **Holding** slides (breaks, with the restart time). An instruction slide stays up while people work.
-> **A point for Kris to settle:** `PRODUCT.md`, section 9, says "no more than 15" slides. This outline has 36 because every exercise and break has its own slide. Either the cap is read as applying to Talk slides, or the Instruction slides move to the flip chart and the deck drops to about 15. [Kris: decide which, and I will align the two files.]
+> **How the slides are used:** the day is participants working, not a presentation. Only the slides marked **Talk** carry my input, and there are 15 of them, used inside the 15-minute cap on my talking in any session. The rest are **Instruction** slides (what to do, for how long, which workbook page) and **Holding** slides (breaks, with the restart time). An instruction slide stays up while people work.
+> **A point for Kris to settle:** `PRODUCT.md`, section 9, says "no more than 15" slides. This outline has 36 because every exercise and break has its own slide. Either the cap is read as applying to the 15 Talk slides, or the Instruction slides move to the flip chart and the deck drops to about 15. [Kris: decide which, and I will align the two files.]
 > **Rules:** one point per slide. No dollar rates on any slide; the named schedule is in the workbook. No invented cases, quotes or statistics. No client names. No product names.
 
 ## Opening: 9:00 to 9:20
@@ -81,7 +81,7 @@
 | Type | Number | Slides |
 |---|---|---|
 | Talk | 15 | 2, 3, 7, 8, 9, 10, 13, 14, 20, 21, 27, 28, 31, 34, 35 |
-| Instruction | 16 | 4, 5, 6, 11, 12, 15, 16, 17, 19, 22, 23, 24, 26, 29, 30, 32, 36 |
+| Instruction | 17 | 4, 5, 6, 11, 12, 15, 16, 17, 19, 22, 23, 24, 26, 29, 30, 32, 36 |
 | Holding | 4 | 1, 18, 25, 33 |
 
 - [ ] The spectrum is described accurately and attributed on slide 7.

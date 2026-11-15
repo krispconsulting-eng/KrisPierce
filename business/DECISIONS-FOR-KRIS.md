@@ -71,6 +71,21 @@ Raised while the six products and their website copy were built. See `kpc-engage
 | 44 | Replace the three live program entries (sprint, engagement design, ongoing adviser) with the new copy, and add three new pages (diagnostic, debrief, training)? The live sprint lede uses "unlock", a banned word. | Yes. |
 | 45 | **Two versions of the review.** The diagnostic now offers a Patient Engagement Review for pharmaceutical companies and a Community Engagement Review for charities. The 28 pharmaceutical statements and seven first moves are new. | Edit and approve the pharmaceutical set first; see `kpc-engagement/products/01-ceof-diagnostic/AUDIENCE-VERSIONS.md` for five follow-on questions (names, level 5 wording, a research version, benchmarking). |
 
+## Working document decisions
+
+Raised while the templates and decision trees were built. The first three matter; the rest are housekeeping that each template marks with a slot.
+
+| # | Decision | Recommendation |
+|---|---|---|
+| 46 | **Approve the four trees that apply to every enquiry** (`kpc-engagement/products/00-decision-trees/DECISION-TREES.md`): conflict check, which offer, company work under the Code, price. They encode the rules everything else follows. | Read these first. A lawyer should check the Code tree against Edition 20. |
+| 47 | When a charity is entitled to both the 25% rate and the debrief credit, which applies first? | Take 25% off, then credit the $1,500. |
+| 48 | The 60-day debrief credit: any extensions? | No. A fixed window keeps it simple. |
+| 49 | Should organisations scoring Embedded or Community-led still get the debrief emails? | Yes, but a shorter sequence: they are more likely to want a retainer or a talk than a debrief. |
+| 50 | Training: offer an online one-day format as well as two half-days? The product definition allows two half-days only. Slides: the product says 15, the outline has 36 with 15 talk slides. | Two half-days only online; keep 15 talk slides and treat the rest as exercise prompts. |
+| 51 | Retainer price changes need 60 days' notice, but the renewal conversation is at month five. | Raise price at month four if it is changing. |
+| 52 | Rates for community chairs and co-presenters, and recognition for short surveys. | Chair and co-presenter at the chairing rate of the schedule in use; a small voucher for surveys over ten minutes. |
+| 53 | The automated report prompts assume a four-part structure. Confirm it matches the report Kris wants, and that the pharmaceutical prompt's limits are right. | The structure matches the existing workflow prompt; approve after reading one test output. |
+
 ## Parked, with what would unpark them
 
 | Idea | Why parked | What unparks it |
