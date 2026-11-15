@@ -72,7 +72,7 @@ If you book a Strategic Advisory Sprint within 60 days, the debrief fee is credi
 [Button: Book a debrief]
 
 ### Strategic Advisory Sprint
-**From $12,000**
+**$12,000**
 
 Four weeks on one decision: a consumer evidence plan, an engagement strategy, a trial-readiness review or a partnership approach. You finish with a decision paper and a briefing to your leadership team.
 

@@ -331,7 +331,7 @@ In detail:
 - Synthesis of what was heard, written so it can be used in a decision
 - A framework your organisation can run
 - A conflict check before the proposal is accepted
-- Three sizes. Focused: one program or decision, with one consumer group. Standard: one organisation or program, with more than one consumer group. Full: several programs, sites or partner organisations.
+- Three sizes. Focused: one program, project or grant; 4 discovery interviews, 2 co-design sessions with 6 consumers; about 6 weeks. Standard: one organisation or major program; 6 interviews, 3 sessions with 8 consumers; about 8 weeks. Full: a whole organisation or a multi-site program; 10 interviews, 6 sessions with two groups of 8 consumers; about 12 weeks.
 
 ## How it runs
 
