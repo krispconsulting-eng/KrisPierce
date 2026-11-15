@@ -201,7 +201,7 @@ Set out scenario cards. Read the canvases left open on tables to pick two projec
 
 | Time | Activity |
 |---|---|
-| 4:20 | Confirm the 30-day follow-up call: [date, time]. Everyone writes it on the last page of the workbook. "Bring your session plan and tell us what happened: run, booked, changed or stalled." |
+| 4:20 | Confirm the 30-day follow-up call: [date, time]. Everyone writes it on the last page of the workbook. "Bring your session plan and tell the group what happened: run, booked, changed or stalled." |
 | 4:23 | One word or sentence each: what you will do differently. |
 | 4:28 | Kris: the summary note arrives within three working days with answers to the parked questions. Thank the group. Finish on time. |
 

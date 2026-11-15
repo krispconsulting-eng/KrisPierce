@@ -53,6 +53,23 @@ The asset files carry marked slots for these. None blocks the first fortnight, b
 | 33 | Facts to confirm before any bio is used: years as a carer, organisations founded or led, the line "I have run a rare disease organisation", and which roles may be named commercially. | Kris to supply once; reused everywhere. |
 | 34 | Practical details: ABN, booking link, diagnostic link, Rare Intelligence contact email, session days and time zone. | Fill once in a shared details file. |
 
+## Product and website decisions (Kris Pierce Consulting)
+
+Raised while the six products and their website copy were built. See `kpc-engagement/products/README.md`.
+
+| # | Decision | Recommendation |
+|---|---|---|
+| 35 | **The diagnostic is not live.** Both CEOF workflows are inactive, the report and email steps are disabled, and no question set existed. Approve the 28 statements and answer scale in `products/01-ceof-diagnostic/PRODUCT.md`? | Approve with edits; launch with the instant on-screen result and add the emailed report once the workflow runs. |
+| 36 | **The CEOF workflows run on `flows.scn2aaustralia.org`.** A commercial product is using the charity's automation server. | Move them to an account owned by Kris Pierce Consulting before going live. |
+| 37 | Is the CEOF Kris's to commercialise? A Drive note says it was derived from Epilepsy Foundation work. Same question for the Consumer Engagement Framework v1.0. | Check both contracts' IP clauses. |
+| 38 | Engagement Design in three fixed sizes (Focused $18,000, Standard $30,000, Full $45,000) with set numbers of interviews, sessions and participants. | Yes: fixed sizes can be quoted in a day and stop scope drift. |
+| 39 | Retainer terms: unused time carries one month only; extra days at $2,400; 30 days' notice after the six-month minimum; no two direct competitors at once; on-call advice comes out of the monthly days. | Accept as drafted; lawyer to check the termination wording. |
+| 40 | Consumer payments for company clients: paid by Kris Pierce Consulting and recharged at cost, or paid by the client direct? | Paid by Kris Pierce Consulting and recharged at cost, so participants never deal with the company. |
+| 41 | Training: is a paid community co-presenter standard, is workbook printing inside the fee, and who covers travel? | Co-presenter as an optional extra at published rates; printing inside the fee; travel at cost outside south-east Queensland. |
+| 42 | Recording of debriefs, interviews and sessions, and where notes are kept. | No recording by default; notes kept 24 months. |
+| 43 | Tools: booking, video, questionnaire, online whiteboard. | Whatever Kris already uses; the kits name none. |
+| 44 | Replace the three live program entries (sprint, engagement design, ongoing adviser) with the new copy, and add three new pages (diagnostic, debrief, training)? The live sprint lede uses "unlock", a banned word. | Yes. |
+
 ## Parked, with what would unpark them
 
 | Idea | Why parked | What unparks it |
